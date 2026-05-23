@@ -46,14 +46,16 @@ const LINKS = [
 export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 pt-32 pb-24">
-      <header className="mb-16">
-        <p className="mono-label mb-4">reach out</p>
-        <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "var(--text)" }}>
+      <header className="mb-12">
+        <h1
+          className="text-4xl md:text-5xl font-semibold mb-6"
+          style={{ color: "var(--text)" }}
+        >
           Get in touch
         </h1>
-        <p className="text-base leading-relaxed" style={{ color: "var(--text-muted)" }}>
-          I'm always open to interesting conversations — whether that's about
-          AI systems, developer tooling, something you're building, or just a
+        <p className="text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
+          I&apos;m always open to interesting conversations — whether that&apos;s about
+          AI systems, developer tooling, something you&apos;re building, or just a
           good engineering problem. Reach out through any of these:
         </p>
       </header>
@@ -67,34 +69,39 @@ export default function ContactPage() {
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
               aria-label={`${label}: ${handle}`}
-              className="group flex items-center justify-between gap-4 p-5 rounded-xl border transition-all duration-300 glow-hover"
-              style={{
-                borderColor: "var(--border)",
-                background: "var(--bg-alt)",
-              }}
+              className="card group flex items-center justify-between gap-4 p-5 transition-colors duration-150"
             >
               <div className="flex items-center gap-4">
                 <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-[rgba(var(--accent-rgb),0.12)]"
+                  className="w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0 transition-colors duration-150 group-hover:bg-opacity-80"
                   style={{ background: "var(--surface)" }}
                   aria-hidden="true"
                 >
                   <Icon
                     size={18}
-                    style={{ color: "var(--accent)" }}
+                    style={{ color: "var(--text)" }}
                     aria-hidden="true"
                   />
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-sm font-medium" style={{ color: "var(--text)" }}>
+                  <div className="flex items-baseline gap-2 mb-0.5">
+                    <span
+                      className="text-sm font-semibold"
+                      style={{ color: "var(--text)" }}
+                    >
                       {label}
                     </span>
-                    <span className="font-mono text-xs" style={{ color: "var(--accent)" }}>
+                    <span
+                      className="ui-sans text-xs"
+                      style={{ color: "var(--text-subtle)" }}
+                    >
                       {handle}
                     </span>
                   </div>
-                  <p className="text-xs" style={{ color: "var(--text-subtle)" }}>
+                  <p
+                    className="ui-sans text-xs"
+                    style={{ color: "var(--text-muted)" }}
+                  >
                     {description}
                   </p>
                 </div>
@@ -102,7 +109,7 @@ export default function ContactPage() {
               <ArrowUpRight
                 size={16}
                 aria-hidden="true"
-                className="flex-shrink-0 transition-all duration-200 group-hover:text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="flex-shrink-0 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 style={{ color: "var(--text-subtle)" }}
               />
             </a>
@@ -110,8 +117,11 @@ export default function ContactPage() {
         ))}
       </ul>
 
-      <p className="mt-10 text-xs font-mono text-center" style={{ color: "var(--text-subtle)" }}>
-        Usually responds within 48h.
+      <p
+        className="ui-sans mt-10 text-xs text-center"
+        style={{ color: "var(--text-subtle)" }}
+      >
+        Usually responds within 48 hours.
       </p>
     </div>
   );

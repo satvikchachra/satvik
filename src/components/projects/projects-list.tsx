@@ -25,15 +25,15 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
   return (
     <>
       {/* Tag filter */}
-      <div className="flex flex-wrap gap-2 mb-12" role="group" aria-label="Filter projects by tag">
+      <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter projects by tag">
         <button
           onClick={() => setActiveTag(null)}
           aria-pressed={activeTag === null}
-          className="tag transition-all duration-200"
+          className="tag transition-all duration-150"
           style={{
-            background: activeTag === null ? "rgba(var(--accent-rgb), 0.18)" : undefined,
-            color: activeTag === null ? "var(--accent)" : "var(--text-subtle)",
-            borderColor: activeTag === null ? "var(--accent)" : undefined,
+            background: activeTag === null ? "var(--text)" : "var(--surface)",
+            color: activeTag === null ? "var(--bg)" : "var(--text-muted)",
+            borderColor: activeTag === null ? "transparent" : "var(--border)",
           }}
         >
           all
@@ -43,11 +43,11 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
             key={tag}
             onClick={() => setActiveTag(activeTag === tag ? null : tag)}
             aria-pressed={activeTag === tag}
-            className="tag transition-all duration-200"
+            className="tag transition-all duration-150"
             style={{
-              background: activeTag === tag ? "rgba(var(--accent-rgb), 0.18)" : undefined,
-              color: activeTag === tag ? "var(--accent)" : "var(--text-subtle)",
-              borderColor: activeTag === tag ? "var(--accent)" : undefined,
+              background: activeTag === tag ? "var(--text)" : "var(--surface)",
+              color: activeTag === tag ? "var(--bg)" : "var(--text-muted)",
+              borderColor: activeTag === tag ? "transparent" : "var(--border)",
             }}
           >
             {tag}
@@ -57,32 +57,28 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
 
       {/* Project grid */}
       {filtered.length === 0 ? (
-        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+        <p className="ui-sans text-sm" style={{ color: "var(--text-muted)" }}>
           No projects match that filter.
         </p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {filtered.map((project) => (
             <article
               key={project.slug}
-              className="group relative p-6 rounded-xl border transition-all duration-300 glow-hover"
-              style={{
-                borderColor: "var(--border)",
-                background: "var(--bg-alt)",
-              }}
+              className="card p-5"
             >
               {/* Header row */}
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div className="flex-1 min-w-0">
                   <h2
-                    className="text-sm font-semibold mb-0.5 truncate"
+                    className="text-sm font-semibold mb-1 truncate"
                     style={{ color: "var(--text)" }}
                   >
                     {project.title}
                   </h2>
                   <div className="flex items-center gap-2">
                     <span
-                      className="inline-flex items-center gap-1 text-xs font-mono"
+                      className="ui-sans inline-flex items-center gap-1 text-[0.65rem] uppercase tracking-wider font-semibold"
                       style={{ color: STATUS_COLORS[project.status] }}
                     >
                       <span
@@ -96,14 +92,14 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                   </div>
                 </div>
                 {/* External links */}
-                <div className="flex items-center gap-3 flex-shrink-0">
+                <div className="flex items-center gap-2 flex-shrink-0">
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} source on GitHub`}
-                      className="transition-colors duration-200 hover:text-[var(--accent)]"
+                      className="transition-opacity duration-150 hover:opacity-60"
                       style={{ color: "var(--text-subtle)" }}
                     >
                       <GitBranch size={15} aria-hidden="true" />
@@ -115,7 +111,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} live demo`}
-                      className="transition-colors duration-200 hover:text-[var(--accent)]"
+                      className="transition-opacity duration-150 hover:opacity-60"
                       style={{ color: "var(--text-subtle)" }}
                     >
                       <ExternalLink size={15} aria-hidden="true" />
@@ -124,7 +120,10 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                 </div>
               </div>
 
-              <p className="text-xs leading-relaxed mb-5" style={{ color: "var(--text-muted)" }}>
+              <p
+                className="ui-sans text-xs leading-relaxed mb-5"
+                style={{ color: "var(--text-muted)" }}
+              >
                 {project.description}
               </p>
 
