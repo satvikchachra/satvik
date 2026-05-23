@@ -6,20 +6,20 @@ import { useState, useEffect } from "react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const NAV_LINKS = [
-  { href: "/",         label: "home" },
-  { href: "/about",    label: "about" },
-  { href: "/projects", label: "projects" },
-  { href: "/blog",     label: "blog" },
-  { href: "/contact",  label: "contact" },
+  { href: "/",         label: "Home"     },
+  { href: "/about",    label: "About"    },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog",     label: "Blog"     },
+  { href: "/contact",  label: "Contact"  },
 ] as const;
 
 export function Navbar() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
+    const handler = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -31,35 +31,30 @@ export function Navbar() {
     <>
       <header
         role="banner"
-        className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+        className="fixed top-0 inset-x-0 z-50 transition-all duration-200"
         style={{
-          background: scrolled
-            ? "rgba(var(--bg-alt, 24 24 37), 0.85)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+          background: scrolled ? "var(--bg)" : "transparent",
           borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
         }}
       >
         <nav
           role="navigation"
           aria-label="Main navigation"
-          className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between"
+          className="ui-sans max-w-3xl mx-auto px-6 h-12 flex items-center justify-between"
         >
-          {/* Logo / Name */}
+          {/* Logo */}
           <Link
             href="/"
             aria-label="Satvik Chachra — Home"
-            className="font-mono text-sm font-semibold tracking-tight transition-opacity duration-200 hover:opacity-70"
-            style={{ color: "var(--accent)" }}
+            className="ui-sans text-sm font-medium transition-opacity duration-200 hover:opacity-60"
+            style={{ color: "var(--text)" }}
           >
-            satvik<span style={{ color: "var(--text-subtle)" }}>@chachra</span>
-            <span className="cursor" aria-hidden="true" />
+            Satvik Chachra
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-6">
-            <ul className="flex items-center gap-6" role="list">
+          <div className="hidden md:flex items-center gap-1">
+            <ul className="flex items-center gap-1" role="list">
               {NAV_LINKS.map(({ href, label }) => {
                 const isActive =
                   href === "/"
@@ -70,9 +65,10 @@ export function Navbar() {
                     <Link
                       href={href}
                       aria-current={isActive ? "page" : undefined}
-                      className="mono-label transition-colors duration-200"
+                      className="ui-sans inline-block px-3 py-1.5 text-sm rounded-md transition-colors duration-150"
                       style={{
-                        color: isActive ? "var(--accent)" : "var(--text-subtle)",
+                        color: isActive ? "var(--text)" : "var(--text-subtle)",
+                        background: isActive ? "var(--surface)" : "transparent",
                       }}
                     >
                       {label}
@@ -85,34 +81,35 @@ export function Navbar() {
           </div>
 
           {/* Mobile: theme + hamburger */}
-          <div className="flex items-center gap-3 md:hidden">
+          <div className="flex items-center gap-1 md:hidden">
             <ThemeSwitcher />
             <button
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               onClick={() => setMobileOpen((o) => !o)}
-              className="w-8 h-8 flex flex-col justify-center items-center gap-1.5"
+              className="ui-sans w-8 h-8 flex flex-col justify-center items-center gap-[5px] rounded-md transition-colors duration-150"
+              style={{ color: "var(--text-subtle)" }}
             >
               <span
-                className="block w-5 h-px transition-all duration-300 origin-center"
+                className="block w-[18px] h-px transition-all duration-250 origin-center"
                 style={{
-                  background: "var(--text-muted)",
-                  transform: mobileOpen ? "translateY(4px) rotate(45deg)" : "none",
+                  background: "currentColor",
+                  transform: mobileOpen ? "translateY(6px) rotate(45deg)" : "none",
                 }}
               />
               <span
-                className="block w-5 h-px transition-all duration-300"
+                className="block w-[18px] h-px transition-all duration-250"
                 style={{
-                  background: "var(--text-muted)",
+                  background: "currentColor",
                   opacity: mobileOpen ? 0 : 1,
                 }}
               />
               <span
-                className="block w-5 h-px transition-all duration-300 origin-center"
+                className="block w-[18px] h-px transition-all duration-250 origin-center"
                 style={{
-                  background: "var(--text-muted)",
-                  transform: mobileOpen ? "translateY(-4px) rotate(-45deg)" : "none",
+                  background: "currentColor",
+                  transform: mobileOpen ? "translateY(-6px) rotate(-45deg)" : "none",
                 }}
               />
             </button>
@@ -126,14 +123,17 @@ export function Navbar() {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
-        className="fixed inset-0 z-40 md:hidden transition-all duration-300"
+        className="fixed inset-0 z-40 md:hidden transition-opacity duration-200"
         style={{
           background: "var(--bg)",
           opacity: mobileOpen ? 1 : 0,
           pointerEvents: mobileOpen ? "auto" : "none",
         }}
       >
-        <nav className="flex flex-col items-center justify-center h-full gap-8" aria-label="Mobile navigation links">
+        <nav
+          className="flex flex-col items-center justify-center h-full gap-6"
+          aria-label="Mobile navigation links"
+        >
           {NAV_LINKS.map(({ href, label }, i) => {
             const isActive =
               href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -142,10 +142,10 @@ export function Navbar() {
                 key={href}
                 href={href}
                 aria-current={isActive ? "page" : undefined}
-                className="font-mono text-2xl font-medium tracking-widest uppercase transition-all duration-200"
+                className="ui-sans text-2xl font-medium transition-opacity duration-150"
                 style={{
-                  color: isActive ? "var(--accent)" : "var(--text-muted)",
-                  animationDelay: `${i * 60}ms`,
+                  color: isActive ? "var(--text)" : "var(--text-muted)",
+                  animationDelay: `${i * 50}ms`,
                 }}
               >
                 {label}

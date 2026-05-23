@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -15,6 +15,14 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+});
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+  display: "swap",
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -71,12 +79,22 @@ const jsonLd = {
   ],
 };
 
-// Inline script: apply saved theme before first paint (prevents flash)
+// No-flash theme script: read saved pref or detect system
 const themeScript = `
 (function(){
-  var t = localStorage.getItem('theme');
-  var valid = ['catppuccin','nord','gruvbox','ayu'];
-  document.documentElement.setAttribute('data-theme', valid.includes(t) ? t : 'catppuccin');
+  try {
+    var t = localStorage.getItem('theme');
+    var valid = ['dark','light'];
+    var theme;
+    if (t && valid.includes(t)) {
+      theme = t;
+    } else {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
 })();
 `;
 
@@ -86,8 +104,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="catppuccin"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      data-theme="dark"
+      className={`${geistSans.variable} ${geistMono.variable} ${lora.variable}`}
     >
       <head>
         {/* No-flash theme script — must run before paint */}
@@ -98,7 +116,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="grain">
+      <body>
         <Navbar />
         <main id="main-content" tabIndex={-1}>
           {children}
