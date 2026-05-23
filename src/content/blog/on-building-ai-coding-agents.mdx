@@ -1,0 +1,75 @@
+---
+title: "On Building AI Coding Agents That Actually Work"
+description: "Most AI coding demos are lies. Here's what it actually takes to build an agent that ships production code."
+date: "2025-05-20"
+tags: ["AI Agents", "Engineering", "LLM"]
+---
+
+Most AI coding demos you see are lies.
+
+They show a prompt → a beautiful diff → "shipped." What they don't show: the
+5 retries, the hallucinated imports, the agent that confidently rewrote the
+wrong file, the tool-use loop that spiralled into 40k tokens of context with
+nothing to show for it.
+
+I've been building AI coding agents in production for over a year. Here's
+what I've actually learned.
+
+## The core problem: agents aren't magic, they're systems
+
+An LLM is a stateless function. You send it tokens, it returns tokens.
+Everything "agentic" — memory, tool use, planning, multi-step reasoning —
+is infrastructure you build around that function.
+
+The insight that changed how I think about this:
+
+> **An AI coding agent is a distributed system where one of the services is a
+> language model.**
+
+That reframe is useful. It means all the things you know about distributed
+systems apply: failure modes, retries, idempotency, observability, graceful
+degradation.
+
+## What makes agents fail
+
+### 1. Context rot
+
+The longer the context window, the more the model "forgets" what it's doing.
+Not literally (it sees all the tokens), but practically: later instructions
+override earlier ones, the signal-to-noise ratio degrades, and the model
+starts pattern-matching on the wrong things.
+
+**Fix:** Compress context aggressively. Summarize tool outputs. Evict stale
+observations. Treat context like RAM, not disk.
+
+### 2. Tool design
+
+Most people give their agent too many tools with bad descriptions. The model
+then picks the wrong tool, generates plausible-but-wrong arguments, and
+proceeds confidently into disaster.
+
+**Fix:** Fewer tools. Richer schemas. Make the wrong action structurally
+impossible (type constraints, enums, required fields).
+
+### 3. No fallback loop
+
+Production agents need to know when they're stuck. Infinite retry loops
+aren't agentic behaviour, they're bugs with extra steps.
+
+**Fix:** Build explicit escalation paths. Max-step limits. Confidence
+thresholds. Human-in-the-loop checkpoints for irreversible actions.
+
+## What actually works
+
+1. **Tight tool surfaces** — Each tool does one thing, with a clear success/failure contract.
+2. **Structured outputs** — JSON mode or function calling everywhere. Unstructured text responses in tool-use loops are a footgun.
+3. **Observation compression** — After every tool call, summarize the observation before adding it to context.
+4. **Semantic memory** — Embeddings-based retrieval for codebase context, not naive file dumps.
+5. **Eval-driven development** — If you're not measuring task completion rate, you're flying blind.
+
+---
+
+The agents worth building aren't the ones that demo well. They're the ones
+that work at 3am when nobody's watching.
+
+More on this soon.
