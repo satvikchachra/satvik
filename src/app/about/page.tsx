@@ -9,39 +9,69 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const STACK = [
-  { category: "AI / ML", items: ["AI Agents", "LLMs (learning)", "RAG (learning)", "Tecton"] },
-  { category: "Languages", items: ["TypeScript", "Python (learning)", "Rust (learning)"] },
-  { category: "Frontend", items: ["ReactJS", "NextJS", "Redux", "HTML", "CSS"] },
-  { category: "Backend", items: ["NodeJS", "Redis"] },
+  {
+    category: "AI / ML",
+    items: ["AI Agents", "LLMs", "RAG (learning)", "Tecton", "MLOps", "MCP", "ACP"],
+  },
+  {
+    category: "Languages",
+    items: ["JavaScript", "TypeScript", "Python", "Rust (learning)"],
+  },
+  {
+    category: "Frontend",
+    items: ["ReactJS", "NextJS", "Redux", "HTML", "CSS"],
+  },
+  {
+    category: "Backend",
+    items: ["NodeJS", "FastAPI", "Flask", "Redis", "Firebase", "Socket.IO"],
+  },
+  {
+    category: "Cloud / Infra",
+    items: ["AWS S3", "CI/CD", "Docker"],
+  },
+  {
+    category: "Tools / APIs",
+    items: ["VS Code APIs", "JetBrains APIs", "AI SDK", "Stripe", "Material UI"],
+  },
 ] as const;
 
 const TIMELINE = [
   {
-    year: "2024 – now",
-    role: "SDE 2 — AI-Native Full Stack Engineering",
-    org: "Current Role",
+    year: "2025 – now",
+    company: "Atlassian",
+    companyUrl: "https://www.atlassian.com/",
+    role: "SDE 2 — AI Foundations",
     description:
-      "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by 2K+ engineers daily.",
+      "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by 2K+ engineers daily. Led end-to-end development of an AI-native editor experience across VS Code and JetBrains with ~95% shared code.",
   },
   {
-    year: "2022 – 2024",
-    role: "SDE 1 — Full Stack Engineering",
-    org: "Previous Role",
+    year: "2024 – 2025",
+    company: "Atlassian",
+    companyUrl: "https://www.atlassian.com/",
+    role: "SDE 1 — Dev Infra",
     description:
-      "Built and scaled full-stack features across web platforms. First forays into LLM integration and developer tooling.",
+      "Worked on ML-powered predictive test selection for CI/CD pipelines. Drove ~99% improvement in p95 prediction API latency (60s → 500ms) through Tecton feature store integration and Redis caching alongside FastAPI migration.",
+  },
+  {
+    year: "2022 – 2023",
+    company: "AppyHigh",
+    companyUrl: "https://www.appyhigh.com/",
+    role: "SDE 1 — Full Stack",
+    description:
+      "Built AI-powered photo editing and generation platform (PhotAI) and a cloud-based storage and document conversion service (ScannerGo). Led small engineering teams. Products reached 1M+ users collectively.",
   },
   {
     year: "2018 – 2022",
-    role: "B.Tech Computer Science",
-    org: "University",
-    description:
-      "Deep dives into algorithms, distributed systems, and machine learning foundations.",
+    company: "Chitkara University",
+    companyUrl: "https://www.chitkara.edu.in/",
+    role: "Bachelor of Engineering, Computer Science",
+    description: "CGPA: 9.83 / 10",
   },
 ] as const;
 
 const WINS = [
   ["2K+ engineers daily", "AI coding agent used in production"],
-  ["1M+ users", "B2C SaaS products shipped"],
+  ["1M+ users", "B2C SaaS products shipped at AppyHigh"],
   ["~95% shared code", "VS Code + JetBrains plugin for AI agent"],
   ["60s → 500ms", "ML prediction API latency reduction"],
 ] as const;
@@ -51,72 +81,71 @@ export default function AboutPage() {
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
 
       {/* Header */}
-      <header className="mb-16 animate-fade-in-up stagger-0">
+      <header className="mb-10 animate-fade-in-up stagger-0">
         <h1
-          className="text-lg tracking-tight mb-2"
+          className="text-lg tracking-tight mb-3"
           style={{ color: "var(--text)" }}
         >
           satvik chachra
         </h1>
-        <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-          AI-native full stack engineer. Building systems where AI writes code,
-          reviews code, and understands codebases — and the infrastructure
-          that makes that reliable.
-        </p>
-      </header>
-
-      {/* Bio */}
-      <section aria-labelledby="bio-heading" className="mb-16 animate-fade-in-up stagger-1">
-        <p className="section-label mb-5">background</p>
-        <div className="space-y-4 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+        <div className="text-sm leading-relaxed space-y-2" style={{ color: "var(--text-muted)" }}>
           <p>
-            I&apos;m a software engineer obsessed with the intersection of AI and
-            developer experience. My work lives in the space between language
-            models and production systems — making agents that actually work,
-            not just demo well.
+            AI-native full stack engineer. I build systems where AI writes code,
+            reviews code, and understands codebases — and the infrastructure
+            that makes that reliable in production. I have over four years of experience across the full stack:
+            from frontend and backend to ML systems, CI/CD pipelines, and developer tooling.
           </p>
           <p>
-            Before AI became a buzzword, I was doing full-stack platform
-            engineering. That background shapes how I think: I care deeply
-            about reliability, latency, and what happens when your clever
-            system meets real traffic at 3am.
-          </p>
-          <p>
-            Outside of building, I write about AI systems, platform
-            engineering patterns, and things I&apos;m learning across CS,
-            mathematics, and science.
+            Outside of building, I write about AI systems, platform engineering,
+            and things I&apos;m learning across CS, mathematics, and science.
           </p>
         </div>
-      </section>
+      </header>
 
-      {/* Wins */}
-      <section aria-labelledby="wins-heading" className="mb-16 animate-fade-in-up stagger-2">
-        <p className="section-label mb-4">selected wins</p>
+      {/* Timeline */}
+      <section aria-labelledby="timeline-heading" className="mb-10 animate-fade-in-up stagger-4">
+        <p className="section-label mb-4">experience</p>
         <div>
-          {WINS.map(([metric, context]) => (
+          {TIMELINE.map((item, i) => (
             <div
-              key={metric}
-              className="flex items-baseline justify-between gap-6 py-3"
+              key={i}
+              className="py-4"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
-              <span className="text-sm" style={{ color: "var(--text-muted)" }}>
-                {context}
-              </span>
-              <span
-                className="text-sm flex-shrink-0"
-                style={{ color: "var(--text)" }}
-              >
-                {metric}
-              </span>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <span className="text-sm" style={{ color: "var(--text)" }}>
+                  {item.role}
+                </span>
+                <time
+                  dateTime={item.year}
+                  className="mono-label flex-shrink-0"
+                >
+                  {item.year}
+                </time>
+              </div>
+              <p className="text-xs mb-2">
+                <a
+                  href={item.companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "var(--accent)" }}
+                  className="transition-opacity duration-150 hover:opacity-70"
+                >
+                  {item.company}
+                </a>
+              </p>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                {item.description}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Stack */}
-      <section aria-labelledby="stack-heading" className="mb-16 animate-fade-in-up stagger-3">
-        <p className="section-label mb-5">stack</p>
-        <dl className="space-y-5">
+      <section aria-labelledby="stack-heading" className="mb-10 animate-fade-in-up stagger-3">
+        <p className="section-label mb-4">tech stack</p>
+        <dl className="space-y-4">
           {STACK.map(({ category, items }) => (
             <div key={category} className="flex gap-6">
               <dt
@@ -136,59 +165,25 @@ export default function AboutPage() {
         </dl>
       </section>
 
-      {/* Timeline */}
-      <section aria-labelledby="timeline-heading" className="mb-16 animate-fade-in-up stagger-4">
-        <p className="section-label mb-4">timeline</p>
+      {/* Wins */}
+      <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
+        <p className="section-label mb-4">selected wins</p>
         <div>
-          {TIMELINE.map((item, i) => (
+          {WINS.map(([metric, context]) => (
             <div
-              key={i}
-              className="py-5"
+              key={metric}
+              className="flex items-baseline justify-between gap-6 py-3"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
-              <div className="flex items-baseline justify-between gap-4 mb-2">
-                <span className="text-sm" style={{ color: "var(--text)" }}>
-                  {item.role}
-                </span>
-                <time
-                  dateTime={item.year}
-                  className="mono-label flex-shrink-0"
-                >
-                  {item.year}
-                </time>
-              </div>
-              <p className="text-xs mb-2" style={{ color: "var(--accent)" }}>
-                {item.org}
-              </p>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Principles */}
-      <section aria-labelledby="principles-heading" className="animate-fade-in-up stagger-5">
-        <p className="section-label mb-4">principles</p>
-        <div>
-          {[
-            ["ship fast, refactor faster", "Velocity matters. But so does the codebase you're leaving behind for future-you."],
-            ["systems > hacks", "I'd rather spend 2x longer on a proper abstraction than ship a clever one-liner that breaks at 2x scale."],
-            ["observability is not optional", "If you can't measure it in production, you don't understand it."],
-            ["AI is a force multiplier", "The best AI systems make engineers dramatically more capable, not obsolete."],
-          ].map(([title, body]) => (
-            <div
-              key={title}
-              className="py-5"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
-            >
-              <p className="text-sm mb-2" style={{ color: "var(--text)" }}>
-                {title}
-              </p>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {body}
-              </p>
+              <span className="text-sm" style={{ color: "var(--text-muted)" }}>
+                {context}
+              </span>
+              <span
+                className="text-sm flex-shrink-0"
+                style={{ color: "var(--text)" }}
+              >
+                {metric}
+              </span>
             </div>
           ))}
         </div>

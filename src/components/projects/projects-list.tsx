@@ -8,18 +8,6 @@ interface ProjectsListProps {
   allTags: string[];
 }
 
-const STATUS_LABEL: Record<Project["status"], string> = {
-  active:   "active",
-  wip:      "wip",
-  archived: "archived",
-};
-
-const STATUS_COLORS: Record<Project["status"], string> = {
-  active:   "var(--green)",
-  wip:      "var(--yellow)",
-  archived: "var(--text-subtle)",
-};
-
 export function ProjectsList({ projects, allTags }: ProjectsListProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
@@ -31,7 +19,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
     <>
       {/* Tag filter — minimal pill row */}
       <div
-        className="flex flex-wrap gap-2 mb-10"
+        className="flex flex-wrap gap-2 mb-8"
         role="group"
         aria-label="Filter projects by tag"
       >
@@ -61,86 +49,92 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
         </p>
       ) : (
         <div>
-          {filtered.map((project, i) => (
+          {filtered.map((project) => (
             <div
               key={project.slug}
               className="py-5"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
               {/* Title row */}
-              <div className="flex items-baseline justify-between gap-4 mb-2">
-                <h2
-                  className="text-sm"
-                  style={{ color: "var(--text)" }}
-                >
-                  {project.title}
+              <div className="flex items-baseline justify-between gap-4 mb-3">
+                <h2 className="text-sm" style={{ color: "var(--text)" }}>
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} — opens in new tab`}
+                      className="transition-opacity duration-150 hover:opacity-70 inline-flex items-baseline gap-1"
+                      style={{ color: "var(--text)" }}
+                    >
+                      {project.title}
+                      <span
+                        className="text-xs"
+                        style={{ color: "var(--text-subtle)" }}
+                        aria-hidden="true"
+                      >
+                        ↗
+                      </span>
+                    </a>
+                  ) : (
+                    project.title
+                  )}
                 </h2>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  <span
-                    className="text-xs"
-                    style={{ color: STATUS_COLORS[project.status] }}
-                  >
-                    {STATUS_LABEL[project.status]}
-                  </span>
+                  {/* Only show "active" badge for the AI Coding Agent */}
+                  {project.slug === "ai-coding-agent" && (
+                    <span
+                      className="text-xs"
+                      style={{ color: "var(--green)" }}
+                    >
+                      active
+                    </span>
+                  )}
                   <span className="mono-label">{project.year}</span>
                 </div>
               </div>
 
-              {/* Description */}
+              {/* Short description */}
               <p
-                className="text-sm leading-relaxed mb-3"
+                className="text-sm leading-relaxed mb-4"
                 style={{ color: "var(--text-muted)" }}
               >
                 {project.description}
               </p>
 
-              {/* Tags + links on same row */}
-              <div className="flex items-center justify-between gap-4">
-                <p
-                  className="text-xs"
-                  style={{ color: "var(--text-subtle)" }}
+              {/* Tech stack — above bullets */}
+              <p
+                className="text-xs mb-3 tracking-wide"
+                style={{ color: "var(--text-subtle)" }}
+              >
+                <span
+                  className="uppercase"
+                  style={{
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.12em",
+                    color: "var(--text-subtle)",
+                    marginRight: "0.5rem",
+                  }}
                 >
-                  {project.tags.join(" · ")}
-                </p>
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} source on GitHub`}
-                      className="text-xs transition-colors duration-200"
-                      style={{ color: "var(--text-subtle)" }}
-                      onMouseEnter={(e) =>
-                        ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text)")
-                      }
-                      onMouseLeave={(e) =>
-                        ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-subtle)")
-                      }
+                  stack
+                </span>
+                {project.tags.join(" · ")}
+              </p>
+
+              {/* Bullets */}
+              {project.bullets && project.bullets.length > 0 && (
+                <ul className="space-y-2" style={{ paddingLeft: "1rem" }}>
+                  {project.bullets.map((bullet, i) => (
+                    <li
+                      key={i}
+                      className="text-xs leading-relaxed list-disc"
+                      style={{ color: "var(--text-muted)" }}
                     >
-                      gh ↗
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} live demo`}
-                      className="text-xs transition-colors duration-200"
-                      style={{ color: "var(--text-subtle)" }}
-                      onMouseEnter={(e) =>
-                        ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text)")
-                      }
-                      onMouseLeave={(e) =>
-                        ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-subtle)")
-                      }
-                    >
-                      live ↗
-                    </a>
-                  )}
-                </div>
-              </div>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
