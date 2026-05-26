@@ -10,7 +10,7 @@ export function ThemeSwitcher() {
     <button
       onClick={toggleTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="ui-sans w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200"
+      className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200"
       style={{
         color: "var(--text-subtle)",
         background: "transparent",

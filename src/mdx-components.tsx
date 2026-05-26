@@ -28,11 +28,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <blockquote
         {...props}
         style={{
-          borderLeftColor: "var(--accent)",
-          background: "rgba(var(--accent-rgb), 0.06)",
-          borderRadius: "0 8px 8px 0",
-          padding: "1em 1.25em",
+          borderLeft: "2px solid var(--border)",
+          paddingLeft: "1.25em",
           margin: "1.5em 0",
+          color: "var(--text-muted)",
+          opacity: 0.8,
         }}
       >
         {children}

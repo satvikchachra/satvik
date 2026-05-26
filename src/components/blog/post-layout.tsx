@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { formatDate } from "@/lib/blog";
 
 interface PostLayoutProps {
@@ -24,51 +23,34 @@ export function PostLayout({
   children,
 }: PostLayoutProps) {
   return (
-    <div className="max-w-3xl mx-auto px-6 pt-28 pb-24">
-      {/* Reading progress bar (CSS scroll-driven, no JS fallback) */}
-      <div className="progress-bar" aria-hidden="true" />
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
 
       {/* Back link */}
       <Link
         href="/blog"
         id="back-to-blog"
-        className="inline-flex items-center gap-2 mb-12 text-xs font-mono transition-colors duration-200 group"
-        style={{ color: "var(--text-subtle)" }}
+        className="text-xs mb-12 inline-block link-subtle"
       >
-        <ArrowLeft
-          size={13}
-          aria-hidden="true"
-          className="transition-transform duration-200 group-hover:-translate-x-1"
-        />
-        back to blog
+        ← writing
       </Link>
 
       {/* Post header */}
       <header className="mb-12">
-        {/* Tags */}
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-6" aria-label="Post tags">
-            {tags.map((tag) => (
-              <span key={tag} className="tag">{tag}</span>
-            ))}
-          </div>
-        )}
-
         <h1
-          className="text-3xl md:text-4xl font-bold mb-4 leading-tight"
+          className="text-lg tracking-tight mb-3 leading-snug"
           style={{ color: "var(--text)" }}
         >
           {title}
         </h1>
 
-        <p className="text-base mb-6" style={{ color: "var(--text-muted)" }}>
+        <p className="text-sm mb-5 leading-relaxed" style={{ color: "var(--text-muted)" }}>
           {description}
         </p>
 
         {/* Meta row */}
         <div
-          className="flex items-center gap-4 pb-8 border-b"
-          style={{ borderColor: "var(--border)" }}
+          className="flex items-center gap-3 pb-8"
+          style={{ borderBottom: "1px solid var(--border-subtle)" }}
         >
           <time dateTime={date} className="mono-label">
             {formatDate(date)}
@@ -79,8 +61,12 @@ export function PostLayout({
               <span className="mono-label">{readingTime}</span>
             </>
           )}
-          <span className="mono-label" aria-hidden="true">·</span>
-          <span className="mono-label">Satvik Chachra</span>
+          {tags.length > 0 && (
+            <>
+              <span className="mono-label" aria-hidden="true">·</span>
+              <span className="mono-label">{tags.join(", ")}</span>
+            </>
+          )}
         </div>
       </header>
 
@@ -88,18 +74,15 @@ export function PostLayout({
       <div className="prose">{children}</div>
 
       {/* Post footer */}
-      <footer className="mt-16 pt-8 border-t" style={{ borderColor: "var(--border)" }}>
+      <footer
+        className="mt-16 pt-6"
+        style={{ borderTop: "1px solid var(--border-subtle)" }}
+      >
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-xs font-mono transition-colors duration-200 group"
-          style={{ color: "var(--accent)" }}
+          className="text-xs link-subtle"
         >
-          <ArrowLeft
-            size={13}
-            aria-hidden="true"
-            className="transition-transform duration-200 group-hover:-translate-x-1"
-          />
-          Back to all posts
+          ← back to writing
         </Link>
       </footer>
     </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { buildMetadata } from "@/lib/metadata";
 import { getAllPosts, formatDate } from "@/lib/blog";
 
@@ -15,82 +14,72 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 pt-32 pb-24">
-      <header className="mb-16">
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+
+      <header className="mb-16 animate-fade-in-up stagger-0">
         <h1
-          className="text-4xl md:text-5xl font-semibold mb-6"
+          className="text-lg tracking-tight mb-2"
           style={{ color: "var(--text)" }}
         >
-          Blog
+          writing
         </h1>
-        <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "var(--text-muted)" }}>
-          A mix of opinion pieces, engineering case studies, and interactive
-          explorations of concepts I find interesting — AI, distributed
-          systems, math, physics.
+        <p
+          className="text-sm leading-relaxed"
+          style={{ color: "var(--text-muted)" }}
+        >
+          Opinion pieces, engineering case studies, and explorations of things
+          I find interesting — AI, distributed systems, math, physics.
         </p>
       </header>
 
       {posts.length === 0 ? (
         <div
-          className="py-20 text-center border-t"
-          style={{ borderColor: "var(--border)" }}
+          className="py-16 animate-fade-in-up stagger-1"
+          style={{ borderTop: "1px solid var(--border-subtle)" }}
         >
-          <p className="ui-sans text-sm font-medium mb-1" style={{ color: "var(--text)" }}>
-            Posts are on their way.
+          <p className="text-sm mb-1" style={{ color: "var(--text)" }}>
+            posts are on their way.
           </p>
           <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-            Drop in again soon.
+            drop in again soon.
           </p>
         </div>
       ) : (
-        <ol role="list" className="space-y-0 border-t" style={{ borderColor: "var(--border)" }}>
-          {posts.map((post) => (
-            <li key={post.slug} className="border-b" style={{ borderColor: "var(--border)" }}>
+        <ol
+          role="list"
+          className="animate-fade-in-up stagger-1"
+          aria-label="Blog posts"
+        >
+          {posts.map((post, i) => (
+            <li key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
                 id={`blog-post-${post.slug}`}
-                className="group flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 py-6 transition-opacity duration-150 hover:opacity-70"
+                className="row-link"
                 aria-label={`Read: ${post.title}`}
+                style={{ animationDelay: `${(i + 1) * 50}ms` }}
               >
-                <div className="flex-1 min-w-0">
-                  <h2
-                    className="text-lg font-semibold mb-2"
-                    style={{ color: "var(--text)" }}
+                <div className="flex-1 min-w-0 pr-4">
+                  <span
+                    className="text-sm block mb-1"
+                    style={{ color: "var(--text-muted)" }}
                   >
                     {post.title}
-                  </h2>
-                  <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--text-muted)" }}>
-                    {post.description}
-                  </p>
-                  
-                  {/* Tags row */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {post.tags.slice(0, 3).map((tag) => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 flex-shrink-0 sm:mt-1">
-                  <div className="text-right">
-                    <time
-                      dateTime={post.date}
-                      className="mono-label block mb-1"
+                  </span>
+                  {post.description && (
+                    <span
+                      className="text-xs leading-relaxed block"
+                      style={{ color: "var(--text-subtle)" }}
                     >
-                      {formatDate(post.date)}
-                    </time>
-                    {post.readingTime && (
-                      <span className="mono-label" style={{ color: "var(--text-subtle)" }}>
-                        {post.readingTime}
-                      </span>
-                    )}
-                  </div>
-                  <ArrowRight
-                    size={14}
-                    aria-hidden="true"
-                    className="flex-shrink-0 transition-transform duration-150 group-hover:translate-x-1"
-                    style={{ color: "var(--text-subtle)" }}
-                  />
+                      {post.description}
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <time dateTime={post.date} className="mono-label">
+                    {formatDate(post.date)}
+                  </time>
+                  <span className="row-link-arrow text-xs">↗</span>
                 </div>
               </Link>
             </li>

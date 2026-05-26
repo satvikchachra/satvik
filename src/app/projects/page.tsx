@@ -15,21 +15,25 @@ export default function ProjectsPage() {
   const tags = getAllTags();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 pt-32 pb-24">
-      <header className="mb-12">
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+      <header className="mb-16 animate-fade-in-up stagger-0">
         <h1
-          className="text-4xl md:text-5xl font-semibold mb-6"
+          className="text-lg tracking-tight mb-2"
           style={{ color: "var(--text)" }}
         >
-          Projects
+          projects
         </h1>
-        <p className="text-lg max-w-2xl" style={{ color: "var(--text-muted)" }}>
-          A mix of AI systems, platform infrastructure, and developer tools.
-          Links are placeholders — work in progress.
+        <p
+          className="text-sm leading-relaxed"
+          style={{ color: "var(--text-muted)" }}
+        >
+          AI systems, platform infrastructure, and developer tools.
         </p>
       </header>
 
-      <ProjectsList projects={projects} allTags={tags} />
+      <div className="animate-fade-in-up stagger-1">
+        <ProjectsList projects={projects} allTags={tags} />
+      </div>
     </div>
   );
 }

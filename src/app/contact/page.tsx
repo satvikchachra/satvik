@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { GitBranch, X, Link2, Mail, ArrowUpRight } from "lucide-react";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
-  description: "Get in touch with Satvik Chachra — open for interesting conversations about AI, developer tooling, and platform engineering.",
+  description:
+    "Get in touch with Satvik Chachra — open for interesting conversations about AI, developer tooling, and platform engineering.",
   path: "/contact",
 });
 
@@ -12,56 +12,58 @@ const LINKS = [
   {
     id: "contact-github",
     href: "https://github.com/satvikchachra",
-    icon: GitBranch,
-    label: "GitHub",
+    label: "github",
     handle: "satvikchachra",
-    description: "Code, projects, contributions",
+    description: "code, projects, contributions",
   },
   {
     id: "contact-twitter",
     href: "https://twitter.com/satvikchachra",
-    icon: X,
-    label: "Twitter / X",
+    label: "twitter / x",
     handle: "@satvikchachra",
-    description: "Thoughts, hot takes, building in public",
+    description: "thoughts, hot takes, building in public",
   },
   {
     id: "contact-linkedin",
     href: "https://linkedin.com/in/satvikchachra",
-    icon: Link2,
-    label: "LinkedIn",
+    label: "linkedin",
     handle: "satvikchachra",
-    description: "Professional updates",
+    description: "professional updates",
   },
   {
     id: "contact-email",
     href: "mailto:hi@satvikchachra.com",
-    icon: Mail,
-    label: "Email",
+    label: "email",
     handle: "hi@satvikchachra.com",
-    description: "Best for longer conversations",
+    description: "best for longer conversations",
   },
 ] as const;
 
 export default function ContactPage() {
   return (
-    <div className="max-w-2xl mx-auto px-6 pt-32 pb-24">
-      <header className="mb-12">
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+      <header className="mb-16 animate-fade-in-up stagger-0">
         <h1
-          className="text-4xl md:text-5xl font-semibold mb-6"
+          className="text-lg tracking-tight mb-2"
           style={{ color: "var(--text)" }}
         >
-          Get in touch
+          get in touch
         </h1>
-        <p className="text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
-          I&apos;m always open to interesting conversations — whether that&apos;s about
-          AI systems, developer tooling, something you&apos;re building, or just a
-          good engineering problem. Reach out through any of these:
+        <p
+          className="text-sm leading-relaxed"
+          style={{ color: "var(--text-muted)" }}
+        >
+          Open to conversations about AI systems, developer tooling, something
+          you&apos;re building, or a good engineering problem.
         </p>
       </header>
 
-      <ul className="space-y-3" role="list">
-        {LINKS.map(({ id, href, icon: Icon, label, handle, description }) => (
+      <ul
+        role="list"
+        className="animate-fade-in-up stagger-1"
+        aria-label="Contact links"
+      >
+        {LINKS.map(({ id, href, label, handle, description }) => (
           <li key={id}>
             <a
               id={id}
@@ -69,59 +71,41 @@ export default function ContactPage() {
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
               aria-label={`${label}: ${handle}`}
-              className="card group flex items-center justify-between gap-4 p-5 transition-colors duration-150"
+              className="row-link"
             >
-              <div className="flex items-center gap-4">
-                <div
-                  className="w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0 transition-colors duration-150 group-hover:bg-opacity-80"
-                  style={{ background: "var(--surface)" }}
-                  aria-hidden="true"
+              <div className="flex-1 min-w-0">
+                <span
+                  className="text-sm block mb-0.5"
+                  style={{ color: "var(--text-muted)" }}
                 >
-                  <Icon
-                    size={18}
-                    style={{ color: "var(--text)" }}
-                    aria-hidden="true"
-                  />
-                </div>
-                <div>
-                  <div className="flex items-baseline gap-2 mb-0.5">
-                    <span
-                      className="text-sm font-semibold"
-                      style={{ color: "var(--text)" }}
-                    >
-                      {label}
-                    </span>
-                    <span
-                      className="ui-sans text-xs"
-                      style={{ color: "var(--text-subtle)" }}
-                    >
-                      {handle}
-                    </span>
-                  </div>
-                  <p
-                    className="ui-sans text-xs"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {description}
-                  </p>
-                </div>
+                  {label}
+                </span>
+                <span
+                  className="text-xs block"
+                  style={{ color: "var(--text-subtle)" }}
+                >
+                  {description}
+                </span>
               </div>
-              <ArrowUpRight
-                size={16}
-                aria-hidden="true"
-                className="flex-shrink-0 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                style={{ color: "var(--text-subtle)" }}
-              />
+              <div className="flex items-center gap-3 flex-shrink-0">
+                <span
+                  className="text-xs hidden sm:block"
+                  style={{ color: "var(--text-subtle)" }}
+                >
+                  {handle}
+                </span>
+                <span className="row-link-arrow text-xs">↗</span>
+              </div>
             </a>
           </li>
         ))}
       </ul>
 
       <p
-        className="ui-sans mt-10 text-xs text-center"
+        className="text-xs mt-10"
         style={{ color: "var(--text-subtle)" }}
       >
-        Usually responds within 48 hours.
+        usually responds within 48 hours.
       </p>
     </div>
   );

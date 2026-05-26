@@ -19,11 +19,11 @@ const STACK = [
 
 const TIMELINE = [
   {
-    year: "2024 – Present",
+    year: "2024 – now",
     role: "SDE 2 — AI-Native Platform Engineering",
     org: "Current Role",
     description:
-      "Building AI coding agents, developer tooling infrastructure, and intelligent systems. Leading platform architecture decisions and shipping production-grade agentic systems.",
+      "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by 2K+ engineers daily.",
   },
   {
     year: "2022 – 2024",
@@ -41,36 +41,37 @@ const TIMELINE = [
   },
 ] as const;
 
+const WINS = [
+  ["2K+ engineers daily",     "AI coding agent used in production"],
+  ["1M+ users",               "B2C SaaS products shipped"],
+  ["~95% shared code",        "VS Code + JetBrains plugin for AI agent"],
+  ["60s → 500ms",             "ML prediction API latency reduction"],
+  ["end-to-end",              "AI Coding Agent Native Chat Interface"],
+] as const;
+
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-6 pt-32 pb-24">
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+
       {/* Header */}
-      <header className="mb-16">
+      <header className="mb-16 animate-fade-in-up stagger-0">
         <h1
-          className="text-4xl md:text-5xl font-semibold mb-6 leading-tight"
+          className="text-lg tracking-tight mb-2"
           style={{ color: "var(--text)" }}
         >
-          Satvik Chachra
+          satvik chachra
         </h1>
-        <p className="text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
-          AI-native full-stack platform engineer. I spend my days building
-          systems where AI writes code, reviews code, and understands
-          codebases — and the infrastructure that makes that reliable.
+        <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+          AI-native platform engineer. Building systems where AI writes code,
+          reviews code, and understands codebases — and the infrastructure
+          that makes that reliable.
         </p>
       </header>
 
-      <hr className="divider mb-16" />
-
       {/* Bio */}
-      <section aria-labelledby="bio-heading" className="mb-16">
-        <h2
-          id="bio-heading"
-          className="text-base font-semibold mb-5"
-          style={{ color: "var(--text)" }}
-        >
-          Background
-        </h2>
-        <div className="space-y-4 leading-relaxed" style={{ color: "var(--text-muted)" }}>
+      <section aria-labelledby="bio-heading" className="mb-16 animate-fade-in-up stagger-1">
+        <p className="section-label mb-5">background</p>
+        <div className="space-y-4 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
           <p>
             I&apos;m a software engineer obsessed with the intersection of AI and
             developer experience. My work lives in the space between language
@@ -86,136 +87,116 @@ export default function AboutPage() {
           <p>
             Outside of building, I write about AI systems, platform
             engineering patterns, and things I&apos;m learning across CS,
-            mathematics, and science. Some posts are opinion pieces, some are
-            interactive deep dives. I like making things concrete and visual.
+            mathematics, and science.
           </p>
         </div>
       </section>
 
-      <hr className="divider mb-16" />
+      {/* Wins */}
+      <section aria-labelledby="wins-heading" className="mb-16 animate-fade-in-up stagger-2">
+        <p className="section-label mb-4">selected wins</p>
+        <div>
+          {WINS.map(([metric, context]) => (
+            <div
+              key={metric}
+              className="flex items-baseline justify-between gap-6 py-3"
+              style={{ borderTop: "1px solid var(--border-subtle)" }}
+            >
+              <span className="text-sm" style={{ color: "var(--text-muted)" }}>
+                {context}
+              </span>
+              <span
+                className="text-sm flex-shrink-0"
+                style={{ color: "var(--text)" }}
+              >
+                {metric}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Stack */}
-      <section aria-labelledby="stack-heading" className="mb-16">
-        <h2
-          id="stack-heading"
-          className="text-base font-semibold mb-8"
-          style={{ color: "var(--text)" }}
-        >
-          Stack
-        </h2>
-        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <section aria-labelledby="stack-heading" className="mb-16 animate-fade-in-up stagger-3">
+        <p className="section-label mb-5">stack</p>
+        <dl className="space-y-5">
           {STACK.map(({ category, items }) => (
-            <div key={category}>
+            <div key={category} className="flex gap-6">
               <dt
-                className="ui-sans text-xs font-medium mb-3 uppercase tracking-wider"
+                className="w-28 flex-shrink-0 text-xs pt-0.5 tracking-wide"
                 style={{ color: "var(--text-subtle)" }}
               >
-                {category}
+                {category.toLowerCase()}
               </dt>
-              <dd>
-                <ul className="flex flex-wrap gap-1.5" role="list">
-                  {items.map((item) => (
-                    <li key={item} className="tag">{item}</li>
-                  ))}
-                </ul>
+              <dd
+                className="text-sm leading-relaxed"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {items.join(" · ")}
               </dd>
             </div>
           ))}
         </dl>
       </section>
 
-      <hr className="divider mb-16" />
-
       {/* Timeline */}
-      <section aria-labelledby="timeline-heading" className="mb-16">
-        <h2
-          id="timeline-heading"
-          className="text-base font-semibold mb-8"
-          style={{ color: "var(--text)" }}
-        >
-          Timeline
-        </h2>
-        <ol className="relative space-y-10" role="list">
-          <div
-            className="absolute left-[5px] top-2 bottom-2 w-px"
-            style={{ background: "var(--border)" }}
-            aria-hidden="true"
-          />
+      <section aria-labelledby="timeline-heading" className="mb-16 animate-fade-in-up stagger-4">
+        <p className="section-label mb-4">timeline</p>
+        <div>
           {TIMELINE.map((item, i) => (
-            <li key={i} className="relative pl-8">
-              {/* Dot */}
-              <div
-                className="absolute left-0 top-1.5 w-2.5 h-2.5 rounded-full border-2"
-                aria-hidden="true"
-                style={{
-                  background: i === 0 ? "var(--accent)" : "var(--bg)",
-                  borderColor: i === 0 ? "var(--accent)" : "var(--border)",
-                }}
-              />
-              <time
-                dateTime={item.year}
-                className="mono-label block mb-1.5"
-              >
-                {item.year}
-              </time>
-              <h3
-                className="text-sm font-semibold mb-0.5"
-                style={{ color: "var(--text)" }}
-              >
-                {item.role}
-              </h3>
-              <p
-                className="ui-sans text-xs mb-2 font-medium"
-                style={{ color: "var(--accent)" }}
-              >
+            <div
+              key={i}
+              className="py-5"
+              style={{ borderTop: "1px solid var(--border-subtle)" }}
+            >
+              <div className="flex items-baseline justify-between gap-4 mb-2">
+                <span className="text-sm" style={{ color: "var(--text)" }}>
+                  {item.role}
+                </span>
+                <time
+                  dateTime={item.year}
+                  className="mono-label flex-shrink-0"
+                >
+                  {item.year}
+                </time>
+              </div>
+              <p className="text-xs mb-2" style={{ color: "var(--accent)" }}>
                 {item.org}
               </p>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: "var(--text-muted)" }}
-              >
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
                 {item.description}
               </p>
-            </li>
+            </div>
           ))}
-        </ol>
+        </div>
       </section>
 
-      <hr className="divider mb-16" />
-
-      {/* Engineering Principles */}
-      <section aria-labelledby="principles-heading">
-        <h2
-          id="principles-heading"
-          className="text-base font-semibold mb-8"
-          style={{ color: "var(--text)" }}
-        >
-          Engineering Principles
-        </h2>
-        <ul className="space-y-6" role="list">
+      {/* Principles */}
+      <section aria-labelledby="principles-heading" className="animate-fade-in-up stagger-5">
+        <p className="section-label mb-4">principles</p>
+        <div>
           {[
-            ["Ship fast, refactor faster", "Velocity matters. But so does the codebase you're leaving behind for future-you."],
-            ["Systems > hacks", "I'd rather spend 2x longer on a proper abstraction than ship a clever one-liner that breaks at 2x scale."],
-            ["Observability is not optional", "If you can't measure it in production, you don't understand it."],
+            ["ship fast, refactor faster", "Velocity matters. But so does the codebase you're leaving behind for future-you."],
+            ["systems > hacks", "I'd rather spend 2x longer on a proper abstraction than ship a clever one-liner that breaks at 2x scale."],
+            ["observability is not optional", "If you can't measure it in production, you don't understand it."],
             ["AI is a force multiplier", "The best AI systems make engineers dramatically more capable, not obsolete."],
           ].map(([title, body]) => (
-            <li key={title}>
-              <strong
-                className="block text-sm font-semibold mb-1"
-                style={{ color: "var(--text)" }}
-              >
+            <div
+              key={title}
+              className="py-5"
+              style={{ borderTop: "1px solid var(--border-subtle)" }}
+            >
+              <p className="text-sm mb-2" style={{ color: "var(--text)" }}>
                 {title}
-              </strong>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: "var(--text-muted)" }}
-              >
+              </p>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
                 {body}
               </p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
+
     </div>
   );
 }
