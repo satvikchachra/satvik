@@ -12,10 +12,10 @@ export function Footer() {
         <nav aria-label="Social links">
           <ul className="flex items-center gap-4" role="list">
             {[
-              { href: "https://github.com/satvikchachra",      label: "gh"   },
-              { href: "https://twitter.com/satvikchachra",     label: "x"    },
-              { href: "https://linkedin.com/in/satvikchachra", label: "li"   },
-              { href: "mailto:hi@satvikchachra.com",           label: "mail" },
+              { href: "https://github.com/satvikchachra", label: "gh" },
+              { href: "https://twitter.com/satvikchachra", label: "x" },
+              { href: "https://linkedin.com/in/satvikchachra", label: "li" },
+              { href: "mailto:satvikchachra19@gmail.com", label: "mail" },
             ].map(({ href, label }) => (
               <li key={href}>
                 <a
