@@ -6,7 +6,7 @@ import { ProjectsList } from "@/components/projects/projects-list";
 export const metadata: Metadata = buildMetadata({
   title: "Projects",
   description:
-    "A selection of AI systems, developer tools, and platform engineering projects by Satvik Chachra.",
+    "A selection of AI systems, developer tools, and full stack engineering projects by Satvik Chachra.",
   path: "/projects",
 });
 

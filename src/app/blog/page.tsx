@@ -6,7 +6,7 @@ import { getAllPosts, formatDate } from "@/lib/blog";
 export const metadata: Metadata = buildMetadata({
   title: "Blog",
   description:
-    "Writing by Satvik Chachra on AI systems, platform engineering, and deep dives into CS, math, and science.",
+    "Writing by Satvik Chachra on AI systems, full stack engineering, and deep dives into CS, math, and science.",
   path: "/blog",
 });
 
