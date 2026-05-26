@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   keywords: [
     "Satvik Chachra",
     "AI Engineer",
-    "Platform Engineer",
+    "Full Stack Engineer",
     "AI Coding Agent",
     "Developer Tooling",
     "Full Stack",
@@ -70,7 +70,7 @@ const jsonLd = {
   "@type": "Person",
   name: "Satvik Chachra",
   url: siteConfig.url,
-  jobTitle: "AI-Native Full-Stack Platform Engineer",
+  jobTitle: "AI-Native Full-Stack Engineer",
   description: siteConfig.description,
   sameAs: [
     siteConfig.author.github,

@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
   description:
-    "Get in touch with Satvik Chachra — open for interesting conversations about AI, developer tooling, and platform engineering.",
+    "Get in touch with Satvik Chachra — open for interesting conversations about AI, developer tooling, and full stack engineering.",
   path: "/contact",
 });
 

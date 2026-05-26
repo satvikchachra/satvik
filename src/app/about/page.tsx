@@ -4,23 +4,21 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "About",
   description:
-    "Learn about Satvik Chachra — AI-native platform engineer, SDE 2, building AI coding agents and developer tooling.",
+    "Learn about Satvik Chachra — full stack engineer, SDE 2, building AI coding agents and developer tooling.",
   path: "/about",
 });
 
 const STACK = [
-  { category: "AI / ML",        items: ["LLMs", "RAG", "Agents", "LangChain", "OpenAI", "Gemini"] },
-  { category: "Languages",       items: ["TypeScript", "Python", "Go", "Rust (learning)"] },
-  { category: "Frontend",        items: ["React", "Next.js", "Tailwind", "shadcn/ui"] },
-  { category: "Backend",         items: ["Node.js", "FastAPI", "PostgreSQL", "Redis"] },
-  { category: "Infrastructure",  items: ["Docker", "Kubernetes", "GCP", "Terraform"] },
-  { category: "Observability",   items: ["OpenTelemetry", "Prometheus", "Grafana"] },
+  { category: "AI / ML", items: ["AI Agents", "LLMs (learning)", "RAG (learning)", "Tecton"] },
+  { category: "Languages", items: ["TypeScript", "Python (learning)", "Rust (learning)"] },
+  { category: "Frontend", items: ["ReactJS", "NextJS", "Redux", "HTML", "CSS"] },
+  { category: "Backend", items: ["NodeJS", "Redis"] },
 ] as const;
 
 const TIMELINE = [
   {
     year: "2024 – now",
-    role: "SDE 2 — AI-Native Platform Engineering",
+    role: "SDE 2 — AI-Native Full Stack Engineering",
     org: "Current Role",
     description:
       "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by 2K+ engineers daily.",
@@ -42,11 +40,10 @@ const TIMELINE = [
 ] as const;
 
 const WINS = [
-  ["2K+ engineers daily",     "AI coding agent used in production"],
-  ["1M+ users",               "B2C SaaS products shipped"],
-  ["~95% shared code",        "VS Code + JetBrains plugin for AI agent"],
-  ["60s → 500ms",             "ML prediction API latency reduction"],
-  ["end-to-end",              "AI Coding Agent Native Chat Interface"],
+  ["2K+ engineers daily", "AI coding agent used in production"],
+  ["1M+ users", "B2C SaaS products shipped"],
+  ["~95% shared code", "VS Code + JetBrains plugin for AI agent"],
+  ["60s → 500ms", "ML prediction API latency reduction"],
 ] as const;
 
 export default function AboutPage() {
@@ -62,7 +59,7 @@ export default function AboutPage() {
           satvik chachra
         </h1>
         <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-          AI-native platform engineer. Building systems where AI writes code,
+          AI-native full stack engineer. Building systems where AI writes code,
           reviews code, and understands codebases — and the infrastructure
           that makes that reliable.
         </p>

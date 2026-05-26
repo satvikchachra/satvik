@@ -4,9 +4,9 @@ const BASE_URL = "https://satvikchachra.com";
 
 export const siteConfig = {
   name: "Satvik Chachra",
-  title: "Satvik Chachra — AI-Native Platform Engineer",
+  title: "Satvik Chachra — Full Stack Engineer",
   description:
-    "AI-native full-stack platform engineer building AI Coding Agents, developer tooling, and intelligent systems.",
+    "AI-native full-stack engineer building AI Coding Agents, developer tooling, and intelligent systems.",
   url: BASE_URL,
   ogImage: `${BASE_URL}/og/default.png`,
   author: {
