@@ -118,7 +118,7 @@ export default function RootLayout({
       </head>
       <body>
         <Navbar />
-        <main id="main-content" tabIndex={-1}>
+        <main>
           {children}
         </main>
         <Footer />

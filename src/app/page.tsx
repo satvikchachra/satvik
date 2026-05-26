@@ -22,22 +22,12 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Skip to main content (a11y) */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-3 focus:py-1.5 focus:rounded text-xs"
-        style={{ background: "var(--text)", color: "var(--bg)" }}
-      >
-        Skip to main content
-      </a>
-
       {/* Full-viewport centered layout */}
       <div className="relative min-h-screen flex flex-col items-center justify-center px-6">
         {/* Ambient glow */}
         <div className="ambient-glow" aria-hidden="true" />
 
         <div
-          id="main-content"
           className="relative z-10 w-full"
           style={{ maxWidth: "340px" }}
         >
