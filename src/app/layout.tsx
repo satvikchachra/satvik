@@ -106,6 +106,7 @@ export default function RootLayout({
       lang="en"
       data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} ${lora.variable}`}
+      suppressHydrationWarning
     >
       <head>
         {/* No-flash theme script — must run before paint */}
