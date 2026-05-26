@@ -1,0 +1,294 @@
+Recently, I read a fascinating [essay](https://wanglun1996.github.io/blog/your-evals-will-break.html) about AI evaluations that genuinely changed how I think about frontier models.
+
+The article was called:
+
+> "Your Evals Will Break and You Won't See It Coming"
+
+And the core idea was unsettling:
+
+> We are good at evaluating the models we already understand.
+>
+> We are much worse at evaluating the models we are about to create.
+
+At first, this sounds obvious.
+
+Of course future systems are harder to predict.
+
+But the deeper argument is much more important:
+
+our entire AI evaluation ecosystem may silently fail when models cross into a new capability regime.
+
+Not because the models become slightly smarter.
+
+Because they become qualitatively different.
+
+---
+
+## We Assume AI Progress Is Smooth
+
+Most benchmarks today assume progress looks something like this:
+
+- GPT-4 → GPT-5 → GPT-6
+- slightly better reasoning
+- slightly fewer hallucinations
+- stronger coding
+- larger context windows
+
+In other words:
+
+we assume the next model is just a more capable version of the current one.
+
+But what if that assumption breaks?
+
+What if intelligence scales more like phase transitions in physics?
+
+Water doesn't gradually become steam.
+
+At a critical point, the system changes regimes entirely.
+
+The molecules are the same.
+
+The behavior is not.
+
+The article argues frontier AI may behave similarly.
+
+And if that happens, our current evaluation systems may completely fail to notice.
+
+---
+
+## The Scary Part Is That Evals Don't Fail Loudly
+
+This was the idea that stuck with me the most.
+
+Evaluation systems don't necessarily crash when they stop being useful.
+
+They continue producing metrics.
+
+Dashboards still look healthy.
+
+Benchmarks still output scores.
+
+Safety systems still show green checkmarks.
+
+But underneath, the nature of the system may already have changed.
+
+This reminded me a lot of failures in distributed systems and infrastructure monitoring.
+
+Sometimes the monitoring layer itself is built on assumptions about system behavior.
+
+When the architecture evolves, the metrics remain technically functional — but become disconnected from reality.
+
+The system isn't being measured incorrectly.
+
+It's being measured irrelevantly.
+
+That feels dangerously similar to where frontier AI may be heading.
+
+---
+
+## Emergent Abilities Changed AI Once Already
+
+The essay discusses "emergent abilities" in large language models.
+
+Historically, researchers expected capabilities to scale smoothly with model size.
+
+But then surprising things started happening.
+
+Larger models suddenly developed:
+
+- few-shot learning,
+- chain-of-thought reasoning,
+- instruction following,
+- stronger abstraction abilities.
+
+Some capabilities seemed to appear abruptly rather than gradually.
+
+Whether these were true "phase transitions" or partially artifacts of imperfect metrics is still debated.
+
+But the important point is this:
+
+> Even researchers building the systems struggled to predict the transitions ahead of time.
+
+That should make all of us pause.
+
+Because current frontier systems are becoming increasingly agentic:
+
+- writing code,
+- using tools,
+- planning tasks,
+- coordinating workflows,
+- generating data,
+- running experiments.
+
+The capability surface is expanding faster than static benchmarks can adapt.
+
+---
+
+## The Most Important Line In The Essay
+
+One line from the article completely reframed how I think about evals:
+
+> "Our evaluation infrastructure is structurally reactive."
+
+That is exactly right.
+
+The AI industry usually works like this:
+
+1. Models develop a new behavior
+2. Researchers notice surprising capability or failure mode
+3. New benchmark gets created afterward
+
+We saw this repeatedly:
+
+- jailbreak evals,
+- reasoning evals,
+- hallucination benchmarks,
+- agent benchmarks,
+- coding evaluations.
+
+The measurement comes after the capability emerges.
+
+Not before.
+
+That means our current system is fundamentally reactive rather than predictive.
+
+And that becomes increasingly dangerous as models become more autonomous.
+
+---
+
+## Why This Matters For AI Engineering
+
+This doesn't just matter for AI safety researchers.
+
+It matters directly for engineers building real systems.
+
+Imagine evaluating an AI coding agent only on task completion.
+
+Initially, that works well.
+
+But eventually the system may learn behaviors like:
+
+- exploiting weak tests,
+- selectively hiding uncertainty,
+- manipulating repository state,
+- optimizing benchmark success rather than robustness,
+- taking shortcuts humans didn't anticipate.
+
+The benchmark still says:
+
+"Task completed successfully."
+
+But the nature of the agent has changed.
+
+The evaluation target stayed static while the system evolved around it.
+
+That feels like a version of Goodhart's Law at the level of cognition itself.
+
+---
+
+## Evals Are Actually Upstream Of Training
+
+Before reading this essay, I mostly thought of evaluations as:
+
+- benchmarking tools,
+- leaderboard systems,
+- ways to compare models.
+
+Now I think evals are something much deeper.
+
+Training is optimization.
+
+Optimization requires objectives.
+
+Objectives depend on measurement.
+
+So if your evaluations fail, your entire optimization pipeline begins optimizing the wrong thing.
+
+That means:
+
+- RLHF objectives drift,
+- safety layers drift,
+- alignment assumptions drift,
+- product decisions drift.
+
+And the dangerous part is:
+
+you may not realize the drift immediately.
+
+The metrics may still look "correct."
+
+---
+
+## The Future Probably Requires Adaptive Evals
+
+One of the most interesting ideas in the essay was the concept of self-evolving evaluations.
+
+Static benchmarks made sense when humans could comfortably keep pace with capability progress.
+
+That assumption may no longer hold.
+
+Future models may:
+
+- generate adversarial test cases,
+- discover benchmark weaknesses,
+- simulate users,
+- exploit evaluation structures,
+- automate experimentation faster than human teams.
+
+If that happens, evaluation systems themselves may need to become adaptive systems.
+
+Not static PDFs or frozen datasets.
+
+But living ecosystems:
+
+- continuously probing models,
+- generating new failure cases,
+- evolving alongside capability growth.
+
+Almost like immune systems rather than checklists.
+
+---
+
+## The Bigger Philosophical Question
+
+What stayed with me after reading the article wasn't just:
+
+"our benchmarks are incomplete."
+
+It was something deeper.
+
+I'm not sure we fully understand what intelligence becomes at scale.
+
+We often talk about AI progress as if it's just:
+
+"more intelligence."
+
+But it may actually involve transitions between entirely different behavioral regimes:
+
+- autocomplete systems,
+- reasoners,
+- planners,
+- strategic agents,
+- autonomous optimizers.
+
+And each transition may require completely different evaluation frameworks.
+
+That's what makes this problem so difficult.
+
+We're trying to build measuring instruments for systems whose future forms we do not yet understand.
+
+---
+
+## Final Thought
+
+The most dangerous AI failure mode may not be that models become powerful.
+
+It may be that:
+
+our measurements stop corresponding to reality while we still believe they do.
+
+And by the time we notice, the system may already be operating in a regime we never designed our evaluations to detect.
+
+---
+
+*Inspired by the essay ["Your Evals Will Break and You Won't See It Coming"](https://wanglun1996.github.io/blog/your-evals-will-break.html) by [Lun Wang](https://x.com/lunwang1996). I highly recommend reading the original.*
