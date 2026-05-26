@@ -11,7 +11,7 @@ export const siteConfig = {
   ogImage: `${BASE_URL}/og/default.png`,
   author: {
     name: "Satvik Chachra",
-    email: "hi@satvikchachra.com",
+    email: "hello@example.com",
     github: "https://github.com/satvikchachra",
     twitter: "@satvikchachra",
     linkedin: "https://linkedin.com/in/satvikchachra",
