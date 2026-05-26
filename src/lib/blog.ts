@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
 import readingTime from "reading-time";
 
 const CONTENT_DIR = path.join(process.cwd(), "src", "content", "blog");
@@ -49,6 +48,9 @@ export const CUSTOM_POSTS: CustomPost[] = [
 
 // ----------------------------------------------------------------
 // MDX POST READER
+// Reads metadata from a sidecar .json file next to the .mdx file.
+// This avoids the frontmatter being rendered as content when Next.js
+// dynamically imports the compiled MDX.
 // ----------------------------------------------------------------
 function getMdxPosts(): MdxPost[] {
   if (!fs.existsSync(CONTENT_DIR)) return [];
@@ -57,16 +59,34 @@ function getMdxPosts(): MdxPost[] {
 
   return files.map((filename) => {
     const slug = filename.replace(/\.mdx$/, "");
-    const raw = fs.readFileSync(path.join(CONTENT_DIR, filename), "utf-8");
-    const { data, content } = matter(raw);
-    const rt = readingTime(content);
+    const mdxPath = path.join(CONTENT_DIR, filename);
+    const jsonPath = path.join(CONTENT_DIR, `${slug}.json`);
+
+    // Read the MDX body for reading-time calculation
+    const body = fs.readFileSync(mdxPath, "utf-8");
+    const rt = readingTime(body);
+
+    // Read metadata from sidecar JSON (preferred) or fall back to filename
+    let meta: {
+      title?: string;
+      description?: string;
+      date?: string;
+      tags?: string[];
+    } = {};
+    if (fs.existsSync(jsonPath)) {
+      try {
+        meta = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+      } catch {
+        // malformed JSON — use defaults
+      }
+    }
 
     return {
       slug,
-      title: data.title ?? slug,
-      description: data.description ?? "",
-      date: data.date ? String(data.date) : new Date().toISOString().split("T")[0],
-      tags: Array.isArray(data.tags) ? data.tags : [],
+      title: meta.title ?? slug,
+      description: meta.description ?? "",
+      date: meta.date ?? new Date().toISOString().split("T")[0],
+      tags: Array.isArray(meta.tags) ? meta.tags : [],
       readingTime: rt.text,
       type: "mdx" as const,
     };
@@ -83,24 +103,38 @@ export function getAllPosts(): Post[] {
 }
 
 export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string } | null {
-  const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
+  const mdxPath = path.join(CONTENT_DIR, `${slug}.mdx`);
+  if (!fs.existsSync(mdxPath)) return null;
 
-  const raw = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(raw);
-  const rt = readingTime(content);
+  const jsonPath = path.join(CONTENT_DIR, `${slug}.json`);
+  const body = fs.readFileSync(mdxPath, "utf-8");
+  const rt = readingTime(body);
+
+  let meta: {
+    title?: string;
+    description?: string;
+    date?: string;
+    tags?: string[];
+  } = {};
+  if (fs.existsSync(jsonPath)) {
+    try {
+      meta = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+    } catch {
+      // ignore
+    }
+  }
 
   return {
     meta: {
       slug,
-      title: data.title ?? slug,
-      description: data.description ?? "",
-      date: data.date ? String(data.date) : new Date().toISOString().split("T")[0],
-      tags: Array.isArray(data.tags) ? data.tags : [],
+      title: meta.title ?? slug,
+      description: meta.description ?? "",
+      date: meta.date ?? new Date().toISOString().split("T")[0],
+      tags: Array.isArray(meta.tags) ? meta.tags : [],
       readingTime: rt.text,
       type: "mdx" as const,
     },
-    content,
+    content: body,
   };
 }
 
