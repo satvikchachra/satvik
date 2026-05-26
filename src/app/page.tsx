@@ -13,13 +13,6 @@ export default function HomePage() {
   const projects = getFeaturedProjects();
   const posts = getAllPosts().slice(0, 3);
 
-  const navRows = [
-    { href: "/about",    label: "about",    desc: "who i am" },
-    { href: "/projects", label: "projects", desc: "what i've built" },
-    { href: "/blog",     label: "blog",     desc: "what i think" },
-    { href: "/contact",  label: "contact",  desc: "get in touch" },
-  ];
-
   return (
     <>
       {/* Full-viewport centered layout */}
@@ -47,25 +40,6 @@ export default function HomePage() {
               builds ai systems &amp; developer tooling
             </p>
           </header>
-
-          {/* ── Navigation rows ── */}
-          <nav aria-label="Site navigation">
-            {navRows.map(({ href, label }, i) => (
-              <Link
-                key={href}
-                href={href}
-                id={`nav-${label}`}
-                className="row-link animate-fade-in-up"
-                style={{
-                  animationDelay: `${(i + 1) * 60}ms`,
-                  opacity: 0,
-                }}
-              >
-                <span className="text-sm">{label}</span>
-                <span className="row-link-arrow text-xs">↗</span>
-              </Link>
-            ))}
-          </nav>
 
           {/* ── Recent projects ── */}
           {projects.length > 0 && (
