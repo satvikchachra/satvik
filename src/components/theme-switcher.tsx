@@ -12,7 +12,7 @@ export function ThemeSwitcher() {
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200"
       style={{
-        color: "var(--text-subtle)",
+        color: "var(--text)",
         background: "transparent",
       }}
       onMouseEnter={(e) => {
@@ -20,7 +20,7 @@ export function ThemeSwitcher() {
         (e.currentTarget as HTMLButtonElement).style.background = "var(--surface)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.color = "var(--text-subtle)";
+        (e.currentTarget as HTMLButtonElement).style.color = "var(--text)";
         (e.currentTarget as HTMLButtonElement).style.background = "transparent";
       }}
     >

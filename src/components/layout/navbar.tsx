@@ -3,23 +3,31 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
+
+const navItems = [
+  { href: "/about", label: "about" },
+  { href: "/projects", label: "projects" },
+  { href: "/blog", label: "blog" },
+  { href: "/contact", label: "contact" },
+];
 
 export function Navbar() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  // Close the mobile menu on path changes (navigation)
+  // Close dropdown on navigation
   useEffect(() => {
-    setIsOpen(false);
+    setOpen(false);
   }, [pathname]);
-
-  const navItems = [
-    { href: "/about", label: "about" },
-    { href: "/projects", label: "projects" },
-    { href: "/blog", label: "blog" },
-    { href: "/contact", label: "contact" },
-  ];
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -31,136 +39,161 @@ export function Navbar() {
       role="banner"
       className="fixed top-0 inset-x-0 z-50"
       style={{
-        borderBottom: "1px solid var(--border-subtle)",
+        borderBottom: open
+          ? "1px solid var(--border)"
+          : "1px solid var(--border-subtle)",
         background: "var(--bg)",
+        transition: "border-color 0.2s ease",
       }}
     >
-      <nav
-        role="navigation"
-        aria-label="Main navigation"
-        className="max-w-xl mx-auto px-6 h-10 flex items-center justify-between relative"
-      >
+      {/* ── Top bar ── */}
+      <div className="max-w-xl mx-auto px-6 h-10 flex items-center justify-between">
         {/* Left: Name / home link */}
         <Link
           href="/"
           aria-label="Satvik Chachra — Home"
-          className="text-xs tracking-wide transition-colors duration-200"
-          style={{ color: pathname === "/" ? "var(--text-subtle)" : "var(--text-muted)" }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text)")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = pathname === "/" ? "var(--text-subtle)" : "var(--text-muted)")}
+          className="text-xs tracking-wide shrink-0 transition-colors duration-200"
+          style={{
+            color: pathname === "/" ? "var(--text-subtle)" : "var(--text-muted)",
+          }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text)")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.color =
+              pathname === "/" ? "var(--text-subtle)" : "var(--text-muted)")
+          }
         >
           satvik chachra
         </Link>
 
-        {/* Right side: Desktop links + ThemeSwitcher, Mobile hamburger + ThemeSwitcher */}
+        {/* Right: Desktop nav + ThemeSwitcher + mobile toggle */}
         <div className="flex items-center gap-3">
-          {/* Desktop Navigation Links */}
-          <div className="hidden sm:flex items-center gap-4 mr-1">
-            {navItems.map((item) => {
-              const active = isActive(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-xs transition-colors duration-200"
-                  style={{ color: active ? "var(--text)" : "var(--text-muted)" }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = active ? "var(--text)" : "var(--text-muted)")}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
+          {/* ── Desktop Navigation (sm+) ── */}
+          <NavigationMenu
+            viewport={false}
+            className="hidden sm:flex"
+            aria-label="Main navigation"
+          >
+            <NavigationMenuList className="gap-0">
+              {navItems.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <NavigationMenuItem key={item.href}>
+                    <NavigationMenuLink asChild active={active}>
+                      <Link
+                        href={item.href}
+                        className="text-xs px-2.5 py-1 rounded-sm transition-colors duration-200"
+                        style={{
+                          color: active ? "var(--text)" : "var(--text-muted)",
+                          background: "transparent",
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLAnchorElement).style.color =
+                            "var(--text)";
+                          (
+                            e.currentTarget as HTMLAnchorElement
+                          ).style.background = "var(--surface)";
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLAnchorElement).style.color =
+                            active ? "var(--text)" : "var(--text-muted)";
+                          (
+                            e.currentTarget as HTMLAnchorElement
+                          ).style.background = "transparent";
+                        }}
+                      >
+                        {item.label}
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                );
+              })}
+            </NavigationMenuList>
+          </NavigationMenu>
 
           <ThemeSwitcher />
 
-          {/* Mobile menu toggle */}
+          {/* ── Mobile hamburger (hidden sm+) ── */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            className="flex sm:hidden items-center justify-center w-8 h-8 rounded-md transition-colors duration-200"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="sm:hidden flex items-center justify-center w-8 h-8 rounded-md transition-colors duration-200"
             style={{
-              color: "var(--text-subtle)",
-              background: "transparent",
+              color: "var(--text)",
+              background: open ? "var(--surface)" : "transparent",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.color = "var(--text)";
-              (e.currentTarget as HTMLButtonElement).style.background = "var(--surface)";
+              (e.currentTarget as HTMLButtonElement).style.background =
+                "var(--surface)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.color = "var(--text-subtle)";
-              (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+              (e.currentTarget as HTMLButtonElement).style.color = "var(--text)";
+              (e.currentTarget as HTMLButtonElement).style.background = open
+                ? "var(--surface)"
+                : "transparent";
             }}
           >
-            {isOpen ? (
-              /* Close Icon */
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
+            {open ? (
+              <X size={15} aria-hidden="true" />
             ) : (
-              /* Hamburger Icon */
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="4" y1="12" x2="20" y2="12" />
-                <line x1="4" y1="6" x2="20" y2="6" />
-                <line x1="4" y1="18" x2="20" y2="18" />
-              </svg>
+              <Menu size={15} aria-hidden="true" />
             )}
           </button>
         </div>
+      </div>
 
-        {/* Mobile menu dropdown overlay */}
-        {isOpen && (
-          <div
-            id="mobile-menu"
-            className="absolute top-10 inset-x-0 z-40 flex sm:hidden flex-col px-6 py-4 gap-3 border-b animate-fade-in-up"
-            style={{
-              background: "var(--bg)",
-              borderBottom: "1px solid var(--border-subtle)",
-            }}
-          >
+      {/* ── Mobile dropdown panel (below the bar, full-width) ── */}
+      {open && (
+        <nav
+          id="mobile-nav"
+          role="navigation"
+          aria-label="Mobile navigation"
+          className="sm:hidden animate-fade-in-up"
+          style={{
+            borderTop: "1px solid var(--border)",
+            background: "var(--bg)",
+          }}
+        >
+          <div className="max-w-xl mx-auto px-6 py-3 flex flex-col gap-0.5">
             {navItems.map((item, idx) => {
               const active = isActive(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-xs py-2 transition-colors duration-200"
+                  className="text-xs px-3 py-2.5 rounded-sm transition-colors duration-200"
                   style={{
                     color: active ? "var(--text)" : "var(--text-muted)",
+                    background: active ? "var(--surface)" : "transparent",
                     animationDelay: `${(idx + 1) * 40}ms`,
+                    display: "block",
                   }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = active ? "var(--text)" : "var(--text-muted)")}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.color =
+                      "var(--text)";
+                    if (!active)
+                      (e.currentTarget as HTMLAnchorElement).style.background =
+                        "var(--surface)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.color = active
+                      ? "var(--text)"
+                      : "var(--text-muted)";
+                    (e.currentTarget as HTMLAnchorElement).style.background =
+                      active ? "var(--surface)" : "transparent";
+                  }}
                 >
                   {item.label}
                 </Link>
               );
             })}
           </div>
-        )}
-      </nav>
+        </nav>
+      )}
     </header>
   );
 }
