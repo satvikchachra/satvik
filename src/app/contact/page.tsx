@@ -20,7 +20,7 @@ const LINKS = [
     id: "contact-twitter",
     href: "https://twitter.com/satvikchachra",
     label: "twitter / x",
-    handle: "@satvikchachra",
+    handle: "satvikchachra",
     description: "thoughts, hot takes, building in public",
   },
   {

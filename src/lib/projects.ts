@@ -2,7 +2,7 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
-  longDescription?: string;
+  bullets: string[];
   tags: string[];
   githubUrl?: string;
   liveUrl?: string;
@@ -16,73 +16,77 @@ export const PROJECTS: Project[] = [
     slug: "ai-coding-agent",
     title: "AI Coding Agent",
     description:
-      "An agentic system that reads, edits, and reasons about codebases autonomously. Built with tool-use loops, context management, and multi-step planning.",
-    tags: ["AI Agents", "Python", "LLM", "TypeScript"],
-    githubUrl: "https://github.com/satvikchachra",
+      "AI-native editor and chat experience for VS Code and JetBrains — built for 2K+ engineers daily, with ~95% shared cross-platform code.",
+    bullets: [
+      "Built the AI-native editor and chat experience end-to-end, including persistent conversation editors, attachments, @mentions, slash commands, image paste/upload, drag-and-drop, and keyboard-first interactions.",
+      "Improved agent answer quality by designing structured context → prompt pipelines, including XML-based context blocks and transformation layers to provide higher-signal context to the agent.",
+      "Built context providers powering the agent workflow: @Files & Folders, @Commit, @Branch, @Rules, @Docs, @Linter Errors, @Recent Changes, and @Past Chats.",
+      "Extended agent capabilities through MCP integration (infra + UX), enabling users to connect MCP servers, discover tools, manage connection state, and safely interact with third-party systems.",
+      "Contributed to a cross-IDE platform architecture enabling ~95% shared code between VS Code and JetBrains, significantly reducing duplication and increasing shipping velocity.",
+      "Built extension and agent settings infrastructure end-to-end, including persistence, real-time synchronization, permissions/approval systems, and extensibility surfaces.",
+    ],
+    tags: ["TypeScript", "ReactJS", "NodeJS", "VS Code APIs", "JetBrains APIs", "AI SDK", "MCP", "ACP"],
+    githubUrl: undefined,
     liveUrl: undefined,
     featured: true,
     status: "active",
     year: 2025,
   },
   {
-    slug: "developer-tooling-platform",
-    title: "Developer Tooling Platform",
+    slug: "predictive-test-selection",
+    title: "Predictive Test Selection",
     description:
-      "Platform infrastructure for AI-native developer tools — sandboxing, code execution, language servers, and real-time collaboration.",
-    tags: ["Platform Engineering", "Docker", "WebSockets", "Go"],
-    githubUrl: "https://github.com/satvikchachra",
-    liveUrl: undefined,
-    featured: true,
-    status: "active",
-    year: 2025,
-  },
-  {
-    slug: "intelligent-code-review",
-    title: "Intelligent Code Review",
-    description:
-      "LLM-powered code review system that understands intent, not just syntax — catching logic errors, design smells, and security issues.",
-    tags: ["AI", "Code Analysis", "Python", "RAG"],
-    githubUrl: "https://github.com/satvikchachra",
+      "ML-powered system predicting which tests should run per code change in local and CI/CD pipelines, using changed files and historical failure signals.",
+    bullets: [
+      "Shipped ML models to predict which Unit, Integration, and VR tests should execute for a given code change across local and CI pipelines.",
+      "Reduced test execution volume and improved developer feedback loops, resulting in faster build times, improved productivity, and lower infrastructure costs.",
+      "Drove ~99% improvement in p95 prediction API latency (60s → 500ms) by implementing Tecton feature store integration and Redis caching alongside FastAPI migration.",
+      "Integrated Tecton as an online/offline feature store to ensure training-serving consistency, enable low-latency feature retrieval, and reduce feature drift in real-time predictions.",
+      "Contributed to MLOps infrastructure automation across the ML lifecycle: data ingestion, validation, labeling/splitting, training, retraining, testing, deployment, and serving.",
+    ],
+    tags: ["Python", "FastAPI", "Redis", "Tecton", "CI/CD", "MLOps"],
+    githubUrl: undefined,
     liveUrl: undefined,
     featured: true,
     status: "active",
     year: 2024,
   },
   {
-    slug: "llm-observability",
-    title: "LLM Observability Toolkit",
+    slug: "photai",
+    title: "PhotAI",
     description:
-      "Structured tracing, token usage analytics, and latency profiling for LLM applications in production.",
-    tags: ["Observability", "OpenTelemetry", "Python", "Dashboards"],
-    githubUrl: "https://github.com/satvikchachra",
-    liveUrl: undefined,
-    featured: false,
+      "AI-powered image editing and generation platform with background removal, object replacement, and AI avatar generation. Reached 700K+ users.",
+    bullets: [
+      "Led a team of 5 engineers to deliver the platform end-to-end across frontend, backend, infrastructure, and deployment workflows.",
+      "Built AI-powered image editing capabilities including Background Remover, Object Replacer, and AI Avatar generation workflows.",
+      "Designed secure media upload pipelines using AWS S3 for scalable image processing and storage.",
+      "Integrated Stripe payments and Firebase One-Tap Google Authentication, and improved responsiveness of image editing workflows.",
+    ],
+    tags: ["NextJS", "ReactJS", "TypeScript", "Firebase", "StripeJS", "AWS S3"],
+    githubUrl: undefined,
+    liveUrl: "https://www.phot.ai/",
+    featured: true,
     status: "active",
-    year: 2024,
-  },
-  {
-    slug: "context-engine",
-    title: "Context Engine",
-    description:
-      "A RAG + semantic search engine designed for code-first retrieval — understanding function signatures, types, and call graphs.",
-    tags: ["RAG", "Embeddings", "TypeScript", "Postgres"],
-    githubUrl: "https://github.com/satvikchachra",
-    liveUrl: undefined,
-    featured: false,
-    status: "wip",
-    year: 2025,
-  },
-  {
-    slug: "prompt-engineering-studio",
-    title: "Prompt Engineering Studio",
-    description:
-      "Visual IDE for iterating on prompts with version control, A/B eval, and structured output validation.",
-    tags: ["LLM", "React", "Python", "Evaluation"],
-    githubUrl: "https://github.com/satvikchachra",
-    liveUrl: undefined,
-    featured: false,
-    status: "archived",
     year: 2023,
+  },
+  {
+    slug: "scannergo",
+    title: "ScannerGo",
+    description:
+      "Cloud-based storage and PDF toolkit platform with real-time file conversion, custom PDF viewer, and document management. Reached 500K+ users.",
+    bullets: [
+      "Led a team of 3 engineers to build and ship core document management and PDF tooling features.",
+      "Built real-time file upload and conversion workflows using Socket APIs.",
+      "Developed a custom PDF viewer enabling in-browser document viewing and interaction.",
+      "Implemented Redux Thunk-based global state management architecture for scalable frontend workflows.",
+      "Integrated CAPTCHA-based bot protection to reduce abuse and malicious traffic.",
+    ],
+    tags: ["ReactJS", "NextJS", "Redux", "Socket.IO", "Material UI"],
+    githubUrl: undefined,
+    liveUrl: "https://scannergo.net/",
+    featured: true,
+    status: "active",
+    year: 2022,
   },
 ];
 
