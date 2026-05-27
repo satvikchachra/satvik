@@ -16,7 +16,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
-      <header className="mb-16 animate-fade-in-up stagger-0">
+      <header className="mb-8 animate-fade-in-up stagger-0">
         <h1
           className="text-lg tracking-tight mb-2"
           style={{ color: "var(--text)" }}
