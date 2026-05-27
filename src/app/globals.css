@@ -43,8 +43,8 @@
   --text-muted:     #666666;
   --text-subtle:    #999999;
 
-  --accent:         #0891b2;   /* darker cyan for light bg */
-  --accent-rgb:     8 145 178;
+  --accent:         #0055ff;   /* vibrant high-contrast cobalt blue for light theme */
+  --accent-rgb:     0 85 255;
   --green:          #16a34a;
   --red:            #dc2626;
   --yellow:         #ca8a04;
