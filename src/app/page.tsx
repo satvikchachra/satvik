@@ -164,18 +164,23 @@ export default function HomePage() {
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 id={`post-${post.slug}`}
-                className="row-link"
+                className="row-link group"
                 aria-label={`Read: ${post.title}`}
+                style={{ alignItems: "flex-start" }}
               >
-                <span
-                  className="text-sm"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  {post.title}
-                </span>
-                <span className="mono-label flex-shrink-0 ml-4">
-                  {formatDate(post.date)}
-                </span>
+                <div className="flex-1 min-w-0 pr-8">
+                  <span
+                    className="text-sm block"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    <span className="animated-underline">{post.title}</span>
+                  </span>
+                </div>
+                <div className="flex-shrink-0 pt-0.5">
+                  <span className="mono-label">
+                    {formatDate(post.date)}
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
