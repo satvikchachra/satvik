@@ -411,6 +411,18 @@ nav, button, input, select, textarea {
 }
 
 /* ============================================================
+   RESUME UNDERLINE SYSTEM
+   ============================================================ */
+.resume-underline {
+  text-decoration: underline dotted var(--text-subtle) !important;
+  text-underline-offset: 3px !important;
+  text-decoration-thickness: 1.5px !important;
+  color: inherit !important;
+  display: inline !important;
+}
+
+
+/* ============================================================
    HOVER LINK UTILITIES — CSS-only, safe for Server Components
    ============================================================ */
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { getAllPosts, formatDate } from "@/lib/blog";
 import { siteConfig } from "@/lib/metadata";
+import { formatResumeText } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -21,7 +22,7 @@ interface ExperienceItem {
   readonly company: string;
   readonly companyUrl: string;
   readonly role: string;
-  readonly description: React.ReactNode;
+  readonly description: string;
 }
 
 const EXPERIENCE: readonly ExperienceItem[] = [
@@ -30,81 +31,24 @@ const EXPERIENCE: readonly ExperienceItem[] = [
     company: "Atlassian",
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 2 — AI Foundations",
-    description: (
-      <>
-        Building{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          AI coding agents
-        </strong>
-        , developer tooling infrastructure, and intelligent systems used by{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          over two thousand engineers daily (2K+)
-        </strong>
-        . Led end-to-end development of an{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          AI-native editor and chat experience
-        </strong>{" "}
-        across{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          VS Code and JetBrains
-        </strong>{" "}
-        with{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          ~95% shared code
-        </strong>
-        .
-      </>
-    ),
+    description:
+      "Building **AI coding agents**, developer tooling infrastructure, and intelligent systems used by **over two thousand engineers daily (2K+)**. __Led end-to-end development__ of an **AI-native editor and chat experience** across **VS Code and JetBrains** with **~95% shared code**.",
   },
   {
     year: "2024 – 2025",
     company: "Atlassian",
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 1 — Dev Infra",
-    description: (
-      <>
-        Worked on{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          ML-powered predictive test selection
-        </strong>{" "}
-        for CI/CD pipelines. Drove{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          ~99% improvement
-        </strong>{" "}
-        in{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          p95 prediction API latency (60s → 500ms)
-        </strong>{" "}
-        through Tecton feature store integration, Redis caching, and{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          FastAPI migration
-        </strong>
-        .
-      </>
-    ),
+    description:
+      "Worked on **ML-powered predictive test selection** for CI/CD pipelines. __Drove **~99% improvement** in **p95 prediction API latency (60s → 500ms)**__ through Tecton feature store integration, Redis caching, and **FastAPI migration**.",
   },
   {
     year: "2022 – 2023",
     company: "AppyHigh",
     companyUrl: "https://www.appyhigh.com/",
     role: "SDE 1 — Full Stack",
-    description: (
-      <>
-        Built{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          AI-powered photo editing and generation platform (PhotAI)
-        </strong>{" "}
-        and a cloud-based storage and document conversion service (ScannerGo).{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          Led small engineering teams
-        </strong>{" "}
-        and shipped products that served{" "}
-        <strong className="font-semibold text-[var(--text)]">
-          over One Million Users (1M+)
-        </strong>
-        .
-      </>
-    ),
+    description:
+      "Built **AI-powered photo editing and generation platform (PhotAI)** and a cloud-based storage and document conversion service (ScannerGo). __Led small engineering teams__ and shipped products that served **over One Million Users (1M+)**.",
   },
 ];
 
@@ -209,7 +153,7 @@ export default function HomePage() {
                 </a>
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {item.description}
+                {formatResumeText(item.description)}
               </p>
             </div>
           ))}
