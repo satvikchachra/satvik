@@ -146,6 +146,15 @@ export function getMdxSlugs(): string[] {
     .map((f) => f.replace(/\.mdx$/, ""));
 }
 
+export function getAllBlogTags(): string[] {
+  const posts = getAllPosts();
+  const tags = new Set<string>();
+  posts.forEach((p) => {
+    p.tags.forEach((t) => tags.add(t));
+  });
+  return Array.from(tags).sort();
+}
+
 // Format date for display
 export function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
