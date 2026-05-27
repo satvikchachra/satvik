@@ -52,19 +52,30 @@ export function Navbar() {
         <Link
           href="/"
           aria-label="Satvik Chachra — Home"
-          className="text-xs tracking-wide shrink-0 transition-colors duration-200"
+          className="text-xs px-2.5 py-1 rounded-sm transition-colors duration-200 relative inline-flex items-center"
           style={{
-            color: pathname === "/" ? "var(--text-subtle)" : "var(--text-muted)",
+            color: pathname === "/" ? "var(--text)" : "var(--text-muted)",
+            background: "transparent",
           }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text)")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color =
-              pathname === "/" ? "var(--text-subtle)" : "var(--text-muted)")
-          }
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
+            (e.currentTarget as HTMLAnchorElement).style.background = "var(--surface)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.color =
+              pathname === "/" ? "var(--text)" : "var(--text-muted)";
+            (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+          }}
         >
-          satvik chachra
+          <span className="relative py-0.5">
+            satvik chachra
+            {pathname === "/" && (
+              <span 
+                className="absolute bottom-0 inset-x-0 h-[1.5px] rounded-full" 
+                style={{ backgroundColor: "var(--text)" }}
+              />
+            )}
+          </span>
         </Link>
 
         {/* Right: Desktop nav + ThemeSwitcher + mobile toggle */}
@@ -83,7 +94,7 @@ export function Navbar() {
                     <NavigationMenuLink asChild active={active}>
                       <Link
                         href={item.href}
-                        className="text-xs px-2.5 py-1 rounded-sm transition-colors duration-200"
+                        className="text-xs px-2.5 py-1 rounded-sm transition-colors duration-200 relative inline-flex items-center"
                         style={{
                           color: active ? "var(--text)" : "var(--text-muted)",
                           background: "transparent",
@@ -103,7 +114,15 @@ export function Navbar() {
                           ).style.background = "transparent";
                         }}
                       >
-                        {item.label}
+                        <span className="relative py-0.5">
+                          {item.label}
+                          {active && (
+                            <span 
+                              className="absolute bottom-0 inset-x-0 h-[1.5px] rounded-full" 
+                              style={{ backgroundColor: "var(--text)" }}
+                            />
+                          )}
+                        </span>
                       </Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
