@@ -108,23 +108,13 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
               </p>
 
               {/* Tech stack — above bullets */}
-              <p
-                className="text-xs mb-3 tracking-wide"
-                style={{ color: "var(--text-subtle)" }}
-              >
-                <span
-                  className="uppercase"
-                  style={{
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.12em",
-                    color: "var(--text-subtle)",
-                    marginRight: "0.5rem",
-                  }}
-                >
-                  tech stack
-                </span>
-                {project.tags.join(" · ")}
-              </p>
+              <div className="flex flex-wrap gap-1.5 mb-4 items-center">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="chip">
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
               {/* Bullets */}
               {project.bullets && project.bullets.length > 0 && (
