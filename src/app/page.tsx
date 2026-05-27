@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const WINS = [
-  ["2K+ engineers daily", "Built AI coding agent"],
+  ["2K+ users daily", "Built AI coding agent"],
   ["1 Million+ users", "B2C SaaS products shipped at AppyHigh"],
   ["~95% shared code", "VS Code + JetBrains plugin for AI Coding Agent"],
   ["60s → 500ms", "ML prediction API latency reduction"],
