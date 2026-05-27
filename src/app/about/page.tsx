@@ -70,6 +70,33 @@ const EDUCATION = [
     degree: "Bachelor of Engineering, Computer Science",
     description: "CGPA: 9.83 / 10",
   },
+  {
+    year: "2018",
+    school: "CBSE Board",
+    degree: "Senior Secondary Examination (12th)",
+    description: "Percentage: 92.8%",
+  },
+] as const;
+
+const AWARDS = [
+  {
+    title: "Brainiac Award",
+    date: "Feb ’23",
+    description: "For building PhotAI's client-side canvas algorithm—combining original images with B&W API masks and manipulating pixel data in real time to generate background-removed downloadable outputs.",
+    viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/brainiacAward.jpg",
+  },
+  {
+    title: "Letter of Appreciation",
+    date: "Jan ’23",
+    description: "For driving a 3x optimization in web performance and load times across core consumer products, recognized by startup founders.",
+    viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/letterOfAppreciation.jpg",
+  },
+  {
+    title: "Talent Star Award",
+    date: "Sep ’22",
+    description: "For building ScannerGo, developing Socket-based real-time conversions, custom browser PDF viewing, and Redux architecture.",
+    viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/talentStarsAward.jpg",
+  },
 ] as const;
 
 
@@ -185,18 +212,59 @@ export default function AboutPage() {
                 </time>
               </div>
               <p className="text-xs mb-2">
+                {"schoolUrl" in item && item.schoolUrl ? (
+                  <a
+                    href={item.schoolUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="blue-link inline-flex items-baseline gap-1"
+                  >
+                    <span className="blue-link-text">{item.school}</span>
+                    <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
+                  </a>
+                ) : (
+                  <span style={{ color: "var(--text)" }}>{item.school}</span>
+                )}
+              </p>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Awards & Recognition */}
+      <section aria-labelledby="awards-heading" className="mb-10 animate-fade-in-up stagger-4">
+        <p className="section-label mb-4">awards / recognition</p>
+        <div>
+          {AWARDS.map((item, i) => (
+            <div
+              key={i}
+              className="py-4"
+              style={{ borderTop: "1px solid var(--border-subtle)" }}
+            >
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <span className="text-sm" style={{ color: "var(--text)" }}>
+                  {item.title}
+                </span>
+                <span className="mono-label flex-shrink-0">
+                  {item.date}
+                </span>
+              </div>
+              <p className="text-sm leading-relaxed mb-2" style={{ color: "var(--text-muted)" }}>
+                {item.description}
+              </p>
+              <p className="text-xs">
                 <a
-                  href={item.schoolUrl}
+                  href={item.viewUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="blue-link inline-flex items-baseline gap-1"
                 >
-                  <span className="blue-link-text">{item.school}</span>
+                  <span className="blue-link-text">View</span>
                   <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
                 </a>
-              </p>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {item.description}
               </p>
             </div>
           ))}
