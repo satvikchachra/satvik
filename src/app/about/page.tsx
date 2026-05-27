@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
 import { buildMetadata } from "@/lib/metadata";
+import { formatResumeText } from "@/lib/utils";
 
 export const metadata: Metadata = buildMetadata({
   title: "About",
@@ -8,21 +9,6 @@ export const metadata: Metadata = buildMetadata({
     "Learn about Satvik Chachra — full stack engineer, SDE 2, building AI coding agents and developer tooling.",
   path: "/about",
 });
-
-function formatBoldText(text: string): React.ReactNode {
-  if (!text) return "";
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, index) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return (
-        <strong key={index} className="font-semibold text-[var(--text)]">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-    return part;
-  });
-}
 
 const STACK = [
   {
@@ -58,7 +44,7 @@ const EXPERIENCE = [
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 2 — AI Foundations",
     description:
-      "Building **AI coding agents**, developer tooling infrastructure, and intelligent systems used by **over two thousand engineers daily (2K+)**. Led end-to-end development of an **AI-native editor and chat experience** across **VS Code and JetBrains** with **~95% shared code**.",
+      "Building **AI coding agents**, developer tooling infrastructure, and intelligent systems used by **over two thousand engineers daily (2K+)**. __Led end-to-end development__ of an **AI-native editor and chat experience** across **VS Code and JetBrains** with **~95% shared code**.",
   },
   {
     year: "2024 – 2025",
@@ -66,7 +52,7 @@ const EXPERIENCE = [
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 1 — Dev Infra",
     description:
-      "Worked on **ML-powered predictive test selection** for CI/CD pipelines. Drove **~99% improvement** in **p95 prediction API latency (60s → 500ms)** through Tecton feature store integration, Redis caching, and **FastAPI migration**.",
+      "Worked on **ML-powered predictive test selection** for CI/CD pipelines. __Drove **~99% improvement** in **p95 prediction API latency (60s → 500ms)**__ through Tecton feature store integration, Redis caching, and **FastAPI migration**.",
   },
   {
     year: "2022 – 2023",
@@ -74,7 +60,7 @@ const EXPERIENCE = [
     companyUrl: "https://www.appyhigh.com/",
     role: "SDE 1 — Full Stack",
     description:
-      "Built **AI-powered photo editing and generation platform (PhotAI)** and a cloud-based storage and document conversion service (ScannerGo). **Led small engineering teams** and shipped products that collectively served **over one million users (1M+)**.",
+      "Built **AI-powered photo editing and generation platform (PhotAI)** and a cloud-based storage and document conversion service (ScannerGo). __Led small engineering teams__ and shipped products that collectively served **over one million users (1M+)**.",
   },
 ] as const;
 
@@ -98,19 +84,19 @@ const AWARDS = [
   {
     title: "Brainiac Award",
     date: "Feb ’23",
-    description: "For building **PhotAI's client-side canvas algorithm**—combining original images with B&W API masks and **manipulating pixel data in real time** to generate background-removed downloadable outputs.",
+    description: "For __building PhotAI's client-side canvas algorithm__—combining original images with B&W API masks and **manipulating pixel data in real time** to generate background-removed downloadable outputs.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/brainiacAward.jpg",
   },
   {
     title: "Letter of Appreciation",
     date: "Jan ’23",
-    description: "For driving a **3x optimization in web performance** and load times across core consumer products, **recognized by startup founders**.",
+    description: "For __driving a **3x optimization** in web performance__ and load times across core consumer products, __recognized by startup founders__.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/letterOfAppreciation.jpg",
   },
   {
     title: "Talent Star Award",
     date: "Sep ’22",
-    description: "For building **ScannerGo**, developing **Socket-based real-time conversions**, custom browser PDF viewing, and **Redux architecture**.",
+    description: "For __building ScannerGo__, developing **Socket-based real-time conversions**, custom browser PDF viewing, and **Redux architecture**.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/talentStarsAward.jpg",
   },
 ] as const;
@@ -130,11 +116,10 @@ export default function AboutPage() {
         </h1>
         <div className="text-sm leading-relaxed space-y-2" style={{ color: "var(--text-muted)" }}>
           <p>
-            <strong className="font-semibold text-[var(--text)]">AI-native full stack engineer</strong> with 4+ Years of Experience. {<br />}I am building <strong className="font-semibold text-[var(--text)]">AI Coding Agents</strong>, AI software products, <strong className="font-semibold text-[var(--text)]">Developer Tooling</strong> and the <strong className="font-semibold text-[var(--text)]">Infrastructure</strong> that makes them production-ready.
+            {formatResumeText("**AI-native full stack engineer** with **4+ Years of Experience**. I am building **AI Coding Agents**, AI software products, **Developer Tooling**, and the **Infrastructure** that makes them production-ready.")}
           </p>
           <p>
-            I write about <strong className="font-semibold text-[var(--text)]">AI systems</strong>, <strong className="font-semibold text-[var(--text)]">platform engineering</strong>,
-            and things I&apos;m learning across <strong className="font-semibold text-[var(--text)]">Computer Science</strong>, Mathematics, <strong className="font-semibold text-[var(--text)]">Machine Learning</strong>, Artificial Intelligence and Physics.
+            {formatResumeText("I write about **AI systems**, **platform engineering**, and things I'm learning across **Computer Science**, Mathematics, **Machine Learning**, Artificial Intelligence, and Physics.")}
           </p>
         </div>
       </header>
@@ -172,7 +157,7 @@ export default function AboutPage() {
                 </a>
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {formatBoldText(item.description)}
+                {formatResumeText(item.description)}
               </p>
             </div>
           ))}
@@ -243,7 +228,7 @@ export default function AboutPage() {
                 )}
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {formatBoldText(item.description)}
+                {formatResumeText(item.description)}
               </p>
             </div>
           ))}
@@ -269,7 +254,7 @@ export default function AboutPage() {
                 </span>
               </div>
               <p className="text-sm leading-relaxed mb-2" style={{ color: "var(--text-muted)" }}>
-                {formatBoldText(item.description)}
+                {formatResumeText(item.description)}
               </p>
               <p className="text-xs">
                 <a
@@ -286,8 +271,6 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-
-
     </div>
   );
 }
