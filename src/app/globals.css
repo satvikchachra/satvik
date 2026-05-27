@@ -387,6 +387,24 @@ nav, button, input, select, textarea {
   text-decoration-color: var(--text-muted);
 }
 
+.animated-underline {
+  background-image: linear-gradient(transparent calc(100% - 1px), var(--accent) 1px);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline;
+  padding-bottom: 2px;
+}
+@media (hover: hover) {
+  .group:hover .animated-underline {
+    background-size: 100% 100%;
+  }
+}
+.group:active .animated-underline {
+  background-size: 0% 100% !important;
+  transition: none !important;
+}
+
 /* ============================================================
    HOVER LINK UTILITIES — CSS-only, safe for Server Components
    ============================================================ */

@@ -64,10 +64,10 @@ export default function BlogPage() {
               >
                 <div className="flex-1 min-w-0 pr-4">
                   <span
-                    className="text-sm block mb-1 group-hover:underline group-hover:decoration-[var(--accent)] underline-offset-4 transition-all duration-150"
+                    className="text-sm block mb-1"
                     style={{ color: "var(--text)" }}
                   >
-                    {post.title}
+                    <span className="animated-underline">{post.title}</span>
                   </span>
                   {post.description && (
                     <span
