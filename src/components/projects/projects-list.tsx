@@ -56,7 +56,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
               {/* Title row */}
-              <div className="flex items-baseline justify-between gap-4 mb-3">
+              <div className="flex items-baseline justify-between gap-4 mb-1">
                 <h2 className="text-sm" style={{ color: "var(--text)" }}>
                   {project.liveUrl ? (
                     <a
@@ -94,6 +94,13 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                 </div>
               </div>
 
+              {/* Company name */}
+              {project.company && (
+                <p className="text-xs mb-3" style={{ color: "var(--text-subtle)" }}>
+                  {project.company}
+                </p>
+              )}
+
               {/* Short description */}
               <p
                 className="text-sm leading-relaxed mb-4"
@@ -116,7 +123,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                     marginRight: "0.5rem",
                   }}
                 >
-                  stack
+                  tech stack
                 </span>
                 {project.tags.join(" · ")}
               </p>

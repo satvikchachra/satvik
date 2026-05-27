@@ -1,6 +1,7 @@
 export interface Project {
   slug: string;
   title: string;
+  company?: string;
   description: string;
   bullets: string[];
   tags: string[];
@@ -15,6 +16,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "ai-coding-agent",
     title: "AI Coding Agent",
+    company: "Atlassian",
     description:
       "AI-native editor and chat experience for VS Code and JetBrains — built for 2K+ engineers daily, with ~95% shared cross-platform code.",
     bullets: [
@@ -35,6 +37,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "predictive-test-selection",
     title: "Predictive Test Selection",
+    company: "Atlassian",
     description:
       "ML-powered system predicting which tests should run per code change in local and CI/CD pipelines, using changed files and historical failure signals.",
     bullets: [
@@ -54,6 +57,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "photai",
     title: "PhotAI",
+    company: "AppyHigh",
     description:
       "AI-powered image editing and generation platform with background removal, object replacement, and AI avatar generation. Reached 700K+ users.",
     bullets: [
@@ -72,6 +76,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "scannergo",
     title: "ScannerGo",
+    company: "AppyHigh",
     description:
       "Cloud-based storage and PDF toolkit platform with real-time file conversion, custom PDF viewer, and document management. Reached 500K+ users.",
     bullets: [

@@ -228,6 +228,8 @@ nav, button, input, select, textarea {
 
 .row-link:hover {
   color: var(--text);
+  background: rgba(var(--accent-rgb), 0.04);
+  border-radius: 2px;
 }
 
 .row-link:hover::after {
@@ -251,11 +253,11 @@ nav, button, input, select, textarea {
    ============================================================ */
 .section-label {
   font-family: var(--font-geist-mono, ui-monospace, monospace);
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-subtle);
+  color: var(--text);
 }
 
 /* ============================================================
@@ -315,9 +317,9 @@ nav, button, input, select, textarea {
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 1px 6px;
+  padding: 1px 8px;
   border-radius: 3px;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   font-family: var(--font-geist-mono, ui-monospace, monospace);
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -325,6 +327,7 @@ nav, button, input, select, textarea {
   color: var(--text-subtle);
   border: 1px solid var(--border);
   transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
 }
 
 .tag:hover {
@@ -337,6 +340,22 @@ nav, button, input, select, textarea {
   background: var(--text) !important;
   color: var(--bg) !important;
   border-color: transparent !important;
+}
+
+/* Static chip — non-clickable skill/tech chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-family: var(--font-geist-mono, ui-monospace, monospace);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  user-select: none;
 }
 
 /* ============================================================

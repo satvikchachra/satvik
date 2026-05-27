@@ -62,7 +62,7 @@ export default function BlogPage() {
                 <div className="flex-1 min-w-0 pr-4">
                   <span
                     className="text-sm block mb-1"
-                    style={{ color: "var(--text-muted)" }}
+                    style={{ color: "var(--text)" }}
                   >
                     {post.title}
                   </span>
