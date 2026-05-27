@@ -42,7 +42,7 @@ const TIMELINE = [
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 2 — AI Foundations",
     description:
-      "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by 2K+ engineers daily. Led end-to-end development of an AI-native editor experience across VS Code and JetBrains with ~95% shared code.",
+      "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by over two thousand engineers daily (2K+). Led end-to-end development of an AI-native editor and chat experience across VS Code and JetBrains with ~95% shared code.",
   },
   {
     year: "2024 – 2025",
@@ -58,7 +58,7 @@ const TIMELINE = [
     companyUrl: "https://www.appyhigh.com/",
     role: "SDE 1 — Full Stack",
     description:
-      "Built AI-powered photo editing and generation platform (PhotAI) and a cloud-based storage and document conversion service (ScannerGo). Led small engineering teams. Products reached 1M+ users collectively.",
+      "Built AI-powered photo editing and generation platform (PhotAI) and a cloud-based storage and document conversion service (ScannerGo). Led small engineering teams and shipped products that collectively served over one million users (1M+)",
   },
   {
     year: "2018 – 2022",
@@ -90,14 +90,11 @@ export default function AboutPage() {
         </h1>
         <div className="text-sm leading-relaxed space-y-2" style={{ color: "var(--text-muted)" }}>
           <p>
-            AI-native full stack engineer. I build systems where AI writes code,
-            reviews code, and understands codebases — and the infrastructure
-            that makes that reliable in production. I have over four years of experience across the full stack:
-            from frontend and backend to ML systems, CI/CD pipelines, and developer tooling.
+            AI-native full stack engineer with 4+ Years of Experience. {<br />}I am building AI Coding Agents, AI software products, Developer Tooling and the Infrastructure that makes them production-ready.
           </p>
           <p>
-            Outside of building, I write about AI systems, platform engineering,
-            and things I&apos;m learning across CS, mathematics, and science.
+            I write about AI systems, platform engineering,
+            and things I&apos;m learning across Computer Science, Mathematics, Machine Learning, Artificial Intelligence and Physics.
           </p>
         </div>
       </header>
