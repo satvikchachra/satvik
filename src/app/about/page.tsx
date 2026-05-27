@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import React from "react";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -7,6 +8,21 @@ export const metadata: Metadata = buildMetadata({
     "Learn about Satvik Chachra — full stack engineer, SDE 2, building AI coding agents and developer tooling.",
   path: "/about",
 });
+
+function formatBoldText(text: string): React.ReactNode {
+  if (!text) return "";
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-semibold text-[var(--text)]">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
 
 const STACK = [
   {
@@ -42,7 +58,7 @@ const EXPERIENCE = [
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 2 — AI Foundations",
     description:
-      "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by over two thousand engineers daily (2K+). Led end-to-end development of an AI-native editor and chat experience across VS Code and JetBrains with ~95% shared code.",
+      "Building **AI coding agents**, developer tooling infrastructure, and intelligent systems used by **over two thousand engineers daily (2K+)**. Led end-to-end development of an **AI-native editor and chat experience** across **VS Code and JetBrains** with **~95% shared code**.",
   },
   {
     year: "2024 – 2025",
@@ -50,7 +66,7 @@ const EXPERIENCE = [
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 1 — Dev Infra",
     description:
-      "Worked on ML-powered predictive test selection for CI/CD pipelines. Drove ~99% improvement in p95 prediction API latency (60s → 500ms) through Tecton feature store integration and Redis caching alongside FastAPI migration.",
+      "Worked on **ML-powered predictive test selection** for CI/CD pipelines. Drove **~99% improvement** in **p95 prediction API latency (60s → 500ms)** through Tecton feature store integration, Redis caching, and **FastAPI migration**.",
   },
   {
     year: "2022 – 2023",
@@ -58,7 +74,7 @@ const EXPERIENCE = [
     companyUrl: "https://www.appyhigh.com/",
     role: "SDE 1 — Full Stack",
     description:
-      "Built AI-powered photo editing and generation platform (PhotAI) and a cloud-based storage and document conversion service (ScannerGo). Led small engineering teams and shipped products that collectively served over one million users (1M+)",
+      "Built **AI-powered photo editing and generation platform (PhotAI)** and a cloud-based storage and document conversion service (ScannerGo). **Led small engineering teams** and shipped products that collectively served **over one million users (1M+)**.",
   },
 ] as const;
 
@@ -68,13 +84,13 @@ const EDUCATION = [
     school: "Chitkara University",
     schoolUrl: "https://www.chitkara.edu.in/",
     degree: "Bachelor of Engineering, Computer Science",
-    description: "CGPA: 9.83 / 10",
+    description: "CGPA: **9.83 / 10**",
   },
   {
     year: "2018",
     school: "CBSE Board",
     degree: "Senior Secondary Examination (12th)",
-    description: "Percentage: 92.8%",
+    description: "Percentage: **92.8%**",
   },
 ] as const;
 
@@ -82,19 +98,19 @@ const AWARDS = [
   {
     title: "Brainiac Award",
     date: "Feb ’23",
-    description: "For building PhotAI's client-side canvas algorithm—combining original images with B&W API masks and manipulating pixel data in real time to generate background-removed downloadable outputs.",
+    description: "For building **PhotAI's client-side canvas algorithm**—combining original images with B&W API masks and **manipulating pixel data in real time** to generate background-removed downloadable outputs.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/brainiacAward.jpg",
   },
   {
     title: "Letter of Appreciation",
     date: "Jan ’23",
-    description: "For driving a 3x optimization in web performance and load times across core consumer products, recognized by startup founders.",
+    description: "For driving a **3x optimization in web performance** and load times across core consumer products, **recognized by startup founders**.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/letterOfAppreciation.jpg",
   },
   {
     title: "Talent Star Award",
     date: "Sep ’22",
-    description: "For building ScannerGo, developing Socket-based real-time conversions, custom browser PDF viewing, and Redux architecture.",
+    description: "For building **ScannerGo**, developing **Socket-based real-time conversions**, custom browser PDF viewing, and **Redux architecture**.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/talentStarsAward.jpg",
   },
 ] as const;
@@ -114,11 +130,11 @@ export default function AboutPage() {
         </h1>
         <div className="text-sm leading-relaxed space-y-2" style={{ color: "var(--text-muted)" }}>
           <p>
-            AI-native full stack engineer with 4+ Years of Experience. {<br />}I am building AI Coding Agents, AI software products, Developer Tooling and the Infrastructure that makes them production-ready.
+            <strong className="font-semibold text-[var(--text)]">AI-native full stack engineer</strong> with 4+ Years of Experience. {<br />}I am building <strong className="font-semibold text-[var(--text)]">AI Coding Agents</strong>, AI software products, <strong className="font-semibold text-[var(--text)]">Developer Tooling</strong> and the <strong className="font-semibold text-[var(--text)]">Infrastructure</strong> that makes them production-ready.
           </p>
           <p>
-            I write about AI systems, platform engineering,
-            and things I&apos;m learning across Computer Science, Mathematics, Machine Learning, Artificial Intelligence and Physics.
+            I write about <strong className="font-semibold text-[var(--text)]">AI systems</strong>, <strong className="font-semibold text-[var(--text)]">platform engineering</strong>,
+            and things I&apos;m learning across <strong className="font-semibold text-[var(--text)]">Computer Science</strong>, Mathematics, <strong className="font-semibold text-[var(--text)]">Machine Learning</strong>, Artificial Intelligence and Physics.
           </p>
         </div>
       </header>
@@ -156,7 +172,7 @@ export default function AboutPage() {
                 </a>
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {item.description}
+                {formatBoldText(item.description)}
               </p>
             </div>
           ))}
@@ -227,7 +243,7 @@ export default function AboutPage() {
                 )}
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {item.description}
+                {formatBoldText(item.description)}
               </p>
             </div>
           ))}
@@ -253,7 +269,7 @@ export default function AboutPage() {
                 </span>
               </div>
               <p className="text-sm leading-relaxed mb-2" style={{ color: "var(--text-muted)" }}>
-                {item.description}
+                {formatBoldText(item.description)}
               </p>
               <p className="text-xs">
                 <a
