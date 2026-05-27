@@ -71,15 +71,28 @@ export default function ContactPage() {
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
               aria-label={`${label}: ${handle}`}
-              className="row-link"
+              className="row-link group pr-2"
+              style={{ alignItems: "flex-start", overflow: "visible" }}
             >
               <div className="flex-1 min-w-0">
-                <span
-                  className="text-sm block mb-0.5"
-                  style={{ color: "var(--text)", fontWeight: 500 }}
-                >
-                  {label}
-                </span>
+                <div className="flex items-baseline gap-2 flex-wrap mb-0.5">
+                  <span
+                    className="text-sm font-medium"
+                    style={{ color: "var(--text)", fontWeight: 500 }}
+                  >
+                    <span className="animated-underline">{label}</span>
+                  </span>
+                  {/* Mobile-only handle & separator — displayed adjacent to platform name */}
+                  <span
+                    className="text-xs sm:hidden font-mono inline-flex items-baseline gap-1.5"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    <span style={{ color: "var(--text-subtle)" }} aria-hidden="true">·</span>
+                    <span className="animated-underline">
+                      {label === "email" ? "" : "@"}{handle}
+                    </span>
+                  </span>
+                </div>
                 <span
                   className="text-xs block"
                   style={{ color: "var(--text-subtle)" }}
@@ -87,14 +100,22 @@ export default function ContactPage() {
                   {description}
                 </span>
               </div>
-              <div className="flex items-center gap-3 flex-shrink-0">
+              <div className="flex items-center gap-1 flex-shrink-0 pt-0.5">
+                {/* Desktop-only handle */}
                 <span
-                  className="text-xs hidden sm:block"
-                  style={{ color: "var(--text-muted)" }}
+                  className="text-xs hidden sm:block font-mono"
+                  style={{ color: "var(--accent)" }}
                 >
-                  {handle}
+                  <span className="animated-underline">
+                    {label === "email" ? "" : "@"}{handle}
+                  </span>
                 </span>
-                <span className="row-link-arrow text-xs">↗</span>
+                <span
+                  className="row-link-arrow text-xs"
+                  style={{ color: "var(--accent)" }}
+                >
+                  ↗
+                </span>
               </div>
             </a>
           </li>
