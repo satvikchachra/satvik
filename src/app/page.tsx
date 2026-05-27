@@ -90,6 +90,16 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+        <div className="pt-4">
+          <Link
+            href="/projects"
+            id="view-all-projects"
+            className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-subtle)] hover:bg-[var(--surface-alt)] transition-all duration-200 blue-link"
+          >
+            <span className="blue-link-text">view projects</span>
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+          </Link>
+        </div>
       </section>
 
       {/* Experience */}
@@ -133,23 +143,6 @@ export default function HomePage() {
       </section>
 
 
-      {/* Selected Work */}
-      <section
-        aria-labelledby="projects-heading"
-        className="mb-10 animate-fade-in-up stagger-5"
-      >
-        <p className="section-label mb-4">selected work</p>
-        <div className="py-4" style={{ borderTop: "1px solid var(--border-subtle)" }}>
-          <Link
-            href="/projects"
-            id="view-all-projects"
-            className="blue-link inline-flex items-baseline gap-1 text-sm font-medium"
-          >
-            <span className="blue-link-text">View all projects</span>
-            <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
-          </Link>
-        </div>
-      </section>
 
       {/* Recent Writing */}
       {posts.length > 0 && (
@@ -184,13 +177,14 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
-          <div className="pt-3">
+          <div className="pt-4">
             <Link
               href="/blog"
               id="view-all-posts"
-              className="text-xs inline-block link-subtle"
+              className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-subtle)] hover:bg-[var(--surface-alt)] transition-all duration-200 blue-link"
             >
-              all posts →
+              <span className="blue-link-text">all posts</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
             </Link>
           </div>
         </section>
