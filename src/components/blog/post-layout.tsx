@@ -35,7 +35,7 @@ export function PostLayout({
       </Link>
 
       {/* Post header */}
-      <header className="mb-12">
+      <header className="mb-6">
         <h1
           className="text-lg tracking-tight mb-3 leading-snug"
           style={{ color: "var(--text)" }}
@@ -49,23 +49,21 @@ export function PostLayout({
 
         {/* Meta row */}
         <div
-          className="flex items-center gap-3 pb-8"
+          className="flex flex-wrap items-center gap-x-3 gap-y-1 pb-4"
           style={{ borderBottom: "1px solid var(--border-subtle)" }}
         >
-          <time dateTime={date} className="mono-label">
-            {formatDate(date)}
-          </time>
-          {readingTime && (
-            <>
-              <span className="mono-label" aria-hidden="true">·</span>
-              <span className="mono-label">{readingTime}</span>
-            </>
-          )}
+          <div className="flex items-center gap-3">
+            {readingTime && <span className="mono-label">{readingTime}</span>}
+            {readingTime && <span className="mono-label" aria-hidden="true">·</span>}
+            <time dateTime={date} className="mono-label">
+              {formatDate(date)}
+            </time>
+          </div>
           {tags.length > 0 && (
-            <>
-              <span className="mono-label" aria-hidden="true">·</span>
+            <div className="flex items-center gap-3 w-full sm:w-auto">
+              <span className="mono-label hidden sm:inline" aria-hidden="true">·</span>
               <span className="mono-label">{tags.join(", ")}</span>
-            </>
+            </div>
           )}
         </div>
       </header>
