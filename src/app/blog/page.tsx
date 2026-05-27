@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { buildMetadata } from "@/lib/metadata";
-import { getAllPosts, formatDate } from "@/lib/blog";
+import { getAllPosts, getAllBlogTags } from "@/lib/blog";
+import { BlogList } from "@/components/blog/blog-list";
 
 export const metadata: Metadata = buildMetadata({
   title: "Blog",
@@ -12,11 +12,12 @@ export const metadata: Metadata = buildMetadata({
 
 export default function BlogPage() {
   const posts = getAllPosts();
+  const tags = getAllBlogTags();
 
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
 
-      <header className="mb-16 animate-fade-in-up stagger-0">
+      <header className="mb-8 animate-fade-in-up stagger-0">
         <h1
           className="text-lg tracking-tight mb-2"
           style={{ color: "var(--text)" }}
@@ -45,49 +46,9 @@ export default function BlogPage() {
           </p>
         </div>
       ) : (
-        <ol
-          role="list"
-          className="animate-fade-in-up stagger-1"
-          aria-label="Blog posts"
-        >
-          {posts.map((post, i) => (
-            <li key={post.slug}>
-              <Link
-                href={`/blog/${post.slug}`}
-                id={`blog-post-${post.slug}`}
-                className="row-link group"
-                aria-label={`Read: ${post.title}`}
-                style={{
-                  animationDelay: `${(i + 1) * 50}ms`,
-                  alignItems: "flex-start",
-                }}
-              >
-                <div className="flex-1 min-w-0 pr-8">
-                  <span
-                    className="text-sm block mb-1"
-                    style={{ color: "var(--text)" }}
-                  >
-                    <span className="animated-underline">{post.title}</span>
-                    <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>
-                  </span>
-                  {post.description && (
-                    <span
-                      className="text-xs leading-relaxed block"
-                      style={{ color: "var(--text-subtle)" }}
-                    >
-                      {post.description}
-                    </span>
-                  )}
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0 pt-0.5">
-                  <time dateTime={post.date} className="mono-label">
-                    {formatDate(post.date)}
-                  </time>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ol>
+        <div className="animate-fade-in-up stagger-1">
+          <BlogList posts={posts} allTags={tags} />
+        </div>
       )}
     </div>
   );
