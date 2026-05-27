@@ -164,9 +164,10 @@ export default function HomePage() {
                 <div className="flex-1 min-w-0 pr-8">
                   <span
                     className="text-sm block"
-                    style={{ color: "var(--text-muted)" }}
+                    style={{ color: "var(--text)" }}
                   >
                     <span className="animated-underline">{post.title}</span>
+                    <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>
                   </span>
                 </div>
                 <div className="flex-shrink-0 pt-0.5">
