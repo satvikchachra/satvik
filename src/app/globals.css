@@ -372,6 +372,21 @@ nav, button, input, select, textarea {
   text-decoration-color: var(--text-muted);
 }
 
+.blue-link {
+  color: var(--accent);
+  text-decoration: none !important;
+}
+.blue-link-text {
+  text-decoration: underline;
+  text-decoration-color: var(--text-subtle);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
+}
+.blue-link:hover .blue-link-text {
+  text-decoration-color: var(--text-muted);
+}
+
 /* ============================================================
    HOVER LINK UTILITIES — CSS-only, safe for Server Components
    ============================================================ */

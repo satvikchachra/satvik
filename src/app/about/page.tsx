@@ -128,11 +128,10 @@ export default function AboutPage() {
                   href={item.companyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "var(--accent)" }}
-                  className="inline-flex items-baseline gap-1 transition-opacity duration-150 hover:opacity-70"
+                  className="blue-link inline-flex items-baseline gap-1"
                 >
-                  {item.company}
-                  <span className="text-xs" style={{ color: "var(--accent)" }} aria-hidden="true">↗</span>
+                  <span className="blue-link-text">{item.company}</span>
+                  <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
                 </a>
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>

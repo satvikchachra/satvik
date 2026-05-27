@@ -55,13 +55,16 @@ export default function BlogPage() {
               <Link
                 href={`/blog/${post.slug}`}
                 id={`blog-post-${post.slug}`}
-                className="row-link"
+                className="row-link group"
                 aria-label={`Read: ${post.title}`}
-                style={{ animationDelay: `${(i + 1) * 50}ms` }}
+                style={{
+                  animationDelay: `${(i + 1) * 50}ms`,
+                  alignItems: "flex-start",
+                }}
               >
                 <div className="flex-1 min-w-0 pr-4">
                   <span
-                    className="text-sm block mb-1"
+                    className="text-sm block mb-1 group-hover:underline group-hover:decoration-[var(--accent)] underline-offset-4 transition-all duration-150"
                     style={{ color: "var(--text)" }}
                   >
                     {post.title}
@@ -75,7 +78,7 @@ export default function BlogPage() {
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
+                <div className="flex items-center gap-2 flex-shrink-0 pt-0.5">
                   <time dateTime={post.date} className="mono-label">
                     {formatDate(post.date)}
                   </time>
