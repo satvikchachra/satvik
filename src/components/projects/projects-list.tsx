@@ -26,7 +26,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
         <button
           onClick={() => setActiveTag(null)}
           aria-pressed={activeTag === null}
-          className={`tag transition-all duration-150 ${activeTag === null ? "tag-active" : ""}`}
+          className={`tag cursor-pointer transition-all duration-150 ${activeTag === null ? "tag-active" : ""}`}
         >
           all
         </button>
@@ -35,7 +35,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
             key={tag}
             onClick={() => setActiveTag(activeTag === tag ? null : tag)}
             aria-pressed={activeTag === tag}
-            className={`tag transition-all duration-150 ${activeTag === tag ? "tag-active" : ""}`}
+            className={`tag cursor-pointer transition-all duration-150 ${activeTag === tag ? "tag-active" : ""}`}
           >
             {tag}
           </button>
@@ -58,27 +58,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
               {/* Title row */}
               <div className="flex items-baseline justify-between gap-4 mb-1">
                 <h2 className="text-sm" style={{ color: "var(--text)" }}>
-                  {project.liveUrl ? (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} — opens in new tab`}
-                      className="transition-opacity duration-150 hover:opacity-70 inline-flex items-baseline gap-1"
-                      style={{ color: "var(--text)" }}
-                    >
-                      {project.title}
-                      <span
-                        className="text-xs"
-                        style={{ color: "var(--text-subtle)" }}
-                        aria-hidden="true"
-                      >
-                        ↗
-                      </span>
-                    </a>
-                  ) : (
-                    project.title
-                  )}
+                  {project.title}
                 </h2>
                 <div className="flex items-center gap-3 flex-shrink-0">
                   {/* Only show "active" badge for the AI Coding Agent */}
@@ -94,12 +74,30 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                 </div>
               </div>
 
-              {/* Company name */}
-              {project.company && (
-                <p className="text-xs mb-3" style={{ color: "var(--text-subtle)" }}>
-                  {project.company}
-                </p>
-              )}
+              {/* Company & Live URL */}
+              <div className="text-xs mb-3 flex items-center gap-2">
+                {project.company && (
+                  <span style={{ color: "var(--text-subtle)" }}>
+                    {project.company}
+                  </span>
+                )}
+                {project.company && project.liveUrl && (
+                  <span style={{ color: "var(--text-subtle)" }}>·</span>
+                )}
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="blue-link inline-flex items-baseline gap-1"
+                  >
+                    <span className="blue-link-text">
+                      {project.liveUrl.replace("https://", "").replace("www.", "").replace(/\/$/, "")}
+                    </span>
+                    <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
+                  </a>
+                )}
+              </div>
 
               {/* Short description */}
               <p
