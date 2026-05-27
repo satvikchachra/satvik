@@ -52,19 +52,16 @@ export function Navbar() {
         <Link
           href="/"
           aria-label="Satvik Chachra — Home"
-          className="text-xs px-2.5 py-1 rounded-sm transition-colors duration-200 relative inline-flex items-center"
+          className="text-xs transition-colors duration-200 relative inline-flex items-center py-1"
           style={{
             color: pathname === "/" ? "var(--text)" : "var(--text-muted)",
-            background: "transparent",
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
-            (e.currentTarget as HTMLAnchorElement).style.background = "var(--surface)";
           }}
           onMouseLeave={(e) => {
             (e.currentTarget as HTMLAnchorElement).style.color =
               pathname === "/" ? "var(--text)" : "var(--text-muted)";
-            (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
           }}
         >
           <span className="relative py-0.5">
@@ -86,7 +83,7 @@ export function Navbar() {
             className="hidden sm:flex"
             aria-label="Main navigation"
           >
-            <NavigationMenuList className="gap-0">
+            <NavigationMenuList className="gap-4">
               {navItems.map((item) => {
                 const active = isActive(item.href);
                 return (
@@ -94,24 +91,17 @@ export function Navbar() {
                     <NavigationMenuLink asChild active={active}>
                       <Link
                         href={item.href}
-                        className="text-xs px-2.5 py-1 rounded-sm transition-colors duration-200 relative inline-flex items-center"
+                        className="text-xs transition-colors duration-200 relative inline-flex items-center py-1"
                         style={{
                           color: active ? "var(--text)" : "var(--text-muted)",
-                          background: "transparent",
                         }}
                         onMouseEnter={(e) => {
                           (e.currentTarget as HTMLAnchorElement).style.color =
                             "var(--text)";
-                          (
-                            e.currentTarget as HTMLAnchorElement
-                          ).style.background = "var(--surface)";
                         }}
                         onMouseLeave={(e) => {
                           (e.currentTarget as HTMLAnchorElement).style.color =
                             active ? "var(--text)" : "var(--text-muted)";
-                          (
-                            e.currentTarget as HTMLAnchorElement
-                          ).style.background = "transparent";
                         }}
                       >
                         <span className="relative py-0.5">
