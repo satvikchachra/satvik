@@ -100,7 +100,7 @@ export default function HomePage() {
                 {context}
               </span>
               <span
-                className="text-sm flex-shrink-0"
+                className="text-sm font-semibold flex-shrink-0"
                 style={{ color: "var(--text)" }}
               >
                 {metric}
