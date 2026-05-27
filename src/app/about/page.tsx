@@ -145,24 +145,28 @@ export default function AboutPage() {
       {/* Stack */}
       <section aria-labelledby="stack-heading" className="mb-10 animate-fade-in-up stagger-3">
         <p className="section-label mb-4">tech stack</p>
-        <dl className="space-y-4">
+        <div className="space-y-4">
           {STACK.map(({ category, items }) => (
-            <div key={category} className="flex gap-6">
-              <dt
-                className="w-28 flex-shrink-0 text-xs pt-0.5 tracking-wide"
+            <div key={category} className="flex flex-col sm:flex-row sm:gap-6 py-3 border-t border-[var(--border-subtle)] first:border-t-0">
+              <div
+                className="w-28 flex-shrink-0 text-xs font-semibold tracking-wider uppercase mb-2 sm:mb-0 pt-1"
                 style={{ color: "var(--text-subtle)" }}
               >
-                {category.toLowerCase()}
-              </dt>
-              <dd
-                className="text-sm leading-relaxed"
-                style={{ color: "var(--text-muted)" }}
-              >
-                {items.join(" · ")}
-              </dd>
+                {category}
+              </div>
+              <div className="flex-1 flex flex-wrap gap-1.5">
+                {items.map((item) => (
+                  <span
+                    key={item}
+                    className="chip px-2.5 py-1 text-xs"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
-        </dl>
+        </div>
       </section>
 
       {/* Wins */}
