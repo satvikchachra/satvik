@@ -129,9 +129,10 @@ export default function AboutPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color: "var(--accent)" }}
-                  className="transition-opacity duration-150 hover:opacity-70"
+                  className="inline-flex items-baseline gap-1 transition-opacity duration-150 hover:opacity-70"
                 >
                   {item.company}
+                  <span className="text-xs" style={{ color: "var(--accent)" }} aria-hidden="true">↗</span>
                 </a>
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>

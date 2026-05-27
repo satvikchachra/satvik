@@ -76,7 +76,7 @@ export default function ContactPage() {
               <div className="flex-1 min-w-0">
                 <span
                   className="text-sm block mb-0.5"
-                  style={{ color: "var(--text-muted)" }}
+                  style={{ color: "var(--text)", fontWeight: 500 }}
                 >
                   {label}
                 </span>
@@ -90,7 +90,7 @@ export default function ContactPage() {
               <div className="flex items-center gap-3 flex-shrink-0">
                 <span
                   className="text-xs hidden sm:block"
-                  style={{ color: "var(--text-subtle)" }}
+                  style={{ color: "var(--text-muted)" }}
                 >
                   {handle}
                 </span>
