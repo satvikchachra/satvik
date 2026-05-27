@@ -35,7 +35,7 @@ const STACK = [
   },
 ] as const;
 
-const TIMELINE = [
+const EXPERIENCE = [
   {
     year: "2025 – now",
     company: "Atlassian",
@@ -60,21 +60,18 @@ const TIMELINE = [
     description:
       "Built AI-powered photo editing and generation platform (PhotAI) and a cloud-based storage and document conversion service (ScannerGo). Led small engineering teams and shipped products that collectively served over one million users (1M+)",
   },
+] as const;
+
+const EDUCATION = [
   {
     year: "2018 – 2022",
-    company: "Chitkara University",
-    companyUrl: "https://www.chitkara.edu.in/",
-    role: "Bachelor of Engineering, Computer Science",
+    school: "Chitkara University",
+    schoolUrl: "https://www.chitkara.edu.in/",
+    degree: "Bachelor of Engineering, Computer Science",
     description: "CGPA: 9.83 / 10",
   },
 ] as const;
 
-const WINS = [
-  ["2K+ engineers daily", "AI coding agent used in production"],
-  ["1M+ users", "B2C SaaS products shipped at AppyHigh"],
-  ["~95% shared code", "VS Code + JetBrains plugin for AI agent"],
-  ["60s → 500ms", "ML prediction API latency reduction"],
-] as const;
 
 export default function AboutPage() {
   return (
@@ -99,11 +96,11 @@ export default function AboutPage() {
         </div>
       </header>
 
-      {/* Timeline */}
-      <section aria-labelledby="timeline-heading" className="mb-10 animate-fade-in-up stagger-4">
+      {/* Experience */}
+      <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
         <p className="section-label mb-4">experience</p>
         <div>
-          {TIMELINE.map((item, i) => (
+          {EXPERIENCE.map((item, i) => (
             <div
               key={i}
               className="py-4"
@@ -142,9 +139,9 @@ export default function AboutPage() {
       {/* Stack */}
       <section aria-labelledby="stack-heading" className="mb-10 animate-fade-in-up stagger-3">
         <p className="section-label mb-4">tech stack</p>
-        <div className="space-y-4">
+        <div className="space-y-0">
           {STACK.map(({ category, items }) => (
-            <div key={category} className="flex flex-col sm:flex-row sm:gap-6 py-3 border-t border-[var(--border-subtle)] first:border-t-0">
+            <div key={category} className="flex flex-col sm:flex-row sm:gap-6 py-2.5 border-t border-[var(--border-subtle)] first:border-t-0">
               <div
                 className="w-28 flex-shrink-0 text-xs font-semibold tracking-wider uppercase mb-2 sm:mb-0 pt-1"
                 style={{ color: "var(--text-subtle)" }}
@@ -166,29 +163,46 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Wins */}
-      <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
-        <p className="section-label mb-4">selected wins</p>
+      {/* Education */}
+      <section aria-labelledby="education-heading" className="mb-10 animate-fade-in-up stagger-4">
+        <p className="section-label mb-4">education</p>
         <div>
-          {WINS.map(([metric, context]) => (
+          {EDUCATION.map((item, i) => (
             <div
-              key={metric}
-              className="flex items-baseline justify-between gap-6 py-3"
+              key={i}
+              className="py-4"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
-              <span className="text-sm" style={{ color: "var(--text-muted)" }}>
-                {context}
-              </span>
-              <span
-                className="text-sm flex-shrink-0"
-                style={{ color: "var(--text)" }}
-              >
-                {metric}
-              </span>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <span className="text-sm" style={{ color: "var(--text)" }}>
+                  {item.degree}
+                </span>
+                <time
+                  dateTime={item.year}
+                  className="mono-label flex-shrink-0"
+                >
+                  {item.year}
+                </time>
+              </div>
+              <p className="text-xs mb-2">
+                <a
+                  href={item.schoolUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="blue-link inline-flex items-baseline gap-1"
+                >
+                  <span className="blue-link-text">{item.school}</span>
+                  <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
+                </a>
+              </p>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                {item.description}
+              </p>
             </div>
           ))}
         </div>
       </section>
+
 
     </div>
   );
