@@ -8,6 +8,21 @@ interface ProjectsListProps {
   allTags: string[];
 }
 
+function formatBoldText(text: string): React.ReactNode {
+  if (!text) return "";
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-semibold text-[var(--text)]">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
 export function ProjectsList({ projects, allTags }: ProjectsListProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
@@ -104,7 +119,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                 className="text-sm leading-relaxed mb-4"
                 style={{ color: "var(--text-muted)" }}
               >
-                {project.description}
+                {formatBoldText(project.description)}
               </p>
 
               {/* Tech stack — above bullets */}
@@ -125,7 +140,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                       className="text-xs leading-relaxed list-disc"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {bullet}
+                      {formatBoldText(bullet)}
                     </li>
                   ))}
                 </ul>

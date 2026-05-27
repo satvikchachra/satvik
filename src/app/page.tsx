@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import React from "react";
 import { getAllPosts, formatDate } from "@/lib/blog";
 import { siteConfig } from "@/lib/metadata";
 
@@ -15,32 +16,97 @@ const WINS = [
   ["60s → 500ms", "ML prediction API latency reduction"],
 ] as const;
 
-const EXPERIENCE = [
+interface ExperienceItem {
+  readonly year: string;
+  readonly company: string;
+  readonly companyUrl: string;
+  readonly role: string;
+  readonly description: React.ReactNode;
+}
+
+const EXPERIENCE: readonly ExperienceItem[] = [
   {
     year: "2025 – now",
     company: "Atlassian",
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 2 — AI Foundations",
-    description:
-      "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by over two thousand engineers daily (2K+). Led end-to-end development of an AI-native editor and chat experience across VS Code and JetBrains with ~95% shared code.",
+    description: (
+      <>
+        Building{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          AI coding agents
+        </strong>
+        , developer tooling infrastructure, and intelligent systems used by{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          over two thousand engineers daily (2K+)
+        </strong>
+        . Led end-to-end development of an{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          AI-native editor and chat experience
+        </strong>{" "}
+        across{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          VS Code and JetBrains
+        </strong>{" "}
+        with{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          ~95% shared code
+        </strong>
+        .
+      </>
+    ),
   },
   {
     year: "2024 – 2025",
     company: "Atlassian",
     companyUrl: "https://www.atlassian.com/",
     role: "SDE 1 — Dev Infra",
-    description:
-      "Worked on ML-powered predictive test selection for CI/CD pipelines. Drove ~99% improvement in p95 prediction API latency (60s → 500ms) through Tecton feature store integration and Redis caching alongside FastAPI migration.",
+    description: (
+      <>
+        Worked on{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          ML-powered predictive test selection
+        </strong>{" "}
+        for CI/CD pipelines. Drove{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          ~99% improvement
+        </strong>{" "}
+        in{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          p95 prediction API latency (60s → 500ms)
+        </strong>{" "}
+        through Tecton feature store integration, Redis caching, and{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          FastAPI migration
+        </strong>
+        .
+      </>
+    ),
   },
   {
     year: "2022 – 2023",
     company: "AppyHigh",
     companyUrl: "https://www.appyhigh.com/",
     role: "SDE 1 — Full Stack",
-    description:
-      "Built AI-powered photo editing and generation platform (PhotAI) and a cloud-based storage and document conversion service (ScannerGo). Led small engineering teams and shipped products that collectively served over one million users (1M+)",
+    description: (
+      <>
+        Built{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          AI-powered photo editing and generation platform (PhotAI)
+        </strong>{" "}
+        and a cloud-based storage and document conversion service (ScannerGo).{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          Led small engineering teams
+        </strong>{" "}
+        and shipped products that served{" "}
+        <strong className="font-semibold text-[var(--text)]">
+          over One Million Users (1M+)
+        </strong>
+        .
+      </>
+    ),
   },
-] as const;
+];
 
 
 export default function HomePage() {
@@ -64,7 +130,15 @@ export default function HomePage() {
           satvik chachra
         </h1>
         <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-          builds ai coding agents, full stack software products &amp; infra
+          builds{" "}
+          <strong className="font-semibold text-[var(--text)]">
+            ai coding agents
+          </strong>
+          ,{" "}
+          <strong className="font-semibold text-[var(--text)]">
+            full stack software products
+          </strong>{" "}
+          &amp; infra
         </p>
       </header>
 
