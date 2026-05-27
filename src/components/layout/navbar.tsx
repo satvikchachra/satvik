@@ -68,7 +68,7 @@ export function Navbar() {
         </Link>
 
         {/* Right: Desktop nav + ThemeSwitcher + mobile toggle */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {/* ── Desktop Navigation (sm+) ── */}
           <NavigationMenu
             viewport={false}
