@@ -62,12 +62,13 @@ export default function BlogPage() {
                   alignItems: "flex-start",
                 }}
               >
-                <div className="flex-1 min-w-0 pr-4">
+                <div className="flex-1 min-w-0 pr-8">
                   <span
                     className="text-sm block mb-1"
                     style={{ color: "var(--text)" }}
                   >
                     <span className="animated-underline">{post.title}</span>
+                    <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>
                   </span>
                   {post.description && (
                     <span
@@ -82,7 +83,6 @@ export default function BlogPage() {
                   <time dateTime={post.date} className="mono-label">
                     {formatDate(post.date)}
                   </time>
-                  <span className="row-link-arrow text-xs">↗</span>
                 </div>
               </Link>
             </li>
