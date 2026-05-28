@@ -123,7 +123,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                   {project.bullets.map((bullet, i) => (
                     <li
                       key={i}
-                      className="text-xs leading-relaxed list-disc"
+                      className="text-sm leading-relaxed list-disc"
                       style={{ color: "var(--text-muted)" }}
                     >
                       {formatResumeText(bullet)}
