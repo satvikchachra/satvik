@@ -8,9 +8,7 @@ interface BlogListProps {
 }
 
 export function BlogList({ posts }: BlogListProps) {
-  return (
-    <>
-      {posts.length === 0 ? (
+  return posts.length === 0 ? (
         <div
           className="py-16 border-t border-border-subtle"
         >
@@ -19,7 +17,7 @@ export function BlogList({ posts }: BlogListProps) {
           </p>
         </div>
       ) : (
-        <ol role="list" aria-label="Blog posts">
+        <ol aria-label="Blog posts">
           {posts.map((post, i) => (
             <li key={post.slug}>
               <Link
@@ -57,7 +55,5 @@ export function BlogList({ posts }: BlogListProps) {
             </li>
           ))}
         </ol>
-      )}
-    </>
-  );
+      );
 }

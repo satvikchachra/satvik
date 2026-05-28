@@ -89,9 +89,9 @@ export function ProjectsList({ projects }: ProjectsListProps) {
               {/* Bullets */}
               {project.bullets && project.bullets.length > 0 && (
                 <ul className="space-y-2 pl-4">
-                  {project.bullets.map((bullet, i) => (
+                  {project.bullets.map((bullet) => (
                     <li
-                      key={i}
+                      key={bullet}
                       className="text-sm leading-relaxed list-disc text-text-muted"
                     >
                       {formatResumeText(bullet)}

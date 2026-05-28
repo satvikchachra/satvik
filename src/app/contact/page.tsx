@@ -57,7 +57,6 @@ export default function ContactPage() {
       </header>
 
       <ul
-        role="list"
         className="animate-fade-in-up stagger-1"
         aria-label="Contact links"
       >
