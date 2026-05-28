@@ -96,12 +96,9 @@ export default function HomePage() {
                 <span className="text-sm" style={{ color: "var(--text)" }}>
                   {item.role}
                 </span>
-                <time
-                  dateTime={item.year}
-                  className="mono-label flex-shrink-0"
-                >
+                <span className="mono-label flex-shrink-0">
                   {item.year}
-                </time>
+                </span>
               </div>
               <p className="text-xs mb-2">
                 <a
@@ -138,7 +135,6 @@ export default function HomePage() {
                 href={`/blog/${post.slug}`}
                 id={`post-${post.slug}`}
                 className="row-link group"
-                aria-label={`Read: ${post.title}`}
                 style={{ alignItems: "flex-start" }}
               >
                 <div className="flex-1 min-w-0 pr-8">

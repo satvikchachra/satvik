@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const BASE_URL = "https://satvikchachra.com";
+export const BASE_URL = "https://satvikchachra.com";
 
 export const siteConfig = {
   name: "Satvik Chachra",
@@ -77,14 +77,15 @@ export function buildBlogMetadata({
   date: string;
   tags: string[];
 }): Metadata {
+  const base = buildMetadata({
+    title,
+    description,
+    path: `/blog/${slug}`,
+  });
   return {
-    ...buildMetadata({
-      title,
-      description,
-      path: `/blog/${slug}`,
-    }),
+    ...base,
     openGraph: {
-      ...buildMetadata({ title, description, path: `/blog/${slug}` }).openGraph,
+      ...base.openGraph,
       type: "article",
       publishedTime: date,
       tags,

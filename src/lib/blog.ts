@@ -52,6 +52,22 @@ export const CUSTOM_POSTS: CustomPost[] = [
 // This avoids the frontmatter being rendered as content when Next.js
 // dynamically imports the compiled MDX.
 // ----------------------------------------------------------------
+function getMdxPostMeta(jsonPath: string): {
+  title?: string;
+  description?: string;
+  date?: string;
+  tags?: string[];
+} {
+  if (fs.existsSync(jsonPath)) {
+    try {
+      return JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+    } catch {
+      // malformed JSON — use defaults
+    }
+  }
+  return {};
+}
+
 function getMdxPosts(): MdxPost[] {
   if (!fs.existsSync(CONTENT_DIR)) return [];
 
@@ -62,24 +78,10 @@ function getMdxPosts(): MdxPost[] {
     const mdxPath = path.join(CONTENT_DIR, filename);
     const jsonPath = path.join(CONTENT_DIR, `${slug}.json`);
 
-    // Read the MDX body for reading-time calculation
     const body = fs.readFileSync(mdxPath, "utf-8");
     const rt = readingTime(body);
 
-    // Read metadata from sidecar JSON (preferred) or fall back to filename
-    let meta: {
-      title?: string;
-      description?: string;
-      date?: string;
-      tags?: string[];
-    } = {};
-    if (fs.existsSync(jsonPath)) {
-      try {
-        meta = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-      } catch {
-        // malformed JSON — use defaults
-      }
-    }
+    const meta = getMdxPostMeta(jsonPath);
 
     return {
       slug,
@@ -93,9 +95,6 @@ function getMdxPosts(): MdxPost[] {
   });
 }
 
-// ----------------------------------------------------------------
-// COMBINED API
-// ----------------------------------------------------------------
 export function getAllPosts(): Post[] {
   const mdx = getMdxPosts();
   const all = [...mdx, ...CUSTOM_POSTS];
@@ -110,19 +109,7 @@ export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string
   const body = fs.readFileSync(mdxPath, "utf-8");
   const rt = readingTime(body);
 
-  let meta: {
-    title?: string;
-    description?: string;
-    date?: string;
-    tags?: string[];
-  } = {};
-  if (fs.existsSync(jsonPath)) {
-    try {
-      meta = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-    } catch {
-      // ignore
-    }
-  }
+  const meta = getMdxPostMeta(jsonPath);
 
   return {
     meta: {
