@@ -71,7 +71,7 @@ const AWARDS = [
   {
     title: "Talent Star Award",
     date: "Sep ’22",
-    description: "For __building ScannerGo__ — developing Socket-based real-time file conversions, custom browser PDF viewing, and Redux architecture.",
+    description: "For __building ScannerGo's__ **Redux architecture**, Socket-based **real-time file conversions** and custom browser PDF viewing experience.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/talentStarsAward.jpg",
   },
 ] as const;
@@ -91,7 +91,10 @@ export default function AboutPage() {
         </h1>
         <div className="text-sm leading-relaxed space-y-2" style={{ color: "var(--text-muted)" }}>
           <p>
-            {formatResumeText("**AI-native full stack engineer**, __4+ years experience__. Building **AI coding agents**, developer tooling, and the infrastructure that makes them production-ready.")}
+            {formatResumeText("**AI-native full stack engineer**, __4+ years of experience__.")}
+          </p>
+          <p>
+            {formatResumeText("Building **AI coding agents**, developer tooling, and the infrastructure that makes them production-ready.")}
           </p>
           <p>
             {formatResumeText("I write about AI systems, platform engineering, and things I'm learning across computer science, mathematics, and machine learning.")}
