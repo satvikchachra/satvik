@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { MenuIcon as Menu, CloseIcon as X } from "@/components/ui/icons";
 
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import {
@@ -110,9 +110,9 @@ export function Navbar() {
             }`}
           >
             {open ? (
-              <X size={15} aria-hidden="true" />
+              <X width={15} height={15} aria-hidden="true" />
             ) : (
-              <Menu size={15} aria-hidden="true" />
+              <Menu width={15} height={15} aria-hidden="true" />
             )}
           </button>
         </div>
