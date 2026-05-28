@@ -104,11 +104,11 @@ export default function AboutPage() {
 
       {/* Experience */}
       <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
-        <p className="section-label mb-4">experience</p>
+        <h2 id="experience-heading" className="section-label mb-4">experience</h2>
         <div>
-          {EXPERIENCE.map((item, i) => (
+          {EXPERIENCE.map((item) => (
             <div
-              key={i}
+              key={item.company + item.year}
               className="py-4"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
@@ -144,7 +144,7 @@ export default function AboutPage() {
 
       {/* Stack */}
       <section aria-labelledby="stack-heading" className="mb-10 animate-fade-in-up stagger-3">
-        <p className="section-label mb-4">tech stack</p>
+        <h2 id="stack-heading" className="section-label mb-4">tech stack</h2>
         <div className="space-y-0">
           {STACK.map(({ category, items }) => (
             <div key={category} className="flex flex-col sm:flex-row sm:gap-6 py-2.5 border-t border-[var(--border-subtle)] first:border-t-0">
@@ -171,11 +171,11 @@ export default function AboutPage() {
 
       {/* Education */}
       <section aria-labelledby="education-heading" className="mb-10 animate-fade-in-up stagger-4">
-        <p className="section-label mb-4">education</p>
+        <h2 id="education-heading" className="section-label mb-4">education</h2>
         <div>
-          {EDUCATION.map((item, i) => (
+          {EDUCATION.map((item) => (
             <div
-              key={i}
+              key={item.school + item.year}
               className="py-4"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
@@ -215,11 +215,11 @@ export default function AboutPage() {
 
       {/* Awards & Recognition */}
       <section aria-labelledby="awards-heading" className="mb-10 animate-fade-in-up stagger-4">
-        <p className="section-label mb-4">awards / recognition</p>
+        <h2 id="awards-heading" className="section-label mb-4">awards / recognition</h2>
         <div>
-          {AWARDS.map((item, i) => (
+          {AWARDS.map((item) => (
             <div
-              key={i}
+              key={item.title}
               className="py-4"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >

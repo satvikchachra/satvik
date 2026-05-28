@@ -2,18 +2,11 @@
 
 import Link from "next/link";
 import type { Post } from "@/lib/blog";
+import { formatDate } from "@/lib/utils";
 import { FEATURE_FLAGS } from "@/lib/feature-flags";
 import { useFilterPanel } from "@/hooks/use-filter-panel";
 import { FilterPanel } from "@/components/ui/filter-panel";
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
 
 interface BlogListProps {
   posts: Post[];

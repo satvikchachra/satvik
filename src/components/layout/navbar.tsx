@@ -36,7 +36,6 @@ export function Navbar() {
 
   return (
     <header
-      role="banner"
       className="fixed top-0 inset-x-0 z-50"
       style={{
         borderBottom: open
@@ -159,7 +158,6 @@ export function Navbar() {
       {open && (
         <nav
           id="mobile-nav"
-          role="navigation"
           aria-label="Mobile navigation"
           className="sm:hidden animate-fade-in-up"
           style={{
