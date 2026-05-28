@@ -1,14 +1,37 @@
 "use client";
 
-import { useTheme } from "@/lib/theme";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function ThemeSwitcher() {
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === "dark";
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button
+        aria-label="Switch theme"
+        className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200"
+        style={{
+          color: "var(--text)",
+          background: "transparent",
+        }}
+      >
+        <div className="w-4 h-4" />
+      </button>
+    );
+  }
+
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200"
       style={{
