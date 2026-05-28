@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDate } from "@/lib/blog";
+import { formatDate } from "@/lib/utils";
 
 interface PostLayoutProps {
   title: string;

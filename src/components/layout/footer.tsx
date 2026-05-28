@@ -3,7 +3,6 @@ export function Footer() {
 
   return (
     <footer
-      role="contentinfo"
       className="mt-24"
       style={{ borderTop: "1px solid var(--border-subtle)" }}
     >

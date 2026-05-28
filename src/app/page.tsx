@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
-import { getAllPosts, formatDate } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/metadata";
-import { formatResumeText } from "@/lib/utils";
+import { formatResumeText, formatDate } from "@/lib/utils";
 import { EXPERIENCE } from "@/lib/experience";
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function HomePage() {
 
       {/* Wins */}
       <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
-        <p className="section-label mb-4">selected wins</p>
+        <h2 id="wins-heading" className="section-label mb-4">selected wins</h2>
         <div>
           {WINS.map(([metric, context]) => (
             <div
@@ -84,11 +84,11 @@ export default function HomePage() {
 
       {/* Experience */}
       <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
-        <p className="section-label mb-4">experience</p>
+        <h2 id="experience-heading" className="section-label mb-4">experience</h2>
         <div>
-          {EXPERIENCE.map((item, i) => (
+          {EXPERIENCE.map((item) => (
             <div
-              key={i}
+              key={item.company + item.year}
               className="py-4"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
@@ -130,7 +130,7 @@ export default function HomePage() {
           aria-labelledby="blog-heading"
           className="mb-10 animate-fade-in-up stagger-6"
         >
-          <p className="section-label mb-4">recent writing</p>
+          <h2 id="blog-heading" className="section-label mb-4">recent writing</h2>
           <div>
             {posts.map((post) => (
               <Link

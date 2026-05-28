@@ -305,6 +305,16 @@ nav, button, input, select, textarea {
   animation: glow-pulse 6s ease-in-out infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .ambient-glow,
+  [class*="stagger-"],
+  [class*="animate-delay-"] {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
 /* ============================================================
    MONO LABEL (dates, status, etc.)
    ============================================================ */
