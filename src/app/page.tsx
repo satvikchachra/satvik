@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import React from "react";
 import { getAllPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/metadata";
 import { formatResumeText, formatDate } from "@/lib/utils";
