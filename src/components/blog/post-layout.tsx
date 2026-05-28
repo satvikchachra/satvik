@@ -7,6 +7,7 @@ interface PostLayoutProps {
   date: string;
   tags?: string[];
   readingTime?: string;
+  image: string;
   children: React.ReactNode;
 }
 
@@ -20,6 +21,7 @@ export function PostLayout({
   date,
   tags = [],
   readingTime,
+  image,
   children,
 }: PostLayoutProps) {
   return (
@@ -36,6 +38,14 @@ export function PostLayout({
 
       {/* Post header */}
       <header className="mb-6 animate-fade-in-up stagger-1">
+        <div className="mb-8 w-full overflow-hidden rounded-lg border border-border-subtle">
+          <img
+            src={image}
+            alt={`Cover image for ${title}`}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
         <h1
           className="text-lg tracking-tight mb-3 leading-snug text-text"
         >

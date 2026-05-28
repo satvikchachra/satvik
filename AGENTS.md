@@ -73,3 +73,19 @@ Never use `<p>` tags with heading styles (e.g. `<p className="section-label">`).
 ## Rule 5: Isolate `"use client"` directives
 Do not place `"use client"` at the top of large layout or list components (like a blog list or project list) just because a small piece of it needs interactivity. Isolate the client state (e.g., a filter toggle or a hook) into a small, dedicated client component, leaving the parent component tree as React Server Components (RSC) to minimize JavaScript bundle size.
 <!-- END:react-architecture-rules -->
+
+<!-- BEGIN:blog-workflow-rules -->
+# Blog Creation Rules
+
+## Rule 6: Use the scaffold utility to create blogs
+**NEVER create blog files manually.** Always use the built-in generator script by running:
+`npm run new-post "Your Blog Title"`
+
+This script ensures the strict scalable architecture is maintained by automatically:
+1. Generating a unique 8-character hash ID for the file names.
+2. Creating `src/content/blog/<hash>.mdx` and `src/content/blog/<hash>.json`.
+3. Populating the JSON with mandatory `image` (for UI layout) and `ogImage` (for social sharing previews) paths.
+4. Populating the `slug` for SEO-friendly routing, decoupling the URL from the file ID.
+
+After running the script, follow its console output to place the required images in the exact generated directories (`/public/images/blog/<hash>/` and `/public/og/blog/`).
+<!-- END:blog-workflow-rules -->
