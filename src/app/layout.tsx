@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { siteConfig } from "@/lib/metadata";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,24 +74,7 @@ const jsonLd = {
   ],
 };
 
-// No-flash theme script: read saved pref or detect system
-const themeScript = `
-(function(){
-  try {
-    var t = localStorage.getItem('theme');
-    var valid = ['dark','light'];
-    var theme;
-    if (t && valid.includes(t)) {
-      theme = t;
-    } else {
-      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', theme);
-  } catch(e) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }
-})();
-`;
+// Removed custom theme script
 
 export default function RootLayout({
   children,
@@ -103,8 +87,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* No-flash theme script — must run before paint */}
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* JSON-LD structured data */}
         <script
           type="application/ld+json"
@@ -112,11 +94,13 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Navbar />
-        <main>
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
+          <Navbar />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

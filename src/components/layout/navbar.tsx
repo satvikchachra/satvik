@@ -26,6 +26,7 @@ export function Navbar() {
 
   // Close dropdown on navigation
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(false);
   }, [pathname]);
 
