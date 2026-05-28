@@ -15,9 +15,9 @@ export function ProjectsList({ projects }: ProjectsListProps) {
           no projects found.
         </p>
       ) : (
-        <div>
+        <ul>
           {projects.map((project) => (
-            <div
+            <li
               key={project.slug}
               className="py-5"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
@@ -102,9 +102,9 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                   ))}
                 </ul>
               )}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </>
   );
