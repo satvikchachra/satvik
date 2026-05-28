@@ -61,8 +61,9 @@
   --color-bg-alt:      var(--bg-alt);
   --color-surface:     var(--surface);
   --color-surface-alt: var(--surface-alt);
-  --color-border:      var(--border);
-  --color-text:        var(--text);
+  --color-border:        var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-text:          var(--text);
   --color-text-muted:  var(--text-muted);
   --color-text-subtle: var(--text-subtle);
   --color-accent:      var(--accent);
@@ -120,11 +121,16 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -136,8 +142,6 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   transition: background-color 0.15s ease, color 0.15s ease;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 /* ============================================================
@@ -278,15 +282,7 @@ nav, button, input, select, textarea {
 .stagger-4  { animation-delay: 240ms; opacity: 0; }
 .stagger-5  { animation-delay: 300ms; opacity: 0; }
 .stagger-6  { animation-delay: 360ms; opacity: 0; }
-.stagger-7  { animation-delay: 420ms; opacity: 0; }
-.stagger-8  { animation-delay: 480ms; opacity: 0; }
-.stagger-9  { animation-delay: 540ms; opacity: 0; }
 
-/* Legacy compat */
-.animate-delay-100 { animation-delay: 0.1s; opacity: 0; }
-.animate-delay-200 { animation-delay: 0.2s; opacity: 0; }
-.animate-delay-300 { animation-delay: 0.3s; opacity: 0; }
-.animate-delay-400 { animation-delay: 0.4s; opacity: 0; }
 
 /* ============================================================
    AMBIENT GLOW
@@ -303,6 +299,16 @@ nav, button, input, select, textarea {
   background: radial-gradient(circle, rgba(var(--accent-rgb), 1) 0%, transparent 70%);
   opacity: 0.03;
   animation: glow-pulse 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .ambient-glow,
+  [class*="stagger-"],
+  [class*="animate-delay-"] {
+    animation: none !important;
+    opacity: 1 !important;
+  }
 }
 
 /* ============================================================

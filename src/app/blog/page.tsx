@@ -4,7 +4,7 @@ import { getAllPosts, getAllBlogTags } from "@/lib/blog";
 import { BlogList } from "@/components/blog/blog-list";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Blog",
+  title: "blog",
   description:
     "Writing by Satvik Chachra on AI systems, full stack engineering, and deep dives into CS, math, and science.",
   path: "/blog",
@@ -19,14 +19,12 @@ export default function BlogPage() {
 
       <header className="mb-8 animate-fade-in-up stagger-0">
         <h1
-          className="text-lg tracking-tight mb-2"
-          style={{ color: "var(--text)" }}
+          className="text-lg tracking-tight mb-2 text-text"
         >
           writing
         </h1>
         <p
-          className="text-sm leading-relaxed"
-          style={{ color: "var(--text-muted)" }}
+          className="text-sm leading-relaxed text-text-muted"
         >
           Opinion pieces, engineering case studies, and explorations of things
           I find interesting — AI, distributed systems, math, physics.
@@ -35,13 +33,12 @@ export default function BlogPage() {
 
       {posts.length === 0 ? (
         <div
-          className="py-16 animate-fade-in-up stagger-1"
-          style={{ borderTop: "1px solid var(--border-subtle)" }}
+          className="py-16 animate-fade-in-up stagger-1 border-t border-border-subtle"
         >
-          <p className="text-sm mb-1" style={{ color: "var(--text)" }}>
+          <p className="text-sm mb-1 text-text">
             posts are on their way.
           </p>
-          <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+          <p className="text-sm text-text-muted">
             drop in again soon.
           </p>
         </div>

@@ -1,73 +1,34 @@
-"use client";
-
 import type { Project } from "@/lib/projects";
 import { formatResumeText } from "@/lib/utils";
-import { FEATURE_FLAGS } from "@/lib/feature-flags";
-import { useFilterPanel } from "@/hooks/use-filter-panel";
-import { FilterPanel } from "@/components/ui/filter-panel";
 
 interface ProjectsListProps {
   projects: Project[];
   allTags: string[];
 }
 
-export function ProjectsList({ projects, allTags }: ProjectsListProps) {
-  const {
-    activeTags,
-    filterOpen,
-    panelRef,
-    panelHeight,
-    activeCount,
-    toggleTag,
-    clearFilters,
-    setFilterOpen,
-  } = useFilterPanel(allTags);
-
-  const filtered =
-    activeTags.size === 0
-      ? projects
-      : projects.filter((p) => p.tags.some((t) => activeTags.has(t)));
-
+export function ProjectsList({ projects }: ProjectsListProps) {
   return (
     <>
-      {FEATURE_FLAGS.filterProjects && (
-        <FilterPanel
-          id="projects"
-          label="filter by tech"
-          panelAriaLabel="Filter projects by technology"
-          allTags={allTags}
-          activeTags={activeTags}
-          activeCount={activeCount}
-          filterOpen={filterOpen}
-          panelHeight={panelHeight}
-          panelRef={panelRef}
-          onToggleOpen={() => setFilterOpen((v) => !v)}
-          onToggleTag={toggleTag}
-          onClear={clearFilters}
-        />
-      )}
-
       {/* Project rows */}
-      {filtered.length === 0 ? (
-        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-          no projects match that filter.
+      {projects.length === 0 ? (
+        <p className="text-sm text-text-muted">
+          no projects found.
         </p>
       ) : (
-        <div>
-          {filtered.map((project) => (
-            <div
+        <ul>
+          {projects.map((project) => (
+            <li
               key={project.slug}
-              className="py-5"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              className="py-5 border-t border-border-subtle"
             >
               {/* Title row */}
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <h2 className="text-sm" style={{ color: "var(--text)" }}>
+                <h2 className="text-sm text-text">
                   {project.title}
                 </h2>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  {project.slug === "ai-coding-agent" && (
-                    <span className="text-xs" style={{ color: "var(--green)" }}>
+                  {project.status === "active" && (
+                    <span className="text-xs text-green">
                       active
                     </span>
                   )}
@@ -78,12 +39,12 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
               {/* Company & Live URL */}
               <div className="text-xs mb-3 flex items-center gap-2">
                 {project.company && (
-                  <span style={{ color: "var(--text-subtle)" }}>
+                  <span className="text-text-subtle">
                     {project.company}
                   </span>
                 )}
                 {project.company && project.liveUrl && (
-                  <span style={{ color: "var(--text-subtle)" }}>·</span>
+                  <span className="text-text-subtle" aria-hidden="true">·</span>
                 )}
                 {project.liveUrl && (
                   <a
@@ -111,8 +72,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
 
               {/* Short description */}
               <p
-                className="text-sm leading-relaxed mb-4"
-                style={{ color: "var(--text-muted)" }}
+                className="text-sm leading-relaxed mb-4 text-text-muted"
               >
                 {formatResumeText(project.description)}
               </p>
@@ -128,21 +88,20 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
 
               {/* Bullets */}
               {project.bullets && project.bullets.length > 0 && (
-                <ul className="space-y-2" style={{ paddingLeft: "1rem" }}>
-                  {project.bullets.map((bullet, i) => (
+                <ul className="space-y-2 pl-4">
+                  {project.bullets.map((bullet) => (
                     <li
-                      key={i}
-                      className="text-sm leading-relaxed list-disc"
-                      style={{ color: "var(--text-muted)" }}
+                      key={bullet}
+                      className="text-sm leading-relaxed list-disc text-text-muted"
                     >
                       {formatResumeText(bullet)}
                     </li>
                   ))}
                 </ul>
               )}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </>
   );

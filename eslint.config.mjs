@@ -13,6 +13,30 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // Existing rules
+      "react/no-array-index-key": "error",
+      "jsx-a11y/no-redundant-roles": "error",
+      
+      // Accessibility & Semantic HTML
+      "jsx-a11y/alt-text": "error",
+      "jsx-a11y/anchor-is-valid": "error",
+      "jsx-a11y/click-events-have-key-events": "error",
+      
+      // React & Performance
+      "react/jsx-no-useless-fragment": "error",
+      "react/no-unstable-nested-components": "error",
+      "react/jsx-curly-brace-presence": ["error", { props: "never", children: "never" }],
+      "react/button-has-type": "error",
+      "react-hooks/exhaustive-deps": "error",
+      
+      // Dead Code & Cleanliness
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-explicit-any": "error",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+    },
+  },
 ]);
 
 export default eslintConfig;

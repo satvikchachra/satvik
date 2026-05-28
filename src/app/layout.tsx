@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lora } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { siteConfig } from "@/lib/metadata";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,20 +18,11 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-  display: "swap",
-  style: ["normal", "italic"],
-  weight: ["400", "500", "600", "700"],
-});
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: {
-    default: siteConfig.title,
-    template: "%s — Satvik Chachra",
-  },
+  title: siteConfig.title,
   description: siteConfig.description,
   keywords: [
     "Satvik Chachra",
@@ -79,24 +71,7 @@ const jsonLd = {
   ],
 };
 
-// No-flash theme script: read saved pref or detect system
-const themeScript = `
-(function(){
-  try {
-    var t = localStorage.getItem('theme');
-    var valid = ['dark','light'];
-    var theme;
-    if (t && valid.includes(t)) {
-      theme = t;
-    } else {
-      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', theme);
-  } catch(e) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }
-})();
-`;
+// Removed custom theme script
 
 export default function RootLayout({
   children,
@@ -105,12 +80,10 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="dark"
-      className={`${geistSans.variable} ${geistMono.variable} ${lora.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
       <head>
-        {/* No-flash theme script — must run before paint */}
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* JSON-LD structured data */}
         <script
           type="application/ld+json"
@@ -118,11 +91,13 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Navbar />
-        <main>
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
+          <Navbar />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

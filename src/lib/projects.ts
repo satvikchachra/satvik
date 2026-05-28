@@ -51,7 +51,7 @@ export const PROJECTS: Project[] = [
     githubUrl: undefined,
     liveUrl: undefined,
     featured: true,
-    status: "active",
+    status: "archived",
     year: 2024,
   },
   {
@@ -68,10 +68,9 @@ export const PROJECTS: Project[] = [
       "Implemented **Firebase One-Tap Google Authentication** and optimized image editing workflows via async processing, state management improvements, and reduced UI latency."
     ],
     tags: ["NextJS", "ReactJS", "TypeScript", "Firebase", "StripeJS", "AWS S3"],
-    githubUrl: undefined,
     liveUrl: "https://www.phot.ai/",
     featured: true,
-    status: "active",
+    status: "archived",
     year: 2023,
   },
   {
@@ -88,10 +87,9 @@ export const PROJECTS: Project[] = [
       "Integrated **CAPTCHA-based bot protection** to reduce abuse and malicious traffic.",
     ],
     tags: ["ReactJS", "NextJS", "Redux", "Socket.IO", "Material UI"],
-    githubUrl: undefined,
     liveUrl: "https://scannergo.net/",
     featured: true,
-    status: "active",
+    status: "archived",
     year: 2022,
   },
 ];

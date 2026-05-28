@@ -1,31 +1,31 @@
+import { GitHubIcon, XIcon, LinkedInIcon, MailIcon } from "@/components/ui/icons";
+
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer
-      role="contentinfo"
-      className="mt-24"
-      style={{ borderTop: "1px solid var(--border-subtle)" }}
+      className="mt-24 border-t border-border-subtle"
     >
       <div className="max-w-xl mx-auto px-6 py-6 flex items-center justify-between">
-        {/* Social links — abbreviated t3 style */}
+        {/* Social links */}
         <nav aria-label="Social links">
-          <ul className="flex items-center gap-4" role="list">
+          <ul className="flex items-center gap-4">
             {[
-              { href: "https://github.com/satvikchachra", label: "gh" },
-              { href: "https://twitter.com/satvikchachra", label: "x" },
-              { href: "https://linkedin.com/in/satvikchachra", label: "li" },
-              { href: "mailto:hello@example.com", label: "mail" },
-            ].map(({ href, label }) => (
+              { href: "https://github.com/satvikchachra", label: "GitHub", icon: GitHubIcon },
+              { href: "https://twitter.com/satvikchachra", label: "X (Twitter)", icon: XIcon },
+              { href: "https://linkedin.com/in/satvikchachra", label: "LinkedIn", icon: LinkedInIcon },
+              { href: "mailto:hello@example.com", label: "Email", icon: MailIcon },
+            ].map(({ href, label, icon: Icon }) => (
               <li key={href}>
                 <a
                   href={href}
                   aria-label={label}
                   target={href.startsWith("mailto") ? undefined : "_blank"}
                   rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                  className="text-xs tracking-wide link-subtle"
+                  className="text-text-muted hover:text-text transition-colors duration-200 block"
                 >
-                  {label}
+                  <Icon className="w-4 h-4" aria-hidden="true" />
                 </a>
               </li>
             ))}
@@ -33,8 +33,7 @@ export function Footer() {
         </nav>
 
         <p
-          className="text-xs tracking-wide"
-          style={{ color: "var(--text-subtle)" }}
+          className="text-xs tracking-wide text-text-subtle"
         >
           © {year}
         </p>

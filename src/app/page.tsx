@@ -1,15 +1,7 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import React from "react";
-import { getAllPosts, formatDate } from "@/lib/blog";
-import { siteConfig } from "@/lib/metadata";
-import { formatResumeText } from "@/lib/utils";
+import { getAllPosts } from "@/lib/blog";
+import { formatResumeText, formatDate } from "@/lib/utils";
 import { EXPERIENCE } from "@/lib/experience";
-
-export const metadata: Metadata = {
-  title: siteConfig.title,
-  description: siteConfig.description,
-};
 
 const WINS = [
   ["2K+ users daily", "Built AI coding agent at Atlassian"],
@@ -36,12 +28,11 @@ export default function HomePage() {
       >
         <h1
           id="hero-heading"
-          className="text-lg tracking-tight mb-1"
-          style={{ color: "var(--text)" }}
+          className="text-lg tracking-tight mb-1 text-text"
         >
           satvik chachra
         </h1>
-        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+        <p className="text-sm text-text-muted">
           <strong className="font-light text-[var(--text)]">
             builds ai coding agents, full-stack software & infrastructure
           </strong>
@@ -50,20 +41,18 @@ export default function HomePage() {
 
       {/* Wins */}
       <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
-        <p className="section-label mb-4">selected wins</p>
+        <h2 id="wins-heading" className="section-label mb-4">selected wins</h2>
         <div>
           {WINS.map(([metric, context]) => (
             <div
               key={metric}
-              className="flex items-baseline justify-between gap-6 py-3"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              className="flex items-baseline justify-between gap-6 py-3 border-t border-border-subtle"
             >
               <span className="text-sm font-light text-[var(--text)]">
                 {context}
               </span>
               <span
-                className="text-sm font-semibold flex-shrink-0"
-                style={{ color: "var(--text)" }}
+                className="text-sm font-semibold flex-shrink-0 text-text"
               >
                 {metric}
               </span>
@@ -84,24 +73,20 @@ export default function HomePage() {
 
       {/* Experience */}
       <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
-        <p className="section-label mb-4">experience</p>
+        <h2 id="experience-heading" className="section-label mb-4">experience</h2>
         <div>
-          {EXPERIENCE.map((item, i) => (
+          {EXPERIENCE.map((item) => (
             <div
-              key={i}
-              className="py-4"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              key={item.company + item.year}
+              className="py-4 border-t border-border-subtle"
             >
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <span className="text-sm" style={{ color: "var(--text)" }}>
+                <span className="text-sm text-text">
                   {item.role}
                 </span>
-                <time
-                  dateTime={item.year}
-                  className="mono-label flex-shrink-0"
-                >
+                <span className="mono-label flex-shrink-0">
                   {item.year}
-                </time>
+                </span>
               </div>
               <p className="text-xs mb-2">
                 <a
@@ -114,7 +99,7 @@ export default function HomePage() {
                   <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
                 </a>
               </p>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+              <p className="text-sm leading-relaxed text-text-muted">
                 {formatResumeText(item.description)}
               </p>
             </div>
@@ -130,21 +115,18 @@ export default function HomePage() {
           aria-labelledby="blog-heading"
           className="mb-10 animate-fade-in-up stagger-6"
         >
-          <p className="section-label mb-4">recent writing</p>
+          <h2 id="blog-heading" className="section-label mb-4">recent writing</h2>
           <div>
             {posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 id={`post-${post.slug}`}
-                className="row-link group"
-                aria-label={`Read: ${post.title}`}
-                style={{ alignItems: "flex-start" }}
+                className="row-link group items-start"
               >
                 <div className="flex-1 min-w-0 pr-8">
                   <span
-                    className="text-sm block"
-                    style={{ color: "var(--text)" }}
+                    className="text-sm block text-text"
                   >
                     <span className="animated-underline">{post.title}</span>
                     <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>

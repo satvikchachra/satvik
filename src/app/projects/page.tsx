@@ -4,7 +4,7 @@ import { getAllProjects, getAllTags } from "@/lib/projects";
 import { ProjectsList } from "@/components/projects/projects-list";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Projects",
+  title: "projects",
   description:
     "A selection of AI systems, developer tools, and full stack engineering projects by Satvik Chachra.",
   path: "/projects",
@@ -18,14 +18,12 @@ export default function ProjectsPage() {
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
       <header className="mb-8 animate-fade-in-up stagger-0">
         <h1
-          className="text-lg tracking-tight mb-2"
-          style={{ color: "var(--text)" }}
+          className="text-lg tracking-tight mb-2 text-text"
         >
           projects
         </h1>
         <p
-          className="text-sm leading-relaxed"
-          style={{ color: "var(--text-muted)" }}
+          className="text-sm leading-relaxed text-text-muted"
         >
           AI systems, platform infrastructure, and developer tools.
         </p>

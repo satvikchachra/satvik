@@ -2,5 +2,8 @@
   "title": "The Most Important AI Problem Might Not Be Training — It Might Be Evaluation",
   "description": "Our entire AI evaluation ecosystem may silently fail when models cross into a new capability regime. Not because they become slightly smarter — because they become qualitatively different.",
   "date": "2025-05-27",
-  "tags": ["AI", "Evaluation", "Engineering"]
+  "slug": "the-most-important-ai-problem-might-not-be-training",
+  "tags": ["AI", "Evaluation", "Engineering"],
+  "image": "/images/blog/0b13646d/cover.png",
+  "ogImage": "/og/blog/0b13646d.png"
 }

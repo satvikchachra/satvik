@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDate } from "@/lib/blog";
+import { formatDate } from "@/lib/utils";
 
 interface PostLayoutProps {
   title: string;
@@ -7,6 +7,7 @@ interface PostLayoutProps {
   date: string;
   tags?: string[];
   readingTime?: string;
+  image: string;
   children: React.ReactNode;
 }
 
@@ -20,6 +21,7 @@ export function PostLayout({
   date,
   tags = [],
   readingTime,
+  image,
   children,
 }: PostLayoutProps) {
   return (
@@ -29,28 +31,34 @@ export function PostLayout({
       <Link
         href="/blog"
         id="back-to-blog"
-        className="text-xs mb-12 inline-block link-subtle"
+        className="text-xs mb-12 inline-block link-subtle animate-fade-in-up stagger-0"
       >
         ← writing
       </Link>
 
       {/* Post header */}
-      <header className="mb-6">
+      <header className="mb-6 animate-fade-in-up stagger-1">
+        <div className="mb-8 w-full overflow-hidden rounded-lg border border-border-subtle">
+          <img
+            src={image}
+            alt={`Cover image for ${title}`}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
         <h1
-          className="text-lg tracking-tight mb-3 leading-snug"
-          style={{ color: "var(--text)" }}
+          className="text-lg tracking-tight mb-3 leading-snug text-text"
         >
           {title}
         </h1>
 
-        <p className="text-sm mb-5 leading-relaxed" style={{ color: "var(--text-muted)" }}>
+        <p className="text-sm mb-5 leading-relaxed text-text-muted">
           {description}
         </p>
 
         {/* Meta row */}
         <div
-          className="flex flex-wrap items-center gap-x-3 gap-y-1 pb-4"
-          style={{ borderBottom: "1px solid var(--border-subtle)" }}
+          className="flex flex-wrap items-center gap-x-3 gap-y-1 pb-4 border-b border-border-subtle"
         >
           <div className="flex items-center gap-3">
             {readingTime && <span className="mono-label">{readingTime}</span>}
@@ -69,12 +77,11 @@ export function PostLayout({
       </header>
 
       {/* Post body */}
-      <div className="prose">{children}</div>
+      <div className="prose animate-fade-in-up stagger-2">{children}</div>
 
       {/* Post footer */}
       <footer
-        className="mt-16 pt-6"
-        style={{ borderTop: "1px solid var(--border-subtle)" }}
+        className="mt-16 pt-6 border-t border-border-subtle animate-fade-in-up stagger-3"
       >
         <Link
           href="/blog"
