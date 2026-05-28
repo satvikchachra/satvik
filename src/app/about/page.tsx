@@ -84,12 +84,11 @@ export default function AboutPage() {
       {/* Header */}
       <header className="mb-10 animate-fade-in-up stagger-0">
         <h1
-          className="text-lg tracking-tight mb-3"
-          style={{ color: "var(--text)" }}
+          className="text-lg tracking-tight mb-3 text-text"
         >
           satvik chachra
         </h1>
-        <div className="text-sm leading-relaxed space-y-2" style={{ color: "var(--text-muted)" }}>
+        <div className="text-sm leading-relaxed space-y-2 text-text-muted">
           <p>
             {formatResumeText("**AI-native full stack engineer**, __4+ years of experience__.")}
           </p>
@@ -109,11 +108,10 @@ export default function AboutPage() {
           {EXPERIENCE.map((item) => (
             <div
               key={item.company + item.year}
-              className="py-4"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              className="py-4 border-t border-border-subtle"
             >
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <span className="text-sm" style={{ color: "var(--text)" }}>
+                <span className="text-sm text-text">
                   {item.role}
                 </span>
                 <time
@@ -134,7 +132,7 @@ export default function AboutPage() {
                   <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
                 </a>
               </p>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+              <p className="text-sm leading-relaxed text-text-muted">
                 {formatResumeText(item.description)}
               </p>
             </div>
@@ -147,10 +145,9 @@ export default function AboutPage() {
         <h2 id="stack-heading" className="section-label mb-4">tech stack</h2>
         <div className="space-y-0">
           {STACK.map(({ category, items }) => (
-            <div key={category} className="flex flex-col sm:flex-row sm:gap-6 py-2.5 border-t border-[var(--border-subtle)] first:border-t-0">
+            <div key={category} className="flex flex-col sm:flex-row sm:gap-6 py-2.5 border-t border-border-subtle first:border-t-0">
               <div
-                className="w-28 flex-shrink-0 text-xs font-semibold tracking-wider uppercase mb-2 sm:mb-0 pt-1"
-                style={{ color: "var(--text-subtle)" }}
+                className="w-28 flex-shrink-0 text-xs font-semibold tracking-wider uppercase mb-2 sm:mb-0 pt-1 text-text-subtle"
               >
                 {category}
               </div>
@@ -176,11 +173,10 @@ export default function AboutPage() {
           {EDUCATION.map((item) => (
             <div
               key={item.school + item.year}
-              className="py-4"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              className="py-4 border-t border-border-subtle"
             >
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <span className="text-sm" style={{ color: "var(--text)" }}>
+                <span className="text-sm text-text">
                   {item.degree}
                 </span>
                 <span className="mono-label flex-shrink-0">
@@ -199,10 +195,10 @@ export default function AboutPage() {
                     <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
                   </a>
                 ) : (
-                  <span style={{ color: "var(--text)" }}>{item.school}</span>
+                  <span className="text-text">{item.school}</span>
                 )}
               </p>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+              <p className="text-sm leading-relaxed text-text-muted">
                 {formatResumeText(item.description)}
               </p>
             </div>
@@ -217,18 +213,17 @@ export default function AboutPage() {
           {AWARDS.map((item) => (
             <div
               key={item.title}
-              className="py-4"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              className="py-4 border-t border-border-subtle"
             >
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <span className="text-sm" style={{ color: "var(--text)" }}>
+                <span className="text-sm text-text">
                   {item.title}
                 </span>
                 <span className="mono-label flex-shrink-0">
                   {item.date}
                 </span>
               </div>
-              <p className="text-sm leading-relaxed mb-2" style={{ color: "var(--text-muted)" }}>
+              <p className="text-sm leading-relaxed mb-2 text-text-muted">
                 {formatResumeText(item.description)}
               </p>
               <p className="text-xs">

@@ -44,14 +44,12 @@ export default function ContactPage() {
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
       <header className="mb-8 animate-fade-in-up stagger-0">
         <h1
-          className="text-lg tracking-tight mb-2"
-          style={{ color: "var(--text)" }}
+          className="text-lg tracking-tight mb-2 text-text"
         >
           get in touch
         </h1>
         <p
-          className="text-sm leading-relaxed"
-          style={{ color: "var(--text-muted)" }}
+          className="text-sm leading-relaxed text-text-muted"
         >
           Open to conversations about AI systems, developer tooling, something
           you&apos;re building, or a good engineering problem.
@@ -71,31 +69,27 @@ export default function ContactPage() {
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
               aria-label={`${label}: ${handle}`}
-              className="row-link group pr-2"
-              style={{ alignItems: "flex-start", overflow: "visible" }}
+              className="row-link group pr-2 items-start overflow-visible"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-2 flex-wrap mb-0.5">
                   <span
-                    className="text-sm font-medium"
-                    style={{ color: "var(--text)", fontWeight: 500 }}
+                    className="text-sm font-medium text-text"
                   >
                     <span className="animated-underline">{label}</span>
                   </span>
                   {/* Mobile-only handle & separator — displayed adjacent to platform name */}
                   <span
-                    className="text-xs sm:hidden font-mono inline-flex items-baseline gap-1.5"
-                    style={{ color: "var(--accent)" }}
+                    className="text-xs sm:hidden font-mono inline-flex items-baseline gap-1.5 text-accent"
                   >
-                    <span style={{ color: "var(--text-subtle)" }} aria-hidden="true">·</span>
+                    <span className="text-text-subtle" aria-hidden="true">·</span>
                     <span className="animated-underline">
                       {label === "email" ? "" : "@"}{handle}
                     </span>
                   </span>
                 </div>
                 <span
-                  className="text-xs block"
-                  style={{ color: "var(--text-subtle)" }}
+                  className="text-xs block text-text-subtle"
                 >
                   {description}
                 </span>
@@ -103,16 +97,14 @@ export default function ContactPage() {
               <div className="flex items-center gap-1 flex-shrink-0 pt-0.5">
                 {/* Desktop-only handle */}
                 <span
-                  className="text-xs hidden sm:block font-mono"
-                  style={{ color: "var(--accent)" }}
+                  className="text-xs hidden sm:block font-mono text-accent"
                 >
                   <span className="animated-underline">
                     {label === "email" ? "" : "@"}{handle}
                   </span>
                 </span>
                 <span
-                  className="row-link-arrow text-xs"
-                  style={{ color: "var(--accent)" }}
+                  className="row-link-arrow text-xs text-accent"
                 >
                   ↗
                 </span>
@@ -123,8 +115,7 @@ export default function ContactPage() {
       </ul>
 
       <p
-        className="text-xs mt-10"
-        style={{ color: "var(--text-subtle)" }}
+        className="text-xs mt-10 text-text-subtle"
       >
         usually responds within 48 hours.
       </p>

@@ -12,10 +12,9 @@ export function BlogList({ posts }: BlogListProps) {
     <>
       {posts.length === 0 ? (
         <div
-          className="py-16"
-          style={{ borderTop: "1px solid var(--border-subtle)" }}
+          className="py-16 border-t border-border-subtle"
         >
-          <p className="text-sm mb-1" style={{ color: "var(--text)" }}>
+          <p className="text-sm mb-1 text-text">
             no posts found.
           </p>
         </div>
@@ -34,8 +33,7 @@ export function BlogList({ posts }: BlogListProps) {
               >
                 <div className="flex-1 min-w-0 pr-8">
                   <span
-                    className="text-sm block mb-1"
-                    style={{ color: "var(--text)" }}
+                    className="text-sm block mb-1 text-text"
                   >
                     <span className="animated-underline">{post.title}</span>
                     <span className="row-link-arrow text-xs ml-1.5 inline-block">
@@ -44,8 +42,7 @@ export function BlogList({ posts }: BlogListProps) {
                   </span>
                   {post.description && (
                     <span
-                      className="text-xs leading-relaxed block"
-                      style={{ color: "var(--text-subtle)" }}
+                      className="text-xs leading-relaxed block text-text-subtle"
                     >
                       {post.description}
                     </span>

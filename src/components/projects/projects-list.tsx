@@ -11,7 +11,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
     <>
       {/* Project rows */}
       {projects.length === 0 ? (
-        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+        <p className="text-sm text-text-muted">
           no projects found.
         </p>
       ) : (
@@ -19,17 +19,16 @@ export function ProjectsList({ projects }: ProjectsListProps) {
           {projects.map((project) => (
             <li
               key={project.slug}
-              className="py-5"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              className="py-5 border-t border-border-subtle"
             >
               {/* Title row */}
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <h2 className="text-sm" style={{ color: "var(--text)" }}>
+                <h2 className="text-sm text-text">
                   {project.title}
                 </h2>
                 <div className="flex items-center gap-3 flex-shrink-0">
                   {project.status === "active" && (
-                    <span className="text-xs" style={{ color: "var(--green)" }}>
+                    <span className="text-xs text-green">
                       active
                     </span>
                   )}
@@ -40,12 +39,12 @@ export function ProjectsList({ projects }: ProjectsListProps) {
               {/* Company & Live URL */}
               <div className="text-xs mb-3 flex items-center gap-2">
                 {project.company && (
-                  <span style={{ color: "var(--text-subtle)" }}>
+                  <span className="text-text-subtle">
                     {project.company}
                   </span>
                 )}
                 {project.company && project.liveUrl && (
-                  <span style={{ color: "var(--text-subtle)" }}>·</span>
+                  <span className="text-text-subtle" aria-hidden="true">·</span>
                 )}
                 {project.liveUrl && (
                   <a
@@ -73,8 +72,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
 
               {/* Short description */}
               <p
-                className="text-sm leading-relaxed mb-4"
-                style={{ color: "var(--text-muted)" }}
+                className="text-sm leading-relaxed mb-4 text-text-muted"
               >
                 {formatResumeText(project.description)}
               </p>
@@ -90,12 +88,11 @@ export function ProjectsList({ projects }: ProjectsListProps) {
 
               {/* Bullets */}
               {project.bullets && project.bullets.length > 0 && (
-                <ul className="space-y-2" style={{ paddingLeft: "1rem" }}>
+                <ul className="space-y-2 pl-4">
                   {project.bullets.map((bullet, i) => (
                     <li
                       key={i}
-                      className="text-sm leading-relaxed list-disc"
-                      style={{ color: "var(--text-muted)" }}
+                      className="text-sm leading-relaxed list-disc text-text-muted"
                     >
                       {formatResumeText(bullet)}
                     </li>
