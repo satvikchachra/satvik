@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import React from "react";
 import { getAllPosts, formatDate } from "@/lib/blog";
 import { siteConfig } from "@/lib/metadata";
+import { formatResumeText } from "@/lib/utils";
+import { EXPERIENCE } from "@/lib/experience";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -9,38 +12,13 @@ export const metadata: Metadata = {
 };
 
 const WINS = [
-  ["2K+ users daily", "Built AI coding agent"],
+  ["2K+ users daily", "Built AI coding agent at Atlassian"],
   ["1 Million+ users", "B2C SaaS products shipped at AppyHigh"],
   ["~95% shared code", "VS Code + JetBrains plugin for AI Coding Agent"],
   ["60s → 500ms", "ML prediction API latency reduction"],
 ] as const;
 
-const EXPERIENCE = [
-  {
-    year: "2025 – now",
-    company: "Atlassian",
-    companyUrl: "https://www.atlassian.com/",
-    role: "SDE 2 — AI Foundations",
-    description:
-      "Building AI coding agents, developer tooling infrastructure, and intelligent systems used by over two thousand engineers daily (2K+). Led end-to-end development of an AI-native editor and chat experience across VS Code and JetBrains with ~95% shared code.",
-  },
-  {
-    year: "2024 – 2025",
-    company: "Atlassian",
-    companyUrl: "https://www.atlassian.com/",
-    role: "SDE 1 — Dev Infra",
-    description:
-      "Worked on ML-powered predictive test selection for CI/CD pipelines. Drove ~99% improvement in p95 prediction API latency (60s → 500ms) through Tecton feature store integration and Redis caching alongside FastAPI migration.",
-  },
-  {
-    year: "2022 – 2023",
-    company: "AppyHigh",
-    companyUrl: "https://www.appyhigh.com/",
-    role: "SDE 1 — Full Stack",
-    description:
-      "Built AI-powered photo editing and generation platform (PhotAI) and a cloud-based storage and document conversion service (ScannerGo). Led small engineering teams and shipped products that collectively served over one million users (1M+)",
-  },
-] as const;
+
 
 
 export default function HomePage() {
@@ -64,7 +42,9 @@ export default function HomePage() {
           satvik chachra
         </h1>
         <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-          builds ai coding agents, full stack software products &amp; infra
+          <strong className="font-light text-[var(--text)]">
+            builds ai coding agents, full-stack software & infrastructure
+          </strong>
         </p>
       </header>
 
@@ -78,11 +58,11 @@ export default function HomePage() {
               className="flex items-baseline justify-between gap-6 py-3"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
-              <span className="text-sm" style={{ color: "var(--text-muted)" }}>
+              <span className="text-sm font-light text-[var(--text)]">
                 {context}
               </span>
               <span
-                className="text-sm flex-shrink-0"
+                className="text-sm font-semibold flex-shrink-0"
                 style={{ color: "var(--text)" }}
               >
                 {metric}
@@ -135,7 +115,7 @@ export default function HomePage() {
                 </a>
               </p>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {item.description}
+                {formatResumeText(item.description)}
               </p>
             </div>
           ))}
