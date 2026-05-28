@@ -4,9 +4,9 @@ export const BASE_URL = "https://satvikchachra.com";
 
 export const siteConfig = {
   name: "Satvik Chachra",
-  title: "satvik chachra - ai native full stack engineer",
+  title: "Satvik Chachra - AI Native Full Stack Engineer",
   description:
-    "AI-native full-stack engineer building AI Coding Agents, developer tooling, and intelligent systems.",
+    "AI-native full-stack engineer building AI Coding Agents, developer tooling, software products and infrastructures.",
   url: BASE_URL,
   ogImage: `${BASE_URL}/og/default.png`,
   author: {
@@ -29,6 +29,12 @@ export function buildMetadata({
   path?: string;
   ogImage?: string;
 }): Metadata {
+  if (title && /^[a-z]/.test(title)) {
+    throw new Error(
+      `Build Error: The page title "${title}" is not capitalized. All page titles must be capitalized.`
+    );
+  }
+
   const metaTitle = title
     ? title
     : siteConfig.title;

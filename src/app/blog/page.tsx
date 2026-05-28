@@ -4,7 +4,7 @@ import { getAllPosts, getAllBlogTags } from "@/lib/blog";
 import { BlogList } from "@/components/blog/blog-list";
 
 export const metadata: Metadata = buildMetadata({
-  title: "blog",
+  title: "Blog",
   description:
     "Writing by Satvik Chachra on AI systems, full stack engineering, and deep dives into CS, math, and science.",
   path: "/blog",
