@@ -15,6 +15,7 @@ export function ThemeSwitcher() {
   if (!mounted) {
     return (
       <button
+        type="button"
         aria-label="Switch theme"
         className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200 text-text bg-transparent"
       >
@@ -27,6 +28,7 @@ export function ThemeSwitcher() {
 
   return (
     <button
+      type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200 text-text bg-transparent hover:bg-surface"

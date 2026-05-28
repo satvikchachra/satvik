@@ -101,6 +101,7 @@ export function Navbar() {
 
           {/* ── Mobile hamburger (hidden sm+) ── */}
           <button
+            type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
