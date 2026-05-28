@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     slug,
     date: post.meta.date,
     tags: post.meta.tags,
+    ogImage: post.meta.ogImage,
   });
 }
 
@@ -36,7 +37,7 @@ export default async function BlogPostPage({ params }: Props) {
   // Dynamically import the MDX file
   // @next/mdx handles compilation at build time via next.config
   const { default: MDXContent } = await import(
-    `@/content/blog/${slug}.mdx`
+    `@/content/blog/${post.meta.filename}.mdx`
   ).catch(() => {
     notFound();
   }) as { default: React.ComponentType };
@@ -48,6 +49,7 @@ export default async function BlogPostPage({ params }: Props) {
       date={post.meta.date}
       tags={post.meta.tags}
       readingTime={post.meta.readingTime}
+      image={post.meta.image}
     >
       <MDXContent />
     </PostLayout>

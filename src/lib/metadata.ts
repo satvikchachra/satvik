@@ -70,17 +70,20 @@ export function buildBlogMetadata({
   slug,
   date,
   tags,
+  ogImage,
 }: {
   title: string;
   description: string;
   slug: string;
   date: string;
   tags: string[];
+  ogImage: string;
 }): Metadata {
   const base = buildMetadata({
     title,
     description,
     path: `/blog/${slug}`,
+    ogImage,
   });
   return {
     ...base,

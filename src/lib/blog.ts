@@ -6,11 +6,14 @@ const CONTENT_DIR = path.join(process.cwd(), "src", "content", "blog");
 
 export interface MdxPost {
   slug: string;
+  filename: string;
   title: string;
   description: string;
   date: string;
   tags: string[];
   readingTime: string;
+  image: string;
+  ogImage: string;
   type: "mdx";
 }
 
@@ -22,6 +25,8 @@ export interface CustomPost {
   date: string;
   tags: string[];
   readingTime?: string;
+  image: string;
+  ogImage: string;
   type: "custom";
   // path inside /app/blog/ — Next.js handles routing automatically
 }
@@ -53,10 +58,13 @@ export const CUSTOM_POSTS: CustomPost[] = [
 // dynamically imports the compiled MDX.
 // ----------------------------------------------------------------
 function getMdxPostMeta(jsonPath: string): {
+  slug?: string;
   title?: string;
   description?: string;
   date?: string;
   tags?: string[];
+  image?: string;
+  ogImage?: string;
 } {
   if (fs.existsSync(jsonPath)) {
     try {
@@ -73,23 +81,31 @@ function getMdxPosts(): MdxPost[] {
 
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".mdx"));
 
-  return files.map((filename) => {
-    const slug = filename.replace(/\.mdx$/, "");
-    const mdxPath = path.join(CONTENT_DIR, filename);
-    const jsonPath = path.join(CONTENT_DIR, `${slug}.json`);
+  return files.map((filenameWithExt) => {
+    const filename = filenameWithExt.replace(/\.mdx$/, "");
+    const mdxPath = path.join(CONTENT_DIR, filenameWithExt);
+    const jsonPath = path.join(CONTENT_DIR, `${filename}.json`);
 
     const body = fs.readFileSync(mdxPath, "utf-8");
     const rt = readingTime(body);
 
     const meta = getMdxPostMeta(jsonPath);
+    const slug = meta.slug || filename;
+
+    if (!meta.image || !meta.ogImage) {
+      throw new Error(`Blog post "${slug}" (file: ${filename}) is missing mandatory 'image' or 'ogImage' properties in its JSON metadata.`);
+    }
 
     return {
       slug,
+      filename,
       title: meta.title ?? slug,
       description: meta.description ?? "",
       date: meta.date ?? new Date().toISOString().split("T")[0],
       tags: Array.isArray(meta.tags) ? meta.tags : [],
       readingTime: rt.text,
+      image: meta.image,
+      ogImage: meta.ogImage,
       type: "mdx" as const,
     };
   });
@@ -102,35 +118,21 @@ export function getAllPosts(): Post[] {
 }
 
 export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string } | null {
-  const mdxPath = path.join(CONTENT_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(mdxPath)) return null;
+  const posts = getMdxPosts();
+  const post = posts.find((p) => p.slug === slug);
+  if (!post) return null;
 
-  const jsonPath = path.join(CONTENT_DIR, `${slug}.json`);
+  const mdxPath = path.join(CONTENT_DIR, `${post.filename}.mdx`);
   const body = fs.readFileSync(mdxPath, "utf-8");
-  const rt = readingTime(body);
-
-  const meta = getMdxPostMeta(jsonPath);
 
   return {
-    meta: {
-      slug,
-      title: meta.title ?? slug,
-      description: meta.description ?? "",
-      date: meta.date ?? new Date().toISOString().split("T")[0],
-      tags: Array.isArray(meta.tags) ? meta.tags : [],
-      readingTime: rt.text,
-      type: "mdx" as const,
-    },
+    meta: post,
     content: body,
   };
 }
 
 export function getMdxSlugs(): string[] {
-  if (!fs.existsSync(CONTENT_DIR)) return [];
-  return fs
-    .readdirSync(CONTENT_DIR)
-    .filter((f) => f.endsWith(".mdx"))
-    .map((f) => f.replace(/\.mdx$/, ""));
+  return getMdxPosts().map((p) => p.slug);
 }
 
 export function getAllBlogTags(): string[] {
