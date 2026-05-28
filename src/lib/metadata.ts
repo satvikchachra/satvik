@@ -4,7 +4,7 @@ export const BASE_URL = "https://satvikchachra.com";
 
 export const siteConfig = {
   name: "Satvik Chachra",
-  title: "Satvik Chachra — Full Stack Engineer",
+  title: "satvik chachra - ai native full stack engineer",
   description:
     "AI-native full-stack engineer building AI Coding Agents, developer tooling, and intelligent systems.",
   url: BASE_URL,
@@ -30,14 +30,14 @@ export function buildMetadata({
   ogImage?: string;
 }): Metadata {
   const metaTitle = title
-    ? `${title} — Satvik Chachra`
+    ? title
     : siteConfig.title;
   const metaDesc = description ?? siteConfig.description;
   const url = `${BASE_URL}${path}`;
   const image = ogImage ?? siteConfig.ogImage;
 
   return {
-    title: metaTitle,
+    title: { absolute: metaTitle },
     description: metaDesc,
     metadataBase: new URL(BASE_URL),
     alternates: { canonical: url },

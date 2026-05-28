@@ -51,7 +51,7 @@ export const PROJECTS: Project[] = [
     githubUrl: undefined,
     liveUrl: undefined,
     featured: true,
-    status: "active",
+    status: "archived",
     year: 2024,
   },
   {
@@ -70,7 +70,7 @@ export const PROJECTS: Project[] = [
     tags: ["NextJS", "ReactJS", "TypeScript", "Firebase", "StripeJS", "AWS S3"],
     liveUrl: "https://www.phot.ai/",
     featured: true,
-    status: "active",
+    status: "archived",
     year: 2023,
   },
   {
@@ -89,7 +89,7 @@ export const PROJECTS: Project[] = [
     tags: ["ReactJS", "NextJS", "Redux", "Socket.IO", "Material UI"],
     liveUrl: "https://scannergo.net/",
     featured: true,
-    status: "active",
+    status: "archived",
     year: 2022,
   },
 ];
