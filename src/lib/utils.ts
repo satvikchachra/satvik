@@ -23,6 +23,7 @@ export function formatResumeText(text: string): React.ReactNode {
     if (part.startsWith("**") && part.endsWith("**")) {
       return React.createElement(
         "strong",
+        // eslint-disable-next-line react/no-array-index-key
         { key: index, className: "font-semibold text-[var(--text)]" },
         formatResumeText(part.slice(2, -2))
       );
@@ -30,6 +31,7 @@ export function formatResumeText(text: string): React.ReactNode {
     if (part.startsWith("__") && part.endsWith("__")) {
       return React.createElement(
         "span",
+        // eslint-disable-next-line react/no-array-index-key
         { key: index, className: "resume-underline" },
         formatResumeText(part.slice(2, -2))
       );

@@ -10,7 +10,7 @@ export function Footer() {
       <div className="max-w-xl mx-auto px-6 py-6 flex items-center justify-between">
         {/* Social links */}
         <nav aria-label="Social links">
-          <ul className="flex items-center gap-4" role="list">
+          <ul className="flex items-center gap-4">
             {[
               { href: "https://github.com/satvikchachra", label: "GitHub", icon: GitHubIcon },
               { href: "https://twitter.com/satvikchachra", label: "X (Twitter)", icon: XIcon },

@@ -55,3 +55,21 @@ Reasons to never use JS mouse handlers:
 - Makes components unreadable
 
 <!-- END:css-architecture-rules -->
+
+<!-- BEGIN:html-semantics-and-a11y-rules -->
+# Semantic HTML & Accessibility Rules
+
+## Rule 3: Use strict heading hierarchy, never `<p>` tags for headings
+Never use `<p>` tags with heading styles (e.g. `<p className="section-label">`). Always use proper heading elements (`<h2>`, `<h3>`) to maintain a correct document outline for screen readers and SEO.
+
+## Rule 4: Validate ARIA attributes and avoid redundancy
+- **`aria-labelledby`**: Never point to an ID that does not exist in the DOM. Always ensure the target ID is actually rendered.
+- **`aria-label`**: Do not use `aria-label` if it perfectly duplicates the visible text of the element. Use `aria-describedby` if you need to add extra context to a visible label.
+<!-- END:html-semantics-and-a11y-rules -->
+
+<!-- BEGIN:react-architecture-rules -->
+# React Architecture Rules
+
+## Rule 5: Isolate `"use client"` directives
+Do not place `"use client"` at the top of large layout or list components (like a blog list or project list) just because a small piece of it needs interactivity. Isolate the client state (e.g., a filter toggle or a hook) into a small, dedicated client component, leaving the parent component tree as React Server Components (RSC) to minimize JavaScript bundle size.
+<!-- END:react-architecture-rules -->
