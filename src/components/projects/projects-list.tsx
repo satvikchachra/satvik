@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Project } from "@/lib/projects";
+import { formatResumeText } from "@/lib/utils";
 
 interface ProjectsListProps {
   projects: Project[];
@@ -104,7 +105,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                 className="text-sm leading-relaxed mb-4"
                 style={{ color: "var(--text-muted)" }}
               >
-                {project.description}
+                {formatResumeText(project.description)}
               </p>
 
               {/* Tech stack — above bullets */}
@@ -122,10 +123,10 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                   {project.bullets.map((bullet, i) => (
                     <li
                       key={i}
-                      className="text-xs leading-relaxed list-disc"
+                      className="text-sm leading-relaxed list-disc"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {bullet}
+                      {formatResumeText(bullet)}
                     </li>
                   ))}
                 </ul>
