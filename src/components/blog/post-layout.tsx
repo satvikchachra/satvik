@@ -29,13 +29,13 @@ export function PostLayout({
       <Link
         href="/blog"
         id="back-to-blog"
-        className="text-xs mb-12 inline-block link-subtle"
+        className="text-xs mb-12 inline-block link-subtle animate-fade-in-up stagger-0"
       >
         ← writing
       </Link>
 
       {/* Post header */}
-      <header className="mb-6">
+      <header className="mb-6 animate-fade-in-up stagger-1">
         <h1
           className="text-lg tracking-tight mb-3 leading-snug text-text"
         >
@@ -67,11 +67,11 @@ export function PostLayout({
       </header>
 
       {/* Post body */}
-      <div className="prose">{children}</div>
+      <div className="prose animate-fade-in-up stagger-2">{children}</div>
 
       {/* Post footer */}
       <footer
-        className="mt-16 pt-6 border-t border-border-subtle"
+        className="mt-16 pt-6 border-t border-border-subtle animate-fade-in-up stagger-3"
       >
         <Link
           href="/blog"
