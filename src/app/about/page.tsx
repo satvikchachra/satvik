@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import React from "react";
 import { buildMetadata } from "@/lib/metadata";
 import { formatResumeText } from "@/lib/utils";
+import { EXPERIENCE } from "@/lib/experience";
 
 export const metadata: Metadata = buildMetadata({
   title: "About",
   description:
-    "Learn about Satvik Chachra — full stack engineer, SDE 2, building AI coding agents and developer tooling.",
+    "Learn about Satvik Chachra — full stack engineer, SDE 2, building AI coding agents, full stack software products and developer tooling.",
   path: "/about",
 });
 
@@ -37,32 +38,6 @@ const STACK = [
   },
 ] as const;
 
-const EXPERIENCE = [
-  {
-    year: "2025 – now",
-    company: "Atlassian",
-    companyUrl: "https://www.atlassian.com/",
-    role: "SDE 2 — AI Foundations",
-    description:
-      "Building **AI coding agents**, developer tooling infrastructure, and intelligent systems used by over two thousand engineers daily (**2K+**). __Led end-to-end development__ of an AI-native editor and chat experience across VS Code and JetBrains with **~95% shared code**.",
-  },
-  {
-    year: "2024 – 2025",
-    company: "Atlassian",
-    companyUrl: "https://www.atlassian.com/",
-    role: "SDE 1 — Dev Infra",
-    description:
-      "Worked on ML-powered predictive test selection for CI/CD pipelines. __Drove a **~99% improvement** in p95 prediction API latency (**60s → 500ms**)__ through Tecton feature store integration, Redis caching, and **FastAPI** migration.",
-  },
-  {
-    year: "2022 – 2023",
-    company: "AppyHigh",
-    companyUrl: "https://www.appyhigh.com/",
-    role: "SDE 1 — Full Stack",
-    description:
-      "Built AI-powered photo editing and generation platform (PhotAI) and a cloud-based storage and document conversion service (ScannerGo). __Led small engineering teams__ and shipped products that collectively served over one million users (**1M+**).",
-  },
-] as const;
 
 const EDUCATION = [
   {
@@ -84,19 +59,19 @@ const AWARDS = [
   {
     title: "Brainiac Award",
     date: "Feb ’23",
-    description: "For __building PhotAI's client-side canvas algorithm__—combining original images with B&W API masks and manipulating **pixel data in real time** to generate background-removed downloadable outputs.",
+    description: "For building PhotAI's **Image Background Remover Tool**, __writing client-side canvas algorithm__ — combining original images with B&W API masks and pixel manipulation.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/brainiacAward.jpg",
   },
   {
     title: "Letter of Appreciation",
     date: "Jan ’23",
-    description: "For __driving a **3x optimization** in web performance__ and load times across core consumer products, recognized by startup founders.",
+    description: "For __driving **3x improvement** in performance__, and improving core Web Vitals like LCP, INP, and CLS, by code-splitting, caching, etc. Got recognition from startup founders",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/letterOfAppreciation.jpg",
   },
   {
     title: "Talent Star Award",
     date: "Sep ’22",
-    description: "For __building ScannerGo__, developing **Socket-based real-time conversions**, custom browser PDF viewing, and Redux architecture.",
+    description: "For __building ScannerGo__ — developing Socket-based real-time file conversions, custom browser PDF viewing, and Redux architecture.",
     viewUrl: "https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/talentStarsAward.jpg",
   },
 ] as const;
@@ -116,10 +91,10 @@ export default function AboutPage() {
         </h1>
         <div className="text-sm leading-relaxed space-y-2" style={{ color: "var(--text-muted)" }}>
           <p>
-            {formatResumeText("**AI-native full stack engineer** with **4+ Years of Experience**. I am building **AI Coding Agents**, AI software products, Developer Tooling, and the Infrastructure that makes them production-ready.")}
+            {formatResumeText("**AI-native full stack engineer**, __4+ years experience__. Building **AI coding agents**, developer tooling, and the infrastructure that makes them production-ready.")}
           </p>
           <p>
-            {formatResumeText("I write about **AI systems**, platform engineering, and things I'm learning across Computer Science, Mathematics, **Machine Learning**, Artificial Intelligence, and Physics.")}
+            {formatResumeText("I write about AI systems, platform engineering, and things I'm learning across computer science, mathematics, and machine learning.")}
           </p>
         </div>
       </header>
