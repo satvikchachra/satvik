@@ -1,60 +1,22 @@
-"use client";
-
 import type { Project } from "@/lib/projects";
 import { formatResumeText } from "@/lib/utils";
-import { FEATURE_FLAGS } from "@/lib/feature-flags";
-import { useFilterPanel } from "@/hooks/use-filter-panel";
-import { FilterPanel } from "@/components/ui/filter-panel";
 
 interface ProjectsListProps {
   projects: Project[];
   allTags: string[];
 }
 
-export function ProjectsList({ projects, allTags }: ProjectsListProps) {
-  const {
-    activeTags,
-    filterOpen,
-    panelRef,
-    panelHeight,
-    activeCount,
-    toggleTag,
-    clearFilters,
-    setFilterOpen,
-  } = useFilterPanel(allTags);
-
-  const filtered =
-    activeTags.size === 0
-      ? projects
-      : projects.filter((p) => p.tags.some((t) => activeTags.has(t)));
-
+export function ProjectsList({ projects }: ProjectsListProps) {
   return (
     <>
-      {FEATURE_FLAGS.filterProjects && (
-        <FilterPanel
-          id="projects"
-          label="filter by tech"
-          panelAriaLabel="Filter projects by technology"
-          allTags={allTags}
-          activeTags={activeTags}
-          activeCount={activeCount}
-          filterOpen={filterOpen}
-          panelHeight={panelHeight}
-          panelRef={panelRef}
-          onToggleOpen={() => setFilterOpen((v) => !v)}
-          onToggleTag={toggleTag}
-          onClear={clearFilters}
-        />
-      )}
-
       {/* Project rows */}
-      {filtered.length === 0 ? (
+      {projects.length === 0 ? (
         <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-          no projects match that filter.
+          no projects found.
         </p>
       ) : (
         <div>
-          {filtered.map((project) => (
+          {projects.map((project) => (
             <div
               key={project.slug}
               className="py-5"
@@ -66,7 +28,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                   {project.title}
                 </h2>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  {project.slug === "ai-coding-agent" && (
+                  {project.status === "active" && (
                     <span className="text-xs" style={{ color: "var(--green)" }}>
                       active
                     </span>

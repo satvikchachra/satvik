@@ -1,72 +1,32 @@
-"use client";
-
 import Link from "next/link";
 import type { Post } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
-import { FEATURE_FLAGS } from "@/lib/feature-flags";
-import { useFilterPanel } from "@/hooks/use-filter-panel";
-import { FilterPanel } from "@/components/ui/filter-panel";
-
 
 interface BlogListProps {
   posts: Post[];
   allTags: string[];
 }
 
-export function BlogList({ posts, allTags }: BlogListProps) {
-  const {
-    activeTags,
-    filterOpen,
-    panelRef,
-    panelHeight,
-    activeCount,
-    toggleTag,
-    clearFilters,
-    setFilterOpen,
-  } = useFilterPanel(allTags);
-
-  const filtered =
-    activeTags.size === 0
-      ? posts
-      : posts.filter((p) => p.tags.some((t) => activeTags.has(t)));
-
+export function BlogList({ posts }: BlogListProps) {
   return (
     <>
-      {FEATURE_FLAGS.filterBlogs && allTags.length > 0 && (
-        <FilterPanel
-          id="blog"
-          label="filter by tag"
-          panelAriaLabel="Filter blog posts by tag"
-          allTags={allTags}
-          activeTags={activeTags}
-          activeCount={activeCount}
-          filterOpen={filterOpen}
-          panelHeight={panelHeight}
-          panelRef={panelRef}
-          onToggleOpen={() => setFilterOpen((v) => !v)}
-          onToggleTag={toggleTag}
-          onClear={clearFilters}
-        />
-      )}
-
-      {filtered.length === 0 ? (
+      {posts.length === 0 ? (
         <div
           className="py-16"
           style={{ borderTop: "1px solid var(--border-subtle)" }}
         >
           <p className="text-sm mb-1" style={{ color: "var(--text)" }}>
-            no posts match that filter.
+            no posts found.
           </p>
         </div>
       ) : (
         <ol role="list" aria-label="Blog posts">
-          {filtered.map((post, i) => (
+          {posts.map((post, i) => (
             <li key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
                 id={`blog-post-${post.slug}`}
                 className="row-link group"
-                aria-label={`Read: ${post.title}`}
                 style={{
                   animationDelay: `${(i + 1) * 50}ms`,
                   alignItems: "flex-start",

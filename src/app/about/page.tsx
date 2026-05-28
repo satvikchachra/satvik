@@ -183,12 +183,9 @@ export default function AboutPage() {
                 <span className="text-sm" style={{ color: "var(--text)" }}>
                   {item.degree}
                 </span>
-                <time
-                  dateTime={item.year}
-                  className="mono-label flex-shrink-0"
-                >
+                <span className="mono-label flex-shrink-0">
                   {item.year}
-                </time>
+                </span>
               </div>
               <p className="text-xs mb-2">
                 {"schoolUrl" in item && item.schoolUrl ? (
