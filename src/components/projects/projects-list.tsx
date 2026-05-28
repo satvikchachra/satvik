@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import type { Project } from "@/lib/projects";
 import { formatResumeText } from "@/lib/utils";
+import { FEATURE_FLAGS } from "@/lib/feature-flags";
+import { useFilterPanel } from "@/hooks/use-filter-panel";
+import { FilterPanel } from "@/components/ui/filter-panel";
 
 interface ProjectsListProps {
   projects: Project[];
@@ -10,38 +12,40 @@ interface ProjectsListProps {
 }
 
 export function ProjectsList({ projects, allTags }: ProjectsListProps) {
-  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const {
+    activeTags,
+    filterOpen,
+    panelRef,
+    panelHeight,
+    activeCount,
+    toggleTag,
+    clearFilters,
+    setFilterOpen,
+  } = useFilterPanel(allTags);
 
-  const filtered = activeTag
-    ? projects.filter((p) => p.tags.includes(activeTag))
-    : projects;
+  const filtered =
+    activeTags.size === 0
+      ? projects
+      : projects.filter((p) => p.tags.some((t) => activeTags.has(t)));
 
   return (
     <>
-      {/* Tag filter — minimal pill row */}
-      <div
-        className="flex flex-wrap gap-2 mb-8"
-        role="group"
-        aria-label="Filter projects by tag"
-      >
-        <button
-          onClick={() => setActiveTag(null)}
-          aria-pressed={activeTag === null}
-          className={`tag cursor-pointer transition-all duration-150 ${activeTag === null ? "tag-active" : ""}`}
-        >
-          all
-        </button>
-        {allTags.map((tag) => (
-          <button
-            key={tag}
-            onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-            aria-pressed={activeTag === tag}
-            className={`tag cursor-pointer transition-all duration-150 ${activeTag === tag ? "tag-active" : ""}`}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
+      {FEATURE_FLAGS.filterProjects && (
+        <FilterPanel
+          id="projects"
+          label="filter by tech"
+          panelAriaLabel="Filter projects by technology"
+          allTags={allTags}
+          activeTags={activeTags}
+          activeCount={activeCount}
+          filterOpen={filterOpen}
+          panelHeight={panelHeight}
+          panelRef={panelRef}
+          onToggleOpen={() => setFilterOpen((v) => !v)}
+          onToggleTag={toggleTag}
+          onClear={clearFilters}
+        />
+      )}
 
       {/* Project rows */}
       {filtered.length === 0 ? (
@@ -62,12 +66,8 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                   {project.title}
                 </h2>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  {/* Only show "active" badge for the AI Coding Agent */}
                   {project.slug === "ai-coding-agent" && (
-                    <span
-                      className="text-xs"
-                      style={{ color: "var(--green)" }}
-                    >
+                    <span className="text-xs" style={{ color: "var(--green)" }}>
                       active
                     </span>
                   )}
@@ -93,9 +93,18 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                     className="blue-link inline-flex items-baseline gap-1"
                   >
                     <span className="blue-link-text">
-                      {project.liveUrl.replace("https://", "").replace("www.", "").replace(/\/$/, "")}
+                      {project.liveUrl
+                        .replace("https://", "")
+                        .replace("www.", "")
+                        .replace(/\/$/, "")}
                     </span>
-                    <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
+                    <span
+                      className="text-xs no-underline"
+                      aria-hidden="true"
+                      style={{ textDecoration: "none" }}
+                    >
+                      ↗
+                    </span>
                   </a>
                 )}
               </div>
@@ -108,7 +117,7 @@ export function ProjectsList({ projects, allTags }: ProjectsListProps) {
                 {formatResumeText(project.description)}
               </p>
 
-              {/* Tech stack — above bullets */}
+              {/* Tech stack chips */}
               <div className="flex flex-wrap gap-1.5 mb-4 items-center">
                 {project.tags.map((tag) => (
                   <span key={tag} className="chip">

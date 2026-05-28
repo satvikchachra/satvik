@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import type { Post } from "@/lib/blog";
+import { FEATURE_FLAGS } from "@/lib/feature-flags";
+import { useFilterPanel } from "@/hooks/use-filter-panel";
+import { FilterPanel } from "@/components/ui/filter-panel";
 
 function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
@@ -19,43 +21,39 @@ interface BlogListProps {
 }
 
 export function BlogList({ posts, allTags }: BlogListProps) {
-  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const {
+    activeTags,
+    filterOpen,
+    panelRef,
+    panelHeight,
+    activeCount,
+    toggleTag,
+    clearFilters,
+    setFilterOpen,
+  } = useFilterPanel(allTags);
 
-  const filtered = activeTag
-    ? posts.filter((p) => p.tags.includes(activeTag))
-    : posts;
+  const filtered =
+    activeTags.size === 0
+      ? posts
+      : posts.filter((p) => p.tags.some((t) => activeTags.has(t)));
 
   return (
     <>
-      {/* Tag filter — minimal pill row */}
-      {allTags.length > 0 && (
-        <div
-          className="flex flex-wrap gap-2 mb-8"
-          role="group"
-          aria-label="Filter blog posts by tag"
-        >
-          <button
-            onClick={() => setActiveTag(null)}
-            aria-pressed={activeTag === null}
-            className={`tag cursor-pointer transition-all duration-150 ${
-              activeTag === null ? "tag-active" : ""
-            }`}
-          >
-            all
-          </button>
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-              aria-pressed={activeTag === tag}
-              className={`tag cursor-pointer transition-all duration-150 ${
-                activeTag === tag ? "tag-active" : ""
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
+      {FEATURE_FLAGS.filterBlogs && allTags.length > 0 && (
+        <FilterPanel
+          id="blog"
+          label="filter by tag"
+          panelAriaLabel="Filter blog posts by tag"
+          allTags={allTags}
+          activeTags={activeTags}
+          activeCount={activeCount}
+          filterOpen={filterOpen}
+          panelHeight={panelHeight}
+          panelRef={panelRef}
+          onToggleOpen={() => setFilterOpen((v) => !v)}
+          onToggleTag={toggleTag}
+          onClear={clearFilters}
+        />
       )}
 
       {filtered.length === 0 ? (
@@ -68,10 +66,7 @@ export function BlogList({ posts, allTags }: BlogListProps) {
           </p>
         </div>
       ) : (
-        <ol
-          role="list"
-          aria-label="Blog posts"
-        >
+        <ol role="list" aria-label="Blog posts">
           {filtered.map((post, i) => (
             <li key={post.slug}>
               <Link
@@ -90,7 +85,9 @@ export function BlogList({ posts, allTags }: BlogListProps) {
                     style={{ color: "var(--text)" }}
                   >
                     <span className="animated-underline">{post.title}</span>
-                    <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>
+                    <span className="row-link-arrow text-xs ml-1.5 inline-block">
+                      ↗
+                    </span>
                   </span>
                   {post.description && (
                     <span

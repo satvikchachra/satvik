@@ -364,6 +364,109 @@ nav, button, input, select, textarea {
 }
 
 /* ============================================================
+   FILTER SYSTEM — collapsible, multi-select
+   ============================================================ */
+
+/* The minimal toggle button */
+.filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 2px 10px 2px 8px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-family: var(--font-geist-mono, ui-monospace, monospace);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: var(--text-subtle);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.filter-toggle:hover {
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.filter-toggle[aria-expanded="true"] {
+  color: var(--text);
+  border-color: var(--text-subtle);
+  background: var(--surface);
+}
+
+.filter-toggle-icon {
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  color: inherit;
+}
+
+/* Badge showing number of active filters */
+.filter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 3px;
+  border-radius: 2px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--bg);
+  line-height: 1;
+}
+
+/* Active filter pill shown when panel is closed */
+.filter-active-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1px 7px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-family: var(--font-geist-mono, ui-monospace, monospace);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.filter-active-pill:hover {
+  opacity: 0.75;
+}
+
+/* Clear all / clear button */
+.filter-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-family: var(--font-geist-mono, ui-monospace, monospace);
+  letter-spacing: 0.04em;
+  background: transparent;
+  color: var(--text-subtle);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-clear-btn:hover {
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+/* ============================================================
    TEXT LINK — inline underline style
    ============================================================ */
 .text-link {
