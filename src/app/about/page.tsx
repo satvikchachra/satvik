@@ -5,7 +5,7 @@ import { formatResumeText } from "@/lib/utils";
 import { EXPERIENCE } from "@/lib/experience";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About",
+  title: "about",
   description:
     "Learn about Satvik Chachra — full stack engineer, SDE 2, building AI coding agents, full stack software products and developer tooling.",
   path: "/about",
