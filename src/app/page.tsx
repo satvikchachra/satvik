@@ -35,12 +35,11 @@ export default function HomePage() {
       >
         <h1
           id="hero-heading"
-          className="text-lg tracking-tight mb-1"
-          style={{ color: "var(--text)" }}
+          className="text-lg tracking-tight mb-1 text-text"
         >
           satvik chachra
         </h1>
-        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+        <p className="text-sm text-text-muted">
           <strong className="font-light text-[var(--text)]">
             builds ai coding agents, full-stack software & infrastructure
           </strong>
@@ -54,15 +53,13 @@ export default function HomePage() {
           {WINS.map(([metric, context]) => (
             <div
               key={metric}
-              className="flex items-baseline justify-between gap-6 py-3"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              className="flex items-baseline justify-between gap-6 py-3 border-t border-border-subtle"
             >
               <span className="text-sm font-light text-[var(--text)]">
                 {context}
               </span>
               <span
-                className="text-sm font-semibold flex-shrink-0"
-                style={{ color: "var(--text)" }}
+                className="text-sm font-semibold flex-shrink-0 text-text"
               >
                 {metric}
               </span>
@@ -88,11 +85,10 @@ export default function HomePage() {
           {EXPERIENCE.map((item) => (
             <div
               key={item.company + item.year}
-              className="py-4"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
+              className="py-4 border-t border-border-subtle"
             >
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <span className="text-sm" style={{ color: "var(--text)" }}>
+                <span className="text-sm text-text">
                   {item.role}
                 </span>
                 <span className="mono-label flex-shrink-0">
@@ -110,7 +106,7 @@ export default function HomePage() {
                   <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
                 </a>
               </p>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+              <p className="text-sm leading-relaxed text-text-muted">
                 {formatResumeText(item.description)}
               </p>
             </div>
@@ -133,13 +129,11 @@ export default function HomePage() {
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 id={`post-${post.slug}`}
-                className="row-link group"
-                style={{ alignItems: "flex-start" }}
+                className="row-link group items-start"
               >
                 <div className="flex-1 min-w-0 pr-8">
                   <span
-                    className="text-sm block"
-                    style={{ color: "var(--text)" }}
+                    className="text-sm block text-text"
                   >
                     <span className="animated-underline">{post.title}</span>
                     <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>

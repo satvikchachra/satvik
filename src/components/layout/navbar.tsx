@@ -37,14 +37,9 @@ export function Navbar() {
 
   return (
     <header
-      className="fixed top-0 inset-x-0 z-50"
-      style={{
-        borderBottom: open
-          ? "1px solid var(--border)"
-          : "1px solid var(--border-subtle)",
-        background: "var(--bg)",
-        transition: "border-color 0.2s ease",
-      }}
+      className={`fixed top-0 inset-x-0 z-50 bg-bg transition-[border-color] duration-200 ${
+        open ? "border-b border-border" : "border-b border-border-subtle"
+      }`}
     >
       {/* ── Top bar ── */}
       <div className="max-w-xl mx-auto px-6 h-10 flex items-center justify-between">
@@ -52,24 +47,15 @@ export function Navbar() {
         <Link
           href="/"
           aria-label="Satvik Chachra — Home"
-          className="text-xs transition-colors duration-200 relative inline-flex items-center py-1"
-          style={{
-            color: pathname === "/" ? "var(--text)" : "var(--text-muted)",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.color =
-              pathname === "/" ? "var(--text)" : "var(--text-muted)";
-          }}
+          className={`text-xs transition-colors duration-200 relative inline-flex items-center py-1 hover:text-text ${
+            pathname === "/" ? "text-text" : "text-text-muted"
+          }`}
         >
           <span className="relative py-0.5">
             satvik chachra
             {pathname === "/" && (
-              <span 
-                className="absolute bottom-0 inset-x-0 h-[1.5px] rounded-full" 
-                style={{ backgroundColor: "var(--text)" }}
+              <span
+                className="absolute bottom-0 inset-x-0 h-[1.5px] rounded-full bg-text"
               />
             )}
           </span>
@@ -91,25 +77,15 @@ export function Navbar() {
                     <NavigationMenuLink asChild active={active}>
                       <Link
                         href={item.href}
-                        className="text-xs transition-colors duration-200 relative inline-flex items-center py-1"
-                        style={{
-                          color: active ? "var(--text)" : "var(--text-muted)",
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLAnchorElement).style.color =
-                            "var(--text)";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLAnchorElement).style.color =
-                            active ? "var(--text)" : "var(--text-muted)";
-                        }}
+                        className={`text-xs transition-colors duration-200 relative inline-flex items-center py-1 hover:text-text ${
+                          active ? "text-text" : "text-text-muted"
+                        }`}
                       >
                         <span className="relative py-0.5">
                           {item.label}
                           {active && (
-                            <span 
-                              className="absolute bottom-0 inset-x-0 h-[1.5px] rounded-full" 
-                              style={{ backgroundColor: "var(--text)" }}
+                            <span
+                              className="absolute bottom-0 inset-x-0 h-[1.5px] rounded-full bg-text"
                             />
                           )}
                         </span>
@@ -129,22 +105,9 @@ export function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="sm:hidden flex items-center justify-center w-8 h-8 rounded-md transition-colors duration-200"
-            style={{
-              color: "var(--text)",
-              background: open ? "var(--surface)" : "transparent",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.color = "var(--text)";
-              (e.currentTarget as HTMLButtonElement).style.background =
-                "var(--surface)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.color = "var(--text)";
-              (e.currentTarget as HTMLButtonElement).style.background = open
-                ? "var(--surface)"
-                : "transparent";
-            }}
+            className={`sm:hidden flex items-center justify-center w-8 h-8 rounded-md transition-colors duration-200 text-text hover:bg-surface ${
+              open ? "bg-surface" : "bg-transparent"
+            }`}
           >
             {open ? (
               <X size={15} aria-hidden="true" />
@@ -160,11 +123,7 @@ export function Navbar() {
         <nav
           id="mobile-nav"
           aria-label="Mobile navigation"
-          className="sm:hidden animate-fade-in-up"
-          style={{
-            borderTop: "1px solid var(--border)",
-            background: "var(--bg)",
-          }}
+          className="sm:hidden animate-fade-in-up border-t border-border bg-bg"
         >
           <div className="max-w-xl mx-auto px-6 py-3 flex flex-col gap-0.5">
             {navItems.map((item, idx) => {
@@ -173,27 +132,12 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-xs px-3 py-2.5 rounded-sm transition-colors duration-200"
-                  style={{
-                    color: active ? "var(--text)" : "var(--text-muted)",
-                    background: active ? "var(--surface)" : "transparent",
-                    animationDelay: `${(idx + 1) * 40}ms`,
-                    display: "block",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color =
-                      "var(--text)";
-                    if (!active)
-                      (e.currentTarget as HTMLAnchorElement).style.background =
-                        "var(--surface)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = active
-                      ? "var(--text)"
-                      : "var(--text-muted)";
-                    (e.currentTarget as HTMLAnchorElement).style.background =
-                      active ? "var(--surface)" : "transparent";
-                  }}
+                  className={`text-xs px-3 py-2.5 rounded-sm transition-colors duration-200 block hover:text-text hover:bg-surface ${
+                    active
+                      ? "text-text bg-surface"
+                      : "text-text-muted bg-transparent"
+                  }`}
+                  style={{ animationDelay: `${(idx + 1) * 40}ms` }}
                 >
                   {item.label}
                 </Link>

@@ -3,8 +3,7 @@ export function Footer() {
 
   return (
     <footer
-      className="mt-24"
-      style={{ borderTop: "1px solid var(--border-subtle)" }}
+      className="mt-24 border-t border-border-subtle"
     >
       <div className="max-w-xl mx-auto px-6 py-6 flex items-center justify-between">
         {/* Social links — abbreviated t3 style */}
@@ -32,8 +31,7 @@ export function Footer() {
         </nav>
 
         <p
-          className="text-xs tracking-wide"
-          style={{ color: "var(--text-subtle)" }}
+          className="text-xs tracking-wide text-text-subtle"
         >
           © {year}
         </p>

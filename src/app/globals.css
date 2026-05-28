@@ -61,8 +61,9 @@
   --color-bg-alt:      var(--bg-alt);
   --color-surface:     var(--surface);
   --color-surface-alt: var(--surface-alt);
-  --color-border:      var(--border);
-  --color-text:        var(--text);
+  --color-border:        var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-text:          var(--text);
   --color-text-muted:  var(--text-muted);
   --color-text-subtle: var(--text-subtle);
   --color-accent:      var(--accent);

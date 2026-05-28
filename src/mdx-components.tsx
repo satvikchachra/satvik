@@ -9,17 +9,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Headings
     h1: ({ children, ...props }) => (
-      <h1 {...props} style={{ color: "var(--text)" }}>
+      <h1 {...props} className="text-text">
         {children}
       </h1>
     ),
     h2: ({ children, ...props }) => (
-      <h2 {...props} style={{ color: "var(--text)" }}>
+      <h2 {...props} className="text-text">
         {children}
       </h2>
     ),
     h3: ({ children, ...props }) => (
-      <h3 {...props} style={{ color: "var(--text)" }}>
+      <h3 {...props} className="text-text">
         {children}
       </h3>
     ),
@@ -64,7 +64,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           {...props}
           target={isExternal ? "_blank" : undefined}
           rel={isExternal ? "noopener noreferrer" : undefined}
-          style={{ color: "var(--accent)" }}
+          className={`text-accent! ${(props as { className?: string }).className ?? ""}`}
         >
           {children}
           {isExternal && (
