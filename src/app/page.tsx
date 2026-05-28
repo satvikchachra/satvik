@@ -1,14 +1,7 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
-import { siteConfig } from "@/lib/metadata";
 import { formatResumeText, formatDate } from "@/lib/utils";
 import { EXPERIENCE } from "@/lib/experience";
-
-export const metadata: Metadata = {
-  title: siteConfig.title,
-  description: siteConfig.description,
-};
 
 const WINS = [
   ["2K+ users daily", "Built AI coding agent at Atlassian"],
