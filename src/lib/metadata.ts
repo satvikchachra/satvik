@@ -34,8 +34,6 @@ export function buildMetadata({
     : siteConfig.title;
   const metaDesc = description ?? siteConfig.description;
   const url = `${BASE_URL}${path}`;
-  const image = ogImage ?? siteConfig.ogImage;
-
   return {
     title: { absolute: metaTitle },
     description: metaDesc,
@@ -47,14 +45,14 @@ export function buildMetadata({
       url,
       siteName: siteConfig.name,
       type: "website",
-      images: [{ url: image, width: 1200, height: 630, alt: metaTitle }],
+      ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630, alt: metaTitle }] }),
     },
     twitter: {
       card: "summary_large_image",
       title: metaTitle,
       description: metaDesc,
       creator: siteConfig.author.twitter,
-      images: [image],
+      ...(ogImage && { images: [ogImage] }),
     },
     robots: {
       index: true,
