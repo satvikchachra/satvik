@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
-import { getAllPosts, getMdxPostBySlug, getMdxSlugs } from './blog';
+import { getAllPosts, getMdxPostBySlug, getMdxSlugs, getAllBlogTags, CUSTOM_POSTS } from './blog';
 
 vi.mock('fs');
 
@@ -105,5 +105,49 @@ describe('Blog Data Layer', () => {
     });
 
     expect(() => getAllPosts()).toThrowError(/missing mandatory 'image' or 'ogImage'/);
+  });
+
+  it('getMdxSlugs should return an array of strings representing the slugs', () => {
+    vi.mocked(fs.readdirSync).mockReturnValue(['post1.mdx', 'post2.mdx'] as any);
+    vi.mocked(fs.existsSync).mockReturnValue(true);
+
+    vi.mocked(fs.readFileSync).mockImplementation((filePath) => {
+      const p = filePath.toString();
+      if (p.endsWith('post1.json')) return JSON.stringify({ slug: 'custom-slug-1', image: 'img', ogImage: 'og' });
+      if (p.endsWith('post2.json')) return JSON.stringify({ image: 'img', ogImage: 'og' }); // Fallback to filename 'post2'
+      return '';
+    });
+
+    const slugs = getMdxSlugs();
+    expect(slugs).toHaveLength(2);
+    expect(slugs).toContain('custom-slug-1');
+    expect(slugs).toContain('post2');
+  });
+
+  it('getAllBlogTags should return a deduplicated, sorted list of all tags', () => {
+    vi.mocked(fs.readdirSync).mockReturnValue(['post1.mdx', 'post2.mdx'] as any);
+    vi.mocked(fs.existsSync).mockReturnValue(true);
+
+    vi.mocked(fs.readFileSync).mockImplementation((filePath) => {
+      const p = filePath.toString();
+      if (p.endsWith('post1.json')) return JSON.stringify({ tags: ['react', 'nextjs', 'ai'], image: 'img', ogImage: 'og' });
+      if (p.endsWith('post2.json')) return JSON.stringify({ tags: ['nextjs', 'typescript'], image: 'img', ogImage: 'og' });
+      return '';
+    });
+
+    const originalCustomPosts = [...CUSTOM_POSTS];
+    
+    // Temporarily mutate CUSTOM_POSTS for the test if it's empty
+    CUSTOM_POSTS.push({
+      slug: 'custom', title: 'Custom', description: 'Desc', date: '2026-05-29',
+      image: 'img', ogImage: 'og', type: 'custom', tags: ['custom-tag', 'react']
+    });
+
+    const tags = getAllBlogTags();
+    
+    expect(tags).toEqual(['ai', 'custom-tag', 'nextjs', 'react', 'typescript']);
+
+    // Restore
+    CUSTOM_POSTS.pop();
   });
 });
