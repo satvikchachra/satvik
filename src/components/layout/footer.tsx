@@ -1,7 +1,7 @@
 import { GitHubIcon, XIcon, LinkedInIcon, MailIcon } from "@/components/ui/icons";
+import { CurrentYear } from "./current-year";
 
 export function Footer() {
-  const year = new Date().getFullYear();
 
   return (
     <footer
@@ -35,7 +35,7 @@ export function Footer() {
         <p
           className="text-xs tracking-wide text-text-subtle"
         >
-          &copy; {year}
+          &copy; <CurrentYear />
         </p>
       </div>
     </footer>
