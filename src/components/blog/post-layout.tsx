@@ -41,13 +41,14 @@ export function PostLayout({
 
       {/* Post header */}
       <header className="mb-6 animate-fade-in-up stagger-1">
-        <div className="mb-8 w-full overflow-hidden rounded-lg border border-border-subtle">
+        <div className="mb-8 w-full overflow-hidden rounded-lg border border-border-subtle aspect-[1792/716] bg-surface">
           <Image
             src={image}
             alt={`Cover image for ${title}`}
-            width={1200}
-            height={630}
-            className="w-full h-auto object-cover"
+            width={1792}
+            height={716}
+            priority
+            className="w-full h-full object-cover"
           />
         </div>
 
