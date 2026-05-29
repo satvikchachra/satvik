@@ -1,4 +1,4 @@
-import type { MDXComponents } from "mdx/types";
+import type { MDXComponents } from 'mdx/types';
 
 /**
  * Global MDX component overrides.
@@ -24,16 +24,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </h3>
     ),
     // Callout blockquote
-    blockquote: ({ children, ...props }) => (
-      <blockquote {...props}>
-        {children}
-      </blockquote>
-    ),
+    blockquote: ({ children, ...props }) => <blockquote {...props}>{children}</blockquote>,
     // Inline code — only style backtick code, not fenced code blocks.
     // rehype-pretty-code adds data-language to <code> inside <pre>;
     // skip our styling in that case so Shiki's token colors survive.
     code: ({ children, ...props }) => {
-      const isBlock = "data-language" in props;
+      const isBlock = 'data-language' in props;
       if (isBlock) return <code {...props}>{children}</code>;
       return (
         <code
@@ -48,14 +44,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     pre: ({ children, ...props }) => <pre {...props}>{children}</pre>,
     // External links open in new tab
     a: ({ href, children, ...props }) => {
-      const isExternal = href?.startsWith("http");
+      const isExternal = href?.startsWith('http');
       return (
         <a
           href={href}
           {...props}
-          target={isExternal ? "_blank" : undefined}
-          rel={isExternal ? "noopener noreferrer" : undefined}
-          className={`text-accent! ${(props as { className?: string }).className ?? ""}`}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          className={`text-accent! ${(props as { className?: string }).className ?? ''}`}
         >
           {children}
           {isExternal && (

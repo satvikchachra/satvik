@@ -5,7 +5,9 @@ import { PostLayout } from './post-layout';
 import type React from 'react';
 
 vi.mock('next/link', () => ({
-  default: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a>,
+  default: ({ children, href }: { children: React.ReactNode; href: string }) => (
+    <a href={href}>{children}</a>
+  ),
 }));
 
 // Mock next/image
@@ -41,13 +43,13 @@ describe('PostLayout', () => {
         image="/test.jpg"
       >
         <div data-testid="children">Child content</div>
-      </PostLayout>
+      </PostLayout>,
     );
 
     // Header elements
     expect(screen.getByRole('heading', { name: 'Test Title' })).toBeInTheDocument();
     expect(screen.getByText('Test Description')).toBeInTheDocument();
-    
+
     // Image
     const image = screen.getByAltText('Cover image for Test Title');
     expect(image).toBeInTheDocument();
@@ -73,7 +75,7 @@ describe('PostLayout', () => {
         image="/test.jpg"
       >
         <div>Content</div>
-      </PostLayout>
+      </PostLayout>,
     );
 
     // Reading time shouldn't be present

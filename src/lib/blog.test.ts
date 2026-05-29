@@ -12,7 +12,9 @@ describe('Blog Data Layer', () => {
 
   it('getAllPosts should combine MDX posts and custom posts and sort by date', () => {
     // Mock readdirSync to return a fake file
-    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue(['fake-post.mdx']);
+    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue([
+      'fake-post.mdx',
+    ]);
     vi.mocked(fs.existsSync).mockReturnValue(true);
 
     // Mock file reads
@@ -27,7 +29,7 @@ describe('Blog Data Layer', () => {
           date: '2026-05-29',
           image: '/fake-image.jpg',
           ogImage: '/fake-og.jpg',
-          tags: ['test']
+          tags: ['test'],
         });
       }
       return '';
@@ -37,7 +39,7 @@ describe('Blog Data Layer', () => {
     expect(posts).toBeInstanceOf(Array);
 
     // We expect at least the one mocked MDX post
-    const fakePost = posts.find(p => p.slug === 'fake-post');
+    const fakePost = posts.find((p) => p.slug === 'fake-post');
     expect(fakePost).toBeDefined();
     expect(fakePost?.title).toBe('Fake Post');
     expect(fakePost?.date).toBe('2026-05-29');
@@ -45,7 +47,9 @@ describe('Blog Data Layer', () => {
   });
 
   it('getMdxPostBySlug should return correct data for a valid slug', () => {
-    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue(['valid-slug.mdx']);
+    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue([
+      'valid-slug.mdx',
+    ]);
     vi.mocked(fs.existsSync).mockReturnValue(true);
 
     vi.mocked(fs.readFileSync).mockImplementation((filePath) => {
@@ -58,7 +62,7 @@ describe('Blog Data Layer', () => {
           title: 'Valid Slug Title',
           date: '2026-01-01',
           image: '/img.png',
-          ogImage: '/og.png'
+          ogImage: '/og.png',
         });
       }
       return '';
@@ -71,7 +75,9 @@ describe('Blog Data Layer', () => {
   });
 
   it('getMdxPostBySlug should return null for an invalid slug', () => {
-    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue(['some-other.mdx']);
+    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue([
+      'some-other.mdx',
+    ]);
     vi.mocked(fs.existsSync).mockReturnValue(true);
 
     vi.mocked(fs.readFileSync).mockImplementation((filePath) => {
@@ -87,7 +93,9 @@ describe('Blog Data Layer', () => {
   });
 
   it('getMdxPosts should throw if mandatory image properties are missing', () => {
-    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue(['broken-post.mdx']);
+    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue([
+      'broken-post.mdx',
+    ]);
     vi.mocked(fs.existsSync).mockReturnValue(true);
 
     vi.mocked(fs.readFileSync).mockImplementation((filePath) => {
@@ -97,7 +105,7 @@ describe('Blog Data Layer', () => {
       }
       if (p.endsWith('broken-post.json')) {
         return JSON.stringify({
-          title: 'No Images Here'
+          title: 'No Images Here',
           // Missing image and ogImage
         });
       }
@@ -108,12 +116,16 @@ describe('Blog Data Layer', () => {
   });
 
   it('getMdxSlugs should return an array of strings representing the slugs', () => {
-    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue(['post1.mdx', 'post2.mdx']);
+    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue([
+      'post1.mdx',
+      'post2.mdx',
+    ]);
     vi.mocked(fs.existsSync).mockReturnValue(true);
 
     vi.mocked(fs.readFileSync).mockImplementation((filePath) => {
       const p = filePath.toString();
-      if (p.endsWith('post1.json')) return JSON.stringify({ slug: 'custom-slug-1', image: 'img', ogImage: 'og' });
+      if (p.endsWith('post1.json'))
+        return JSON.stringify({ slug: 'custom-slug-1', image: 'img', ogImage: 'og' });
       if (p.endsWith('post2.json')) return JSON.stringify({ image: 'img', ogImage: 'og' }); // Fallback to filename 'post2'
       return '';
     });
@@ -125,20 +137,31 @@ describe('Blog Data Layer', () => {
   });
 
   it('getAllBlogTags should return a deduplicated, sorted list of all tags', () => {
-    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue(['post1.mdx', 'post2.mdx']);
+    (fs.readdirSync as unknown as import('vitest').Mock<() => string[]>).mockReturnValue([
+      'post1.mdx',
+      'post2.mdx',
+    ]);
     vi.mocked(fs.existsSync).mockReturnValue(true);
 
     vi.mocked(fs.readFileSync).mockImplementation((filePath) => {
       const p = filePath.toString();
-      if (p.endsWith('post1.json')) return JSON.stringify({ tags: ['react', 'nextjs', 'ai'], image: 'img', ogImage: 'og' });
-      if (p.endsWith('post2.json')) return JSON.stringify({ tags: ['nextjs', 'typescript'], image: 'img', ogImage: 'og' });
+      if (p.endsWith('post1.json'))
+        return JSON.stringify({ tags: ['react', 'nextjs', 'ai'], image: 'img', ogImage: 'og' });
+      if (p.endsWith('post2.json'))
+        return JSON.stringify({ tags: ['nextjs', 'typescript'], image: 'img', ogImage: 'og' });
       return '';
     });
 
     // Temporarily mutate CUSTOM_POSTS for the test if it's empty
     CUSTOM_POSTS.push({
-      slug: 'custom', title: 'Custom', description: 'Desc', date: '2026-05-29',
-      image: 'img', ogImage: 'og', type: 'custom', tags: ['custom-tag', 'react']
+      slug: 'custom',
+      title: 'Custom',
+      description: 'Desc',
+      date: '2026-05-29',
+      image: 'img',
+      ogImage: 'og',
+      type: 'custom',
+      tags: ['custom-tag', 'react'],
     });
 
     const tags = getAllBlogTags();

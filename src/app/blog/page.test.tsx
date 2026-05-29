@@ -12,7 +12,9 @@ vi.mock('@/components/blog/blog-list', () => ({
   BlogList: () => <div data-testid="blog-list" />,
 }));
 vi.mock('@/components/blog/dev-private-toggle', () => ({
-  DevPrivateToggle: ({ children }: { children: React.ReactNode }) => <div data-testid="dev-private-toggle">{children}</div>,
+  DevPrivateToggle: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="dev-private-toggle">{children}</div>
+  ),
 }));
 
 // Mock metadata (it's exported, but we're just testing the default export component)
@@ -44,7 +46,7 @@ describe('BlogPage', () => {
         readingTime: '5 min',
         image: '/img.jpg',
         ogImage: '/og.jpg',
-      }
+      },
     ]);
 
     render(<BlogPage />);

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export function ThemeSwitcher() {
   const { setTheme, resolvedTheme } = useTheme();
@@ -24,13 +24,13 @@ export function ThemeSwitcher() {
     );
   }
 
-  const isDark = resolvedTheme === "dark";
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200 text-text bg-transparent hover:bg-surface"
     >
       {isDark ? (

@@ -16,13 +16,13 @@ describe('DevPrivateToggle', () => {
     render(
       <DevPrivateToggle>
         <div data-testid="child">Child Content</div>
-      </DevPrivateToggle>
+      </DevPrivateToggle>,
     );
 
     // Toggle should be present
     expect(screen.getByLabelText('Toggle private blogs visibility')).toBeInTheDocument();
     expect(screen.getByText('Dev Mode:')).toBeInTheDocument();
-    
+
     // Child should be present
     expect(screen.getByTestId('child')).toBeInTheDocument();
   });
@@ -32,13 +32,13 @@ describe('DevPrivateToggle', () => {
     render(
       <DevPrivateToggle>
         <div data-testid="child">Child Content</div>
-      </DevPrivateToggle>
+      </DevPrivateToggle>,
     );
 
     // Toggle should NOT be present
     expect(screen.queryByLabelText('Toggle private blogs visibility')).not.toBeInTheDocument();
     expect(screen.queryByText('Dev Mode:')).not.toBeInTheDocument();
-    
+
     // Child should still be present
     expect(screen.getByTestId('child')).toBeInTheDocument();
   });

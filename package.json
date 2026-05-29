@@ -14,7 +14,12 @@
     "new-post": "node scripts/new-post.js",
     "refresh": "rm -rf node_modules .next && npm cache clean --force && npm ci",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate": "npm run format:check && npm run typecheck && npm run lint && npm run build",
+    "validate:all": "npm run validate && npm run test:unit && npm run test:e2e"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -52,7 +57,10 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "jsdom": "^29.1.1",
+    "prettier": "^3.8.3",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite-tsconfig-paths": "^6.1.1",

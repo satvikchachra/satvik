@@ -52,7 +52,7 @@ describe('BlogList', () => {
     expect(screen.getByText('Post 1 Title')).toBeInTheDocument();
     expect(screen.getByText('Post 1 Description')).toBeInTheDocument();
     expect(screen.getByText('Formatted: 2026-05-29')).toBeInTheDocument();
-    
+
     // Post 2
     expect(screen.getByText('Post 2 Title')).toBeInTheDocument();
     expect(screen.getByText('Post 2 Description')).toBeInTheDocument();
@@ -62,6 +62,9 @@ describe('BlogList', () => {
     expect(screen.getByText('Private')).toBeInTheDocument();
 
     // Verify it links to the correct place
-    expect(screen.getByRole('link', { name: /Post 1 Title/i })).toHaveAttribute('href', '/blog/post-1');
+    expect(screen.getByRole('link', { name: /Post 1 Title/i })).toHaveAttribute(
+      'href',
+      '/blog/post-1',
+    );
   });
 });

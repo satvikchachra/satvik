@@ -1,26 +1,26 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import "katex/dist/katex.min.css";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { siteConfig } from "@/lib/metadata";
-import { ThemeProvider } from "@/components/theme-provider";
+import type { Metadata, Viewport } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import './globals.css';
+import 'katex/dist/katex.min.css';
+import { Navbar } from '@/components/layout/navbar';
+import { Footer } from '@/components/layout/footer';
+import { siteConfig } from '@/lib/metadata';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 export const viewport: Viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
 };
 
@@ -29,26 +29,26 @@ export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
   keywords: [
-    "Satvik Chachra",
-    "AI Engineer",
-    "Full Stack Engineer",
-    "AI Coding Agent",
-    "Developer Tooling",
-    "Full Stack",
-    "SDE",
+    'Satvik Chachra',
+    'AI Engineer',
+    'Full Stack Engineer',
+    'AI Coding Agent',
+    'Developer Tooling',
+    'Full Stack',
+    'SDE',
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   openGraph: {
-    type: "website",
-    locale: "en_US",
+    type: 'website',
+    locale: 'en_US',
     url: siteConfig.url,
     siteName: siteConfig.name,
     title: siteConfig.title,
     description: siteConfig.description,
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
     creator: siteConfig.author.twitter,
@@ -56,30 +56,24 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
 };
 
 // JSON-LD structured data (Person schema)
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Satvik Chachra",
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Satvik Chachra',
   url: siteConfig.url,
-  jobTitle: "AI-Native Full-Stack Engineer",
+  jobTitle: 'AI-Native Full-Stack Engineer',
   description: siteConfig.description,
-  sameAs: [
-    siteConfig.author.github,
-    siteConfig.author.linkedin,
-    siteConfig.author.twitterUrl,
-  ],
+  sameAs: [siteConfig.author.github, siteConfig.author.linkedin, siteConfig.author.twitterUrl],
 };
 
 // Removed custom theme script
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
@@ -97,9 +91,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
           <Navbar />
-          <main id="main-content">
-            {children}
-          </main>
+          <main id="main-content">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

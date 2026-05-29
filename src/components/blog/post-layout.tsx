@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-import { formatDate } from "@/lib/utils";
+import Link from 'next/link';
+import Image from 'next/image';
+import { formatDate } from '@/lib/utils';
 
 interface PostLayoutProps {
   title: string;
@@ -11,7 +11,7 @@ interface PostLayoutProps {
   children: React.ReactNode;
 }
 
-import { ShareMenu } from "./share-menu";
+import { ShareMenu } from './share-menu';
 
 /**
  * Shared chrome for ALL blog posts — both MDX and custom page types.
@@ -27,14 +27,9 @@ export function PostLayout({
 }: PostLayoutProps) {
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
-
       {/* Top row */}
       <div className="mb-12 animate-fade-in-up stagger-0">
-        <Link
-          href="/blog"
-          id="back-to-blog"
-          className="text-xs inline-block link-subtle"
-        >
+        <Link href="/blog" id="back-to-blog" className="text-xs inline-block link-subtle">
           ← blog
         </Link>
       </div>
@@ -52,24 +47,20 @@ export function PostLayout({
           />
         </div>
 
-        <h1
-          className="text-lg tracking-tight mb-3 leading-snug text-text"
-        >
-          {title}
-        </h1>
+        <h1 className="text-lg tracking-tight mb-3 leading-snug text-text">{title}</h1>
 
-        <p className="text-sm mb-5 leading-relaxed text-text-muted">
-          {description}
-        </p>
+        <p className="text-sm mb-5 leading-relaxed text-text-muted">{description}</p>
 
         {/* Meta row */}
-        <div
-          className="flex flex-wrap items-center justify-between gap-y-2 pb-4 border-b border-border-subtle"
-        >
+        <div className="flex flex-wrap items-center justify-between gap-y-2 pb-4 border-b border-border-subtle">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <div className="flex items-center gap-3">
               {readingTime && <span className="mono-label">{readingTime}</span>}
-              {readingTime && <span className="mono-label" aria-hidden="true">·</span>}
+              {readingTime && (
+                <span className="mono-label" aria-hidden="true">
+                  ·
+                </span>
+              )}
               <time dateTime={date} className="mono-label">
                 {formatDate(date)}
               </time>
@@ -83,13 +74,8 @@ export function PostLayout({
       <div className="prose animate-fade-in-up stagger-2">{children}</div>
 
       {/* Post footer */}
-      <footer
-        className="mt-16 pt-6 border-t border-border-subtle animate-fade-in-up stagger-3"
-      >
-        <Link
-          href="/blog"
-          className="text-xs link-subtle"
-        >
+      <footer className="mt-16 pt-6 border-t border-border-subtle animate-fade-in-up stagger-3">
+        <Link href="/blog" className="text-xs link-subtle">
           ← back to blog
         </Link>
       </footer>

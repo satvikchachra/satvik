@@ -1,6 +1,6 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+import { defineConfig, globalIgnores } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -8,44 +8,48 @@ const eslintConfig = defineConfig([
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
   ]),
   {
     rules: {
       // Existing rules
-      "react/no-array-index-key": "error",
-      "jsx-a11y/no-redundant-roles": "error",
-      "@next/next/no-img-element": "error",
-      
+      'react/no-array-index-key': 'error',
+      'jsx-a11y/no-redundant-roles': 'error',
+      '@next/next/no-img-element': 'error',
+
       // Accessibility & Semantic HTML
-      "jsx-a11y/alt-text": "error",
-      "jsx-a11y/anchor-is-valid": "error",
-      "jsx-a11y/click-events-have-key-events": "error",
-      "jsx-a11y/aria-props": "error",
-      "jsx-a11y/aria-proptypes": "error",
-      "jsx-a11y/aria-unsupported-elements": "error",
-      "jsx-a11y/role-has-required-aria-props": "error",
-      "jsx-a11y/role-supports-aria-props": "error",
-      
+      'jsx-a11y/alt-text': 'error',
+      'jsx-a11y/anchor-is-valid': 'error',
+      'jsx-a11y/click-events-have-key-events': 'error',
+      'jsx-a11y/aria-props': 'error',
+      'jsx-a11y/aria-proptypes': 'error',
+      'jsx-a11y/aria-unsupported-elements': 'error',
+      'jsx-a11y/role-has-required-aria-props': 'error',
+      'jsx-a11y/role-supports-aria-props': 'error',
+
       // React & Performance
-      "react/jsx-no-useless-fragment": "error",
-      "react/no-unstable-nested-components": "error",
-      "react/jsx-curly-brace-presence": ["error", { props: "never", children: "never" }],
-      "react/button-has-type": "error",
-      "react-hooks/exhaustive-deps": "error",
-      
+      'react/jsx-no-useless-fragment': 'error',
+      'react/no-unstable-nested-components': 'error',
+      'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
+      'react/button-has-type': 'error',
+      'react-hooks/exhaustive-deps': 'error',
+
       // Dead Code & Cleanliness
-      "@typescript-eslint/no-unused-vars": "error",
-      "@typescript-eslint/no-explicit-any": "error",
-      "no-console": ["warn", { allow: ["warn", "error"] }],
-      
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-explicit-any': 'error',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+
       // React Anti-Patterns
-      "no-restricted-globals": ["error", 
-        { name: "document", message: "Use React state/refs instead of accessing document directly." },
-        { name: "window", message: "Use React state/refs instead of accessing window directly." }
+      'no-restricted-globals': [
+        'error',
+        {
+          name: 'document',
+          message: 'Use React state/refs instead of accessing document directly.',
+        },
+        { name: 'window', message: 'Use React state/refs instead of accessing window directly.' },
       ],
     },
   },

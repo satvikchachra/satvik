@@ -1,28 +1,28 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
-export const BASE_URL = "https://satvikchachra.com";
+export const BASE_URL = 'https://satvikchachra.com';
 
 export const siteConfig = {
-  name: "Satvik Chachra",
-  title: "Satvik Chachra - AI Native Full Stack Engineer",
+  name: 'Satvik Chachra',
+  title: 'Satvik Chachra - AI Native Full Stack Engineer',
   description:
-    "AI-native full-stack engineer building AI Coding Agents, developer tooling, software products and infrastructures.",
+    'AI-native full-stack engineer building AI Coding Agents, developer tooling, software products and infrastructures.',
   url: BASE_URL,
   ogImage: `${BASE_URL}/og/default.png`,
   author: {
-    name: "Satvik Chachra",
-    email: "consultwithsatvik@gmail.com",
-    github: "https://github.com/satvikchachra",
-    twitter: "@satvikchachra",
-    twitterUrl: "https://x.com/satvikchachra",
-    linkedin: "https://linkedin.com/in/satvikchachra",
+    name: 'Satvik Chachra',
+    email: 'consultwithsatvik@gmail.com',
+    github: 'https://github.com/satvikchachra',
+    twitter: '@satvikchachra',
+    twitterUrl: 'https://x.com/satvikchachra',
+    linkedin: 'https://linkedin.com/in/satvikchachra',
   },
 };
 
 export function buildMetadata({
   title,
   description,
-  path = "",
+  path = '',
   ogImage,
 }: {
   title?: string;
@@ -32,13 +32,11 @@ export function buildMetadata({
 }): Metadata {
   if (title && /^[a-z]/.test(title)) {
     throw new Error(
-      `Build Error: The page title "${title}" is not capitalized. All page titles must be capitalized.`
+      `Build Error: The page title "${title}" is not capitalized. All page titles must be capitalized.`,
     );
   }
 
-  const metaTitle = title
-    ? title
-    : siteConfig.title;
+  const metaTitle = title ? title : siteConfig.title;
   const metaDesc = description ?? siteConfig.description;
   const url = `${BASE_URL}${path}`;
   return {
@@ -51,11 +49,11 @@ export function buildMetadata({
       description: metaDesc,
       url,
       siteName: siteConfig.name,
-      type: "website",
+      type: 'website',
       ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630, alt: metaTitle }] }),
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: metaTitle,
       description: metaDesc,
       creator: siteConfig.author.twitter,
@@ -94,7 +92,7 @@ export function buildBlogMetadata({
     ...base,
     openGraph: {
       ...base.openGraph,
-      type: "article",
+      type: 'article',
       publishedTime: date,
       tags,
       authors: [siteConfig.name],

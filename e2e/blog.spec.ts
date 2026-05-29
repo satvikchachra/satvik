@@ -5,7 +5,7 @@ test.describe('Blog rendering and MDX features', () => {
   test('Blog index page loads and lists posts', async ({ page }) => {
     await page.goto('/blog');
     await expect(page.locator('h1').first()).toBeVisible();
-    
+
     // There should be at least one blog post linked
     const postLinks = page.locator('a[href^="/blog/"]');
     await expect(postLinks.first()).toBeVisible();
@@ -14,7 +14,7 @@ test.describe('Blog rendering and MDX features', () => {
   test('Blog post syntax highlighting renders correctly with CSS variables', async ({ page }) => {
     // Navigate directly to the known blog post
     await page.goto('/blog/e2e-test-post');
-    
+
     // Ensure the post loaded
     await expect(page.locator('.prose')).toBeVisible();
 
@@ -31,7 +31,7 @@ test.describe('Blog rendering and MDX features', () => {
 
     // Test Theme Toggling (light/dark)
     const htmlElement = page.locator('html');
-    
+
     // Force light mode
     await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'));
     await expect(htmlElement).toHaveAttribute('data-theme', 'light');
@@ -69,7 +69,7 @@ test.describe('Blog rendering and MDX features', () => {
 
   test('Blog index page has correct metadata and dev-mode private toggles', async ({ page }) => {
     await page.goto('/blog');
-    
+
     // Check title matches expected metadata
     await expect(page).toHaveTitle(/Blog/i);
 
@@ -101,11 +101,11 @@ test.describe('Blog rendering and MDX features', () => {
 
   test('Blog post has back navigation and SEO/Opengraph tags', async ({ page }) => {
     await page.goto('/blog/e2e-test-post');
-    
+
     // Ensure OG Image tag exists
     const ogImage = page.locator('meta[property="og:image"]');
     await expect(ogImage).toHaveCount(1);
-    
+
     // Ensure Cover image renders properly using Next/Image
     const coverImage = page.locator('img[alt^="Cover image for"]').first();
     await expect(coverImage).toBeVisible();
@@ -127,11 +127,11 @@ test.describe('Blog rendering and MDX features', () => {
 
   test('Blog index page has JSON-LD structured data', async ({ page }) => {
     await page.goto('/blog');
-    
+
     // Check for JSON-LD script
     const scriptTags = page.locator('script[type="application/ld+json"]');
     const count = await scriptTags.count();
-    
+
     let found = false;
     for (let i = 0; i < count; i++) {
       const content = await scriptTags.nth(i).textContent();
@@ -143,13 +143,15 @@ test.describe('Blog rendering and MDX features', () => {
     expect(found).toBe(true);
   });
 
-  test('Blog post page has JSON-LD structured data and correct robots meta for private posts', async ({ page }) => {
+  test('Blog post page has JSON-LD structured data and correct robots meta for private posts', async ({
+    page,
+  }) => {
     await page.goto('/blog/e2e-test-post');
-    
+
     // Check for JSON-LD script
     const scriptTags = page.locator('script[type="application/ld+json"]');
     const count = await scriptTags.count();
-    
+
     let found = false;
     for (let i = 0; i < count; i++) {
       const content = await scriptTags.nth(i).textContent();
@@ -158,7 +160,7 @@ test.describe('Blog rendering and MDX features', () => {
       }
     }
     expect(found).toBe(true);
-    
+
     // Check robots meta (e2e-test-post is a private post)
     const robotsMeta = page.locator('meta[name="robots"]');
     await expect(robotsMeta).toHaveAttribute('content', 'noindex, nofollow');

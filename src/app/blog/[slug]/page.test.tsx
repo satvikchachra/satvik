@@ -12,7 +12,7 @@ vi.mock('@/lib/blog', () => ({
           description: 'A private post',
           date: '2026-05-29',
           private: true,
-        }
+        },
       };
     }
     if (slug === 'public-post') {
@@ -22,7 +22,7 @@ vi.mock('@/lib/blog', () => ({
           description: 'A public post',
           date: '2026-05-29',
           private: false,
-        }
+        },
       };
     }
     return null;
@@ -39,16 +39,15 @@ describe('BlogPost Dynamic Page', () => {
   describe('generateStaticParams', () => {
     it('maps slugs to the params shape expected by Next.js', async () => {
       const params = await generateStaticParams();
-      expect(params).toEqual([
-        { slug: 'test-slug-1' },
-        { slug: 'test-slug-2' },
-      ]);
+      expect(params).toEqual([{ slug: 'test-slug-1' }, { slug: 'test-slug-2' }]);
     });
   });
 
   describe('generateMetadata', () => {
     it('adds noindex, nofollow robots tag for private posts', async () => {
-      const metadata = await generateMetadata({ params: Promise.resolve({ slug: 'private-post' }) });
+      const metadata = await generateMetadata({
+        params: Promise.resolve({ slug: 'private-post' }),
+      });
       expect(metadata.robots).toEqual({
         index: false,
         follow: false,
@@ -61,7 +60,9 @@ describe('BlogPost Dynamic Page', () => {
     });
 
     it('returns empty object if post is not found', async () => {
-      const metadata = await generateMetadata({ params: Promise.resolve({ slug: 'non-existent' }) });
+      const metadata = await generateMetadata({
+        params: Promise.resolve({ slug: 'non-existent' }),
+      });
       expect(metadata).toEqual({});
     });
   });

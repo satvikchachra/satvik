@@ -1,9 +1,8 @@
-
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 /**
@@ -12,15 +11,15 @@ export function cn(...inputs: ClassValue[]) {
  * - __underline__ -> <span> (used for leadership, ownership, and scope verbs)
  */
 export function formatResumeText(text: string): React.ReactNode {
-  if (!text) return "";
-  
+  if (!text) return '';
+
   // Split using regex that captures two syntax types:
   // 1. **bold**
   // 2. __underline__
   const parts = text.split(/(\*\*[^*]+\*\*|__[^_]+__)/g);
-  
+
   return parts.map((part, index) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
+    if (part.startsWith('**') && part.endsWith('**')) {
       return (
         // eslint-disable-next-line react/no-array-index-key
         <b key={index} className="font-semibold text-[var(--text)]">
@@ -28,7 +27,7 @@ export function formatResumeText(text: string): React.ReactNode {
         </b>
       );
     }
-    if (part.startsWith("__") && part.endsWith("__")) {
+    if (part.startsWith('__') && part.endsWith('__')) {
       return (
         // eslint-disable-next-line react/no-array-index-key
         <span key={index} className="resume-underline">
@@ -43,9 +42,9 @@ export function formatResumeText(text: string): React.ReactNode {
 // Format date for display
 export function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   });
 }

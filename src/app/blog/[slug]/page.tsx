@@ -1,8 +1,8 @@
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import { getMdxPostBySlug, getMdxSlugs } from "@/lib/blog";
-import { buildBlogMetadata, siteConfig } from "@/lib/metadata";
-import { PostLayout } from "@/components/blog/post-layout";
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import { getMdxPostBySlug, getMdxSlugs } from '@/lib/blog';
+import { buildBlogMetadata, siteConfig } from '@/lib/metadata';
+import { PostLayout } from '@/components/blog/post-layout';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -57,29 +57,29 @@ export default async function BlogPostPage({ params }: Props) {
   const images = post.meta.ogImage ? [new URL(post.meta.ogImage, siteConfig.url).toString()] : [];
 
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
     headline: post.meta.title,
     image: images,
     datePublished: new Date(post.meta.date).toISOString(),
     dateModified: new Date(post.meta.date).toISOString(),
     author: [
       {
-        "@type": "Person",
+        '@type': 'Person',
         name: siteConfig.name,
         url: siteConfig.url,
       },
     ],
     publisher: {
-      "@type": "Person",
+      '@type': 'Person',
       name: siteConfig.name,
       url: siteConfig.url,
     },
     description: post.meta.description,
     isAccessibleForFree: true,
     mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": url,
+      '@type': 'WebPage',
+      '@id': url,
     },
   };
 

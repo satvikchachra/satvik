@@ -1,25 +1,52 @@
-/* eslint-disable no-restricted-globals */
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ShareMenu } from './share-menu';
 import type React from 'react';
 
 vi.mock('@/components/ui/dropdown-menu', () => ({
-  DropdownMenu: ({ children }: { children: React.ReactNode; onOpenChange?: (open: boolean) => void }) => <div data-testid="dropdown">{children}</div>,
-  DropdownMenuTrigger: ({ children, asChild }: { children: React.ReactElement<{ onClick?: (e: React.MouseEvent) => void }>; asChild?: boolean }) => {
+  DropdownMenu: ({
+    children,
+  }: {
+    children: React.ReactNode;
+    onOpenChange?: (open: boolean) => void;
+  }) => <div data-testid="dropdown">{children}</div>,
+  DropdownMenuTrigger: ({
+    children,
+    asChild,
+  }: {
+    children: React.ReactElement<{ onClick?: (e: React.MouseEvent) => void }>;
+    asChild?: boolean;
+  }) => {
     // If it's a button, let's just make it call onOpenChange
-    return <div onClick={(e) => asChild && children.props.onClick ? children.props.onClick(e) : null} role="button" tabIndex={0} onKeyDown={() => {}}>{children}</div>;
+    return (
+      <div
+        onClick={(e) => (asChild && children.props.onClick ? children.props.onClick(e) : null)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={() => {}}
+      >
+        {children}
+      </div>
+    );
   },
   DropdownMenuContent: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  DropdownMenuItem: ({ children, onSelect }: { children: React.ReactNode; onSelect?: (e: React.SyntheticEvent) => void }) => (
-    <div onClick={(e) => onSelect && onSelect(e)} role="menuitem" tabIndex={0} onKeyDown={() => {}}>{children}</div>
+  DropdownMenuItem: ({
+    children,
+    onSelect,
+  }: {
+    children: React.ReactNode;
+    onSelect?: (e: React.SyntheticEvent) => void;
+  }) => (
+    <div onClick={(e) => onSelect && onSelect(e)} role="menuitem" tabIndex={0} onKeyDown={() => {}}>
+      {children}
+    </div>
   ),
 }));
 
 describe('ShareMenu', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    
+
     // Mock clipboard
     Object.assign(navigator, {
       clipboard: {
@@ -32,11 +59,7 @@ describe('ShareMenu', () => {
     if ('canShare' in navigator) delete (navigator as unknown as Record<string, unknown>).canShare;
 
     // Mock window location
-    delete (window as unknown as { location: unknown }).location;
-    Object.defineProperty(window, 'location', {
-      value: { href: 'http://localhost/blog/test' },
-      writable: true
-    });
+    vi.stubGlobal('location', { href: 'http://localhost/blog/test' });
   });
 
   it('renders the share button', () => {
@@ -46,7 +69,7 @@ describe('ShareMenu', () => {
 
   it('copies link to clipboard when "Copy link" is clicked', async () => {
     render(<ShareMenu title="Test Title" />);
-    
+
     // Open menu
     const button = screen.getByRole('button', { name: /share post/i });
     fireEvent.click(button);
@@ -57,7 +80,7 @@ describe('ShareMenu', () => {
 
     // Verify clipboard was called
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('http://localhost/blog/test');
-    
+
     // Verify text changed to "Copied!"
     await waitFor(() => {
       expect(screen.getByText('Copied!')).toBeInTheDocument();
@@ -71,7 +94,7 @@ describe('ShareMenu', () => {
     });
 
     render(<ShareMenu title="Test Title" />);
-    
+
     // Open menu
     const button = screen.getByRole('button', { name: /share post/i });
     fireEvent.click(button);
@@ -86,7 +109,7 @@ describe('ShareMenu', () => {
     });
 
     render(<ShareMenu title="Test Title" />);
-    
+
     // Open menu
     const button = screen.getByRole('button', { name: /share post/i });
     fireEvent.click(button);
@@ -105,7 +128,7 @@ describe('ShareMenu', () => {
     });
 
     render(<ShareMenu title="Test Title" />);
-    
+
     // Open menu
     const button = screen.getByRole('button', { name: /share post/i });
     fireEvent.click(button);
@@ -117,7 +140,7 @@ describe('ShareMenu', () => {
     // Verify share was called
     expect(navigator.share).toHaveBeenCalledWith({
       title: 'Test Title',
-      url: 'http://localhost/blog/test'
+      url: 'http://localhost/blog/test',
     });
   });
 });

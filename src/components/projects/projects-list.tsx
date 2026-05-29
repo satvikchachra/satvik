@@ -1,5 +1,5 @@
-import type { Project } from "@/lib/projects";
-import { formatResumeText } from "@/lib/utils";
+import type { Project } from '@/lib/projects';
+import { formatResumeText } from '@/lib/utils';
 
 interface ProjectsListProps {
   projects: Project[];
@@ -10,26 +10,17 @@ export function ProjectsList({ projects }: ProjectsListProps) {
     <>
       {/* Project rows */}
       {projects.length === 0 ? (
-        <p className="text-sm text-text-muted">
-          no projects found.
-        </p>
+        <p className="text-sm text-text-muted">no projects found.</p>
       ) : (
         <ul>
           {projects.map((project) => (
-            <li
-              key={project.slug}
-              className="py-5 border-t border-border-subtle"
-            >
+            <li key={project.slug} className="py-5 border-t border-border-subtle">
               {/* Title row */}
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <h2 className="text-sm text-text">
-                  {project.title}
-                </h2>
+                <h2 className="text-sm text-text">{project.title}</h2>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  {project.status === "active" && (
-                    <span className="text-xs text-green">
-                      active
-                    </span>
+                  {project.status === 'active' && (
+                    <span className="text-xs text-green">active</span>
                   )}
                   <span className="mono-label">{project.year}</span>
                 </div>
@@ -37,13 +28,11 @@ export function ProjectsList({ projects }: ProjectsListProps) {
 
               {/* Company & Live URL */}
               <div className="text-xs mb-3 flex items-center gap-2">
-                {project.company && (
-                  <span className="text-text-subtle">
-                    {project.company}
-                  </span>
-                )}
+                {project.company && <span className="text-text-subtle">{project.company}</span>}
                 {project.company && project.liveUrl && (
-                  <span className="text-text-subtle" aria-hidden="true">·</span>
+                  <span className="text-text-subtle" aria-hidden="true">
+                    ·
+                  </span>
                 )}
                 {project.liveUrl && (
                   <a
@@ -54,14 +43,11 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                   >
                     <span className="blue-link-text">
                       {project.liveUrl
-                        .replace("https://", "")
-                        .replace("www.", "")
-                        .replace(/\/$/, "")}
+                        .replace('https://', '')
+                        .replace('www.', '')
+                        .replace(/\/$/, '')}
                     </span>
-                    <span
-                      className="text-xs no-underline"
-                      aria-hidden="true"
-                    >
+                    <span className="text-xs no-underline" aria-hidden="true">
                       ↗
                     </span>
                   </a>
@@ -69,9 +55,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
               </div>
 
               {/* Short description */}
-              <p
-                className="text-sm leading-relaxed mb-4 text-text-muted"
-              >
+              <p className="text-sm leading-relaxed mb-4 text-text-muted">
                 {formatResumeText(project.description)}
               </p>
 
@@ -88,10 +72,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
               {project.bullets && project.bullets.length > 0 && (
                 <ul className="space-y-2 pl-4">
                   {project.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="text-sm leading-relaxed list-disc text-text-muted"
-                    >
+                    <li key={bullet} className="text-sm leading-relaxed list-disc text-text-muted">
                       {formatResumeText(bullet)}
                     </li>
                   ))}

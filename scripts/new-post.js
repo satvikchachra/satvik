@@ -25,12 +25,12 @@ Write your content here...
 
 const jsonContent = {
   title: title,
-  description: "A brief description of the post...",
+  description: 'A brief description of the post...',
   date: date,
   slug: slug,
-  tags: ["Engineering"],
+  tags: ['Engineering'],
   image: `/images/blog/${hash}/cover.png`,
-  ogImage: `/og/blog/${hash}.png`
+  ogImage: `/og/blog/${hash}.png`,
 };
 
 const contentDir = path.join(process.cwd(), 'src', 'content', 'blog');

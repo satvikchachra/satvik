@@ -1,14 +1,14 @@
-"use client";
+'use client';
 /* eslint-disable no-restricted-globals */
 
-import { ShareIcon, LinkIcon } from "@/components/ui/icons";
+import { ShareIcon, LinkIcon } from '@/components/ui/icons';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useMemo, useState } from "react";
+} from '@/components/ui/dropdown-menu';
+import { useMemo, useState } from 'react';
 
 interface ShareMenuProps {
   title: string;
@@ -18,7 +18,7 @@ export function ShareMenu({ title }: ShareMenuProps) {
   const [open, setOpen] = useState(false);
   const [hasCopied, setHasCopied] = useState(false);
   const canShare = useMemo(() => {
-    if (typeof window === "undefined" || typeof navigator === "undefined") return false;
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
 
     try {
       const shareData = { title, url: window.location.href };
@@ -40,7 +40,7 @@ export function ShareMenu({ title }: ShareMenuProps) {
         setOpen(false);
       }, 2000);
     } catch (err) {
-      console.error("Failed to copy link", err);
+      console.error('Failed to copy link', err);
     }
   };
 
@@ -53,8 +53,8 @@ export function ShareMenu({ title }: ShareMenuProps) {
         });
         setOpen(false);
       } catch (err) {
-        if (err instanceof Error && err.name !== "AbortError") {
-          console.error("Failed to share", err);
+        if (err instanceof Error && err.name !== 'AbortError') {
+          console.error('Failed to share', err);
         }
       }
     }
@@ -66,8 +66,9 @@ export function ShareMenu({ title }: ShareMenuProps) {
         <button
           type="button"
           aria-label="Share post"
-          className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-border-subtle ${open ? "text-text bg-surface" : "text-text-muted bg-transparent"
-            }`}
+          className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-border-subtle ${
+            open ? 'text-text bg-surface' : 'text-text-muted bg-transparent'
+          }`}
         >
           <ShareIcon width={14} height={14} aria-hidden="true" />
         </button>
@@ -86,7 +87,7 @@ export function ShareMenu({ title }: ShareMenuProps) {
           className="flex w-full cursor-pointer items-center gap-1.5 px-2 py-1.5 rounded-sm text-xs text-text transition-colors duration-200 hover:bg-surface focus:bg-surface text-left"
         >
           <LinkIcon width={11} height={11} className="size-[11px]" aria-hidden="true" />
-          <span>{hasCopied ? "Copied!" : "Copy link"}</span>
+          <span>{hasCopied ? 'Copied!' : 'Copy link'}</span>
         </DropdownMenuItem>
 
         {canShare && (

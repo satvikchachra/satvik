@@ -1,9 +1,9 @@
-import fs from "fs";
-import path from "path";
-import readingTime from "reading-time";
-import { cache } from "react";
+import fs from 'fs';
+import path from 'path';
+import readingTime from 'reading-time';
+import { cache } from 'react';
 
-const CONTENT_DIR = path.join(process.cwd(), "src", "content", "blog");
+const CONTENT_DIR = path.join(process.cwd(), 'src', 'content', 'blog');
 
 export interface MdxPost {
   slug: string;
@@ -15,7 +15,7 @@ export interface MdxPost {
   readingTime: string;
   image: string;
   ogImage: string;
-  type: "mdx";
+  type: 'mdx';
   private?: boolean;
 }
 
@@ -29,7 +29,7 @@ export interface CustomPost {
   readingTime?: string;
   image: string;
   ogImage: string;
-  type: "custom";
+  type: 'custom';
   private?: boolean;
   // path inside /app/blog/ — Next.js handles routing automatically
 }
@@ -72,7 +72,7 @@ function getMdxPostMeta(jsonPath: string): {
 } {
   if (fs.existsSync(jsonPath)) {
     try {
-      return JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+      return JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
     } catch {
       // malformed JSON — use defaults
     }
@@ -83,34 +83,36 @@ function getMdxPostMeta(jsonPath: string): {
 function getMdxPosts(): Array<MdxPost & { content: string }> {
   if (!fs.existsSync(CONTENT_DIR)) return [];
 
-  const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".mdx"));
+  const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.mdx'));
 
   return files.map((filenameWithExt) => {
-    const filename = filenameWithExt.replace(/\.mdx$/, "");
+    const filename = filenameWithExt.replace(/\.mdx$/, '');
     const mdxPath = path.join(CONTENT_DIR, filenameWithExt);
     const jsonPath = path.join(CONTENT_DIR, `${filename}.json`);
 
-    const body = fs.readFileSync(mdxPath, "utf-8");
+    const body = fs.readFileSync(mdxPath, 'utf-8');
     const rt = readingTime(body);
 
     const meta = getMdxPostMeta(jsonPath);
     const slug = meta.slug || filename;
 
     if (!meta.image || !meta.ogImage) {
-      throw new Error(`Blog post "${slug}" (file: ${filename}) is missing mandatory 'image' or 'ogImage' properties in its JSON metadata.`);
+      throw new Error(
+        `Blog post "${slug}" (file: ${filename}) is missing mandatory 'image' or 'ogImage' properties in its JSON metadata.`,
+      );
     }
 
     return {
       slug,
       filename,
       title: meta.title ?? slug,
-      description: meta.description ?? "",
-      date: meta.date ?? new Date().toISOString().split("T")[0],
+      description: meta.description ?? '',
+      date: meta.date ?? new Date().toISOString().split('T')[0],
       tags: Array.isArray(meta.tags) ? meta.tags : [],
       readingTime: rt.text,
       image: meta.image,
       ogImage: meta.ogImage,
-      type: "mdx" as const,
+      type: 'mdx' as const,
       private: meta.private === true,
       content: body,
     };
@@ -120,11 +122,11 @@ function getMdxPosts(): Array<MdxPost & { content: string }> {
 export const getAllPosts = cache((): Post[] => {
   const mdx = getMdxPosts();
   let all = [...mdx, ...CUSTOM_POSTS];
-  
-  if (process.env.NODE_ENV === "production") {
+
+  if (process.env.NODE_ENV === 'production') {
     all = all.filter((p) => !p.private);
   }
-  
+
   return all.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 });
 
@@ -134,7 +136,7 @@ export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string
   if (!post) return null;
 
   // Hard block in production so even direct URLs 404
-  if (post.private && process.env.NODE_ENV === "production") {
+  if (post.private && process.env.NODE_ENV === 'production') {
     return null;
   }
 
@@ -146,8 +148,8 @@ export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string
 
 export function getMdxSlugs(): string[] {
   let posts = getMdxPosts();
-  if (process.env.NODE_ENV === "production") {
-    posts = posts.filter(p => !p.private);
+  if (process.env.NODE_ENV === 'production') {
+    posts = posts.filter((p) => !p.private);
   }
   return posts.map((p) => p.slug);
 }
@@ -160,4 +162,3 @@ export function getAllBlogTags(): string[] {
   });
   return Array.from(tags).sort();
 }
-

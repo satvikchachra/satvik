@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export function DevPrivateToggle({ children }: { children: ReactNode }) {
   // Don't render the toggle or wrappers in production at all
-  if (process.env.NODE_ENV === "production") return children;
+  if (process.env.NODE_ENV === 'production') return children;
 
   return (
     <div className="group/dev">
@@ -18,9 +18,7 @@ export function DevPrivateToggle({ children }: { children: ReactNode }) {
           <div className="relative w-8 h-4 bg-border rounded-full transition-colors group-has-[:checked]:bg-accent">
             <div className="absolute left-[2px] top-[2px] w-[12px] h-[12px] bg-bg rounded-full transition-transform group-has-[:checked]:translate-x-[16px]"></div>
           </div>
-          <span className="text-text-muted group-has-[:checked]:text-text">
-            Show Private Posts
-          </span>
+          <span className="text-text-muted group-has-[:checked]:text-text">Show Private Posts</span>
         </label>
       </div>
       <div className="group-has-[input:not(:checked)]/dev:[&_[data-private]]:hidden">
