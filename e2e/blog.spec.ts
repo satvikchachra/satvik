@@ -124,4 +124,43 @@ test.describe('Blog rendering and MDX features', () => {
     const response = await page.goto('/blog/this-slug-does-not-exist');
     expect(response?.status()).toBe(404);
   });
+
+  test('Blog index page has JSON-LD structured data', async ({ page }) => {
+    await page.goto('/blog');
+    
+    // Check for JSON-LD script
+    const scriptTags = page.locator('script[type="application/ld+json"]');
+    const count = await scriptTags.count();
+    
+    let found = false;
+    for (let i = 0; i < count; i++) {
+      const content = await scriptTags.nth(i).textContent();
+      if (content && content.includes('"@type":"BreadcrumbList"')) {
+        found = true;
+        expect(content).toContain('"name":"Blog"');
+      }
+    }
+    expect(found).toBe(true);
+  });
+
+  test('Blog post page has JSON-LD structured data and correct robots meta for private posts', async ({ page }) => {
+    await page.goto('/blog/e2e-test-post');
+    
+    // Check for JSON-LD script
+    const scriptTags = page.locator('script[type="application/ld+json"]');
+    const count = await scriptTags.count();
+    
+    let found = false;
+    for (let i = 0; i < count; i++) {
+      const content = await scriptTags.nth(i).textContent();
+      if (content && content.includes('"@type":"BlogPosting"')) {
+        found = true;
+      }
+    }
+    expect(found).toBe(true);
+    
+    // Check robots meta (e2e-test-post is a private post)
+    const robotsMeta = page.locator('meta[name="robots"]');
+    await expect(robotsMeta).toHaveAttribute('content', 'noindex, nofollow');
+  });
 });
