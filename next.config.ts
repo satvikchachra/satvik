@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   extension: /\.(md|mdx)$/,
+  options: {
+    remarkPlugins: [
+      "remark-gfm",
+      "remark-math",
+    ],
+    rehypePlugins: [
+      "rehype-katex",
+      ["rehype-pretty-code", { theme: "github-dark" }],
+    ],
+  },
 });
 
 export default withMDX(nextConfig);
