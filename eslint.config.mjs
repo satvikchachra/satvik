@@ -41,6 +41,12 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-explicit-any": "error",
       "no-console": ["warn", { allow: ["warn", "error"] }],
+      
+      // React Anti-Patterns
+      "no-restricted-globals": ["error", 
+        { name: "document", message: "Use React state/refs instead of accessing document directly." },
+        { name: "window", message: "Use React state/refs instead of accessing window directly." }
+      ],
     },
   },
 ]);

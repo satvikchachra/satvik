@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getMdxPostBySlug(slug);
   if (!post) return {};
 
-  return buildBlogMetadata({
+  const meta = buildBlogMetadata({
     title: post.meta.title,
     description: post.meta.description,
     slug,
@@ -26,6 +26,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     tags: post.meta.tags,
     ogImage: post.meta.ogImage,
   });
+
+  if (post.meta.private) {
+    meta.robots = {
+      index: false,
+      follow: false,
+    };
+  }
+
+  return meta;
 }
 
 export default async function BlogPostPage({ params }: Props) {

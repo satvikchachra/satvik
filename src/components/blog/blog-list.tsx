@@ -19,7 +19,7 @@ export function BlogList({ posts }: BlogListProps) {
       ) : (
         <ol aria-label="Blog posts">
           {posts.map((post, i) => (
-            <li key={post.slug}>
+            <li key={post.slug} data-private={post.private ? "true" : undefined}>
               <Link
                 href={`/blog/${post.slug}`}
                 id={`blog-post-${post.slug}`}
@@ -30,9 +30,14 @@ export function BlogList({ posts }: BlogListProps) {
               >
                 <div className="w-full sm:flex-1 min-w-0 pr-0 sm:pr-8 mb-2 sm:mb-0">
                   <span
-                    className="text-sm block mb-1 text-text"
+                    className="text-sm block mb-1 text-text flex items-center gap-2"
                   >
                     <span className="animated-underline">{post.title}</span>
+                    {post.private && (
+                      <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-sm bg-accent/10 text-accent border border-accent/20">
+                        Private
+                      </span>
+                    )}
                     <span className="row-link-arrow text-xs ml-1.5 inline-block">
                       ↗
                     </span>

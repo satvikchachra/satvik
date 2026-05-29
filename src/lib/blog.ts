@@ -15,6 +15,7 @@ export interface MdxPost {
   image: string;
   ogImage: string;
   type: "mdx";
+  private?: boolean;
 }
 
 // Custom posts are hand-registered here (for creatively designed pages)
@@ -28,6 +29,7 @@ export interface CustomPost {
   image: string;
   ogImage: string;
   type: "custom";
+  private?: boolean;
   // path inside /app/blog/ — Next.js handles routing automatically
 }
 
@@ -65,6 +67,7 @@ function getMdxPostMeta(jsonPath: string): {
   tags?: string[];
   image?: string;
   ogImage?: string;
+  private?: boolean;
 } {
   if (fs.existsSync(jsonPath)) {
     try {
@@ -107,13 +110,19 @@ function getMdxPosts(): MdxPost[] {
       image: meta.image,
       ogImage: meta.ogImage,
       type: "mdx" as const,
+      private: meta.private === true,
     };
   });
 }
 
 export function getAllPosts(): Post[] {
   const mdx = getMdxPosts();
-  const all = [...mdx, ...CUSTOM_POSTS];
+  let all = [...mdx, ...CUSTOM_POSTS];
+  
+  if (process.env.NODE_ENV === "production") {
+    all = all.filter((p) => !p.private);
+  }
+  
   return all.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -121,6 +130,11 @@ export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string
   const posts = getMdxPosts();
   const post = posts.find((p) => p.slug === slug);
   if (!post) return null;
+
+  // Hard block in production so even direct URLs 404
+  if (post.private && process.env.NODE_ENV === "production") {
+    return null;
+  }
 
   const mdxPath = path.join(CONTENT_DIR, `${post.filename}.mdx`);
   const body = fs.readFileSync(mdxPath, "utf-8");
@@ -132,7 +146,11 @@ export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string
 }
 
 export function getMdxSlugs(): string[] {
-  return getMdxPosts().map((p) => p.slug);
+  let posts = getMdxPosts();
+  if (process.env.NODE_ENV === "production") {
+    posts = posts.filter(p => !p.private);
+  }
+  return posts.map((p) => p.slug);
 }
 
 export function getAllBlogTags(): string[] {

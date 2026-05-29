@@ -4,5 +4,6 @@
   "description": "A dedicated post for E2E testing.",
   "image": "/images/blog/e2e/cover.jpg",
   "ogImage": "/og/blog/e2e.jpg",
-  "tags": ["test"]
+  "tags": ["test"],
+  "private": true
 }

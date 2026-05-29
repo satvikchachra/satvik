@@ -40,27 +40,62 @@ test.describe('Blog rendering and MDX features', () => {
     await expect(htmlElement).toHaveAttribute('data-theme', 'dark');
   });
 
-  test('Blog post math equations (KaTeX) render correctly', async ({ page }) => {
+  test('Blog post comprehensive MDX features render correctly', async ({ page }) => {
     await page.goto('/blog/e2e-test-post');
 
+    // 1. Headings & Blockquotes
+    await expect(page.locator('.prose h2:has-text("1. Headings")')).toBeVisible();
+    await expect(page.locator('.prose blockquote')).toContainText('This is a blockquote');
+
+    // 2. Lists and Tasks
+    await expect(page.locator('.prose ul')).toBeVisible();
+    await expect(page.locator('.prose input[type="checkbox"]')).toHaveCount(2);
+
+    // 3. Tables (GFM)
+    await expect(page.locator('.prose table')).toBeVisible();
+    await expect(page.locator('.prose th:has-text("Feature")')).toBeVisible();
+    await expect(page.locator('.prose td:has-text("GFM")')).toBeVisible();
+
+    // 4. Code Blocks
+    const codeBlock = page.locator('figure[data-rehype-pretty-code-figure] pre');
+    await expect(codeBlock.first()).toBeVisible();
+
+    // 5. Math (KaTeX)
     // Check for inline or block math rendering classes from rehype-katex
     const mathElement = page.locator('.katex').first();
     await expect(mathElement).toBeVisible();
   });
 
-  test('Blog index page has correct metadata and interactive links', async ({ page }) => {
+  test('Blog index page has correct metadata and dev-mode private toggles', async ({ page }) => {
     await page.goto('/blog');
     
-    // Check title matches expected metadata (e.g., 'Blog | ...' or just 'Blog')
+    // Check title matches expected metadata
     await expect(page).toHaveTitle(/Blog/i);
 
-    // Click the first blog post link to ensure it navigates correctly
-    const firstPostLink = page.locator('a[href^="/blog/"]').first();
-    const href = await firstPostLink.getAttribute('href');
-    await firstPostLink.click();
+    // Private post 'e2e-test-post' should be listed in dev mode by default
+    const privatePostLink = page.locator('a[href="/blog/e2e-test-post"]');
+    await expect(privatePostLink).toBeVisible();
 
-    // Verify URL changed to the post
-    await expect(page).toHaveURL(new RegExp(href!));
+    // Verify the "PRIVATE" badge is on the screen
+    const privateBadge = privatePostLink.locator('span:text-is("Private")');
+    await expect(privateBadge).toBeVisible();
+
+    // Toggle the "Show Private Posts" checkbox off
+    const toggleCheckbox = page.locator('input[aria-label="Toggle private blogs visibility"]');
+    await expect(toggleCheckbox).toBeChecked();
+    await toggleCheckbox.click({ force: true });
+    await expect(toggleCheckbox).not.toBeChecked();
+
+    // The private post should now be hidden (via CSS class on body)
+    await expect(privatePostLink).not.toBeVisible();
+
+    // Toggle back on
+    await toggleCheckbox.click({ force: true });
+    await expect(privatePostLink).toBeVisible();
+
+    // Click it to ensure it navigates correctly
+    await privatePostLink.click();
+    await expect(page).toHaveURL(/.*\/blog\/e2e-test-post$/);
   });
 
   test('Blog post has back navigation and SEO/Opengraph tags', async ({ page }) => {

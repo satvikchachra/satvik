@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/metadata";
 import { getAllPosts, getAllBlogTags } from "@/lib/blog";
 import { BlogList } from "@/components/blog/blog-list";
+import { DevPrivateToggle } from "@/components/blog/dev-private-toggle";
 
 export const metadata: Metadata = buildMetadata({
   title: "Blog",
@@ -42,7 +43,9 @@ export default function BlogPage() {
         </div>
       ) : (
         <div className="animate-fade-in-up stagger-1">
-          <BlogList posts={posts} allTags={tags} />
+          <DevPrivateToggle>
+            <BlogList posts={posts} allTags={tags} />
+          </DevPrivateToggle>
         </div>
       )}
     </div>
