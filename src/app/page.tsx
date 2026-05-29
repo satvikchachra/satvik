@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import { formatResumeText, formatDate } from "@/lib/utils";
 import { EXPERIENCE } from "@/lib/experience";
+import { siteConfig } from "@/lib/metadata";
 
 const WINS = [
   ["2K+ users daily", "Built AI coding agent at Atlassian"],
@@ -16,8 +17,22 @@ const WINS = [
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Ambient glow */}
       <div className="ambient-glow" aria-hidden="true" />
 

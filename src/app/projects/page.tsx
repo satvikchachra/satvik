@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/metadata";
+import { buildMetadata, siteConfig } from "@/lib/metadata";
 import { getAllProjects } from "@/lib/projects";
 import { ProjectsList } from "@/components/projects/projects-list";
 
@@ -13,9 +13,33 @@ export const metadata: Metadata = buildMetadata({
 export default function ProjectsPage() {
   const projects = getAllProjects();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${siteConfig.url}/projects`,
+      },
+    ],
+  };
+
   return (
-    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
-      <header className="mb-8 animate-fade-in-up stagger-0">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+        <header className="mb-8 animate-fade-in-up stagger-0">
         <h1
           className="text-lg tracking-tight mb-2 text-text"
         >
@@ -31,6 +55,7 @@ export default function ProjectsPage() {
       <div className="animate-fade-in-up stagger-1">
         <ProjectsList projects={projects} />
       </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/metadata";
+import { buildMetadata, siteConfig } from "@/lib/metadata";
 import { getAllPosts } from "@/lib/blog";
 import { BlogList } from "@/components/blog/blog-list";
 import { DevPrivateToggle } from "@/components/blog/dev-private-toggle";
@@ -14,9 +14,33 @@ export const metadata: Metadata = buildMetadata({
 export default function BlogPage() {
   const posts = getAllPosts();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${siteConfig.url}/blog`,
+      },
+    ],
+  };
+
   return (
-    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
-      {/* Header */}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+        {/* Header */}
       <header className="mb-12 animate-fade-in-up stagger-0">
         <h1 id="blog-heading" className="text-lg tracking-tight mb-2 text-text">
           blog
@@ -48,5 +72,6 @@ export default function BlogPage() {
         </div>
       )}
     </div>
+    </>
   );
 }

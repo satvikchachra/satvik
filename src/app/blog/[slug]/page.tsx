@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getMdxPostBySlug, getMdxSlugs } from "@/lib/blog";
-import { buildBlogMetadata } from "@/lib/metadata";
+import { buildBlogMetadata, siteConfig } from "@/lib/metadata";
 import { PostLayout } from "@/components/blog/post-layout";
 
 interface Props {
@@ -53,15 +53,51 @@ export default async function BlogPostPage({ params }: Props) {
   }
   const { default: MDXContent } = MDXModule as { default: React.ComponentType };
 
+  const url = `${siteConfig.url}/blog/${slug}`;
+  const images = post.meta.ogImage ? [new URL(post.meta.ogImage, siteConfig.url).toString()] : [];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.meta.title,
+    image: images,
+    datePublished: new Date(post.meta.date).toISOString(),
+    dateModified: new Date(post.meta.date).toISOString(),
+    author: [
+      {
+        "@type": "Person",
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+    ],
+    publisher: {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    description: post.meta.description,
+    isAccessibleForFree: true,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+  };
+
   return (
-    <PostLayout
-      title={post.meta.title}
-      description={post.meta.description}
-      date={post.meta.date}
-      readingTime={post.meta.readingTime}
-      image={post.meta.image}
-    >
-      <MDXContent />
-    </PostLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <PostLayout
+        title={post.meta.title}
+        description={post.meta.description}
+        date={post.meta.date}
+        readingTime={post.meta.readingTime}
+        image={post.meta.image}
+      >
+        <MDXContent />
+      </PostLayout>
+    </>
   );
 }
