@@ -579,7 +579,8 @@ nav, button, input, select, textarea {
    PROSE (MDX blog content)
    ============================================================ */
 .prose {
-  color: var(--text-muted);
+  color: var(--text);
+  font-weight: 300;
   max-width: 68ch;
   font-family: var(--font-geist-mono, ui-monospace, monospace);
   font-size: 0.875rem;
@@ -622,12 +623,25 @@ nav, button, input, select, textarea {
 }
 .prose li { margin-bottom: 0.4em; }
 .prose blockquote {
-  border-left: 2px solid var(--border);
-  padding-left: 1.25em;
-  color: var(--text-muted);
-  font-style: normal;
+  background: var(--surface);
+  padding: 1em 1.25em;
+  color: color-mix(in srgb, var(--text) 85%, var(--accent));
+  font-style: italic;
+  font-weight: 400;
   margin: 1.5em 0;
-  opacity: 0.8;
+  border-radius: 4px;
+}
+.prose blockquote p:first-of-type {
+  margin-top: 0;
+}
+.prose blockquote p:last-of-type {
+  margin-bottom: 0;
+}
+.prose blockquote p:first-of-type::before {
+  content: "\201C";
+}
+.prose blockquote p:last-of-type::after {
+  content: "\201D";
 }
 .prose code:not(pre code) {
   font-family: var(--font-geist-mono, ui-monospace, monospace);

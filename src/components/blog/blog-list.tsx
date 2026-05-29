@@ -23,13 +23,12 @@ export function BlogList({ posts }: BlogListProps) {
               <Link
                 href={`/blog/${post.slug}`}
                 id={`blog-post-${post.slug}`}
-                className="row-link group"
+                className="row-link group flex-col sm:flex-row items-start"
                 style={{
                   animationDelay: `${(i + 1) * 50}ms`,
-                  alignItems: "flex-start",
                 }}
               >
-                <div className="flex-1 min-w-0 pr-8">
+                <div className="w-full sm:flex-1 min-w-0 pr-0 sm:pr-8 mb-2 sm:mb-0">
                   <span
                     className="text-sm block mb-1 text-text"
                   >
@@ -46,7 +45,7 @@ export function BlogList({ posts }: BlogListProps) {
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-2 flex-shrink-0 pt-0.5">
+                <div className="w-full sm:w-auto flex items-center gap-2 flex-shrink-0 pt-1 sm:pt-0.5">
                   <time dateTime={post.date} className="mono-label">
                     {formatDate(post.date)}
                   </time>

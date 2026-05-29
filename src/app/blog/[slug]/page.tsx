@@ -47,7 +47,6 @@ export default async function BlogPostPage({ params }: Props) {
       title={post.meta.title}
       description={post.meta.description}
       date={post.meta.date}
-      tags={post.meta.tags}
       readingTime={post.meta.readingTime}
       image={post.meta.image}
     >

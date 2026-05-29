@@ -5,11 +5,12 @@ interface PostLayoutProps {
   title: string;
   description: string;
   date: string;
-  tags?: string[];
   readingTime?: string;
   image: string;
   children: React.ReactNode;
 }
+
+import { ShareMenu } from "./share-menu";
 
 /**
  * Shared chrome for ALL blog posts — both MDX and custom page types.
@@ -19,7 +20,6 @@ export function PostLayout({
   title,
   description,
   date,
-  tags = [],
   readingTime,
   image,
   children,
@@ -27,14 +27,16 @@ export function PostLayout({
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
 
-      {/* Back link */}
-      <Link
-        href="/blog"
-        id="back-to-blog"
-        className="text-xs mb-12 inline-block link-subtle animate-fade-in-up stagger-0"
-      >
-        ← writing
-      </Link>
+      {/* Top row */}
+      <div className="mb-12 animate-fade-in-up stagger-0">
+        <Link
+          href="/blog"
+          id="back-to-blog"
+          className="text-xs inline-block link-subtle"
+        >
+          ← blog
+        </Link>
+      </div>
 
       {/* Post header */}
       <header className="mb-6 animate-fade-in-up stagger-1">
@@ -58,21 +60,18 @@ export function PostLayout({
 
         {/* Meta row */}
         <div
-          className="flex flex-wrap items-center gap-x-3 gap-y-1 pb-4 border-b border-border-subtle"
+          className="flex flex-wrap items-center justify-between gap-y-2 pb-4 border-b border-border-subtle"
         >
-          <div className="flex items-center gap-3">
-            {readingTime && <span className="mono-label">{readingTime}</span>}
-            {readingTime && <span className="mono-label" aria-hidden="true">·</span>}
-            <time dateTime={date} className="mono-label">
-              {formatDate(date)}
-            </time>
-          </div>
-          {tags.length > 0 && (
-            <div className="flex items-center gap-3 w-full sm:w-auto">
-              <span className="mono-label hidden sm:inline" aria-hidden="true">·</span>
-              <span className="mono-label">{tags.join(", ")}</span>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <div className="flex items-center gap-3">
+              {readingTime && <span className="mono-label">{readingTime}</span>}
+              {readingTime && <span className="mono-label" aria-hidden="true">·</span>}
+              <time dateTime={date} className="mono-label">
+                {formatDate(date)}
+              </time>
             </div>
-          )}
+          </div>
+          <ShareMenu title={title} />
         </div>
       </header>
 
@@ -87,7 +86,7 @@ export function PostLayout({
           href="/blog"
           className="text-xs link-subtle"
         >
-          ← back to writing
+          ← back to blog
         </Link>
       </footer>
     </div>

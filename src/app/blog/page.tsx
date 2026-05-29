@@ -6,7 +6,7 @@ import { BlogList } from "@/components/blog/blog-list";
 export const metadata: Metadata = buildMetadata({
   title: "Blog",
   description:
-    "Writing by Satvik Chachra on AI systems, full stack engineering, and deep dives into CS, math, and science.",
+    "Blog by Satvik Chachra on AI systems, full stack engineering, and deep dives into CS, math, and science.",
   path: "/blog",
 });
 
@@ -16,12 +16,10 @@ export default function BlogPage() {
 
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
-
-      <header className="mb-8 animate-fade-in-up stagger-0">
-        <h1
-          className="text-lg tracking-tight mb-2 text-text"
-        >
-          writing
+      {/* Header */}
+      <header className="mb-12 animate-fade-in-up stagger-0">
+        <h1 id="blog-heading" className="text-lg tracking-tight mb-2 text-text">
+          blog
         </h1>
         <p
           className="text-sm leading-relaxed text-text-muted"

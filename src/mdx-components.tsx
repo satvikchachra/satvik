@@ -25,16 +25,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     // Callout blockquote
     blockquote: ({ children, ...props }) => (
-      <blockquote
-        {...props}
-        style={{
-          borderLeft: "2px solid var(--border)",
-          paddingLeft: "1.25em",
-          margin: "1.5em 0",
-          color: "var(--text-muted)",
-          opacity: 0.8,
-        }}
-      >
+      <blockquote {...props}>
         {children}
       </blockquote>
     ),

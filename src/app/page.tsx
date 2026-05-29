@@ -115,16 +115,16 @@ export default function HomePage() {
           aria-labelledby="blog-heading"
           className="mb-10 animate-fade-in-up stagger-6"
         >
-          <h2 id="blog-heading" className="section-label mb-4">recent writing</h2>
+          <h2 id="blog-heading" className="section-label mb-4">recent blogs</h2>
           <div>
             {posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 id={`post-${post.slug}`}
-                className="row-link group items-start"
+                className="row-link group items-start flex-col sm:flex-row"
               >
-                <div className="flex-1 min-w-0 pr-8">
+                <div className="w-full sm:flex-1 min-w-0 pr-0 sm:pr-8 mb-1.5 sm:mb-0">
                   <span
                     className="text-sm block text-text"
                   >
@@ -132,7 +132,7 @@ export default function HomePage() {
                     <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>
                   </span>
                 </div>
-                <div className="flex-shrink-0 pt-0.5">
+                <div className="w-full sm:w-auto flex-shrink-0 pt-1 sm:pt-0.5">
                   <span className="mono-label">
                     {formatDate(post.date)}
                   </span>
