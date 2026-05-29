@@ -42,9 +42,9 @@ export default function HomePage() {
       {/* Wins */}
       <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
         <h2 id="wins-heading" className="section-label mb-4">selected wins</h2>
-        <div>
+        <ul>
           {WINS.map(([metric, context]) => (
-            <div
+            <li
               key={metric}
               className="flex items-baseline justify-between gap-6 py-3 border-t border-border-subtle"
             >
@@ -56,9 +56,9 @@ export default function HomePage() {
               >
                 {metric}
               </span>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
         <div className="pt-4">
           <Link
             href="/projects"
@@ -74,9 +74,9 @@ export default function HomePage() {
       {/* Experience */}
       <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
         <h2 id="experience-heading" className="section-label mb-4">experience</h2>
-        <div>
+        <ul>
           {EXPERIENCE.map((item) => (
-            <div
+            <li
               key={item.company + item.year}
               className="py-4 border-t border-border-subtle"
             >
@@ -102,9 +102,9 @@ export default function HomePage() {
               <p className="text-sm leading-relaxed text-text-muted">
                 {formatResumeText(item.description)}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
 

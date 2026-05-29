@@ -104,9 +104,9 @@ export default function AboutPage() {
       {/* Experience */}
       <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
         <h2 id="experience-heading" className="section-label mb-4">experience</h2>
-        <div>
+        <ul>
           {EXPERIENCE.map((item) => (
-            <div
+            <li
               key={item.company + item.year}
               className="py-4 border-t border-border-subtle"
             >
@@ -114,12 +114,9 @@ export default function AboutPage() {
                 <span className="text-sm text-text">
                   {item.role}
                 </span>
-                <time
-                  dateTime={item.year}
-                  className="mono-label flex-shrink-0"
-                >
+                <span className="mono-label flex-shrink-0">
                   {item.year}
-                </time>
+                </span>
               </div>
               <p className="text-xs mb-2">
                 <a
@@ -135,9 +132,9 @@ export default function AboutPage() {
               <p className="text-sm leading-relaxed text-text-muted">
                 {formatResumeText(item.description)}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       {/* Stack */}
@@ -169,9 +166,9 @@ export default function AboutPage() {
       {/* Education */}
       <section aria-labelledby="education-heading" className="mb-10 animate-fade-in-up stagger-4">
         <h2 id="education-heading" className="section-label mb-4">education</h2>
-        <div>
+        <ul>
           {EDUCATION.map((item) => (
-            <div
+            <li
               key={item.school + item.year}
               className="py-4 border-t border-border-subtle"
             >
@@ -201,17 +198,17 @@ export default function AboutPage() {
               <p className="text-sm leading-relaxed text-text-muted">
                 {formatResumeText(item.description)}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       {/* Awards & Recognition */}
       <section aria-labelledby="awards-heading" className="mb-10 animate-fade-in-up stagger-4">
         <h2 id="awards-heading" className="section-label mb-4">awards / recognition</h2>
-        <div>
+        <ul>
           {AWARDS.map((item) => (
-            <div
+            <li
               key={item.title}
               className="py-4 border-t border-border-subtle"
             >
@@ -237,9 +234,9 @@ export default function AboutPage() {
                   <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
                 </a>
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </div>
   );

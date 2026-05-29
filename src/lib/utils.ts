@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 /**
  * Format resume text with support for:
- * - **bold** -> <strong> (used for core systems, key products, and tech)
+ * - **bold** -> <b> (used for core systems, key products, and tech)
  * - __underline__ -> <span> (used for leadership, ownership, and scope verbs)
  */
 export function formatResumeText(text: string): React.ReactNode {
@@ -22,7 +22,7 @@ export function formatResumeText(text: string): React.ReactNode {
   return parts.map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return React.createElement(
-        "strong",
+        "b",
         // eslint-disable-next-line react/no-array-index-key
         { key: index, className: "font-semibold text-[var(--text)]" },
         formatResumeText(part.slice(2, -2))

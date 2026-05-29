@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-      <p
+      <div
         className="text-8xl font-bold mb-6 tracking-tight text-text-subtle opacity-[0.15]"
         aria-hidden="true"
       >
         404
-      </p>
+      </div>
       <h1
         className="text-lg mb-3 tracking-tight text-text"
       >

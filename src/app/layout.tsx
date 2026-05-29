@@ -97,7 +97,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
           <Navbar />
-          <main>
+          <main id="main-content">
             {children}
           </main>
           <Footer />

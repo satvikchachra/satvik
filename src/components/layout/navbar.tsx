@@ -37,6 +37,7 @@ export function Navbar() {
 
   return (
     <header
+      role="banner"
       onKeyDown={(e) => {
         if (e.key === "Escape" && open) {
           setOpen(false);
