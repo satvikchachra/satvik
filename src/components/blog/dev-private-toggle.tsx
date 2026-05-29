@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export function DevPrivateToggle({ children }: { children: ReactNode }) {
   // Don't render the toggle or wrappers in production at all
-  if (process.env.NODE_ENV === "production") return <>{children}</>;
+  if (process.env.NODE_ENV === "production") return children;
 
   return (
     <div className="group/dev">

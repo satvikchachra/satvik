@@ -1,6 +1,6 @@
 "use client";
+/* eslint-disable no-restricted-globals */
 
-import * as React from "react";
 import { ShareIcon, LinkIcon } from "@/components/ui/icons";
 import {
   DropdownMenu,
@@ -8,15 +8,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useMemo, useState } from "react";
 
 interface ShareMenuProps {
   title: string;
 }
 
 export function ShareMenu({ title }: ShareMenuProps) {
-  const [open, setOpen] = React.useState(false);
-  const [hasCopied, setHasCopied] = React.useState(false);
-  const canShare = React.useMemo(() => {
+  const [open, setOpen] = useState(false);
+  const [hasCopied, setHasCopied] = useState(false);
+  const canShare = useMemo(() => {
     if (typeof window === "undefined" || typeof navigator === "undefined") return false;
 
     try {

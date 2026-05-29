@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export function GitHubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

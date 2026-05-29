@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { test, expect } from '@playwright/test';
 
 test.describe('Blog rendering and MDX features', () => {
