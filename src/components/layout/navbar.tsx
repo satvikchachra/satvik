@@ -37,6 +37,11 @@ export function Navbar() {
 
   return (
     <header
+      onKeyDown={(e) => {
+        if (e.key === "Escape" && open) {
+          setOpen(false);
+        }
+      }}
       className={`fixed top-0 inset-x-0 z-50 bg-bg transition-[border-color] duration-200 ${
         open ? "border-b border-border" : "border-b border-border-subtle"
       }`}

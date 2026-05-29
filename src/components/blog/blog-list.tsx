@@ -23,7 +23,7 @@ export function BlogList({ posts }: BlogListProps) {
               <Link
                 href={`/blog/${post.slug}`}
                 id={`blog-post-${post.slug}`}
-                className="row-link group flex-col sm:flex-row items-start"
+                className="row-link group flex-col sm:flex-row items-start sm:items-start!"
                 style={{
                   animationDelay: `${(i + 1) * 50}ms`,
                 }}
