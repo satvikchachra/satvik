@@ -139,7 +139,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-xs px-3 py-2.5 rounded-sm transition-colors duration-200 block hover:text-text hover:bg-surface ${
+                  className={`text-xs px-3 py-2.5 rounded-sm transition-colors duration-200 block hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-subtle ${
                     active
                       ? "text-text bg-surface"
                       : "text-text-muted bg-transparent"

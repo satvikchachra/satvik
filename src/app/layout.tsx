@@ -71,7 +71,7 @@ const jsonLd = {
   sameAs: [
     siteConfig.author.github,
     siteConfig.author.linkedin,
-    `https://twitter.com/satvikchachra`,
+    siteConfig.author.twitterUrl,
   ],
 };
 

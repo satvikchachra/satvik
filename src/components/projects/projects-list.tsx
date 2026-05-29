@@ -3,7 +3,6 @@ import { formatResumeText } from "@/lib/utils";
 
 interface ProjectsListProps {
   projects: Project[];
-  allTags: string[];
 }
 
 export function ProjectsList({ projects }: ProjectsListProps) {

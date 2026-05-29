@@ -4,7 +4,6 @@ import { formatDate } from "@/lib/utils";
 
 interface BlogListProps {
   posts: Post[];
-  allTags: string[];
 }
 
 export function BlogList({ posts }: BlogListProps) {

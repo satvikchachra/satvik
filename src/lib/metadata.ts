@@ -14,6 +14,7 @@ export const siteConfig = {
     email: "hello@example.com",
     github: "https://github.com/satvikchachra",
     twitter: "@satvikchachra",
+    twitterUrl: "https://x.com/satvikchachra",
     linkedin: "https://linkedin.com/in/satvikchachra",
   },
 };

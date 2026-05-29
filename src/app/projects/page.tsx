@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/metadata";
-import { getAllProjects, getAllTags } from "@/lib/projects";
+import { getAllProjects } from "@/lib/projects";
 import { ProjectsList } from "@/components/projects/projects-list";
 
 export const metadata: Metadata = buildMetadata({
@@ -12,7 +12,6 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ProjectsPage() {
   const projects = getAllProjects();
-  const tags = getAllTags();
 
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
@@ -30,7 +29,7 @@ export default function ProjectsPage() {
       </header>
 
       <div className="animate-fade-in-up stagger-1">
-        <ProjectsList projects={projects} allTags={tags} />
+        <ProjectsList projects={projects} />
       </div>
     </div>
   );
