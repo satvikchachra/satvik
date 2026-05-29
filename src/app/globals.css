@@ -516,10 +516,10 @@ nav, button, input, select, textarea {
   .group:hover .animated-underline {
     background-size: 100% 100%;
   }
-}
-.group:active .animated-underline {
-  background-size: 0% 100% !important;
-  transition: none !important;
+  .group:active .animated-underline {
+    background-size: 0% 100% !important;
+    transition: none !important;
+  }
 }
 
 /* ============================================================

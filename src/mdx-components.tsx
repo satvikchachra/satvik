@@ -59,9 +59,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         >
           {children}
           {isExternal && (
-            <span aria-label=" (opens in new tab)" style={{ fontSize: "0.75em", marginLeft: "2px" }}>
-              ↗
-            </span>
+            <>
+              <span className="sr-only"> (opens in new tab)</span>
+              <span aria-hidden="true" style={{ fontSize: "0.75em", marginLeft: "2px" }}>
+                ↗
+              </span>
+            </>
           )}
         </a>
       );

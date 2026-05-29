@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import React from "react";
 import { buildMetadata } from "@/lib/metadata";
 import { formatResumeText } from "@/lib/utils";
 import { EXPERIENCE } from "@/lib/experience";

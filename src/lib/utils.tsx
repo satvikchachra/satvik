@@ -1,4 +1,4 @@
-import React from "react"
+
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -21,19 +21,19 @@ export function formatResumeText(text: string): React.ReactNode {
   
   return parts.map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
-      return React.createElement(
-        "b",
+      return (
         // eslint-disable-next-line react/no-array-index-key
-        { key: index, className: "font-semibold text-[var(--text)]" },
-        formatResumeText(part.slice(2, -2))
+        <b key={index} className="font-semibold text-[var(--text)]">
+          {formatResumeText(part.slice(2, -2))}
+        </b>
       );
     }
     if (part.startsWith("__") && part.endsWith("__")) {
-      return React.createElement(
-        "span",
+      return (
         // eslint-disable-next-line react/no-array-index-key
-        { key: index, className: "resume-underline" },
-        formatResumeText(part.slice(2, -2))
+        <span key={index} className="resume-underline">
+          {formatResumeText(part.slice(2, -2))}
+        </span>
       );
     }
     return part;
