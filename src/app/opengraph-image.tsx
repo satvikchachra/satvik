@@ -45,7 +45,7 @@ export default function Image() {
           Satvik Chachra
         </div>
         <div style={{ fontSize: 32, color: '#888', marginTop: '20px' }}>
-          Software Engineer
+          AI Native Full-Stack Engineer
         </div>
       </div>
     ),
