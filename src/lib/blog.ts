@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import readingTime from "reading-time";
+import { cache } from "react";
 
 const CONTENT_DIR = path.join(process.cwd(), "src", "content", "blog");
 
@@ -79,7 +80,7 @@ function getMdxPostMeta(jsonPath: string): {
   return {};
 }
 
-function getMdxPosts(): MdxPost[] {
+function getMdxPosts(): Array<MdxPost & { content: string }> {
   if (!fs.existsSync(CONTENT_DIR)) return [];
 
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".mdx"));
@@ -111,11 +112,12 @@ function getMdxPosts(): MdxPost[] {
       ogImage: meta.ogImage,
       type: "mdx" as const,
       private: meta.private === true,
+      content: body,
     };
   });
 }
 
-export function getAllPosts(): Post[] {
+export const getAllPosts = cache((): Post[] => {
   const mdx = getMdxPosts();
   let all = [...mdx, ...CUSTOM_POSTS];
   
@@ -124,7 +126,7 @@ export function getAllPosts(): Post[] {
   }
   
   return all.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
+});
 
 export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string } | null {
   const posts = getMdxPosts();
@@ -136,12 +138,9 @@ export function getMdxPostBySlug(slug: string): { meta: MdxPost; content: string
     return null;
   }
 
-  const mdxPath = path.join(CONTENT_DIR, `${post.filename}.mdx`);
-  const body = fs.readFileSync(mdxPath, "utf-8");
-
   return {
     meta: post,
-    content: body,
+    content: post.content,
   };
 }
 

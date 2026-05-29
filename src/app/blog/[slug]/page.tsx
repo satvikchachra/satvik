@@ -45,11 +45,13 @@ export default async function BlogPostPage({ params }: Props) {
 
   // Dynamically import the MDX file
   // @next/mdx handles compilation at build time via next.config
-  const { default: MDXContent } = await import(
-    `@/content/blog/${post.meta.filename}.mdx`
-  ).catch(() => {
+  let MDXModule;
+  try {
+    MDXModule = await import(`@/content/blog/${post.meta.filename}.mdx`);
+  } catch {
     notFound();
-  }) as { default: React.ComponentType };
+  }
+  const { default: MDXContent } = MDXModule as { default: React.ComponentType };
 
   return (
     <PostLayout
