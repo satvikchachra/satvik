@@ -656,7 +656,7 @@ nav, button, input, select, textarea {
   border: 1px solid var(--border);
 }
 .prose pre {
-  background: var(--bg-alt) !important;
+  background: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 1.25em;
@@ -702,6 +702,52 @@ nav, button, input, select, textarea {
   border-bottom: 1px solid var(--border);
   color: var(--text-muted);
 }
+
+/* ============================================================
+   REHYPE-PRETTY-CODE + SHIKI v4 DUAL THEME
+   Actual output (verified): ONE <pre data-theme="github-dark github-light">
+   with ONE <code>. Each <span> carries both colors as CSS vars:
+     style="--shiki-dark:#F97583; --shiki-light:#D73A49"
+   The <pre> carries bg vars:
+     style="--shiki-dark-bg:#24292e; --shiki-light-bg:#fff"
+   We activate the right variable based on <html data-theme>.
+   ============================================================ */
+
+/* Reset .prose pre's own styles for pretty-code blocks */
+.prose pre[data-language] {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 1.5em 0;
+}
+
+/* Dark (default): activate --shiki-dark vars */
+.prose pre[data-language] {
+  background: var(--shiki-dark-bg);
+  padding: 1.25em;
+  border-radius: 4px;
+  overflow-x: auto;
+  color: var(--shiki-dark);
+}
+.prose pre[data-language] span {
+  color: var(--shiki-dark);
+  font-style: var(--shiki-dark-font-style, inherit);
+  font-weight: var(--shiki-dark-font-weight, inherit);
+  text-decoration: var(--shiki-dark-text-decoration, inherit);
+}
+
+/* Light: activate --shiki-light vars */
+[data-theme="light"] .prose pre[data-language] {
+  background: var(--shiki-light-bg);
+  color: var(--shiki-light);
+}
+[data-theme="light"] .prose pre[data-language] span {
+  color: var(--shiki-light);
+  font-style: var(--shiki-light-font-style, inherit);
+  font-weight: var(--shiki-light-font-weight, inherit);
+  text-decoration: var(--shiki-light-text-decoration, inherit);
+}
+
 
 /* ============================================================
    SHADCN TOKEN BRIDGE

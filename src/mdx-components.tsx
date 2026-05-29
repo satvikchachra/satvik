@@ -29,15 +29,23 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </blockquote>
     ),
-    // Inline code
-    code: ({ children, ...props }) => (
-      <code
-        {...props}
-        className="font-mono text-[0.84em] bg-surface text-accent px-[0.45em] py-[0.15em] rounded-[4px] border border-border"
-      >
-        {children}
-      </code>
-    ),
+    // Inline code — only style backtick code, not fenced code blocks.
+    // rehype-pretty-code adds data-language to <code> inside <pre>;
+    // skip our styling in that case so Shiki's token colors survive.
+    code: ({ children, ...props }) => {
+      const isBlock = "data-language" in props;
+      if (isBlock) return <code {...props}>{children}</code>;
+      return (
+        <code
+          {...props}
+          className="font-mono text-[0.84em] bg-surface text-accent px-[0.45em] py-[0.15em] rounded-[4px] border border-border"
+        >
+          {children}
+        </code>
+      );
+    },
+    // Pass pre through untouched so rehype-pretty-code keeps full control.
+    pre: ({ children, ...props }) => <pre {...props}>{children}</pre>,
     // External links open in new tab
     a: ({ href, children, ...props }) => {
       const isExternal = href?.startsWith("http");

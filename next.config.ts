@@ -20,7 +20,7 @@ const withMDX = createMDX({
     ],
     rehypePlugins: [
       "rehype-katex",
-      ["rehype-pretty-code", { theme: "github-dark" }],
+      ["rehype-pretty-code", { theme: { light: "github-light", dark: "github-dark" } }],
     ],
   },
 });
