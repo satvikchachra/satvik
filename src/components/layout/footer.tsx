@@ -35,7 +35,7 @@ export function Footer() {
         <p
           className="text-xs tracking-wide text-text-subtle"
         >
-          © {year}
+          &copy; {year}
         </p>
       </div>
     </footer>
