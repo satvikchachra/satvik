@@ -18,6 +18,7 @@ const eslintConfig = defineConfig([
       // Existing rules
       "react/no-array-index-key": "error",
       "jsx-a11y/no-redundant-roles": "error",
+      "@next/next/no-img-element": "error",
       
       // Accessibility & Semantic HTML
       "jsx-a11y/alt-text": "error",

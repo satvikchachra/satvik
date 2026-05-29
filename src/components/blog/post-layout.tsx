@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { formatDate } from "@/lib/utils";
 
 interface PostLayoutProps {
@@ -41,9 +42,11 @@ export function PostLayout({
       {/* Post header */}
       <header className="mb-6 animate-fade-in-up stagger-1">
         <div className="mb-8 w-full overflow-hidden rounded-lg border border-border-subtle">
-          <img
+          <Image
             src={image}
             alt={`Cover image for ${title}`}
+            width={1200}
+            height={630}
             className="w-full h-auto object-cover"
           />
         </div>
