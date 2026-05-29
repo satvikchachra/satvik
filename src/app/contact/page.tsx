@@ -32,9 +32,9 @@ const LINKS = [
   },
   {
     id: "contact-email",
-    href: "mailto:hello@example.com",
+    href: "mailto:consultwithsatvik@gmail.com",
     label: "email",
-    handle: "hello@example.com",
+    handle: "consultwithsatvik@gmail.com",
     description: "best for longer conversations",
   },
 ] as const;

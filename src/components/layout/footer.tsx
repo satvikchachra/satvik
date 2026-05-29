@@ -15,7 +15,7 @@ export function Footer() {
               { href: "https://github.com/satvikchachra", label: "GitHub", icon: GitHubIcon },
               { href: "https://twitter.com/satvikchachra", label: "X (Twitter)", icon: XIcon },
               { href: "https://linkedin.com/in/satvikchachra", label: "LinkedIn", icon: LinkedInIcon },
-              { href: "mailto:hello@example.com", label: "Email", icon: MailIcon },
+              { href: "mailto:consultwithsatvik@gmail.com", label: "Email", icon: MailIcon },
             ].map(({ href, label, icon: Icon }) => (
               <li key={href}>
                 <a
