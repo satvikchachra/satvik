@@ -62,7 +62,6 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                     <span
                       className="text-xs no-underline"
                       aria-hidden="true"
-                      style={{ textDecoration: "none" }}
                     >
                       ↗
                     </span>

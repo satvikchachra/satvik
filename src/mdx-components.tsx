@@ -33,15 +33,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     code: ({ children, ...props }) => (
       <code
         {...props}
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.84em",
-          background: "var(--surface)",
-          color: "var(--accent)",
-          padding: "0.15em 0.45em",
-          borderRadius: "4px",
-          border: "1px solid var(--border)",
-        }}
+        className="font-mono text-[0.84em] bg-surface text-accent px-[0.45em] py-[0.15em] rounded-[4px] border border-border"
       >
         {children}
       </code>
@@ -61,7 +53,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           {isExternal && (
             <>
               <span className="sr-only"> (opens in new tab)</span>
-              <span aria-hidden="true" style={{ fontSize: "0.75em", marginLeft: "2px" }}>
+              <span aria-hidden="true" className="text-[0.75em] ml-[2px]">
                 ↗
               </span>
             </>

@@ -33,7 +33,7 @@ export default function HomePage() {
           satvik chachra
         </h1>
         <p className="text-sm text-text-muted">
-          <strong className="font-light text-[var(--text)]">
+          <strong className="font-light text-text">
             builds ai coding agents, full-stack software & infrastructure
           </strong>
         </p>
@@ -48,7 +48,7 @@ export default function HomePage() {
               key={metric}
               className="flex items-baseline justify-between gap-6 py-3 border-t border-border-subtle"
             >
-              <span className="text-sm font-light text-[var(--text)]">
+              <span className="text-sm font-light text-text">
                 {context}
               </span>
               <span
@@ -63,7 +63,7 @@ export default function HomePage() {
           <Link
             href="/projects"
             id="view-all-projects"
-            className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-subtle)] hover:bg-[var(--surface-alt)] transition-all duration-200 blue-link"
+            className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-border bg-surface hover:border-text-subtle hover:bg-surface-alt transition-all duration-200 blue-link"
           >
             <span className="blue-link-text">view projects</span>
             <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
@@ -96,7 +96,7 @@ export default function HomePage() {
                   className="blue-link inline-flex items-baseline gap-1"
                 >
                   <span className="blue-link-text">{item.company}</span>
-                  <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
+                  <span className="text-xs no-underline" aria-hidden="true">↗</span>
                 </a>
               </p>
               <p className="text-sm leading-relaxed text-text-muted">
@@ -144,7 +144,7 @@ export default function HomePage() {
             <Link
               href="/blog"
               id="view-all-posts"
-              className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-subtle)] hover:bg-[var(--surface-alt)] transition-all duration-200 blue-link"
+              className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-border bg-surface hover:border-text-subtle hover:bg-surface-alt transition-all duration-200 blue-link"
             >
               <span className="blue-link-text">all posts</span>
               <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>

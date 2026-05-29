@@ -125,7 +125,7 @@ export default function AboutPage() {
                   className="blue-link inline-flex items-baseline gap-1"
                 >
                   <span className="blue-link-text">{item.company}</span>
-                  <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
+                  <span className="text-xs no-underline" aria-hidden="true">↗</span>
                 </a>
               </p>
               <p className="text-sm leading-relaxed text-text-muted">
@@ -188,7 +188,7 @@ export default function AboutPage() {
                     className="blue-link inline-flex items-baseline gap-1"
                   >
                     <span className="blue-link-text">{item.school}</span>
-                    <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
+                    <span className="text-xs no-underline" aria-hidden="true">↗</span>
                   </a>
                 ) : (
                   <span className="text-text">{item.school}</span>
@@ -230,7 +230,7 @@ export default function AboutPage() {
                   className="blue-link inline-flex items-baseline gap-1"
                 >
                   <span className="blue-link-text">View</span>
-                  <span className="text-xs no-underline" aria-hidden="true" style={{ textDecoration: "none" }}>↗</span>
+                  <span className="text-xs no-underline" aria-hidden="true">↗</span>
                 </a>
               </p>
             </li>
