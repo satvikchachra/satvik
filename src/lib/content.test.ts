@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import * as ALL_CONTENT from './content';
+import fs from 'fs';
+import path from 'path';
 
 describe('Content Lock', () => {
   it('matches the static content snapshot to protect against unintended AI edits', () => {
@@ -10,10 +12,8 @@ describe('Content Lock', () => {
   });
 
   it('matches the blog posts snapshot to protect against unintended AI edits', () => {
-    const fs = require('fs');
-    const path = require('path');
     const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
-    
+
     if (!fs.existsSync(blogDir)) return;
 
     const files = fs.readdirSync(blogDir).sort();
