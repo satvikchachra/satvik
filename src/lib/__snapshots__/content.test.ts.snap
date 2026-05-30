@@ -509,7 +509,7 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     {
       "company": "Atlassian",
       "companyUrl": "https://www.atlassian.com/",
-      "description": "Building **AI coding agents**, full-stack software, developer tooling and infrastructure used by **2K+ engineers** daily. __Led end-to-end development__ of MCP Integration into AI Coding Agent, AI-native Editor and Chat experience across VS Code and JetBrains with **~95% shared code**.",
+      "description": "Building **AI coding agents**, full-stack software, developer tooling and infrastructure used by **2K+ engineers** daily. __Led end-to-end development__ of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with **~95% shared code**.",
       "role": "SDE 2 — AI Foundations",
       "year": "2025 – now",
     },
@@ -574,14 +574,14 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     {
       "bullets": [
         "__Architected and delivered **MCP integration**__ for the Coding Agent, building frontend and backend infrastructure for server onboarding, tool discovery, permission management, and agent-driven execution of external tools.",
-        "__Led end-to-end development__ of the **AI-native Editor and Chat Experience** for the agent, including editor, tool calls, streaming, attachments, @mentions, slash commands, image paste/upload, drag-and-drop, and keyboard-first interactions.",
+        "__Led end-to-end development__ of the **AI-native Editor and Agentic Chat Experience** for the agent, including editor, tool calls, streaming, attachments, @mentions, slash commands, image paste/upload, drag-and-drop, and keyboard-first interactions.",
         "Improved AI coding agent response quality by introducing **compile-time IDE diagnostics** as an iterative feedback loop and designing XML-based high-signal context for prompts.",
         "Built **context providers** powering the AI agent workflow: @Files & Folders, @Commit, @Branch, @Rules, @Docs, @Linter Errors, @Recent Changes, and @Past Chats.",
         "__Contributed to a cross-IDE platform architecture__ enabling **~95% shared code** between VS Code and JetBrains, significantly reducing duplication and increasing shipping velocity.",
         "Built extension and agent **settings infrastructure** end-to-end, including persistence, real-time synchronization, permissions/approval systems, and extensibility surfaces.",
       ],
       "company": "Atlassian",
-      "description": "Built Core AI Coding Agent, Editor and Chat experience for VSCode and JetBrains — used by **2K+ engineers** daily, with **~95% shared** cross-platform code.",
+      "description": "Built Core AI Coding Agent, Editor and Agentic Chat experience for VSCode and JetBrains — used by **2K+ engineers** daily, with **~95% shared** cross-platform code.",
       "featured": true,
       "githubUrl": undefined,
       "liveUrl": undefined,
