@@ -2,7 +2,18 @@ import { defineConfig } from 'vitest/config';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [tsconfigPaths()],
+  plugins: [
+    tsconfigPaths(),
+    {
+      name: 'mock-mdx',
+      enforce: 'pre',
+      transform(code, id) {
+        if (id.endsWith('.mdx')) {
+          return { code: 'export default function MockMDX() { return null; }' };
+        }
+      },
+    },
+  ],
   test: {
     environment: 'jsdom',
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],

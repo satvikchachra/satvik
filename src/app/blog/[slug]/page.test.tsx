@@ -58,7 +58,7 @@ vi.mock('@/content/blog/undefined.mdx', () => {
   throw new Error('MDX module not found');
 });
 
-vi.mock('@/content/blog/public-post-file.mdx', () => ({
+vi.mock('@/content/blog/e2e-test-post.mdx', () => ({
   default: () => <div data-testid="mdx-content">MDX Content</div>,
 }));
 
@@ -84,7 +84,7 @@ vi.mock('@/lib/blog', () => ({
           description: 'A public post',
           date: '2026-05-29',
           private: false,
-          filename: 'public-post-file',
+          filename: 'e2e-test-post',
           ogImage: '/og-image.jpg',
         },
       };
