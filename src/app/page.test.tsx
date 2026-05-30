@@ -42,23 +42,15 @@ describe('HomePage', () => {
     ).toBeInTheDocument();
     expect(screen.getByText(HOME_CONTENT.wins[0][0])).toBeInTheDocument();
     expect(screen.getByText(HOME_CONTENT.wins[0][1])).toBeInTheDocument();
-    expect(screen.getByTestId('link-view-all-projects')).toHaveAttribute('href', '/projects');
   });
 
-  it('renders the experience section', () => {
+  it('renders the CTA row with correct links', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
     render(<HomePage />);
 
-    expect(
-      screen.getByRole('heading', { name: new RegExp(HOME_CONTENT.sectionExperience, 'i') }),
-    ).toBeInTheDocument();
-    expect(screen.getAllByText('Atlassian')[0]).toBeInTheDocument();
-    expect(screen.getByText('AppyHigh')).toBeInTheDocument();
-
-    // Verify external link attributes
-    const atlassianLink = screen.getAllByRole('link', { name: /Atlassian/i })[0];
-    expect(atlassianLink).toHaveAttribute('target', '_blank');
-    expect(atlassianLink).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(screen.getByTestId('link-cta-work')).toHaveAttribute('href', '/projects');
+    expect(screen.getByTestId('link-cta-blog')).toHaveAttribute('href', '/blog');
+    expect(screen.getByTestId('link-cta-contact')).toHaveAttribute('href', '/contact');
   });
 
   it('renders recent blogs section when posts are available', () => {

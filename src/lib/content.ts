@@ -4,9 +4,11 @@ import type { Project } from './projects';
 export const HOME_CONTENT = {
   heroTitle: 'satvik chachra',
   heroSubtitle: 'builds ai coding agents, full-stack software & infrastructure',
+  ctaWork: 'view work',
+  ctaBlog: 'read blog',
+  ctaContact: 'get in touch',
   sectionWins: 'selected wins',
   viewProjects: 'view projects',
-  sectionExperience: 'experience',
   sectionBlog: 'recent blogs',
   viewAllPosts: 'all posts',
   wins: [

@@ -589,10 +589,12 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     "license": "MIT License",
   },
   "HOME_CONTENT": {
+    "ctaBlog": "read blog",
+    "ctaContact": "get in touch",
+    "ctaWork": "view work",
     "heroSubtitle": "builds ai coding agents, full-stack software & infrastructure",
     "heroTitle": "satvik chachra",
     "sectionBlog": "recent blogs",
-    "sectionExperience": "experience",
     "sectionWins": "selected wins",
     "viewAllPosts": "all posts",
     "viewProjects": "view projects",

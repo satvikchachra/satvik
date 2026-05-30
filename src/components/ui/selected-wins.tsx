@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { HOME_CONTENT } from '@/lib/content';
 
-export function SelectedWins() {
+export function SelectedWins({ showViewProjects = true }: { showViewProjects?: boolean }) {
   return (
     <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
       <h2 id="wins-heading" className="section-label mb-4">
@@ -18,21 +18,23 @@ export function SelectedWins() {
           </li>
         ))}
       </ul>
-      <div className="pt-4">
-        <Link
-          href="/projects"
-          id="view-all-projects"
-          className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-border bg-surface hover:border-text-subtle hover:bg-surface-alt transition-all duration-200 blue-link"
-        >
-          <span className="blue-link-text">{HOME_CONTENT.viewProjects}</span>
-          <span
-            className="transition-transform duration-200 group-hover:translate-x-0.5"
-            aria-hidden="true"
+      {showViewProjects && (
+        <div className="pt-4">
+          <Link
+            href="/projects"
+            id="view-all-projects"
+            className="group inline-flex items-baseline gap-1 text-xs blue-link"
           >
-            →
-          </span>
-        </Link>
-      </div>
+            <span className="blue-link-text">{HOME_CONTENT.viewProjects}</span>
+            <span
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </Link>
+        </div>
+      )}
     </section>
   );
 }
