@@ -29,7 +29,15 @@ export const ABOUT_CONTENT = {
   stack: [
     {
       category: 'AI / ML',
-      items: ['AI Agents', 'LLMs', 'RAG (learning)', 'Tecton', 'MLOps', 'MCP', 'ACP'],
+      items: [
+        'AI Agents',
+        'Agentic Systems',
+        'LLM Applications',
+        'RAG (learning)',
+        'MLOps',
+        'Model Context Protocol (MCP)',
+        'Agent Client Protocol (ACP)',
+      ],
     },
     {
       category: 'Languages',
@@ -37,19 +45,19 @@ export const ABOUT_CONTENT = {
     },
     {
       category: 'Frontend',
-      items: ['ReactJS', 'NextJS', 'Redux', 'HTML', 'CSS'],
+      items: ['React', 'NextJS', 'Redux', 'Tanstack', 'Tailwind CSS', 'HTML', 'CSS'],
     },
     {
       category: 'Backend',
-      items: ['NodeJS', 'FastAPI', 'Flask', 'Redis', 'Firebase', 'Socket.IO'],
+      items: ['NodeJS', 'MongoDB', 'WebSockets', 'FastAPI', 'Flask', 'Redis', 'Firebase'],
     },
     {
       category: 'Cloud / Infra',
-      items: ['CI/CD', 'Docker'],
+      items: ['CI/CD', 'Bitbucket Pipelines', 'GitHub Actions', 'Docker', 'Vercel'],
     },
     {
       category: 'Tools / APIs',
-      items: ['VS Code APIs', 'JetBrains APIs', 'AI SDK', 'Stripe', 'Material UI'],
+      items: ['Vitest', 'Playwright', 'VS Code APIs', 'JetBrains APIs', 'Tecton', 'Stripe', 'Git'],
     },
   ] as const,
   education: [
