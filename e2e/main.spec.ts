@@ -78,4 +78,76 @@ test.describe('Main Application Navigation and Pages', () => {
     await page.click('text=← go home');
     await expect(page).toHaveURL('/');
   });
+
+  test('About page content renders correctly', async ({ page }) => {
+    await page.goto('/about');
+    
+    // Check main heading
+    await expect(page.locator('h1')).toHaveText(/satvik chachra/i);
+    
+    // Check all major sections
+    await expect(page.locator('h2:has-text("experience")')).toBeVisible();
+    await expect(page.locator('h2:has-text("tech stack")')).toBeVisible();
+    await expect(page.locator('h2:has-text("education")')).toBeVisible();
+    await expect(page.locator('h2:has-text("awards / recognition")')).toBeVisible();
+  });
+
+  test('Contact page links render correctly', async ({ page }) => {
+    await page.goto('/contact');
+    
+    // Check main heading
+    await expect(page.locator('h1')).toHaveText(/get in touch/i);
+    
+    // Verify all contact links are present and have valid hrefs
+    await expect(page.locator('a[id="contact-github"]')).toHaveAttribute('href', 'https://github.com/satvikchachra');
+    await expect(page.locator('a[id="contact-twitter"]')).toHaveAttribute('href', 'https://twitter.com/satvikchachra');
+    await expect(page.locator('a[id="contact-linkedin"]')).toHaveAttribute('href', 'https://linkedin.com/in/satvikchachra');
+    await expect(page.locator('a[id="contact-email"]')).toHaveAttribute('href', 'mailto:consultwithsatvik@gmail.com');
+  });
+
+  test('Projects page list renders correctly', async ({ page }) => {
+    await page.goto('/projects');
+    
+    // Check main heading
+    await expect(page.locator('h1')).toHaveText(/projects/i);
+    
+    // Assuming the ProjectsList renders links or a grid/list of projects, check that at least one project is visible.
+    // Assuming there are actual projects in the list
+    const projectLinks = page.locator('a[id^="project-"]');
+    if (await projectLinks.count() > 0) {
+      await expect(projectLinks.first()).toBeVisible();
+    }
+  });
+
+  test('Global UI: Footer renders correctly', async ({ page }) => {
+    await page.goto('/');
+    
+    // Check footer elements
+    const footer = page.locator('footer');
+    await expect(footer).toBeVisible();
+    
+    // Check footer social links
+    await expect(footer.locator('a[aria-label="GitHub"]')).toHaveAttribute('href', 'https://github.com/satvikchachra');
+    await expect(footer.locator('a[aria-label="X (Twitter)"]')).toHaveAttribute('href', 'https://twitter.com/satvikchachra');
+    await expect(footer.locator('a[aria-label="LinkedIn"]')).toHaveAttribute('href', 'https://linkedin.com/in/satvikchachra');
+    await expect(footer.locator('a[aria-label="Email"]')).toHaveAttribute('href', 'mailto:consultwithsatvik@gmail.com');
+  });
+
+  test('Global UI: Theme toggler works', async ({ page }) => {
+    await page.goto('/');
+    
+    const themeButton = page.locator('button[aria-label^="Switch to"]');
+    await expect(themeButton).toBeVisible();
+    
+    // Click the theme button and ensure the html tag receives data-theme changes.
+    // next-themes usually updates the `data-theme` attribute on the `html` element.
+    const htmlElement = page.locator('html');
+    
+    const initialTheme = await htmlElement.getAttribute('data-theme') || 'light';
+    
+    await themeButton.click();
+    
+    // Wait for the data-theme to change
+    await expect(htmlElement).not.toHaveAttribute('data-theme', initialTheme);
+  });
 });

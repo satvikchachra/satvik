@@ -47,6 +47,11 @@ describe('HomePage', () => {
     expect(screen.getByRole('heading', { name: /experience/i })).toBeInTheDocument();
     expect(screen.getAllByText('Atlassian')[0]).toBeInTheDocument();
     expect(screen.getByText('AppyHigh')).toBeInTheDocument();
+    
+    // Verify external link attributes
+    const atlassianLink = screen.getAllByRole('link', { name: /Atlassian/i })[0];
+    expect(atlassianLink).toHaveAttribute('target', '_blank');
+    expect(atlassianLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders recent blogs section when posts are available', () => {
