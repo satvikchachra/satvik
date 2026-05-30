@@ -22,12 +22,14 @@ Welcome to the source code for my personal website and blog. This project serves
 ## 💻 Local Development
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/satvikchachra/satvik.git
    cd satvik
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
@@ -49,6 +51,7 @@ npm run new-post "Your Blog Title"
 ```
 
 This script will:
+
 1. Generate a unique hash ID for your post.
 2. Create `src/content/blog/<hash>.mdx` and `src/content/blog/<hash>.json`.
 3. Set up the necessary frontmatter and SEO configurations.

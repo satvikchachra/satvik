@@ -161,18 +161,26 @@ test.describe('Main Application Navigation and Pages', () => {
   test('Global UI: Theme toggler works', async ({ page }) => {
     await page.goto('/');
 
-    const themeButton = page.locator('button[aria-label^="Switch to"]');
+    const themeButton = page.locator('button[aria-label="Toggle theme"]');
     await expect(themeButton).toBeVisible();
 
-    // Click the theme button and ensure the html tag receives data-theme changes.
-    // next-themes usually updates the `data-theme` attribute on the `html` element.
-    const htmlElement = page.locator('html');
-
-    const initialTheme = (await htmlElement.getAttribute('data-theme')) || 'light';
-
+    // Click to open the dropdown
     await themeButton.click();
 
-    // Wait for the data-theme to change
-    await expect(htmlElement).not.toHaveAttribute('data-theme', initialTheme);
+    // Select 'Light' theme
+    const lightOption = page.locator('div[role="menuitem"]:has-text("Light")');
+    await expect(lightOption).toBeVisible();
+    await lightOption.click();
+
+    const htmlElement = page.locator('html');
+    await expect(htmlElement).toHaveAttribute('data-theme', 'light');
+
+    // Click again and select 'Dark'
+    await themeButton.click();
+    const darkOption = page.locator('div[role="menuitem"]:has-text("Dark")');
+    await expect(darkOption).toBeVisible();
+    await darkOption.click();
+
+    await expect(htmlElement).toHaveAttribute('data-theme', 'dark');
   });
 });
