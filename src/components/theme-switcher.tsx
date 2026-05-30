@@ -17,7 +17,7 @@ export function ThemeSwitcher() {
       <button
         type="button"
         aria-label="Switch theme"
-        className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200 text-text bg-transparent"
+        className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200 text-text bg-transparent cursor-pointer"
       >
         <div className="w-4 h-4" />
       </button>
@@ -31,7 +31,7 @@ export function ThemeSwitcher() {
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200 text-text bg-transparent hover:bg-surface"
+      className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200 text-text bg-transparent hover:bg-surface cursor-pointer"
     >
       {isDark ? (
         /* Sun icon */

@@ -1,14 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Footer } from './footer';
 
-// Mock CurrentYear so it doesn't fail based on current year changes during tests
-vi.mock('./current-year', () => ({
-  CurrentYear: () => <span data-testid="current-year-mock">2024</span>,
-}));
-
 describe('Footer', () => {
-  it('renders social links and copyright', () => {
+  it('renders social links and license', () => {
     render(<Footer />);
 
     // Check social links
@@ -26,8 +21,7 @@ describe('Footer', () => {
     expect(emailLink).toHaveAttribute('href', 'mailto:consultwithsatvik@gmail.com');
     expect(emailLink).not.toHaveAttribute('target', '_blank');
 
-    // Check copyright
-    expect(screen.getByText(/©/)).toBeInTheDocument();
-    expect(screen.getByTestId('current-year-mock')).toHaveTextContent('2024');
+    // Check license
+    expect(screen.getByText(/MIT License/i)).toBeInTheDocument();
   });
 });
