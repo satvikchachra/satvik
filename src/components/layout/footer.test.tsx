@@ -10,7 +10,7 @@ vi.mock('./current-year', () => ({
 describe('Footer', () => {
   it('renders social links and copyright', () => {
     render(<Footer />);
-    
+
     // Check social links
     const githubLink = screen.getByRole('link', { name: /github/i });
     expect(githubLink).toHaveAttribute('href', 'https://github.com/satvikchachra');
@@ -18,7 +18,7 @@ describe('Footer', () => {
 
     const twitterLink = screen.getByRole('link', { name: /x \(twitter\)/i });
     expect(twitterLink).toHaveAttribute('href', 'https://twitter.com/satvikchachra');
-    
+
     const linkedinLink = screen.getByRole('link', { name: /linkedin/i });
     expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/satvikchachra');
 

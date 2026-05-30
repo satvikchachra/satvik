@@ -103,3 +103,13 @@ This script ensures the strict scalable architecture is maintained by automatica
 After running the script, follow its console output to place the required images in the exact generated directories (`/public/images/blog/<hash>/` and `/public/og/blog/`).
 
 <!-- END:blog-workflow-rules -->
+
+<!-- BEGIN:testing-workflow-rules -->
+
+# Testing Rules
+
+## Rule 7: Do not update test snapshots without permission
+
+Never run `npm run test:snapshot:update` or `vitest -u` to fix failing snapshot tests in `content.test.ts` without explicitly asking the user for permission first. A failing snapshot indicates that text content was modified, which always requires human review.
+
+<!-- END:testing-workflow-rules -->

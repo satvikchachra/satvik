@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { buildMetadata, siteConfig } from '@/lib/metadata';
 import { getAllProjects } from '@/lib/projects';
 import { ProjectsList } from '@/components/projects/projects-list';
+import { PROJECTS_CONTENT } from '@/lib/content';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Projects',
@@ -40,10 +41,8 @@ export default function ProjectsPage() {
       />
       <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
         <header className="mb-8 animate-fade-in-up stagger-0">
-          <h1 className="text-lg tracking-tight mb-2 text-text">projects</h1>
-          <p className="text-sm leading-relaxed text-text-muted">
-            AI systems, platform infrastructure, and developer tools.
-          </p>
+          <h1 className="text-lg tracking-tight mb-2 text-text">{PROJECTS_CONTENT.heroTitle}</h1>
+          <p className="text-sm leading-relaxed text-text-muted">{PROJECTS_CONTENT.heroSubtitle}</p>
         </header>
 
         <div className="animate-fade-in-up stagger-1">

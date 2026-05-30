@@ -13,13 +13,15 @@ vi.mock('next/link', () => ({
 describe('NotFoundPage', () => {
   it('renders the 404 message and link', () => {
     render(<NotFound />);
-    
+
     // Check main heading
     expect(screen.getByRole('heading', { name: /page not found/i, level: 1 })).toBeInTheDocument();
-    
+
     // Check for some known text
-    expect(screen.getByText(/whatever you were looking for doesn't exist here/i)).toBeInTheDocument();
-    
+    expect(
+      screen.getByText(/whatever you were looking for doesn't exist here/i),
+    ).toBeInTheDocument();
+
     // Check for go home link
     const homeLink = screen.getByTestId('link-not-found-home-link');
     expect(homeLink).toHaveAttribute('href', '/');

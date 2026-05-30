@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import HomePage from './page';
 import * as blogModule from '@/lib/blog';
+import { HOME_CONTENT } from '@/lib/content';
 
 // Mock the Link component from Next.js
 vi.mock('next/link', () => ({
@@ -25,29 +26,35 @@ describe('HomePage', () => {
   it('renders the hero section correctly', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
     render(<HomePage />);
-    
-    expect(screen.getByRole('heading', { name: /satvik chachra/i })).toBeInTheDocument();
-    expect(screen.getByText(/builds ai coding agents, full-stack software & infrastructure/i)).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('heading', { name: new RegExp(HOME_CONTENT.heroTitle, 'i') }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(HOME_CONTENT.heroSubtitle, 'i'))).toBeInTheDocument();
   });
 
   it('renders the wins section', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
     render(<HomePage />);
-    
-    expect(screen.getByRole('heading', { name: /selected wins/i })).toBeInTheDocument();
-    expect(screen.getByText('2K+ users daily')).toBeInTheDocument();
-    expect(screen.getByText('Built AI coding agent at Atlassian')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('heading', { name: new RegExp(HOME_CONTENT.sectionWins, 'i') }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(HOME_CONTENT.wins[0][0])).toBeInTheDocument();
+    expect(screen.getByText(HOME_CONTENT.wins[0][1])).toBeInTheDocument();
     expect(screen.getByTestId('link-view-all-projects')).toHaveAttribute('href', '/projects');
   });
 
   it('renders the experience section', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
     render(<HomePage />);
-    
-    expect(screen.getByRole('heading', { name: /experience/i })).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('heading', { name: new RegExp(HOME_CONTENT.sectionExperience, 'i') }),
+    ).toBeInTheDocument();
     expect(screen.getAllByText('Atlassian')[0]).toBeInTheDocument();
     expect(screen.getByText('AppyHigh')).toBeInTheDocument();
-    
+
     // Verify external link attributes
     const atlassianLink = screen.getAllByRole('link', { name: /Atlassian/i })[0];
     expect(atlassianLink).toHaveAttribute('target', '_blank');
@@ -71,13 +78,15 @@ describe('HomePage', () => {
         summary: 'Summary 2',
         image: '/img2.jpg',
         isPrivate: false,
-      }
-    ];
+      },
+    ] as unknown as ReturnType<typeof blogModule.getAllPosts>;
     vi.mocked(blogModule.getAllPosts).mockReturnValue(mockPosts);
-    
+
     render(<HomePage />);
-    
-    expect(screen.getByRole('heading', { name: /recent blogs/i })).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('heading', { name: new RegExp(HOME_CONTENT.sectionBlog, 'i') }),
+    ).toBeInTheDocument();
     expect(screen.getByText('First Post')).toBeInTheDocument();
     expect(screen.getByText('Second Post')).toBeInTheDocument();
     expect(screen.getByTestId('link-post-post-1')).toHaveAttribute('href', '/blog/post-1');
@@ -86,19 +95,21 @@ describe('HomePage', () => {
 
   it('does not render recent blogs section when no posts are available', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
-    
+
     render(<HomePage />);
-    
-    expect(screen.queryByRole('heading', { name: /recent blogs/i })).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByRole('heading', { name: new RegExp(HOME_CONTENT.sectionBlog, 'i') }),
+    ).not.toBeInTheDocument();
   });
 
   it('injects JSON-LD structured data', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
     const { container } = render(<HomePage />);
-    
+
     const scriptTag = container.querySelector('script[type="application/ld+json"]');
     expect(scriptTag).toBeInTheDocument();
-    
+
     const jsonLd = JSON.parse(scriptTag!.innerHTML);
     expect(jsonLd['@type']).toBe('ProfilePage');
     expect(jsonLd.mainEntity.name).toBe('Satvik Chachra');

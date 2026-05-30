@@ -28,7 +28,9 @@ describe('Utils', () => {
     });
 
     it('should format nested or multiple formatting correctly', () => {
-      const { container } = render(<>{formatResumeText('This is **bold** and __underlined__ text')}</>);
+      const { container } = render(
+        <>{formatResumeText('This is **bold** and __underlined__ text')}</>,
+      );
       expect(container.querySelector('b')).toBeInTheDocument();
       expect(container.querySelector('span')).toBeInTheDocument();
     });

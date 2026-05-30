@@ -8,50 +8,18 @@ export const metadata: Metadata = buildMetadata({
   path: '/contact',
 });
 
-const LINKS = [
-  {
-    id: 'contact-github',
-    href: 'https://github.com/satvikchachra',
-    label: 'github',
-    handle: 'satvikchachra',
-    description: 'code, projects, contributions',
-  },
-  {
-    id: 'contact-twitter',
-    href: 'https://twitter.com/satvikchachra',
-    label: 'twitter / x',
-    handle: 'satvikchachra',
-    description: 'thoughts, hot takes, building in public',
-  },
-  {
-    id: 'contact-linkedin',
-    href: 'https://linkedin.com/in/satvikchachra',
-    label: 'linkedin',
-    handle: 'satvikchachra',
-    description: 'professional updates',
-  },
-  {
-    id: 'contact-email',
-    href: 'mailto:consultwithsatvik@gmail.com',
-    label: 'email',
-    handle: 'consultwithsatvik@gmail.com',
-    description: 'best for longer conversations',
-  },
-] as const;
+import { CONTACT_CONTENT } from '@/lib/content';
 
 export default function ContactPage() {
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
       <header className="mb-8 animate-fade-in-up stagger-0">
-        <h1 className="text-lg tracking-tight mb-2 text-text">get in touch</h1>
-        <p className="text-sm leading-relaxed text-text-muted">
-          Open to conversations about AI systems, developer tooling, something you&apos;re building,
-          or a good engineering problem.
-        </p>
+        <h1 className="text-lg tracking-tight mb-2 text-text">{CONTACT_CONTENT.heroTitle}</h1>
+        <p className="text-sm leading-relaxed text-text-muted">{CONTACT_CONTENT.introParagraph}</p>
       </header>
 
       <ul className="animate-fade-in-up stagger-1" aria-label="Contact links">
-        {LINKS.map(({ id, href, label, handle, description }) => (
+        {CONTACT_CONTENT.links.map(({ id, href, label, handle, description }) => (
           <li key={id}>
             <a
               id={id}
@@ -94,7 +62,7 @@ export default function ContactPage() {
         ))}
       </ul>
 
-      <p className="text-xs mt-10 text-text-subtle">usually responds within 48 hours.</p>
+      <p className="text-xs mt-10 text-text-subtle">{CONTACT_CONTENT.responseTime}</p>
     </div>
   );
 }

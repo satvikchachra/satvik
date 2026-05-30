@@ -1,24 +1,29 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import AboutPage from './page';
+import { ABOUT_CONTENT } from '@/lib/content';
 
 describe('AboutPage', () => {
   it('renders the header and content', () => {
-    render(<AboutPage />);
-    
+    const { container } = render(<AboutPage />);
+
     // Check main heading
-    expect(screen.getByRole('heading', { name: /satvik chachra/i, level: 1 })).toBeInTheDocument();
-    
+    expect(
+      screen.getByRole('heading', { name: new RegExp(ABOUT_CONTENT.heroTitle, 'i'), level: 1 }),
+    ).toBeInTheDocument();
+
     // Check for some known text
-    expect(screen.getByText(/AI-native full stack engineer/i)).toBeInTheDocument();
+    expect(container.textContent).toContain(ABOUT_CONTENT.introParagraph1.replace(/[*_]/g, ''));
   });
 
   it('renders the experience section', () => {
     render(<AboutPage />);
-    
-    expect(screen.getByRole('heading', { name: /experience/i })).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('heading', { name: new RegExp(ABOUT_CONTENT.sectionExperience, 'i') }),
+    ).toBeInTheDocument();
     expect(screen.getAllByText('Atlassian')[0]).toBeInTheDocument();
-    
+
     // Verify external link attributes
     const atlassianLink = screen.getAllByRole('link', { name: /Atlassian/i })[0];
     expect(atlassianLink).toHaveAttribute('target', '_blank');
@@ -27,26 +32,32 @@ describe('AboutPage', () => {
 
   it('renders the tech stack section', () => {
     render(<AboutPage />);
-    
-    expect(screen.getByRole('heading', { name: /tech stack/i })).toBeInTheDocument();
-    expect(screen.getByText('AI / ML')).toBeInTheDocument();
-    expect(screen.getByText('Frontend')).toBeInTheDocument();
-    expect(screen.getByText('ReactJS')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('heading', { name: new RegExp(ABOUT_CONTENT.sectionStack, 'i') }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_CONTENT.stack[0].category)).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_CONTENT.stack[2].category)).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_CONTENT.stack[2].items[0])).toBeInTheDocument();
   });
 
   it('renders the education section', () => {
     render(<AboutPage />);
-    
-    expect(screen.getByRole('heading', { name: /education/i })).toBeInTheDocument();
-    expect(screen.getByText('Chitkara University')).toBeInTheDocument();
-    expect(screen.getByText('CBSE Board')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('heading', { name: new RegExp(ABOUT_CONTENT.sectionEducation, 'i') }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_CONTENT.education[0].school)).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_CONTENT.education[1].school)).toBeInTheDocument();
   });
 
   it('renders the awards / recognition section', () => {
     render(<AboutPage />);
-    
-    expect(screen.getByRole('heading', { name: /awards \/ recognition/i })).toBeInTheDocument();
-    expect(screen.getByText('Brainiac Award')).toBeInTheDocument();
-    expect(screen.getByText('Talent Star Award')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('heading', { name: new RegExp(ABOUT_CONTENT.sectionAwards, 'i') }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_CONTENT.awards[0].title)).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_CONTENT.awards[2].title)).toBeInTheDocument();
   });
 });

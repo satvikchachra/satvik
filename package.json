@@ -13,13 +13,16 @@
     "lint": "eslint",
     "new-post": "node scripts/new-post.js",
     "refresh": "rm -rf node_modules .next && npm cache clean --force && npm ci",
+    "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
+    "test:snapshot": "vitest run -t \"snapshot\"",
+    "test:snapshot:update": "vitest run -t \"snapshot\" -u",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate": "npm run format:check && npm run typecheck && npm run lint && npm run build",
-    "validate:all": "npm run validate && npm run test:unit && npm run test:e2e"
+    "validate:all": "npm run validate && npm run test"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

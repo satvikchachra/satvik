@@ -1,5 +1,6 @@
 import type { Project } from '@/lib/projects';
 import { formatResumeText } from '@/lib/utils';
+import { PROJECTS_CONTENT } from '@/lib/content';
 
 interface ProjectsListProps {
   projects: Project[];
@@ -10,7 +11,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
     <>
       {/* Project rows */}
       {projects.length === 0 ? (
-        <p className="text-sm text-text-muted">no projects found.</p>
+        <p className="text-sm text-text-muted">{PROJECTS_CONTENT.noProjectsFound}</p>
       ) : (
         <ul>
           {projects.map((project) => (
@@ -20,7 +21,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
                 <h2 className="text-sm text-text">{project.title}</h2>
                 <div className="flex items-center gap-3 flex-shrink-0">
                   {project.status === 'active' && (
-                    <span className="text-xs text-green">active</span>
+                    <span className="text-xs text-green">{PROJECTS_CONTENT.activeLabel}</span>
                   )}
                   <span className="mono-label">{project.year}</span>
                 </div>

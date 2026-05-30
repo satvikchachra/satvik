@@ -1,17 +1,20 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ContactPage from './page';
+import { CONTACT_CONTENT } from '@/lib/content';
 
 describe('ContactPage', () => {
   it('renders the header and contact links', () => {
     render(<ContactPage />);
-    
+
     // Check main heading
-    expect(screen.getByRole('heading', { name: /get in touch/i, level: 1 })).toBeInTheDocument();
-    
+    expect(
+      screen.getByRole('heading', { name: new RegExp(CONTACT_CONTENT.heroTitle, 'i'), level: 1 }),
+    ).toBeInTheDocument();
+
     // Check for some known text
-    expect(screen.getByText(/Open to conversations/i)).toBeInTheDocument();
-    
+    expect(screen.getByText(new RegExp(CONTACT_CONTENT.introParagraph, 'i'))).toBeInTheDocument();
+
     // Check for links
     const githubLink = screen.getByRole('link', { name: /github: satvikchachra/i });
     expect(githubLink).toHaveAttribute('href', 'https://github.com/satvikchachra');

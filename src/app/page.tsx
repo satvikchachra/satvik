@@ -4,12 +4,7 @@ import { formatResumeText, formatDate } from '@/lib/utils';
 import { EXPERIENCE } from '@/lib/experience';
 import { siteConfig } from '@/lib/metadata';
 
-const WINS = [
-  ['2K+ users daily', 'Built AI coding agent at Atlassian'],
-  ['1 Million+ users', 'B2C SaaS products shipped at AppyHigh'],
-  ['~95% shared code', 'VS Code + JetBrains plugin for AI Coding Agent'],
-  ['60s → 500ms', 'ML prediction API latency reduction'],
-] as const;
+import { HOME_CONTENT } from '@/lib/content';
 
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
@@ -36,22 +31,20 @@ export default function HomePage() {
       {/* Header */}
       <header className="mb-10 animate-fade-in-up stagger-0" aria-labelledby="hero-heading">
         <h1 id="hero-heading" className="text-lg tracking-tight mb-1 text-text">
-          satvik chachra
+          {HOME_CONTENT.heroTitle}
         </h1>
         <p className="text-sm text-text-muted">
-          <strong className="font-light text-text">
-            builds ai coding agents, full-stack software & infrastructure
-          </strong>
+          <strong className="font-light text-text">{HOME_CONTENT.heroSubtitle}</strong>
         </p>
       </header>
 
       {/* Wins */}
       <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
         <h2 id="wins-heading" className="section-label mb-4">
-          selected wins
+          {HOME_CONTENT.sectionWins}
         </h2>
         <ul>
-          {WINS.map(([metric, context]) => (
+          {HOME_CONTENT.wins.map(([metric, context]) => (
             <li
               key={metric}
               className="flex items-baseline justify-between gap-6 py-3 border-t border-border-subtle"
@@ -67,7 +60,7 @@ export default function HomePage() {
             id="view-all-projects"
             className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-border bg-surface hover:border-text-subtle hover:bg-surface-alt transition-all duration-200 blue-link"
           >
-            <span className="blue-link-text">view projects</span>
+            <span className="blue-link-text">{HOME_CONTENT.viewProjects}</span>
             <span
               className="transition-transform duration-200 group-hover:translate-x-0.5"
               aria-hidden="true"
@@ -81,7 +74,7 @@ export default function HomePage() {
       {/* Experience */}
       <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
         <h2 id="experience-heading" className="section-label mb-4">
-          experience
+          {HOME_CONTENT.sectionExperience}
         </h2>
         <ul>
           {EXPERIENCE.map((item) => (
@@ -115,7 +108,7 @@ export default function HomePage() {
       {posts.length > 0 && (
         <section aria-labelledby="blog-heading" className="mb-10 animate-fade-in-up stagger-6">
           <h2 id="blog-heading" className="section-label mb-4">
-            recent blogs
+            {HOME_CONTENT.sectionBlog}
           </h2>
           <div>
             {posts.map((post) => (
@@ -143,7 +136,7 @@ export default function HomePage() {
               id="view-all-posts"
               className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-border bg-surface hover:border-text-subtle hover:bg-surface-alt transition-all duration-200 blue-link"
             >
-              <span className="blue-link-text">all posts</span>
+              <span className="blue-link-text">{HOME_CONTENT.viewAllPosts}</span>
               <span
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
                 aria-hidden="true"

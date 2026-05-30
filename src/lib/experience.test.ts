@@ -18,7 +18,7 @@ describe('Experience Data', () => {
       expect(typeof item.companyUrl).toBe('string');
       expect(typeof item.role).toBe('string');
       expect(typeof item.description).toBe('string');
-      
+
       // Basic URL validation
       expect(item.companyUrl).toMatch(/^https?:\/\/.+/);
     });
