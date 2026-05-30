@@ -69,7 +69,7 @@ describe('HomePage', () => {
         date: '2024-01-01T00:00:00Z',
         summary: 'Summary 1',
         image: '/img1.jpg',
-        isPrivate: false,
+        private: false,
       },
       {
         slug: 'post-2',
@@ -77,7 +77,31 @@ describe('HomePage', () => {
         date: '2024-01-02T00:00:00Z',
         summary: 'Summary 2',
         image: '/img2.jpg',
-        isPrivate: false,
+        private: false,
+      },
+      {
+        slug: 'post-3',
+        title: 'Third Post',
+        date: '2024-01-03T00:00:00Z',
+        summary: 'Summary 3',
+        image: '/img3.jpg',
+        private: false,
+      },
+      {
+        slug: 'post-4',
+        title: 'Fourth Post',
+        date: '2024-01-04T00:00:00Z',
+        summary: 'Summary 4',
+        image: '/img4.jpg',
+        private: false,
+      },
+      {
+        slug: 'post-private',
+        title: 'Private Post',
+        date: '2024-01-05T00:00:00Z',
+        summary: 'Private Summary',
+        image: '/img-private.jpg',
+        private: true,
       },
     ] as unknown as ReturnType<typeof blogModule.getAllPosts>;
     vi.mocked(blogModule.getAllPosts).mockReturnValue(mockPosts);
@@ -89,6 +113,9 @@ describe('HomePage', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('First Post')).toBeInTheDocument();
     expect(screen.getByText('Second Post')).toBeInTheDocument();
+    expect(screen.getByText('Third Post')).toBeInTheDocument();
+    expect(screen.queryByText('Fourth Post')).not.toBeInTheDocument();
+    expect(screen.queryByText('Private Post')).not.toBeInTheDocument();
     expect(screen.getByTestId('link-post-post-1')).toHaveAttribute('href', '/blog/post-1');
     expect(screen.getByTestId('link-view-all-posts')).toHaveAttribute('href', '/blog');
   });

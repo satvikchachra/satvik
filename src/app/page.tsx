@@ -7,7 +7,10 @@ import { siteConfig } from '@/lib/metadata';
 import { HOME_CONTENT } from '@/lib/content';
 
 export default function HomePage() {
-  const posts = getAllPosts().slice(0, 3);
+  const MAXIMUM_RECENT_BLOGS = 3;
+  const posts = getAllPosts()
+    .filter((p) => !p.private)
+    .slice(0, MAXIMUM_RECENT_BLOGS);
 
   const jsonLd = {
     '@context': 'https://schema.org',
