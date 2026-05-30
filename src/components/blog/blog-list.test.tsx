@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { BlogList } from './blog-list';
+import { BLOG_CONTENT } from '@/lib/content';
 
 // Mock utils
 vi.mock('@/lib/utils', async (importOriginal) => {
@@ -14,7 +15,7 @@ vi.mock('@/lib/utils', async (importOriginal) => {
 describe('BlogList', () => {
   it('renders "no posts found" when empty', () => {
     render(<BlogList posts={[]} />);
-    expect(screen.getByText('no posts found.')).toBeInTheDocument();
+    expect(screen.getByText(BLOG_CONTENT.noPostsFoundFallback)).toBeInTheDocument();
   });
 
   it('renders a list of posts correctly', () => {

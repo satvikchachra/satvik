@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import BlogPage from './page';
+import { BLOG_CONTENT } from '@/lib/content';
 
 // Mock the data layer
 vi.mock('@/lib/blog', () => ({
@@ -29,8 +30,8 @@ describe('BlogPage', () => {
 
     render(<BlogPage />);
 
-    expect(screen.getByText('posts are on their way.')).toBeInTheDocument();
-    expect(screen.getByText('drop in again soon.')).toBeInTheDocument();
+    expect(screen.getByText(BLOG_CONTENT.noPostsFound)).toBeInTheDocument();
+    expect(screen.getByText(BLOG_CONTENT.dropInSoon)).toBeInTheDocument();
     expect(screen.queryByTestId('blog-list')).not.toBeInTheDocument();
   });
 
@@ -54,7 +55,7 @@ describe('BlogPage', () => {
 
     render(<BlogPage />);
 
-    expect(screen.queryByText('posts are on their way.')).not.toBeInTheDocument();
+    expect(screen.queryByText(BLOG_CONTENT.noPostsFound)).not.toBeInTheDocument();
     expect(screen.getByTestId('dev-private-toggle')).toBeInTheDocument();
     expect(screen.getByTestId('blog-list')).toBeInTheDocument();
   });
@@ -81,7 +82,7 @@ describe('BlogPage', () => {
 
     render(<BlogPage />);
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('blog');
-    expect(screen.getByText(/Opinion pieces, engineering case studies/)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(BLOG_CONTENT.heroTitle);
+    expect(screen.getByText(BLOG_CONTENT.heroSubtitle)).toBeInTheDocument();
   });
 });

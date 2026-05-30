@@ -42,23 +42,15 @@ describe('HomePage', () => {
     ).toBeInTheDocument();
     expect(screen.getByText(HOME_CONTENT.wins[0][0])).toBeInTheDocument();
     expect(screen.getByText(HOME_CONTENT.wins[0][1])).toBeInTheDocument();
-    expect(screen.getByTestId('link-view-all-projects')).toHaveAttribute('href', '/projects');
   });
 
-  it('renders the experience section', () => {
+  it('renders the CTA row with correct links', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
     render(<HomePage />);
 
-    expect(
-      screen.getByRole('heading', { name: new RegExp(HOME_CONTENT.sectionExperience, 'i') }),
-    ).toBeInTheDocument();
-    expect(screen.getAllByText('Atlassian')[0]).toBeInTheDocument();
-    expect(screen.getByText('AppyHigh')).toBeInTheDocument();
-
-    // Verify external link attributes
-    const atlassianLink = screen.getAllByRole('link', { name: /Atlassian/i })[0];
-    expect(atlassianLink).toHaveAttribute('target', '_blank');
-    expect(atlassianLink).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(screen.getByTestId('link-cta-work')).toHaveAttribute('href', '/projects');
+    expect(screen.getByTestId('link-cta-blog')).toHaveAttribute('href', '/blog');
+    expect(screen.getByTestId('link-cta-contact')).toHaveAttribute('href', '/contact');
   });
 
   it('renders recent blogs section when posts are available', () => {
@@ -69,7 +61,7 @@ describe('HomePage', () => {
         date: '2024-01-01T00:00:00Z',
         summary: 'Summary 1',
         image: '/img1.jpg',
-        isPrivate: false,
+        private: false,
       },
       {
         slug: 'post-2',
@@ -77,7 +69,31 @@ describe('HomePage', () => {
         date: '2024-01-02T00:00:00Z',
         summary: 'Summary 2',
         image: '/img2.jpg',
-        isPrivate: false,
+        private: false,
+      },
+      {
+        slug: 'post-3',
+        title: 'Third Post',
+        date: '2024-01-03T00:00:00Z',
+        summary: 'Summary 3',
+        image: '/img3.jpg',
+        private: false,
+      },
+      {
+        slug: 'post-4',
+        title: 'Fourth Post',
+        date: '2024-01-04T00:00:00Z',
+        summary: 'Summary 4',
+        image: '/img4.jpg',
+        private: false,
+      },
+      {
+        slug: 'post-private',
+        title: 'Private Post',
+        date: '2024-01-05T00:00:00Z',
+        summary: 'Private Summary',
+        image: '/img-private.jpg',
+        private: true,
       },
     ] as unknown as ReturnType<typeof blogModule.getAllPosts>;
     vi.mocked(blogModule.getAllPosts).mockReturnValue(mockPosts);
@@ -89,6 +105,9 @@ describe('HomePage', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('First Post')).toBeInTheDocument();
     expect(screen.getByText('Second Post')).toBeInTheDocument();
+    expect(screen.getByText('Third Post')).toBeInTheDocument();
+    expect(screen.queryByText('Fourth Post')).not.toBeInTheDocument();
+    expect(screen.queryByText('Private Post')).not.toBeInTheDocument();
     expect(screen.getByTestId('link-post-post-1')).toHaveAttribute('href', '/blog/post-1');
     expect(screen.getByTestId('link-view-all-posts')).toHaveAttribute('href', '/blog');
   });

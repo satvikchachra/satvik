@@ -11,7 +11,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 import { ABOUT_CONTENT } from '@/lib/content';
-
+import { SelectedWins } from '@/components/ui/selected-wins';
 export default function AboutPage() {
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
@@ -21,9 +21,11 @@ export default function AboutPage() {
         <div className="text-sm leading-relaxed space-y-2 text-text-muted">
           <p>{formatResumeText(ABOUT_CONTENT.introParagraph1)}</p>
           <p>{formatResumeText(ABOUT_CONTENT.introParagraph2)}</p>
-          <p>{formatResumeText(ABOUT_CONTENT.introParagraph3)}</p>
         </div>
       </header>
+
+      {/* Wins */}
+      <SelectedWins />
 
       {/* Experience */}
       <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
@@ -67,7 +69,7 @@ export default function AboutPage() {
           {ABOUT_CONTENT.stack.map(({ category, items }) => (
             <div
               key={category}
-              className="flex flex-col sm:flex-row sm:gap-6 py-2.5 border-t border-border-subtle first:border-t-0"
+              className="flex flex-col sm:flex-row sm:gap-6 py-2.5 border-t border-border-subtle"
             >
               <div className="w-28 flex-shrink-0 text-xs font-semibold tracking-wider uppercase mb-2 sm:mb-0 pt-1 text-text-subtle">
                 {category}

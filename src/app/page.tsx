@@ -1,13 +1,16 @@
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/blog';
-import { formatResumeText, formatDate } from '@/lib/utils';
-import { EXPERIENCE } from '@/lib/experience';
+import { formatDate } from '@/lib/utils';
 import { siteConfig } from '@/lib/metadata';
 
 import { HOME_CONTENT } from '@/lib/content';
+import { SelectedWins } from '@/components/ui/selected-wins';
 
 export default function HomePage() {
-  const posts = getAllPosts().slice(0, 3);
+  const MAXIMUM_RECENT_BLOGS = 3;
+  const posts = getAllPosts()
+    .filter((p) => !p.private)
+    .slice(0, MAXIMUM_RECENT_BLOGS);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -33,34 +36,49 @@ export default function HomePage() {
         <h1 id="hero-heading" className="text-lg tracking-tight mb-1 text-text">
           {HOME_CONTENT.heroTitle}
         </h1>
-        <p className="text-sm text-text-muted">
+        <p className="text-sm text-text-muted mb-4">
           <strong className="font-light text-text">{HOME_CONTENT.heroSubtitle}</strong>
         </p>
       </header>
 
       {/* Wins */}
-      <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
-        <h2 id="wins-heading" className="section-label mb-4">
-          {HOME_CONTENT.sectionWins}
-        </h2>
-        <ul>
-          {HOME_CONTENT.wins.map(([metric, context]) => (
-            <li
-              key={metric}
-              className="flex items-baseline justify-between gap-6 py-3 border-t border-border-subtle"
-            >
-              <span className="text-sm font-light text-text">{context}</span>
-              <span className="text-sm font-semibold flex-shrink-0 text-text">{metric}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="pt-4">
+      <SelectedWins showViewProjects={false} />
+
+      {/* CTA Row */}
+      <section aria-label="Quick links" className="mb-10 animate-fade-in-up stagger-4">
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
           <Link
             href="/projects"
-            id="view-all-projects"
-            className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-border bg-surface hover:border-text-subtle hover:bg-surface-alt transition-all duration-200 blue-link"
+            id="cta-work"
+            className="group inline-flex items-baseline gap-1 text-xs blue-link"
           >
-            <span className="blue-link-text">{HOME_CONTENT.viewProjects}</span>
+            <span className="blue-link-text">{HOME_CONTENT.ctaWork}</span>
+            <span
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </Link>
+          <Link
+            href="/blog"
+            id="cta-blog"
+            className="group inline-flex items-baseline gap-1 text-xs blue-link"
+          >
+            <span className="blue-link-text">{HOME_CONTENT.ctaBlog}</span>
+            <span
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </Link>
+          <Link
+            href="/contact"
+            id="cta-contact"
+            className="group inline-flex items-baseline gap-1 text-xs blue-link"
+          >
+            <span className="blue-link-text">{HOME_CONTENT.ctaContact}</span>
             <span
               className="transition-transform duration-200 group-hover:translate-x-0.5"
               aria-hidden="true"
@@ -69,39 +87,6 @@ export default function HomePage() {
             </span>
           </Link>
         </div>
-      </section>
-
-      {/* Experience */}
-      <section aria-labelledby="experience-heading" className="mb-10 animate-fade-in-up stagger-4">
-        <h2 id="experience-heading" className="section-label mb-4">
-          {HOME_CONTENT.sectionExperience}
-        </h2>
-        <ul>
-          {EXPERIENCE.map((item) => (
-            <li key={item.company + item.year} className="py-4 border-t border-border-subtle">
-              <div className="flex items-baseline justify-between gap-4 mb-1">
-                <span className="text-sm text-text">{item.role}</span>
-                <span className="mono-label flex-shrink-0">{item.year}</span>
-              </div>
-              <p className="text-xs mb-2">
-                <a
-                  href={item.companyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="blue-link inline-flex items-baseline gap-1"
-                >
-                  <span className="blue-link-text">{item.company}</span>
-                  <span className="text-xs no-underline" aria-hidden="true">
-                    ↗
-                  </span>
-                </a>
-              </p>
-              <p className="text-sm leading-relaxed text-text-muted">
-                {formatResumeText(item.description)}
-              </p>
-            </li>
-          ))}
-        </ul>
       </section>
 
       {/* Recent Writing */}
@@ -134,7 +119,7 @@ export default function HomePage() {
             <Link
               href="/blog"
               id="view-all-posts"
-              className="group inline-flex items-center gap-1.5 text-xs font-mono py-1 px-3 rounded-full border border-border bg-surface hover:border-text-subtle hover:bg-surface-alt transition-all duration-200 blue-link"
+              className="group inline-flex items-baseline gap-1 text-xs blue-link"
             >
               <span className="blue-link-text">{HOME_CONTENT.viewAllPosts}</span>
               <span

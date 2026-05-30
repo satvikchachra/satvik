@@ -29,4 +29,12 @@ describe('Content Lock', () => {
     // To approve changes to blog posts, run: npm run test -- -u
     expect(blogContent).toMatchSnapshot();
   });
+
+  it('matches the llms.txt snapshot to protect against unintended AI edits', () => {
+    const llmsPath = path.join(process.cwd(), 'public', 'llms.txt');
+    if (!fs.existsSync(llmsPath)) return;
+
+    const llmsContent = fs.readFileSync(llmsPath, 'utf-8');
+    expect(llmsContent).toMatchSnapshot();
+  });
 });

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Post } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
+import { BLOG_CONTENT } from '@/lib/content';
 
 interface BlogListProps {
   posts: Post[];
@@ -9,7 +10,7 @@ interface BlogListProps {
 export function BlogList({ posts }: BlogListProps) {
   return posts.length === 0 ? (
     <div className="py-16 border-t border-border-subtle">
-      <p className="text-sm mb-1 text-text">no posts found.</p>
+      <p className="text-sm mb-1 text-text">{BLOG_CONTENT.noPostsFoundFallback}</p>
     </div>
   ) : (
     <ol aria-label="Blog posts">

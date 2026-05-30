@@ -1,4 +1,5 @@
 import { GitHubIcon, XIcon, LinkedInIcon, MailIcon } from '@/components/ui/icons';
+import { FOOTER_CONTENT } from '@/lib/content';
 
 export function Footer() {
   return (
@@ -32,7 +33,7 @@ export function Footer() {
           </ul>
         </nav>
 
-        <p className="text-xs tracking-wide text-text-subtle">MIT License</p>
+        <p className="text-xs tracking-wide text-text-subtle">{FOOTER_CONTENT.license}</p>
       </div>
     </footer>
   );

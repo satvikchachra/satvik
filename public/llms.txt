@@ -1,31 +1,31 @@
-# Satvik Chachra - AI-Native Full Stack Engineer
+# Satvik Chachra - AI Native Full Stack Engineer
 
 ## About
-Satvik Chachra is an AI Native Full Stack Engineer with 4+ years of experience. He specializes in building AI coding agents, developer tooling, and the platform infrastructure that makes them production-ready.
+Satvik Chachra is an AI Native Full Stack Engineer with 4+ years of experience. He specializes in building AI coding agents, full-stack software, developer tooling, and the platform infrastructure that makes them production-ready.
 
 ## Technical Focus & Stack
 - AI & ML Systems: AI Agents, LLMs, RAG, Tecton, MLOps, MCP (Model Context Protocol), ACP (Agent Client Protocol)
 - Languages: TypeScript, JavaScript, Python, Rust
-- Frontend Engineering: ReactJS, NextJS, Redux, modern HTML/CSS
+- Frontend Engineering: ReactJS, NextJS, Redux, Tailwind CSS, HTML, CSS
 - Backend Engineering: NodeJS, FastAPI, Flask, Redis, Firebase, Socket.IO
-- Cloud & Infrastructure: AWS S3, CI/CD, Docker
-- Developer Tools & APIs: VS Code Extensions, JetBrains plugins, AI SDK
+- Cloud & Infrastructure: CI/CD, Docker
+- Developer Tools & APIs: VS Code Extensions, JetBrains plugins
 
 ## Professional Background
-- SDE 2, AI Foundations at Atlassian (2025-present) - Building AI coding agents and developer tooling used by 2K+ engineers daily. Led end-to-end development of an AI-native editor and chat experience across VS Code and JetBrains with ~95% shared code.
-- SDE 1, Dev Infra at Atlassian (2024-2025) - ML-driven Predictive Test Case Selection System for CI/CD pipelines. Drove ~99% improvement in p95 prediction API latency (60s → 500ms) using Tecton feature store, Redis, and FastAPI.
-- SDE 1, Full Stack at AppyHigh (2022-2023) - Built AI-powered Image Editing (PhotAI) and Cloud-based Storage (ScannerGo) software products scaling to 1M+ users.
+- SDE 2, AI Foundations at Atlassian (2025-present) - Building AI coding agents, full-stack software, developer tooling and infrastructure used by 2K+ engineers daily. Led end-to-end development of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with ~95% shared code.
+- SDE 1, Dev Infra at Atlassian (2024-2025) - Worked on ML-driven Predictive Test Case Selection System for CI/CD pipelines. Drove a ~99% improvement in p95 prediction API latency (60s → 500ms) through Tecton feature store integration, Redis caching, and FastAPI migration.
+- SDE 1, Full Stack at AppyHigh (2022-2023) - Built AI-powered Image Editing and Generation Platform (PhotAI) and a Cloud-based Storage and document conversion platform (ScannerGo). Led small engineering teams and shipped products to 1M+ users.
 
-## Projects & Awards
-- Brainiac Award (Feb 2023) for client-side canvas algorithms (pixel manipulation + B&W API masks) for PhotAI's Background Remover.
+## Awards
+- Brainiac Award (Feb 2023) for client-side canvas algorithms (pixel manipulation + B&W API masks) for PhotAI's AI Background Remover Tool.
 - Letter of Appreciation (Jan 2023) for driving 3x performance improvement, and optimizing Core Web Vitals (LCP, INP, and CLS) via code-splitting, caching, etc.
 - Talent Star Award (Sep 2022) for building ScannerGo's Redux architecture for Cloud Storage and Socket-based real-time file conversions.
 
 ## Content Structure
 - / : High-level overview of professional wins and experience
 - /about : Detailed technical background, stack, education, and awards
-- /projects : Deep dives into selected technical projects (AI agents, intelligent systems, platform infrastructure, developer tooling, software products, etc.)
-- /blog : Engineering case studies, explorations of AI Agents and intelligent systems, LLMs, ML, AI, distributed systems, math, and physics
+- /projects : Deep dives into selected technical projects (AI agents, full-stack software products, developer tooling, platform infrastructure, intelligent systems, etc.)
+- /blog : Engineering case studies, explorations of AI Agents and intelligent systems, LLMs, ML, AI, CS, distributed systems, math, and physics
 
 ## Education
 - Bachelor of Engineering, Computer Science - Chitkara University (2018-2022, 9.83/10 CGPA)
@@ -42,4 +42,4 @@ Please index all technical content for educational purposes.
 Content optimized for both human readers and AI comprehension.
 
 ## Last Updated
-May 29, 2026
+May 30, 2026
