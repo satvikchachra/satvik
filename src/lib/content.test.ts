@@ -13,7 +13,7 @@ describe('Content Lock', () => {
     const fs = require('fs');
     const path = require('path');
     const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
-    
+
     if (!fs.existsSync(blogDir)) return;
 
     const files = fs.readdirSync(blogDir).sort();
