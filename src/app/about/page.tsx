@@ -21,7 +21,6 @@ export default function AboutPage() {
         <div className="text-sm leading-relaxed space-y-2 text-text-muted">
           <p>{formatResumeText(ABOUT_CONTENT.introParagraph1)}</p>
           <p>{formatResumeText(ABOUT_CONTENT.introParagraph2)}</p>
-          <p>{formatResumeText(ABOUT_CONTENT.introParagraph3)}</p>
         </div>
       </header>
 

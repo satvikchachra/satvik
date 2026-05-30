@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import NotFound from './not-found';
+import { NOT_FOUND_CONTENT } from '@/lib/content';
 
 vi.mock('next/link', () => ({
   default: ({ children, href, id }: { children: React.ReactNode; href: string; id?: string }) => (
@@ -15,16 +16,18 @@ describe('NotFoundPage', () => {
     render(<NotFound />);
 
     // Check main heading
-    expect(screen.getByRole('heading', { name: /page not found/i, level: 1 })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: new RegExp(NOT_FOUND_CONTENT.heading, 'i'), level: 1 }),
+    ).toBeInTheDocument();
 
     // Check for some known text
     expect(
-      screen.getByText(/whatever you were looking for doesn't exist here/i),
+      screen.getByText(new RegExp(NOT_FOUND_CONTENT.description.slice(0, 15), 'i')),
     ).toBeInTheDocument();
 
     // Check for go home link
     const homeLink = screen.getByTestId('link-not-found-home-link');
     expect(homeLink).toHaveAttribute('href', '/');
-    expect(homeLink).toHaveTextContent('← go home');
+    expect(homeLink).toHaveTextContent(NOT_FOUND_CONTENT.goHome);
   });
 });

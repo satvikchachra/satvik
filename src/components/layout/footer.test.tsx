@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Footer } from './footer';
+import { FOOTER_CONTENT } from '@/lib/content';
 
 describe('Footer', () => {
   it('renders social links and license', () => {
@@ -22,6 +23,6 @@ describe('Footer', () => {
     expect(emailLink).not.toHaveAttribute('target', '_blank');
 
     // Check license
-    expect(screen.getByText(/MIT License/i)).toBeInTheDocument();
+    expect(screen.getByText(FOOTER_CONTENT.license)).toBeInTheDocument();
   });
 });

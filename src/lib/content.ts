@@ -21,9 +21,7 @@ export const ABOUT_CONTENT = {
   heroTitle: 'satvik chachra',
   introParagraph1: '**AI-native full stack engineer**, __4+ years of experience__.',
   introParagraph2:
-    'Building **AI coding agents**, developer tooling, and the infrastructure that makes them production-ready.',
-  introParagraph3:
-    "I write about AI systems, platform engineering, and things I'm learning across computer science, mathematics, and machine learning.",
+    'Building **AI coding agents**, full-stack software, and the infrastructure that makes them production-ready.',
   sectionExperience: 'experience',
   sectionStack: 'tech stack',
   sectionEducation: 'education',
@@ -47,7 +45,7 @@ export const ABOUT_CONTENT = {
     },
     {
       category: 'Cloud / Infra',
-      items: ['AWS S3', 'CI/CD', 'Docker'],
+      items: ['CI/CD', 'Docker'],
     },
     {
       category: 'Tools / APIs',
@@ -90,7 +88,7 @@ export const ABOUT_CONTENT = {
       title: 'Talent Star Award',
       date: 'Sep ’22',
       description:
-        "For __building ScannerGo's__ **Redux architecture**, Socket-based **real-time file conversions** and custom browser PDF viewing experience.",
+        "For __building ScannerGo's__ **Redux architecture**, Cloud-Based Storage, Socket-based **real-time file conversions** and custom browser PDF viewing experience.",
       viewUrl:
         'https://github.com/satvikchachra/profile/blob/463aeb1d2ba5208a094842824d0cab7650f56b91/talentStarsAward.jpg',
     },
@@ -136,9 +134,30 @@ export const CONTACT_CONTENT = {
 
 export const PROJECTS_CONTENT = {
   heroTitle: 'projects',
-  heroSubtitle: 'AI systems, platform infrastructure, and developer tools.',
+  heroSubtitle: 'AI agents, full-stack software, platform infrastructure, and developer tooling',
   noProjectsFound: 'no projects found.',
   activeLabel: 'active',
+} as const;
+
+export const BLOG_CONTENT = {
+  heroTitle: 'blog',
+  heroSubtitle:
+    'I write about things I am learning across Machine Learning, Aritifical Intelligence, Computer Science, Distributed Systems, Mathematics, and Physics.',
+  noPostsFound: 'posts are on their way.',
+  noPostsFoundFallback: 'no posts found.',
+  dropInSoon: 'drop in again soon.',
+} as const;
+
+export const NOT_FOUND_CONTENT = {
+  title: '404 — Page Not Found',
+  heading: 'page not found',
+  description:
+    "whatever you were looking for doesn't exist here. might have moved, might never have existed.",
+  goHome: '← go home',
+} as const;
+
+export const FOOTER_CONTENT = {
+  license: 'MIT License',
 } as const;
 
 export const EXPERIENCE_DATA: readonly ExperienceItem[] = [
@@ -148,7 +167,7 @@ export const EXPERIENCE_DATA: readonly ExperienceItem[] = [
     companyUrl: 'https://www.atlassian.com/',
     role: 'SDE 2 — AI Foundations',
     description:
-      'Building **AI coding agents**, developer tooling, infrastructure, and intelligent systems used by **2K+ engineers** daily. __Led end-to-end development__ of an AI-native editor and chat experience across VS Code and JetBrains with **~95% shared code**.',
+      'Building **AI coding agents**, full-stack software, developer tooling and infrastructure used by **2K+ engineers** daily. __Led end-to-end development__ of MCP Integration into AI Coding Agent, AI-native Editor and Chat experience across VS Code and JetBrains with **~95% shared code**.',
   },
   {
     year: '2024 – 2025',
@@ -164,7 +183,7 @@ export const EXPERIENCE_DATA: readonly ExperienceItem[] = [
     companyUrl: 'https://www.appyhigh.com/',
     role: 'SDE 1 — Full Stack',
     description:
-      'Built **AI-powered Image Editing** and Generation Platform (PhotAI) and a **Cloud-based Storage System** and document conversion service (ScannerGo). __Led small engineering teams__ and shipped products to **1M+ users**.',
+      'Built **AI-powered Image Editing** and Generation Platform (PhotAI) and a **Cloud-based Storage** and document conversion platform (ScannerGo). __Led small engineering teams__ and shipped products to **1M+ users**.',
   },
 ];
 
@@ -174,12 +193,12 @@ export const PROJECTS_DATA: Project[] = [
     title: 'AI Coding Agent',
     company: 'Atlassian',
     description:
-      'AI-native editor and chat experience for VS Code and JetBrains — built for **2K+ engineers** daily, with **~95% shared** cross-platform code.',
+      'Built Core AI Coding Agent, Editor and Chat experience for VSCode and JetBrains — used by **2K+ engineers** daily, with **~95% shared** cross-platform code.',
     bullets: [
-      '__Led end-to-end development__ of the **AI-native Editor and Chat Experience**, including persistent conversation editors, attachments, @mentions, slash commands, image paste/upload, drag-and-drop, and keyboard-first interactions.',
+      '__Architected and delivered **MCP integration**__ for the Coding Agent, building frontend and backend infrastructure for server onboarding, tool discovery, permission management, and agent-driven execution of external tools.',
+      '__Led end-to-end development__ of the **AI-native Editor and Chat Experience** for the agent, including editor, tool calls, streaming, attachments, @mentions, slash commands, image paste/upload, drag-and-drop, and keyboard-first interactions.',
       'Improved AI coding agent response quality by introducing **compile-time IDE diagnostics** as an iterative feedback loop and designing XML-based high-signal context for prompts.',
-      'Built **context providers** powering the agent workflow: @Files & Folders, @Commit, @Branch, @Rules, @Docs, @Linter Errors, @Recent Changes, and @Past Chats.',
-      'Extended agent capabilities through **MCP integration** (infra + UX), enabling users to connect MCP servers, discover tools, and safely interact with third-party systems.',
+      'Built **context providers** powering the AI agent workflow: @Files & Folders, @Commit, @Branch, @Rules, @Docs, @Linter Errors, @Recent Changes, and @Past Chats.',
       '__Contributed to a cross-IDE platform architecture__ enabling **~95% shared code** between VS Code and JetBrains, significantly reducing duplication and increasing shipping velocity.',
       'Built extension and agent **settings infrastructure** end-to-end, including persistence, real-time synchronization, permissions/approval systems, and extensibility surfaces.',
     ],
@@ -226,13 +245,12 @@ export const PROJECTS_DATA: Project[] = [
     description:
       '**AI-powered image editing** and generation platform with background removal, object replacement, and AI avatar generation. Reached **700K+ users**.',
     bullets: [
-      '__Led a team of **5 engineers**__ to deliver the platform end-to-end across frontend, backend, infrastructure, and deployment workflows.',
+      '__Led a team of **5 engineers**__ to build the frontend platform, owning complete architecture, AI feature integration, performance optimization, SEO, CI/CD pipelines, and production deployments',
       'Built **AI-powered image editing** capabilities including Background Remover, Object Replacer, and AI Avatar generation workflows.',
-      'Designed secure media upload pipelines using **AWS S3** for scalable image processing and storage.',
       'Integrated **Stripe** for secure payments, enabling subscription management, checkout flows, and seamless transaction handling across the platform.',
       'Implemented **Firebase One-Tap Google Authentication** and optimized image editing workflows via async processing, state management improvements, and reduced UI latency.',
     ],
-    tags: ['NextJS', 'ReactJS', 'TypeScript', 'Firebase', 'StripeJS', 'AWS S3'],
+    tags: ['NextJS', 'ReactJS', 'TypeScript', 'Firebase', 'StripeJS'],
     liveUrl: 'https://www.phot.ai/',
     featured: true,
     status: 'archived',
@@ -245,11 +263,11 @@ export const PROJECTS_DATA: Project[] = [
     description:
       '**Cloud-based storage** and PDF toolkit platform with real-time file conversion, custom PDF viewer, and document management. Reached **500K+ users**.',
     bullets: [
-      '__Led a team of **3 engineers**__ to build and ship core document management and PDF tooling features.',
-      'Built real-time file upload and conversion workflows using **Socket APIs**.',
+      '__Led a team of **3 engineers**__ and built the frontend platform for Cloud Storage and Document Conversion',
       'Built **Redux based Architecture** for the cloud storage platform, powering file uploads/downloads, CRUD operations, nested folder trees, and storage management workflows.',
+      'Built real-time file upload and conversion workflows using **Socket APIs**.',
       'Developed a **custom PDF viewer** enabling in-browser document viewing and interaction.',
-      'Integrated **CAPTCHA-based bot protection** to reduce abuse and malicious traffic.',
+      'Integrated **CAPTCHA-based bot protection** and reduced abuse and malicious traffic and improved security',
     ],
     tags: ['ReactJS', 'NextJS', 'Redux', 'Socket.IO', 'Material UI'],
     liveUrl: 'https://scannergo.net/',
