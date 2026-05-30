@@ -1,5 +1,4 @@
 import { GitHubIcon, XIcon, LinkedInIcon, MailIcon } from '@/components/ui/icons';
-import { CurrentYear } from './current-year';
 
 export function Footer() {
   return (
@@ -33,9 +32,7 @@ export function Footer() {
           </ul>
         </nav>
 
-        <p className="text-xs tracking-wide text-text-subtle">
-          &copy; <CurrentYear />
-        </p>
+        <p className="text-xs tracking-wide text-text-subtle">MIT License</p>
       </div>
     </footer>
   );
