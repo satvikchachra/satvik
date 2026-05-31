@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SOCIAL_LINKS, EMAIL_ADDRESS } from '@/lib/content';
 
 export const BASE_URL = 'https://satvikchachra.com';
 
@@ -11,11 +12,11 @@ export const siteConfig = {
   ogImage: `${BASE_URL}/og/default.png`,
   author: {
     name: 'Satvik Chachra',
-    email: 'consultwithsatvik@gmail.com',
-    github: 'https://github.com/satvikchachra',
+    email: EMAIL_ADDRESS,
+    github: SOCIAL_LINKS.github,
     twitter: '@satvikchachra',
-    twitterUrl: 'https://x.com/satvikchachra',
-    linkedin: 'https://linkedin.com/in/satvikchachra',
+    twitterUrl: SOCIAL_LINKS.x,
+    linkedin: SOCIAL_LINKS.linkedin,
   },
 };
 

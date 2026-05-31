@@ -15,26 +15,19 @@ describe('ContactPage', () => {
     // Check for some known text
     expect(screen.getByText(new RegExp(CONTACT_CONTENT.introParagraph, 'i'))).toBeInTheDocument();
 
-    // Check for links
-    const githubLink = screen.getByRole('link', { name: /github: satvikchachra/i });
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/satvikchachra');
-    expect(githubLink).toHaveAttribute('target', '_blank');
-    expect(githubLink).toHaveAttribute('rel', 'noreferrer');
-
-    const twitterLink = screen.getByRole('link', { name: /twitter \/ x: satvikchachra/i });
-    expect(twitterLink).toHaveAttribute('href', 'https://twitter.com/satvikchachra');
-    expect(twitterLink).toHaveAttribute('target', '_blank');
-    expect(twitterLink).toHaveAttribute('rel', 'noreferrer');
-
-    const linkedinLink = screen.getByRole('link', { name: /linkedin: satvikchachra/i });
-    expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/satvikchachra');
-    expect(linkedinLink).toHaveAttribute('target', '_blank');
-    expect(linkedinLink).toHaveAttribute('rel', 'noreferrer');
-
-    const emailLink = screen.getByRole('link', { name: /email: consultwithsatvik@gmail.com/i });
-    expect(emailLink).toHaveAttribute('href', 'mailto:consultwithsatvik@gmail.com');
-    expect(emailLink).not.toHaveAttribute('target');
-    expect(emailLink).not.toHaveAttribute('rel');
+    // Check for links dynamically
+    CONTACT_CONTENT.links.forEach((link) => {
+      const accessibleName = `${link.label}: ${link.handle}`;
+      const socialLink = screen.getByRole('link', { name: accessibleName });
+      expect(socialLink).toHaveAttribute('href', link.href);
+      if (link.href.startsWith('mailto')) {
+        expect(socialLink).not.toHaveAttribute('target');
+        expect(socialLink).not.toHaveAttribute('rel');
+      } else {
+        expect(socialLink).toHaveAttribute('target', '_blank');
+        expect(socialLink).toHaveAttribute('rel', 'noreferrer');
+      }
+    });
   });
 
   it('renders the external link arrow with blue styling', () => {

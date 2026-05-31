@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import HomePage from './page';
 import * as blogModule from '@/lib/blog';
-import { HOME_CONTENT } from '@/lib/content';
+import { HOME_CONTENT, CONTACT_CONTENT } from '@/lib/content';
 
 // Mock the Link component from Next.js
 vi.mock('next/link', () => ({
@@ -55,15 +55,17 @@ describe('HomePage', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
     render(<HomePage />);
 
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/satvikchachra');
-    expect(githubLink).toHaveAttribute('target', '_blank');
-    expect(githubLink).toHaveAttribute('rel', 'noreferrer');
-
-    const emailLink = screen.getByRole('link', { name: /email/i });
-    expect(emailLink).toHaveAttribute('href', 'mailto:consultwithsatvik@gmail.com');
-    expect(emailLink).not.toHaveAttribute('target');
-    expect(emailLink).not.toHaveAttribute('rel');
+    CONTACT_CONTENT.links.forEach((link) => {
+      const socialLink = screen.getByRole('link', { name: link.label });
+      expect(socialLink).toHaveAttribute('href', link.href);
+      if (link.href.startsWith('mailto')) {
+        expect(socialLink).not.toHaveAttribute('target');
+        expect(socialLink).not.toHaveAttribute('rel');
+      } else {
+        expect(socialLink).toHaveAttribute('target', '_blank');
+        expect(socialLink).toHaveAttribute('rel', 'noreferrer');
+      }
+    });
   });
 
   it('injects JSON-LD structured data', () => {

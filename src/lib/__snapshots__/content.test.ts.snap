@@ -559,9 +559,9 @@ exports[`Content Lock > matches the static content snapshot to protect against u
       {
         "description": "thoughts, hot takes, building in public",
         "handle": "satvikchachra",
-        "href": "https://twitter.com/satvikchachra",
-        "id": "contact-twitter",
-        "label": "twitter / x",
+        "href": "https://x.com/satvikchachra",
+        "id": "contact-x",
+        "label": "x (twitter)",
       },
       {
         "description": "professional updates",
@@ -580,6 +580,7 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     ],
     "responseTime": "usually responds within 48 hours.",
   },
+  "EMAIL_ADDRESS": "consultwithsatvik@gmail.com",
   "EXPERIENCE_DATA": [
     {
       "company": "Atlassian",
@@ -751,5 +752,10 @@ exports[`Content Lock > matches the static content snapshot to protect against u
       "year": 2022,
     },
   ],
+  "SOCIAL_LINKS": {
+    "github": "https://github.com/satvikchachra",
+    "linkedin": "https://linkedin.com/in/satvikchachra",
+    "x": "https://x.com/satvikchachra",
+  },
 }
 `;

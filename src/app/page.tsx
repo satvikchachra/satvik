@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 import { HOME_CONTENT } from '@/lib/content';
-import { GitHubIcon, XIcon, LinkedInIcon, MailIcon } from '@/components/ui/icons';
+import { SocialLinks } from '@/components/social-links';
 
 export default function HomePage() {
   const jsonLd = {
@@ -39,38 +39,10 @@ export default function HomePage() {
 
         {/* Social Links */}
         <div className="flex gap-4 mt-5">
-          {[
-            { href: 'https://github.com/satvikchachra', label: 'GitHub', icon: GitHubIcon },
-            { href: 'https://twitter.com/satvikchachra', label: 'X (Twitter)', icon: XIcon },
-            {
-              href: 'https://linkedin.com/in/satvikchachra',
-              label: 'LinkedIn',
-              icon: LinkedInIcon,
-            },
-            { href: 'mailto:consultwithsatvik@gmail.com', label: 'Email', icon: MailIcon },
-          ].map(({ href, label, icon: Icon }) =>
-            href.startsWith('mailto') ? (
-              <a
-                key={href}
-                href={href}
-                aria-label={label}
-                className="text-text-muted hover:text-text transition-colors duration-200"
-              >
-                <Icon className="size-5" aria-hidden="true" />
-              </a>
-            ) : (
-              <a
-                key={href}
-                href={href}
-                aria-label={label}
-                target="_blank"
-                rel="noreferrer"
-                className="text-text-muted hover:text-text transition-colors duration-200"
-              >
-                <Icon className="size-5" aria-hidden="true" />
-              </a>
-            ),
-          )}
+          <SocialLinks
+            linkClassName="text-text-muted hover:text-text transition-colors duration-200"
+            iconClassName="size-5"
+          />
         </div>
       </header>
 
