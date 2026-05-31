@@ -82,10 +82,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <head>
         {/* JSON-LD structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </head>
       <body className="flex flex-col min-h-screen">
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>

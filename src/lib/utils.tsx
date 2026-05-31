@@ -17,20 +17,23 @@ export function formatResumeText(text: string): React.ReactNode {
   // 1. **bold**
   // 2. __underline__
   const parts = text.split(/(\*\*[^*]+\*\*|__[^_]+__)/g);
+  const seen = new Map<string, number>();
 
-  return parts.map((part, index) => {
+  return parts.map((part) => {
+    const count = seen.get(part) ?? 0;
+    seen.set(part, count + 1);
+    const key = `${part}:${count}`;
+
     if (part.startsWith('**') && part.endsWith('**')) {
       return (
-        // eslint-disable-next-line react/no-array-index-key
-        <b key={index} className="font-semibold text-[var(--text)]">
+        <b key={key} className="font-semibold text-text">
           {formatResumeText(part.slice(2, -2))}
         </b>
       );
     }
     if (part.startsWith('__') && part.endsWith('__')) {
       return (
-        // eslint-disable-next-line react/no-array-index-key
-        <span key={index} className="resume-underline">
+        <span key={key} className="resume-underline">
           {formatResumeText(part.slice(2, -2))}
         </span>
       );

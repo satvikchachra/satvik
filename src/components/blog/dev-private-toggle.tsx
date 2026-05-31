@@ -16,7 +16,7 @@ export function DevPrivateToggle({ children }: { children: ReactNode }) {
             aria-label="Toggle private blogs visibility"
           />
           <div className="relative w-8 h-4 bg-border rounded-full transition-colors group-has-[:checked]:bg-accent">
-            <div className="absolute left-[2px] top-[2px] w-[12px] h-[12px] bg-bg rounded-full transition-transform group-has-[:checked]:translate-x-[16px]"></div>
+            <div className="absolute left-[2px] top-[2px] size-[12px] bg-bg rounded-full transition-transform group-has-[:checked]:translate-x-[16px]"></div>
           </div>
           <span className="text-text-muted group-has-[:checked]:text-text">Show Private Posts</span>
         </label>

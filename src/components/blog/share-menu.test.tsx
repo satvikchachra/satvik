@@ -20,10 +20,10 @@ vi.mock('@/components/ui/dropdown-menu', () => ({
     // If it's a button, let's just make it call onOpenChange
     return (
       <div
-        onClick={(e) => (asChild && children.props.onClick ? children.props.onClick(e) : null)}
         role="button"
         tabIndex={0}
         onKeyDown={() => {}}
+        onClick={(e) => (asChild && children.props.onClick ? children.props.onClick(e) : null)}
       >
         {children}
       </div>
@@ -37,7 +37,7 @@ vi.mock('@/components/ui/dropdown-menu', () => ({
     children: React.ReactNode;
     onSelect?: (e: React.SyntheticEvent) => void;
   }) => (
-    <div onClick={(e) => onSelect && onSelect(e)} role="menuitem" tabIndex={0} onKeyDown={() => {}}>
+    <div role="menuitem" tabIndex={0} onKeyDown={() => {}} onClick={(e) => onSelect && onSelect(e)}>
       {children}
     </div>
   ),
