@@ -90,7 +90,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="flex flex-col min-h-screen">
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
           <Navbar />
-          <main id="main-content" className="flex-1 w-full">{children}</main>
+          <main id="main-content" className="flex-1 w-full">
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

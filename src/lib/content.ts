@@ -4,28 +4,28 @@ import type { Project } from './projects';
 export const HOME_CONTENT = {
   heroTitle: 'satvik chachra',
   heroSubtitle: 'builds ai coding agents, full-stack software & infrastructure',
-  ctaWork: 'view work',
-  ctaBlog: 'read blog',
+  ctaWork: 'projects',
+  ctaAbout: 'about me',
   ctaContact: 'get in touch',
-  sectionWins: 'selected wins',
+  sectionWins: 'impactful work',
   viewProjects: 'view projects',
   sectionBlog: 'recent blogs',
   viewAllPosts: 'all posts',
   wins: [
     {
-      text: 'Built the core AI coding agent at Atlassian, actively used by',
+      text: 'Built the core __AI coding agent__ at Atlassian, actively used by',
       highlight: '2K+ engineers daily',
     },
     {
-      text: 'Architected cross-platform IDE plugin for the AI Coding Agent with',
+      text: 'Architected __cross-platform IDE plugin__ for the AI Coding Agent with',
       highlight: '~95% shared code',
     },
     {
-      text: 'Optimized ML prediction APIs, reducing latency from',
+      text: 'Optimized __ML prediction APIs__, reducing latency from',
       highlight: '60s to 500ms',
     },
     {
-      text: 'Shipped Generative AI and Cloud Storage Platforms at AppyHigh, reaching',
+      text: 'Shipped __Generative AI__ and __Cloud Storage Platforms__ at AppyHigh, reaching',
       highlight: '1 Million+ users',
     },
   ] as const,
@@ -42,7 +42,10 @@ export const ABOUT_CONTENT = {
   sectionAwards: 'awards / recognition',
   wins: [
     ['2K+ Daily Active Users', 'Built Core AI Coding Agent at Atlassian'],
-    ['~95% Shared Code', 'Architected Cross-Platform VS Code & JetBrains Plugin for AI Coding Agent'],
+    [
+      '~95% Shared Code',
+      'Architected Cross-Platform VS Code & JetBrains Plugin for AI Coding Agent',
+    ],
     ['60s → 500ms', 'Optimized ML Prediction API Latency'],
     ['1 Million+ Users', 'Shipped Generative AI and Cloud Storage Platforms at AppyHigh'],
   ] as const,

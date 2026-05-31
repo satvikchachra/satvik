@@ -48,7 +48,7 @@ describe('HomePage', () => {
     render(<HomePage />);
 
     expect(screen.getByTestId('link-cta-work')).toHaveAttribute('href', '/projects');
-    expect(screen.getByTestId('link-cta-blog')).toHaveAttribute('href', '/blog');
+    expect(screen.getByTestId('link-cta-about')).toHaveAttribute('href', '/about');
   });
 
   it('injects JSON-LD structured data', () => {

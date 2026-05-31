@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { siteConfig } from '@/lib/metadata';
+import { formatResumeText } from '@/lib/utils';
 
 import { HOME_CONTENT } from '@/lib/content';
 import { GitHubIcon, XIcon, LinkedInIcon, MailIcon } from '@/components/ui/icons';
@@ -64,10 +65,10 @@ export default function HomePage() {
         <h2 id="wins-heading" className="section-label mb-4">
           {HOME_CONTENT.sectionWins}
         </h2>
-        <ul className="space-y-3 list-disc pl-4 text-sm text-text-muted">
-          {HOME_CONTENT.wins.map((win, idx) => (
-            <li key={idx} className="leading-relaxed pl-1">
-              {win.text}{' '}
+        <ul className="space-y-3 list-disc pl-4 text-sm text-text-muted border-t border-border-subtle pt-4">
+          {HOME_CONTENT.wins.map((win) => (
+            <li key={win.highlight} className="leading-relaxed pl-1">
+              {formatResumeText(win.text)}{' '}
               <strong className="font-medium text-text">{win.highlight}</strong>.
             </li>
           ))}
@@ -78,11 +79,11 @@ export default function HomePage() {
       <section aria-label="Quick links" className="mb-10 animate-fade-in-up stagger-4">
         <div className="flex flex-wrap gap-x-5 gap-y-2">
           <Link
-            href="/projects"
-            id="cta-work"
+            href="/about"
+            id="cta-about"
             className="group inline-flex items-baseline gap-1 text-xs blue-link"
           >
-            <span className="blue-link-text">{HOME_CONTENT.ctaWork}</span>
+            <span className="blue-link-text">{HOME_CONTENT.ctaAbout}</span>
             <span
               className="transition-transform duration-200 group-hover:translate-x-0.5"
               aria-hidden="true"
@@ -91,11 +92,11 @@ export default function HomePage() {
             </span>
           </Link>
           <Link
-            href="/blog"
-            id="cta-blog"
+            href="/projects"
+            id="cta-work"
             className="group inline-flex items-baseline gap-1 text-xs blue-link"
           >
-            <span className="blue-link-text">{HOME_CONTENT.ctaBlog}</span>
+            <span className="blue-link-text">{HOME_CONTENT.ctaWork}</span>
             <span
               className="transition-transform duration-200 group-hover:translate-x-0.5"
               aria-hidden="true"

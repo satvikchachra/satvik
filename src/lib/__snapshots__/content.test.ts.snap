@@ -607,31 +607,31 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     "license": "MIT License",
   },
   "HOME_CONTENT": {
-    "ctaBlog": "read blog",
+    "ctaAbout": "about me",
     "ctaContact": "get in touch",
-    "ctaWork": "view work",
+    "ctaWork": "projects",
     "heroSubtitle": "builds ai coding agents, full-stack software & infrastructure",
     "heroTitle": "satvik chachra",
     "sectionBlog": "recent blogs",
-    "sectionWins": "selected wins",
+    "sectionWins": "impactful work",
     "viewAllPosts": "all posts",
     "viewProjects": "view projects",
     "wins": [
       {
         "highlight": "2K+ engineers daily",
-        "text": "Built the core AI coding agent at Atlassian, actively used by",
+        "text": "Built the core __AI coding agent__ at Atlassian, actively used by",
       },
       {
         "highlight": "~95% shared code",
-        "text": "Architected cross-platform IDE plugin for the AI Coding Agent with",
+        "text": "Architected __cross-platform IDE plugin__ for the AI Coding Agent with",
       },
       {
         "highlight": "60s to 500ms",
-        "text": "Optimized ML prediction APIs, reducing latency from",
+        "text": "Optimized __ML prediction APIs__, reducing latency from",
       },
       {
         "highlight": "1 Million+ users",
-        "text": "Shipped Generative AI and Cloud Storage Platforms at AppyHigh, reaching",
+        "text": "Shipped __Generative AI__ and __Cloud Storage Platforms__ at AppyHigh, reaching",
       },
     ],
   },
