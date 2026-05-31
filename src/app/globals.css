@@ -16,8 +16,8 @@
   --border: #1f1f1f;
   --border-subtle: rgba(255, 255, 255, 0.05);
   --text: #f0f0f0;
-  --text-muted: #888888;
-  --text-subtle: #555555;
+  --text-muted: #a3a3a3;
+  --text-subtle: #808080;
 
   --accent: #22d3ee;
   /* cyan — glow color */
@@ -41,8 +41,8 @@
   --border: #e0e0e0;
   --border-subtle: rgba(0, 0, 0, 0.06);
   --text: #0a0a0a;
-  --text-muted: #666666;
-  --text-subtle: #999999;
+  --text-muted: #525252;
+  --text-subtle: #707070;
 
   --accent: #0055ff;
   /* vibrant high-contrast cobalt blue for light theme */

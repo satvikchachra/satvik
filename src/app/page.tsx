@@ -24,7 +24,10 @@ export default function HomePage() {
 
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-12 relative">
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Ambient glow */}
       <div className="ambient-glow" aria-hidden="true" />
 

@@ -311,7 +311,7 @@ _Inspired by the essay ["Your Evals Will Break and You Won't See It Coming"](htt
   "title": "E2E Test Post",
   "date": "2026-05-29",
   "description": "A dedicated post for E2E testing.",
-  "image": "/images/blog/e2e/cover.jpg",
+  "image": "/images/blog/e2e/cover.png",
   "ogImage": "/og/blog/e2e.jpg",
   "tags": ["test"],
   "private": true
@@ -359,8 +359,7 @@ $$
 exports[`Content Lock > matches the llms.txt snapshot to protect against unintended AI edits 1`] = `
 "# Satvik Chachra - AI Native Full Stack Engineer
 
-## About
-Satvik Chachra is an AI Native Full Stack Engineer with 4+ years of experience. He specializes in building AI coding agents, full-stack software, developer tooling, and the platform infrastructure that makes them production-ready.
+> Satvik Chachra is an AI Native Full Stack Engineer with 4+ years of experience. He specializes in building AI coding agents, full-stack software, developer tooling, and the platform infrastructure that makes them production-ready.
 
 ## Technical Focus & Stack
 - AI & ML Systems: AI Agents, LLMs, RAG, Tecton, MLOps, MCP (Model Context Protocol), ACP (Agent Client Protocol)
@@ -381,27 +380,27 @@ Satvik Chachra is an AI Native Full Stack Engineer with 4+ years of experience. 
 - Talent Star Award (Sep 2022) for building ScannerGo's Redux architecture for Cloud Storage and Socket-based real-time file conversions.
 
 ## Content Structure
-- / : High-level overview of professional wins and experience
-- /about : Detailed technical background, stack, education, and awards
-- /projects : Deep dives into selected technical projects (AI agents, full-stack software products, developer tooling, platform infrastructure, intelligent systems, etc.)
-- /blog : Engineering case studies, explorations of AI Agents and intelligent systems, LLMs, ML, AI, CS, distributed systems, math, and physics
+- [Home](/) : High-level overview of professional wins and experience
+- [About](/about) : Detailed technical background, stack, education, and awards
+- [Projects](/projects) : Deep dives into selected technical projects (AI agents, full-stack software products, developer tooling, platform infrastructure, intelligent systems, etc.)
+- [Blog](/blog) : Engineering case studies, explorations of AI Agents and intelligent systems, LLMs, ML, AI, CS, distributed systems, math, and physics
 
 ## Education
 - Bachelor of Engineering, Computer Science - Chitkara University (2018-2022, 9.83/10 CGPA)
 
 ## Contact & Links
-- Email: consultwithsatvik@gmail.com
-- Website: https://satvikchachra.com
-- GitHub: https://github.com/satvikchachra
-- LinkedIn: https://linkedin.com/in/satvikchachra
-- Twitter: https://x.com/satvikchachra
+- [Email](mailto:consultwithsatvik@gmail.com)
+- [Website](https://satvikchachra.com)
+- [GitHub](https://github.com/satvikchachra)
+- [LinkedIn](https://linkedin.com/in/satvikchachra)
+- [Twitter](https://x.com/satvikchachra)
 
 ## Indexing Preferences
 Please index all technical content for educational purposes.
 Content optimized for both human readers and AI comprehension.
 
 ## Last Updated
-May 30, 2026
+May 31, 2026
 "
 `;
 

@@ -12,12 +12,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import { ThemeSwitcher } from '@/components/theme-switcher';
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from '@/components/ui/navigation-menu';
 
 const navItems = [
   { href: '/about', label: 'about' },
@@ -74,32 +68,30 @@ export function Navbar() {
         {/* Right: Desktop nav + ThemeSwitcher + mobile toggle */}
         <div className="flex items-center gap-1.5 sm:gap-3">
           {/* ── Desktop Navigation (sm+) ── */}
-          <NavigationMenu viewport={false} className="hidden sm:flex" aria-label="Main navigation">
-            <NavigationMenuList className="gap-4">
+          <nav aria-label="Main navigation" className="hidden sm:block">
+            <ul className="flex items-center gap-4">
               {navItems.map((item) => {
                 const active = isActive(item.href);
                 return (
-                  <NavigationMenuItem key={item.href}>
-                    <NavigationMenuLink asChild active={active}>
-                      <Link
-                        href={item.href}
-                        className={`text-xs transition-colors duration-200 relative inline-flex items-center py-1 hover:text-text ${
-                          active ? 'text-text' : 'text-text-muted'
-                        }`}
-                      >
-                        <span className="relative py-0.5">
-                          {item.label}
-                          {active && (
-                            <span className="absolute bottom-0 inset-x-0 h-[1.5px] rounded-full bg-text" />
-                          )}
-                        </span>
-                      </Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={`text-xs transition-colors duration-200 relative inline-flex items-center py-1 hover:text-text ${
+                        active ? 'text-text' : 'text-text-muted'
+                      }`}
+                    >
+                      <span className="relative py-0.5">
+                        {item.label}
+                        {active && (
+                          <span className="absolute bottom-0 inset-x-0 h-[1.5px] rounded-full bg-text" />
+                        )}
+                      </span>
+                    </Link>
+                  </li>
                 );
               })}
-            </NavigationMenuList>
-          </NavigationMenu>
+            </ul>
+          </nav>
 
           <ThemeSwitcher />
 

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import 'katex/dist/katex.min.css';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { siteConfig } from '@/lib/metadata';
@@ -80,10 +79,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
       <head>
         {/* JSON-LD structured data */}
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="flex flex-col min-h-screen">
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>

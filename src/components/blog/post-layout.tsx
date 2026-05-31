@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatDate } from '@/lib/utils';
+import 'katex/dist/katex.min.css';
 
 interface PostLayoutProps {
   title: string;
