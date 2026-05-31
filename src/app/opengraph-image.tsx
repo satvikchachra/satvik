@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og';
 export const runtime = 'edge';
 
 // Image metadata
-export const alt = 'Satvik Chachra - Software Engineer';
+export const alt = 'Satvik Chachra - AI Native Full-Stack Engineer';
 export const size = {
   width: 1200,
   height: 630,
