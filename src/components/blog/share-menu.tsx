@@ -66,7 +66,7 @@ export function ShareMenu({ title }: ShareMenuProps) {
         <button
           type="button"
           aria-label="Share post"
-          className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-border-subtle ${
+          className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 hover:text-text hover:bg-surface ${
             open ? 'text-text bg-surface' : 'text-text-muted bg-transparent'
           }`}
         >

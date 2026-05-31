@@ -8,10 +8,10 @@ export function DevPrivateToggle({ children }: { children: ReactNode }) {
     <div className="group/dev">
       <div className="flex items-center gap-3 mb-6 p-3 rounded-lg border border-border bg-surface text-xs text-text-muted w-fit animate-fade-in-up stagger-1">
         <span className="font-medium">Dev Mode:</span>
-        <label className="flex items-center gap-2 cursor-pointer group">
+        <label className="flex items-center gap-2 cursor-pointer group relative rounded-sm">
           <input
             type="checkbox"
-            className="sr-only"
+            className="absolute opacity-0 inset-0 cursor-pointer m-0"
             defaultChecked
             aria-label="Toggle private blogs visibility"
           />

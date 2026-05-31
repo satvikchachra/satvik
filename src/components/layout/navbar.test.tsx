@@ -138,4 +138,16 @@ describe('Navbar', () => {
 
     expect(screen.queryByRole('menu', { name: /mobile navigation/i })).not.toBeInTheDocument();
   });
+
+  it('supports native keyboard focus styling on interactive elements', () => {
+    render(<Navbar />);
+    const homeLink = screen.getByRole('link', { name: /satvik chachra — home/i });
+    const toggleButton = screen.getByRole('button', { name: /open menu/i });
+    
+    expect(homeLink).not.toHaveClass('outline-none');
+    expect(homeLink).not.toHaveClass('focus-visible:outline-none');
+    
+    expect(toggleButton).not.toHaveClass('outline-none');
+    expect(toggleButton).not.toHaveClass('focus-visible:outline-none');
+  });
 });

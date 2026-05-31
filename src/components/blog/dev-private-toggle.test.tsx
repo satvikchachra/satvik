@@ -42,4 +42,17 @@ describe('DevPrivateToggle', () => {
     // Child should still be present
     expect(screen.getByTestId('child')).toBeInTheDocument();
   });
+
+  it('supports native keyboard focus styling by not using sr-only on the input', () => {
+    vi.stubEnv('NODE_ENV', 'development');
+    render(
+      <DevPrivateToggle>
+        <div>Child</div>
+      </DevPrivateToggle>,
+    );
+    const input = screen.getByLabelText('Toggle private blogs visibility');
+    expect(input).not.toHaveClass('sr-only');
+    expect(input).toHaveClass('absolute');
+    expect(input).toHaveClass('opacity-0');
+  });
 });

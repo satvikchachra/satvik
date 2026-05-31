@@ -59,7 +59,7 @@ export function Navbar() {
         <Link
           href="/"
           aria-label="Satvik Chachra — Home"
-          className={`text-xs transition-colors duration-200 relative inline-flex items-center py-1 hover:text-text ${
+          className={`text-xs transition-colors duration-200 relative inline-flex items-center py-1 hover:text-text rounded-md ${
             pathname === '/' ? 'text-text' : 'text-text-muted'
           }`}
         >

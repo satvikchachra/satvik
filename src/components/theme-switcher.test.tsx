@@ -61,4 +61,17 @@ describe('ThemeSwitcher', () => {
     fireEvent.click(trigger);
     expect(mockSetTheme).toHaveBeenCalledWith('dark');
   });
+
+  it('supports native keyboard focus styling', () => {
+    vi.mocked(useTheme).mockReturnValue({
+      theme: 'system',
+      resolvedTheme: 'dark',
+      setTheme: mockSetTheme,
+      themes: [],
+    });
+    render(<ThemeSwitcher />);
+    const trigger = screen.getByRole('button', { name: /toggle theme/i });
+    expect(trigger).not.toHaveClass('outline-none');
+    expect(trigger).not.toHaveClass('focus-visible:outline-none');
+  });
 });
