@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { SOCIAL_LINKS, EMAIL_ADDRESS } from '@/lib/content';
 
-export const BASE_URL = 'https://satvikchachra.com';
+export const BASE_URL = 'https://satvik.ai';
 
 export const siteConfig = {
   name: 'Satvik Chachra',
