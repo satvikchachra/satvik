@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+export const dynamic = 'force-static';
 
 // Image metadata
 export const alt = 'Satvik Chachra - AI Native Full-Stack Engineer';

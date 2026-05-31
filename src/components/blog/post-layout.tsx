@@ -44,6 +44,7 @@ export function PostLayout({
             width={1792}
             height={716}
             priority
+            unoptimized
             className="w-full h-full object-cover"
           />
         </div>

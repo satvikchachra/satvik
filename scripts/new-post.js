@@ -29,7 +29,7 @@ const jsonContent = {
   date: date,
   slug: slug,
   tags: ['Engineering'],
-  image: `/images/blog/${hash}/cover.png`,
+  image: `/images/blog/${hash}/cover.jpeg`,
   ogImage: `/og/blog/${hash}.png`,
 };
 
@@ -49,5 +49,5 @@ console.log(`\n✅ Created new blog post with ID: ${hash}`);
 console.log(`📄 MDX:  src/content/blog/${hash}.mdx`);
 console.log(`🗂️  JSON: src/content/blog/${hash}.json`);
 console.log(`\nDon't forget to add your images:`);
-console.log(`🖼️  UI Cover:     public/images/blog/${hash}/cover.png`);
+console.log(`🖼️  UI Cover:     public/images/blog/${hash}/cover.jpeg`);
 console.log(`📱 Social Share: public/og/blog/${hash}.png\n`);

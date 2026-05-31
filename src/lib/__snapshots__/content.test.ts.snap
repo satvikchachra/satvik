@@ -8,9 +8,8 @@ exports[`Content Lock > matches the blog posts snapshot to protect against unint
   "date": "2025-05-27",
   "slug": "the-most-important-ai-problem-might-not-be-training",
   "tags": ["AI", "Evaluation", "Engineering"],
-  "image": "/images/blog/0b13646d/cover.png",
-  "ogImage": "/og/blog/0b13646d.png",
-  "private": true
+  "image": "/images/blog/0b13646d/cover.jpeg",
+  "ogImage": "/images/blog/0b13646d/cover.jpeg"
 }
 ",
   "0b13646d.mdx": "Recently, I read a fascinating [essay](https://wanglun1996.github.io/blog/your-evals-will-break.html) about AI evaluations that genuinely changed how I think about frontier models.
@@ -312,7 +311,7 @@ _Inspired by the essay ["Your Evals Will Break and You Won't See It Coming"](htt
   "title": "E2E Test Post",
   "date": "2026-05-29",
   "description": "A dedicated post for E2E testing.",
-  "image": "/images/blog/e2e/cover.png",
+  "image": "/images/blog/e2e/cover.jpeg",
   "ogImage": "/og/blog/e2e.jpg",
   "tags": ["test"],
   "private": true
