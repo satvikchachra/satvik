@@ -4,6 +4,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { MenuIcon as Menu, CloseIcon as X } from '@/components/ui/icons';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
 
 import { ThemeSwitcher } from '@/components/theme-switcher';
 import {
@@ -98,51 +104,51 @@ export function Navbar() {
           <ThemeSwitcher />
 
           {/* ── Mobile hamburger (hidden sm+) ── */}
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            className={`sm:hidden flex items-center justify-center w-8 h-8 rounded-md transition-colors duration-200 text-text hover:bg-surface ${
-              open ? 'bg-surface' : 'bg-transparent'
-            }`}
-          >
-            {open ? (
-              <X width={15} height={15} aria-hidden="true" />
-            ) : (
-              <Menu width={15} height={15} aria-hidden="true" />
-            )}
-          </button>
+          <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                aria-expanded={open}
+                aria-controls="mobile-nav"
+                aria-label={open ? 'Close menu' : 'Open menu'}
+                className={`sm:hidden flex items-center justify-center w-8 h-8 rounded-md transition-colors duration-200 text-text hover:bg-surface ${
+                  open ? 'bg-surface' : 'bg-transparent'
+                }`}
+              >
+                {open ? (
+                  <X width={15} height={15} aria-hidden="true" />
+                ) : (
+                  <Menu width={15} height={15} aria-hidden="true" />
+                )}
+              </button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent
+              align="end"
+              aria-label="Mobile navigation"
+              className="w-48 sm:hidden bg-bg border border-border text-text"
+            >
+              {navItems.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <DropdownMenuItem
+                    key={item.href}
+                    asChild
+                    className="cursor-pointer focus:bg-surface focus:text-text"
+                  >
+                    <Link
+                      href={item.href}
+                      className={active ? 'text-text bg-surface' : 'text-text-muted'}
+                    >
+                      {item.label}
+                    </Link>
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
-
-      {/* ── Mobile dropdown panel (below the bar, full-width) ── */}
-      {open && (
-        <nav
-          id="mobile-nav"
-          aria-label="Mobile navigation"
-          className="sm:hidden animate-fade-in-up border-t border-border bg-bg"
-        >
-          <div className="max-w-xl mx-auto px-6 py-3 flex flex-col gap-0.5">
-            {navItems.map((item, idx) => {
-              const active = isActive(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`text-xs px-3 py-2.5 rounded-sm transition-colors duration-200 block hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-subtle ${
-                    active ? 'text-text bg-surface' : 'text-text-muted bg-transparent'
-                  }`}
-                  style={{ animationDelay: `${(idx + 1) * 40}ms` }}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-      )}
     </header>
   );
 }

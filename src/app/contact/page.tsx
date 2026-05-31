@@ -12,7 +12,7 @@ import { CONTACT_CONTENT } from '@/lib/content';
 
 export default function ContactPage() {
   return (
-    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-12">
       <header className="mb-8 animate-fade-in-up stagger-0">
         <h1 className="text-lg tracking-tight mb-2 text-text">{CONTACT_CONTENT.heroTitle}</h1>
         <p className="text-sm leading-relaxed text-text-muted">{CONTACT_CONTENT.introParagraph}</p>
@@ -33,6 +33,9 @@ export default function ContactPage() {
                 <div className="flex items-baseline gap-2 flex-wrap mb-0.5">
                   <span className="text-sm font-medium text-text">
                     <span className="animated-underline">{label}</span>
+                    <span className="row-link-arrow text-xs ml-1.5 inline-block text-accent!">
+                      ↗
+                    </span>
                   </span>
                   {/* Mobile-only handle & separator — displayed adjacent to platform name */}
                   <span className="text-xs sm:hidden font-mono inline-flex items-baseline gap-1.5 text-accent">
@@ -55,7 +58,6 @@ export default function ContactPage() {
                     {handle}
                   </span>
                 </span>
-                <span className="row-link-arrow text-xs text-accent">↗</span>
               </div>
             </a>
           </li>

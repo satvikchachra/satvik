@@ -519,6 +519,24 @@ exports[`Content Lock > matches the static content snapshot to protect against u
         ],
       },
     ],
+    "wins": [
+      [
+        "2K+ Daily Active Users",
+        "Built Core AI Coding Agent at Atlassian",
+      ],
+      [
+        "~95% Shared Code",
+        "Architected Cross-Platform VS Code & JetBrains Plugin for AI Coding Agent",
+      ],
+      [
+        "60s → 500ms",
+        "Optimized ML Prediction API Latency",
+      ],
+      [
+        "1 Million+ Users",
+        "Shipped Generative AI and Cloud Storage Platforms at AppyHigh",
+      ],
+    ],
   },
   "BLOG_CONTENT": {
     "dropInSoon": "drop in again soon.",
@@ -589,32 +607,32 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     "license": "MIT License",
   },
   "HOME_CONTENT": {
-    "ctaBlog": "read blog",
+    "ctaAbout": "about me",
     "ctaContact": "get in touch",
-    "ctaWork": "view work",
+    "ctaWork": "projects",
     "heroSubtitle": "builds ai coding agents, full-stack software & infrastructure",
     "heroTitle": "satvik chachra",
     "sectionBlog": "recent blogs",
-    "sectionWins": "selected wins",
+    "sectionWins": "impactful work",
     "viewAllPosts": "all posts",
     "viewProjects": "view projects",
     "wins": [
-      [
-        "2K+ users daily",
-        "Built AI coding agent at Atlassian",
-      ],
-      [
-        "1 Million+ users",
-        "B2C SaaS products shipped at AppyHigh",
-      ],
-      [
-        "~95% shared code",
-        "VS Code + JetBrains plugin for AI Coding Agent",
-      ],
-      [
-        "60s → 500ms",
-        "ML prediction API latency reduction",
-      ],
+      {
+        "highlight": "2K+ engineers daily",
+        "text": "Built the core __AI coding agent__ at Atlassian, actively used by",
+      },
+      {
+        "highlight": "~95% shared code",
+        "text": "Architected __cross-platform IDE plugin__ for the AI Coding Agent with",
+      },
+      {
+        "highlight": "60s to 500ms",
+        "text": "Optimized __ML prediction APIs__, reducing latency from",
+      },
+      {
+        "highlight": "1 Million+ users",
+        "text": "Shipped __Generative AI__ and __Cloud Storage Platforms__ at AppyHigh, reaching",
+      },
     ],
   },
   "NOT_FOUND_CONTENT": {

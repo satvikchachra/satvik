@@ -68,4 +68,27 @@ describe('BlogList', () => {
       '/blog/post-1',
     );
   });
+
+  it('renders the correct internal link arrow with blue styling', () => {
+    const posts = [
+      {
+        slug: 'post-1',
+        filename: 'post-1.mdx',
+        title: 'Post 1 Title',
+        description: 'Post 1 Description',
+        date: '2026-05-29',
+        type: 'mdx' as const,
+        private: false,
+        tags: [],
+        readingTime: '5 min',
+        image: '/img.jpg',
+        ogImage: '/og.jpg',
+      },
+    ];
+    render(<BlogList posts={posts} />);
+
+    const arrow = screen.getByText('→');
+    expect(arrow).toBeInTheDocument();
+    expect(arrow).toHaveClass('row-link-arrow', 'text-accent!');
+  });
 });

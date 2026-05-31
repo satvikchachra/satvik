@@ -29,7 +29,8 @@ describe('ThemeSwitcher', () => {
     expect(trigger).toBeInTheDocument();
   });
 
-  it('opens dropdown and calls setTheme when an option is clicked', () => {
+  it('toggles theme when clicked', () => {
+    // 1. Initial state: system -> resolved to dark
     vi.mocked(useTheme).mockReturnValue({
       theme: 'system',
       resolvedTheme: 'dark',
@@ -37,39 +38,27 @@ describe('ThemeSwitcher', () => {
       themes: [],
     });
 
-    render(<ThemeSwitcher />);
+    const { rerender } = render(<ThemeSwitcher />);
 
-    // Click trigger to open dropdown
     const trigger = screen.getByRole('button', { name: /toggle theme/i });
-    fireEvent.pointerDown(trigger);
 
-    // Verify all three options are visible
-    const lightOption = screen.getByRole('menuitem', { name: /light/i });
-    const darkOption = screen.getByRole('menuitem', { name: /dark/i });
-    const systemOption = screen.getByRole('menuitem', { name: /system/i });
-
-    expect(lightOption).toBeInTheDocument();
-    expect(darkOption).toBeInTheDocument();
-    expect(systemOption).toBeInTheDocument();
-
-    // Click Light
-    fireEvent.click(lightOption);
+    // Should toggle to light
+    fireEvent.click(trigger);
     expect(mockSetTheme).toHaveBeenCalledWith('light');
 
-    // Reset mock and re-open dropdown
+    // 2. Change state to light
     mockSetTheme.mockClear();
-    fireEvent.pointerDown(trigger);
+    vi.mocked(useTheme).mockReturnValue({
+      theme: 'light',
+      resolvedTheme: 'light',
+      setTheme: mockSetTheme,
+      themes: [],
+    });
 
-    // Click Dark
-    fireEvent.click(screen.getByRole('menuitem', { name: /dark/i }));
+    rerender(<ThemeSwitcher />);
+
+    // Should toggle to dark
+    fireEvent.click(trigger);
     expect(mockSetTheme).toHaveBeenCalledWith('dark');
-
-    // Reset mock and re-open dropdown
-    mockSetTheme.mockClear();
-    fireEvent.pointerDown(trigger);
-
-    // Click System
-    fireEvent.click(screen.getByRole('menuitem', { name: /system/i }));
-    expect(mockSetTheme).toHaveBeenCalledWith('system');
   });
 });

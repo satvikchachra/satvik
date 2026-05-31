@@ -3,7 +3,7 @@ import { FOOTER_CONTENT } from '@/lib/content';
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-border-subtle">
+    <footer className="mt-0 border-t border-border-subtle">
       <div className="max-w-xl mx-auto px-6 py-6 flex items-center justify-between">
         {/* Social links */}
         <nav aria-label="Social links">

@@ -1,17 +1,11 @@
 import Link from 'next/link';
-import { getAllPosts } from '@/lib/blog';
-import { formatDate } from '@/lib/utils';
 import { siteConfig } from '@/lib/metadata';
+import { formatResumeText } from '@/lib/utils';
 
 import { HOME_CONTENT } from '@/lib/content';
-import { SelectedWins } from '@/components/ui/selected-wins';
+import { GitHubIcon, XIcon, LinkedInIcon, MailIcon } from '@/components/ui/icons';
 
 export default function HomePage() {
-  const MAXIMUM_RECENT_BLOGS = 3;
-  const posts = getAllPosts()
-    .filter((p) => !p.private)
-    .slice(0, MAXIMUM_RECENT_BLOGS);
-
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
@@ -23,7 +17,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="max-w-xl mx-auto px-6 pt-28 pb-24 relative">
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-12 relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -39,14 +33,64 @@ export default function HomePage() {
         <p className="text-sm text-text-muted mb-4">
           <strong className="font-light text-text">{HOME_CONTENT.heroSubtitle}</strong>
         </p>
+
+        {/* Social Links */}
+        <div className="flex gap-4 mt-5">
+          {[
+            { href: 'https://github.com/satvikchachra', label: 'GitHub', icon: GitHubIcon },
+            { href: 'https://twitter.com/satvikchachra', label: 'X (Twitter)', icon: XIcon },
+            {
+              href: 'https://linkedin.com/in/satvikchachra',
+              label: 'LinkedIn',
+              icon: LinkedInIcon,
+            },
+            { href: 'mailto:consultwithsatvik@gmail.com', label: 'Email', icon: MailIcon },
+          ].map(({ href, label, icon: Icon }) => (
+            <a
+              key={href}
+              href={href}
+              aria-label={label}
+              target={href.startsWith('mailto') ? undefined : '_blank'}
+              rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              className="text-text-muted hover:text-text transition-colors duration-200"
+            >
+              <Icon className="w-5 h-5" aria-hidden="true" />
+            </a>
+          ))}
+        </div>
       </header>
 
       {/* Wins */}
-      <SelectedWins showViewProjects={false} />
+      <section aria-labelledby="wins-heading" className="mb-10 animate-fade-in-up stagger-2">
+        <h2 id="wins-heading" className="section-label mb-4">
+          {HOME_CONTENT.sectionWins}
+        </h2>
+        <ul className="space-y-3 list-disc pl-4 text-sm text-text-muted border-t border-border-subtle pt-4">
+          {HOME_CONTENT.wins.map((win) => (
+            <li key={win.highlight} className="leading-relaxed pl-1">
+              {formatResumeText(win.text)}{' '}
+              <strong className="font-medium text-text">{win.highlight}</strong>.
+            </li>
+          ))}
+        </ul>
+      </section>
 
       {/* CTA Row */}
       <section aria-label="Quick links" className="mb-10 animate-fade-in-up stagger-4">
         <div className="flex flex-wrap gap-x-5 gap-y-2">
+          <Link
+            href="/about"
+            id="cta-about"
+            className="group inline-flex items-baseline gap-1 text-xs blue-link"
+          >
+            <span className="blue-link-text">{HOME_CONTENT.ctaAbout}</span>
+            <span
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </Link>
           <Link
             href="/projects"
             id="cta-work"
@@ -60,78 +104,8 @@ export default function HomePage() {
               →
             </span>
           </Link>
-          <Link
-            href="/blog"
-            id="cta-blog"
-            className="group inline-flex items-baseline gap-1 text-xs blue-link"
-          >
-            <span className="blue-link-text">{HOME_CONTENT.ctaBlog}</span>
-            <span
-              className="transition-transform duration-200 group-hover:translate-x-0.5"
-              aria-hidden="true"
-            >
-              →
-            </span>
-          </Link>
-          <Link
-            href="/contact"
-            id="cta-contact"
-            className="group inline-flex items-baseline gap-1 text-xs blue-link"
-          >
-            <span className="blue-link-text">{HOME_CONTENT.ctaContact}</span>
-            <span
-              className="transition-transform duration-200 group-hover:translate-x-0.5"
-              aria-hidden="true"
-            >
-              →
-            </span>
-          </Link>
         </div>
       </section>
-
-      {/* Recent Writing */}
-      {posts.length > 0 && (
-        <section aria-labelledby="blog-heading" className="mb-10 animate-fade-in-up stagger-6">
-          <h2 id="blog-heading" className="section-label mb-4">
-            {HOME_CONTENT.sectionBlog}
-          </h2>
-          <div>
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                id={`post-${post.slug}`}
-                className="row-link group items-start flex-col sm:flex-row"
-              >
-                <div className="w-full sm:flex-1 min-w-0 pr-0 sm:pr-8 mb-1.5 sm:mb-0">
-                  <span className="text-sm block text-text">
-                    <span className="animated-underline">{post.title}</span>
-                    <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>
-                  </span>
-                </div>
-                <div className="w-full sm:w-auto flex-shrink-0 pt-1 sm:pt-0.5">
-                  <span className="mono-label">{formatDate(post.date)}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="pt-4">
-            <Link
-              href="/blog"
-              id="view-all-posts"
-              className="group inline-flex items-baseline gap-1 text-xs blue-link"
-            >
-              <span className="blue-link-text">{HOME_CONTENT.viewAllPosts}</span>
-              <span
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-                aria-hidden="true"
-              >
-                →
-              </span>
-            </Link>
-          </div>
-        </section>
-      )}
     </div>
   );
 }

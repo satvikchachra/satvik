@@ -10,10 +10,6 @@ test.describe('Main Application Navigation and Pages', () => {
 
     // Check wins section
     await expect(page.locator(`text=${HOME_CONTENT.sectionWins}`)).toBeVisible();
-
-    // Check recent blogs section
-    // Assuming there are posts on the site
-    await expect(page.locator(`h2:has-text("${HOME_CONTENT.sectionBlog}")`)).toBeVisible();
   });
 
   test('Navigation menu works correctly', async ({ page }) => {
@@ -56,7 +52,7 @@ test.describe('Main Application Navigation and Pages', () => {
     await menuButton.click();
 
     // Check menu is open and click 'about'
-    const mobileNav = page.locator('nav[aria-label="Mobile navigation"]');
+    const mobileNav = page.locator('div[role="menu"][aria-label="Mobile navigation"]');
     await expect(mobileNav).toBeVisible();
 
     await mobileNav.locator('text=about').click();
@@ -156,28 +152,21 @@ test.describe('Main Application Navigation and Pages', () => {
   });
 
   test('Global UI: Theme toggler works', async ({ page }) => {
+    // Force initial color scheme so we have a known state
+    await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('/');
+
+    const htmlElement = page.locator('html');
 
     const themeButton = page.locator('button[aria-label="Toggle theme"]');
     await expect(themeButton).toBeVisible();
 
-    // Click to open the dropdown
+    // Click to toggle. Since we emulate dark mode, it should toggle to light
     await themeButton.click();
-
-    // Select 'Light' theme
-    const lightOption = page.locator('div[role="menuitem"]:has-text("Light")');
-    await expect(lightOption).toBeVisible();
-    await lightOption.click();
-
-    const htmlElement = page.locator('html');
     await expect(htmlElement).toHaveAttribute('data-theme', 'light');
 
-    // Click again and select 'Dark'
+    // Click again to toggle back to dark
     await themeButton.click();
-    const darkOption = page.locator('div[role="menuitem"]:has-text("Dark")');
-    await expect(darkOption).toBeVisible();
-    await darkOption.click();
-
     await expect(htmlElement).toHaveAttribute('data-theme', 'dark');
   });
 });
