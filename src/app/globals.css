@@ -145,14 +145,16 @@ body {
   background-color: var(--bg);
   color: var(--text);
   /* Monospace everywhere — the defining trait */
-  font-family: var(--font-geist-mono,
-      ui-monospace,
-      'Cascadia Code',
-      'Source Code Pro',
-      Menlo,
-      Consolas,
-      'DejaVu Sans Mono',
-      monospace);
+  font-family: var(
+    --font-geist-mono,
+    ui-monospace,
+    'Cascadia Code',
+    'Source Code Pro',
+    Menlo,
+    Consolas,
+    'DejaVu Sans Mono',
+    monospace
+  );
   font-size: 0.875rem;
   line-height: 1.6;
   min-height: 100vh;
@@ -247,7 +249,6 @@ textarea {
 }
 
 @keyframes glow-pulse {
-
   0%,
   100% {
     opacity: 0.03;
@@ -388,7 +389,6 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .animate-fade-in-up,
   .ambient-glow,
   [class*='stagger-'],
