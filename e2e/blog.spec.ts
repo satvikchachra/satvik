@@ -119,7 +119,7 @@ test.describe('Blog rendering and MDX features', () => {
     await expect(page).toHaveURL(/.*\/blog$/);
   });
 
-  test('Non-existent blog post returns a 404', async ({ page }) => {
+  test('Non-existent blog post returns a 404', async () => {
     // With output:'export' + dynamicParams=false, unknown slugs have no static HTML file.
     // The static file server (e.g. `npx serve out`) returns 404 for missing files.
     //
