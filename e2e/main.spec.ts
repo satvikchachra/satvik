@@ -152,31 +152,21 @@ test.describe('Main Application Navigation and Pages', () => {
   });
 
   test('Global UI: Theme toggler works', async ({ page }) => {
+    // Force initial color scheme so we have a known state
+    await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('/');
+
+    const htmlElement = page.locator('html');
 
     const themeButton = page.locator('button[aria-label="Toggle theme"]');
     await expect(themeButton).toBeVisible();
 
-    // Click to open the dropdown
+    // Click to toggle. Since we emulate dark mode, it should toggle to light
     await themeButton.click();
-
-    // Select 'Light' theme
-    const lightOption = page.locator('div[role="menuitem"]:has-text("Light")');
-    await expect(lightOption).toBeVisible();
-    await lightOption.click();
-
-    const htmlElement = page.locator('html');
     await expect(htmlElement).toHaveAttribute('data-theme', 'light');
 
-    // Wait for the dropdown to fully close and animate out before clicking again
-    await expect(lightOption).not.toBeVisible();
-
-    // Click again and select 'Dark'
+    // Click again to toggle back to dark
     await themeButton.click();
-    const darkOption = page.locator('div[role="menuitem"]:has-text("Dark")');
-    await expect(darkOption).toBeVisible();
-    await darkOption.click();
-
     await expect(htmlElement).toHaveAttribute('data-theme', 'dark');
   });
 });
