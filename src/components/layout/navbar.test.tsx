@@ -143,10 +143,10 @@ describe('Navbar', () => {
     render(<Navbar />);
     const homeLink = screen.getByRole('link', { name: /satvik chachra — home/i });
     const toggleButton = screen.getByRole('button', { name: /open menu/i });
-    
+
     expect(homeLink).not.toHaveClass('outline-none');
     expect(homeLink).not.toHaveClass('focus-visible:outline-none');
-    
+
     expect(toggleButton).not.toHaveClass('outline-none');
     expect(toggleButton).not.toHaveClass('focus-visible:outline-none');
   });

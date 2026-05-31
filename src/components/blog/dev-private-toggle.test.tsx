@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { DevPrivateToggle } from './dev-private-toggle';
 
@@ -43,7 +43,7 @@ describe('DevPrivateToggle', () => {
     expect(screen.getByTestId('child')).toBeInTheDocument();
   });
 
-  it('supports native keyboard focus styling by not using sr-only on the input', () => {
+  it('supports custom keyboard focus styling using group-has-[:focus-visible]', () => {
     vi.stubEnv('NODE_ENV', 'development');
     render(
       <DevPrivateToggle>
@@ -51,8 +51,32 @@ describe('DevPrivateToggle', () => {
       </DevPrivateToggle>,
     );
     const input = screen.getByLabelText('Toggle private blogs visibility');
-    expect(input).not.toHaveClass('sr-only');
-    expect(input).toHaveClass('absolute');
-    expect(input).toHaveClass('opacity-0');
+    expect(input).toHaveClass('sr-only');
+
+    // The next sibling of the input is the custom switch div
+    const switchDiv = input.nextElementSibling;
+    expect(switchDiv).toHaveClass('group-has-[:focus-visible]:outline');
+    expect(switchDiv).toHaveClass('group-has-[:focus-visible]:outline-accent');
+  });
+
+  it('toggles checkbox state when Enter key is pressed', () => {
+    vi.stubEnv('NODE_ENV', 'development');
+    render(
+      <DevPrivateToggle>
+        <div>Child</div>
+      </DevPrivateToggle>,
+    );
+    const input = screen.getByLabelText('Toggle private blogs visibility') as HTMLInputElement;
+
+    // Default state is checked
+    expect(input.checked).toBe(true);
+
+    // Press Enter
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    expect(input.checked).toBe(false);
+
+    // Press Enter again
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    expect(input.checked).toBe(true);
   });
 });
