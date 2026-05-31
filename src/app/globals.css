@@ -19,7 +19,8 @@
   --text-muted: #888888;
   --text-subtle: #555555;
 
-  --accent: #22d3ee; /* cyan — t3.gg glow color */
+  --accent: #22d3ee;
+  /* cyan — glow color */
   --accent-rgb: 34 211 238;
   --green: #4ade80;
   --red: #f87171;
@@ -43,7 +44,8 @@
   --text-muted: #666666;
   --text-subtle: #999999;
 
-  --accent: #0055ff; /* vibrant high-contrast cobalt blue for light theme */
+  --accent: #0055ff;
+  /* vibrant high-contrast cobalt blue for light theme */
   --accent-rgb: 0 85 255;
   --green: #16a34a;
   --red: #dc2626;
@@ -142,17 +144,15 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  /* Monospace everywhere — the defining t3.gg trait */
-  font-family: var(
-    --font-geist-mono,
-    ui-monospace,
-    'Cascadia Code',
-    'Source Code Pro',
-    Menlo,
-    Consolas,
-    'DejaVu Sans Mono',
-    monospace
-  );
+  /* Monospace everywhere — the defining trait */
+  font-family: var(--font-geist-mono,
+      ui-monospace,
+      'Cascadia Code',
+      'Source Code Pro',
+      Menlo,
+      Consolas,
+      'DejaVu Sans Mono',
+      monospace);
   font-size: 0.875rem;
   line-height: 1.6;
   min-height: 100vh;
@@ -207,13 +207,16 @@ textarea {
   width: 4px;
   height: 4px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--border);
   border-radius: 2px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-subtle);
 }
@@ -226,6 +229,7 @@ textarea {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -236,23 +240,26 @@ textarea {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 @keyframes glow-pulse {
+
   0%,
   100% {
     opacity: 0.03;
   }
+
   50% {
     opacity: 0.06;
   }
 }
 
 /* ============================================================
-   ROW LINK — the t3.gg signature interaction
+   ROW LINK — the signature interaction
    ============================================================ */
 .row-link {
   position: relative;
@@ -332,26 +339,32 @@ textarea {
   animation-delay: 0ms;
   opacity: 0;
 }
+
 .stagger-1 {
   animation-delay: 60ms;
   opacity: 0;
 }
+
 .stagger-2 {
   animation-delay: 120ms;
   opacity: 0;
 }
+
 .stagger-3 {
   animation-delay: 180ms;
   opacity: 0;
 }
+
 .stagger-4 {
   animation-delay: 240ms;
   opacity: 0;
 }
+
 .stagger-5 {
   animation-delay: 300ms;
   opacity: 0;
 }
+
 .stagger-6 {
   animation-delay: 360ms;
   opacity: 0;
@@ -375,6 +388,7 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .animate-fade-in-up,
   .ambient-glow,
   [class*='stagger-'],
@@ -565,6 +579,7 @@ textarea {
     text-decoration-color 0.15s ease,
     color 0.15s ease;
 }
+
 .text-link:hover {
   text-decoration-color: var(--text-muted);
 }
@@ -573,6 +588,7 @@ textarea {
   color: var(--accent);
   text-decoration: none !important;
 }
+
 .blue-link-text {
   text-decoration: underline;
   text-decoration-color: var(--text-subtle);
@@ -580,6 +596,7 @@ textarea {
   text-underline-offset: 3px;
   transition: text-decoration-color 0.15s ease;
 }
+
 .blue-link:hover .blue-link-text {
   text-decoration-color: var(--text-muted);
 }
@@ -592,10 +609,12 @@ textarea {
   display: inline;
   padding-bottom: 2px;
 }
+
 @media (hover: hover) {
   .group:hover .animated-underline {
     background-size: 100% 100%;
   }
+
   .group:active .animated-underline {
     background-size: 0% 100% !important;
     transition: none !important;
@@ -622,6 +641,7 @@ textarea {
   color: var(--text-subtle);
   transition: color 0.2s ease;
 }
+
 .link-subtle:hover {
   color: var(--text);
 }
@@ -631,6 +651,7 @@ textarea {
   color: var(--text-muted);
   transition: color 0.2s ease;
 }
+
 .link-muted:hover {
   color: var(--text);
 }
@@ -653,6 +674,7 @@ textarea {
   border-radius: 4px;
   transition: border-color 0.15s ease;
 }
+
 .card:hover {
   border-color: var(--text-subtle);
 }
@@ -668,6 +690,7 @@ textarea {
   font-size: 0.875rem;
   line-height: 1.8;
 }
+
 .prose h1,
 .prose h2,
 .prose h3,
@@ -680,18 +703,23 @@ textarea {
   margin-bottom: 0.75em;
   letter-spacing: -0.02em;
 }
+
 .prose h1 {
   font-size: 1.5rem;
 }
+
 .prose h2 {
   font-size: 1.15rem;
 }
+
 .prose h3 {
   font-size: 1rem;
 }
+
 .prose p {
   margin-bottom: 1.25em;
 }
+
 .prose a {
   color: inherit;
   text-decoration: underline;
@@ -702,24 +730,30 @@ textarea {
     text-decoration-color 0.15s,
     color 0.15s;
 }
+
 .prose a:hover {
   color: var(--text);
   text-decoration-color: var(--text-muted);
 }
+
 .prose ul,
 .prose ol {
   padding-left: 1.5em;
   margin-bottom: 1.25em;
 }
+
 .prose ul {
   list-style-type: disc;
 }
+
 .prose ol {
   list-style-type: decimal;
 }
+
 .prose li {
   margin-bottom: 0.4em;
 }
+
 .prose blockquote {
   background: var(--surface);
   padding: 1em 1.25em;
@@ -729,18 +763,23 @@ textarea {
   margin: 1.5em 0;
   border-radius: 4px;
 }
+
 .prose blockquote p:first-of-type {
   margin-top: 0;
 }
+
 .prose blockquote p:last-of-type {
   margin-bottom: 0;
 }
+
 .prose blockquote p:first-of-type::before {
   content: '\201C';
 }
+
 .prose blockquote p:last-of-type::after {
   content: '\201D';
 }
+
 .prose code:not(pre code) {
   font-family: var(--font-geist-mono, ui-monospace, monospace);
   font-size: 0.85em;
@@ -750,6 +789,7 @@ textarea {
   border-radius: 3px;
   border: 1px solid var(--border);
 }
+
 .prose pre {
   background: var(--bg-alt);
   border: 1px solid var(--border);
@@ -760,21 +800,25 @@ textarea {
   font-size: 0.8rem;
   font-family: var(--font-geist-mono, ui-monospace, monospace);
 }
+
 .prose img {
   border-radius: 4px;
   border: 1px solid var(--border);
   max-width: 100%;
   margin: 1.5em 0;
 }
+
 .prose hr {
   border: none;
   border-top: 1px solid var(--border-subtle);
   margin: 2em 0;
 }
+
 .prose strong {
   color: var(--text);
   font-weight: 600;
 }
+
 .prose table {
   width: 100%;
   border-collapse: collapse;
@@ -782,6 +826,7 @@ textarea {
   font-size: 0.85em;
   font-family: var(--font-geist-mono, ui-monospace, monospace);
 }
+
 .prose th {
   text-align: left;
   padding: 0.5em 0.75em;
@@ -792,6 +837,7 @@ textarea {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
 .prose td {
   padding: 0.5em 0.75em;
   border-bottom: 1px solid var(--border);
@@ -824,6 +870,7 @@ textarea {
   overflow-x: auto;
   color: var(--shiki-dark);
 }
+
 .prose pre[data-language] span {
   color: var(--shiki-dark);
   font-style: var(--shiki-dark-font-style, inherit);
@@ -836,6 +883,7 @@ textarea {
   background: var(--shiki-light-bg);
   color: var(--shiki-light);
 }
+
 [data-theme='light'] .prose pre[data-language] span {
   color: var(--shiki-light);
   font-style: var(--shiki-light-font-style, inherit);
@@ -900,6 +948,7 @@ textarea {
   * {
     border-color: var(--border);
   }
+
   body {
     background-color: var(--bg);
     color: var(--text);
