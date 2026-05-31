@@ -5,5 +5,6 @@
   "slug": "the-most-important-ai-problem-might-not-be-training",
   "tags": ["AI", "Evaluation", "Engineering"],
   "image": "/images/blog/0b13646d/cover.png",
-  "ogImage": "/og/blog/0b13646d.png"
+  "ogImage": "/og/blog/0b13646d.png",
+  "private": true
 }

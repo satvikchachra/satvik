@@ -3,12 +3,12 @@
 > Satvik Chachra is an AI Native Full Stack Engineer with 4+ years of experience. He specializes in building AI coding agents, full-stack software, developer tooling, and the platform infrastructure that makes them production-ready.
 
 ## Technical Focus & Stack
-- AI & ML Systems: AI Agents, LLMs, RAG, Tecton, MLOps, MCP (Model Context Protocol), ACP (Agent Client Protocol)
-- Languages: TypeScript, JavaScript, Python, Rust
-- Frontend Engineering: ReactJS, NextJS, Redux, Tailwind CSS, HTML, CSS
-- Backend Engineering: NodeJS, FastAPI, Flask, Redis, Firebase, Socket.IO
-- Cloud & Infrastructure: CI/CD, Docker
-- Developer Tools & APIs: VS Code Extensions, JetBrains plugins
+- AI / ML: AI Agents, Agentic Systems, LLM Applications, RAG (learning), MLOps, Model Context Protocol (MCP), Agent Client Protocol (ACP)
+- Languages: JavaScript, TypeScript, Python, Rust (learning)
+- Frontend: React, NextJS, Redux, Tanstack, Tailwind CSS, HTML, CSS
+- Backend: NodeJS, MongoDB, WebSockets, FastAPI, Flask, Redis, Firebase
+- Cloud / Infra: CI/CD, Bitbucket Pipelines, GitHub Actions, Docker, Vercel
+- Tools / APIs: Vitest, Playwright, VS Code APIs, JetBrains APIs, Tecton, Stripe, Git
 
 ## Professional Background
 - SDE 2, AI Foundations at Atlassian (2025-present) - Building AI coding agents, full-stack software, developer tooling and infrastructure used by 2K+ engineers daily. Led end-to-end development of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with ~95% shared code.
@@ -31,7 +31,7 @@
 
 ## Contact & Links
 - [Email](mailto:consultwithsatvik@gmail.com)
-- [Website](https://satvikchachra.com)
+- [Website](https://satvik.ai)
 - [GitHub](https://github.com/satvikchachra)
 - [LinkedIn](https://linkedin.com/in/satvikchachra)
 - [Twitter](https://x.com/satvikchachra)
