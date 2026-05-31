@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactNode } from 'react';
 
 export function DevPrivateToggle({ children }: { children: ReactNode }) {
@@ -14,8 +16,14 @@ export function DevPrivateToggle({ children }: { children: ReactNode }) {
             className="sr-only"
             defaultChecked
             aria-label="Toggle private blogs visibility"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                e.currentTarget.click();
+              }
+            }}
           />
-          <div className="relative w-8 h-4 bg-border rounded-full transition-colors group-has-[:checked]:bg-accent">
+          <div className="relative w-8 h-4 bg-border rounded-full transition-colors group-has-[:checked]:bg-accent group-has-[:focus-visible]:outline group-has-[:focus-visible]:outline-2 group-has-[:focus-visible]:outline-offset-2 group-has-[:focus-visible]:outline-accent">
             <div className="absolute left-[2px] top-[2px] size-[12px] bg-bg rounded-full transition-transform group-has-[:checked]:translate-x-[16px]"></div>
           </div>
           <span className="text-text-muted group-has-[:checked]:text-text">Show Private Posts</span>

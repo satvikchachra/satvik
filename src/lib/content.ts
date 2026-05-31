@@ -126,6 +126,14 @@ export const ABOUT_CONTENT = {
   ] as const,
 } as const;
 
+export const EMAIL_ADDRESS = 'consultwithsatvik@gmail.com';
+
+export const SOCIAL_LINKS = {
+  github: 'https://github.com/satvikchachra',
+  x: 'https://x.com/satvikchachra',
+  linkedin: 'https://linkedin.com/in/satvikchachra',
+} as const;
+
 export const CONTACT_CONTENT = {
   heroTitle: 'get in touch',
   introParagraph:
@@ -134,30 +142,30 @@ export const CONTACT_CONTENT = {
   links: [
     {
       id: 'contact-github',
-      href: 'https://github.com/satvikchachra',
+      href: SOCIAL_LINKS.github,
       label: 'github',
       handle: 'satvikchachra',
       description: 'code, projects, contributions',
     },
     {
-      id: 'contact-twitter',
-      href: 'https://twitter.com/satvikchachra',
-      label: 'twitter / x',
+      id: 'contact-x',
+      href: SOCIAL_LINKS.x,
+      label: 'x (twitter)',
       handle: 'satvikchachra',
       description: 'thoughts, hot takes, building in public',
     },
     {
       id: 'contact-linkedin',
-      href: 'https://linkedin.com/in/satvikchachra',
+      href: SOCIAL_LINKS.linkedin,
       label: 'linkedin',
       handle: 'satvikchachra',
       description: 'professional updates',
     },
     {
       id: 'contact-email',
-      href: 'mailto:consultwithsatvik@gmail.com',
+      href: `mailto:${EMAIL_ADDRESS}`,
       label: 'email',
-      handle: 'consultwithsatvik@gmail.com',
+      handle: EMAIL_ADDRESS,
       description: 'best for longer conversations',
     },
   ] as const,

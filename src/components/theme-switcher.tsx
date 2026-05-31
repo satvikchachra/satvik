@@ -17,7 +17,7 @@ export function ThemeSwitcher() {
       <button
         type="button"
         aria-label="Switch theme"
-        className="w-8 h-8 flex items-center justify-center rounded-md transition-colors duration-200 text-text bg-transparent cursor-pointer"
+        className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 text-text-muted bg-transparent"
       >
         <div className="w-4 h-4" />
       </button>
@@ -83,7 +83,7 @@ export function ThemeSwitcher() {
       type="button"
       aria-label="Toggle theme"
       onClick={toggleTheme}
-      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 text-text-muted hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-border-subtle"
+      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 text-text-muted hover:text-text hover:bg-surface"
     >
       {renderIcon()}
     </button>

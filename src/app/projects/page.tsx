@@ -14,28 +14,48 @@ export const metadata: Metadata = buildMetadata({
 export default function ProjectsPage() {
   const projects = getAllProjects();
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: siteConfig.url,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Projects',
+          item: `${siteConfig.url}/projects`,
+        },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: projects.map((project, index) => ({
         '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: siteConfig.url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Projects',
-        item: `${siteConfig.url}/projects`,
-      },
-    ],
-  };
+        position: index + 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: project.title,
+          description: project.description,
+          url: project.liveUrl || project.githubUrl || siteConfig.url,
+          applicationCategory: 'SoftwareApplication',
+        },
+      })),
+    },
+  ];
 
   return (
     <>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-xl mx-auto px-6 pt-28 pb-12">
         <header className="mb-8 animate-fade-in-up stagger-0">
           <h1 className="text-lg tracking-tight mb-2 text-text">{PROJECTS_CONTENT.heroTitle}</h1>

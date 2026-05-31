@@ -1,9 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
-
 // Image metadata
-export const alt = 'Satvik Chachra - Software Engineer';
+export const alt = 'Satvik Chachra - AI Native Full-Stack Engineer';
 export const size = {
   width: 1200,
   height: 630,
@@ -49,7 +47,9 @@ export default function Image() {
       <div style={{ fontSize: 64, fontWeight: 'bold', letterSpacing: '-0.05em' }}>
         Satvik Chachra
       </div>
-      <div style={{ fontSize: 32, color: '#888', marginTop: '20px' }}>Software Engineer</div>
+      <div style={{ fontSize: 32, color: '#888', marginTop: '20px' }}>
+        AI Native Full-Stack Engineer
+      </div>
     </div>,
     {
       ...size,

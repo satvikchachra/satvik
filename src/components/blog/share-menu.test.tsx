@@ -143,4 +143,11 @@ describe('ShareMenu', () => {
       url: 'http://localhost/blog/test',
     });
   });
+
+  it('supports native keyboard focus styling', () => {
+    render(<ShareMenu title="Test Title" />);
+    const button = screen.getByRole('button', { name: /share post/i });
+    expect(button).not.toHaveClass('outline-none');
+    expect(button).not.toHaveClass('focus-visible:outline-none');
+  });
 });

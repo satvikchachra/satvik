@@ -93,22 +93,9 @@ test.describe('Main Application Navigation and Pages', () => {
     await expect(page.locator('h1')).toHaveText(new RegExp(CONTACT_CONTENT.heroTitle, 'i'));
 
     // Verify all contact links are present and have valid hrefs
-    await expect(page.locator('a[id="contact-github"]')).toHaveAttribute(
-      'href',
-      'https://github.com/satvikchachra',
-    );
-    await expect(page.locator('a[id="contact-twitter"]')).toHaveAttribute(
-      'href',
-      'https://twitter.com/satvikchachra',
-    );
-    await expect(page.locator('a[id="contact-linkedin"]')).toHaveAttribute(
-      'href',
-      'https://linkedin.com/in/satvikchachra',
-    );
-    await expect(page.locator('a[id="contact-email"]')).toHaveAttribute(
-      'href',
-      'mailto:consultwithsatvik@gmail.com',
-    );
+    for (const link of CONTACT_CONTENT.links) {
+      await expect(page.locator(`a[id="${link.id}"]`)).toHaveAttribute('href', link.href);
+    }
   });
 
   test('Projects page list renders correctly', async ({ page }) => {
@@ -133,22 +120,12 @@ test.describe('Main Application Navigation and Pages', () => {
     await expect(footer).toBeVisible();
 
     // Check footer social links
-    await expect(footer.locator('a[aria-label="GitHub"]')).toHaveAttribute(
-      'href',
-      'https://github.com/satvikchachra',
-    );
-    await expect(footer.locator('a[aria-label="X (Twitter)"]')).toHaveAttribute(
-      'href',
-      'https://twitter.com/satvikchachra',
-    );
-    await expect(footer.locator('a[aria-label="LinkedIn"]')).toHaveAttribute(
-      'href',
-      'https://linkedin.com/in/satvikchachra',
-    );
-    await expect(footer.locator('a[aria-label="Email"]')).toHaveAttribute(
-      'href',
-      'mailto:consultwithsatvik@gmail.com',
-    );
+    for (const link of CONTACT_CONTENT.links) {
+      await expect(footer.locator(`a[aria-label="${link.label}"]`)).toHaveAttribute(
+        'href',
+        link.href,
+      );
+    }
   });
 
   test('Global UI: Theme toggler works', async ({ page }) => {
