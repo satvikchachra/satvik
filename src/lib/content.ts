@@ -12,10 +12,22 @@ export const HOME_CONTENT = {
   sectionBlog: 'recent blogs',
   viewAllPosts: 'all posts',
   wins: [
-    ['2K+ users daily', 'Built AI coding agent at Atlassian'],
-    ['1 Million+ users', 'B2C SaaS products shipped at AppyHigh'],
-    ['~95% shared code', 'VS Code + JetBrains plugin for AI Coding Agent'],
-    ['60s → 500ms', 'ML prediction API latency reduction'],
+    {
+      text: 'Built the core AI coding agent at Atlassian, actively used by',
+      highlight: '2K+ engineers daily',
+    },
+    {
+      text: 'Architected cross-platform IDE plugin for the AI Coding Agent with',
+      highlight: '~95% shared code',
+    },
+    {
+      text: 'Optimized ML prediction APIs, reducing latency from',
+      highlight: '60s to 500ms',
+    },
+    {
+      text: 'Shipped Generative AI and Cloud Storage Platforms at AppyHigh, reaching',
+      highlight: '1 Million+ users',
+    },
   ] as const,
 } as const;
 
@@ -28,6 +40,12 @@ export const ABOUT_CONTENT = {
   sectionStack: 'tech stack',
   sectionEducation: 'education',
   sectionAwards: 'awards / recognition',
+  wins: [
+    ['2K+ Daily Active Users', 'Built Core AI Coding Agent at Atlassian'],
+    ['~95% Shared Code', 'Architected Cross-Platform VS Code & JetBrains Plugin for AI Coding Agent'],
+    ['60s → 500ms', 'Optimized ML Prediction API Latency'],
+    ['1 Million+ Users', 'Shipped Generative AI and Cloud Storage Platforms at AppyHigh'],
+  ] as const,
   stack: [
     {
       category: 'AI / ML',

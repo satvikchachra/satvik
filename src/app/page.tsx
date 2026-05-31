@@ -65,22 +65,12 @@ export default function HomePage() {
           {HOME_CONTENT.sectionWins}
         </h2>
         <ul className="space-y-3 list-disc pl-4 text-sm text-text-muted">
-          <li className="leading-relaxed pl-1">
-            Built the core AI coding agent at Atlassian, actively used by{' '}
-            <strong className="font-medium text-text">2K+ engineers daily</strong>.
-          </li>
-          <li className="leading-relaxed pl-1">
-            Architected cross-platform IDE plugins for the AI Coding Agent with{' '}
-            <strong className="font-medium text-text">~95% shared code</strong>.
-          </li>
-          <li className="leading-relaxed pl-1">
-            Optimized ML prediction APIs, reducing latency from{' '}
-            <strong className="font-medium text-text">60s to 500ms</strong>.
-          </li>
-          <li className="leading-relaxed pl-1">
-            Shipped AI photo editing and cloud storage platforms at AppyHigh, reaching over{' '}
-            <strong className="font-medium text-text">1 Million+ users</strong>.
-          </li>
+          {HOME_CONTENT.wins.map((win, idx) => (
+            <li key={idx} className="leading-relaxed pl-1">
+              {win.text}{' '}
+              <strong className="font-medium text-text">{win.highlight}</strong>.
+            </li>
+          ))}
         </ul>
       </section>
 

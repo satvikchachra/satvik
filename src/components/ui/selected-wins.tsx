@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { HOME_CONTENT } from '@/lib/content';
+import { HOME_CONTENT, ABOUT_CONTENT } from '@/lib/content';
 
 export function SelectedWins({ showViewProjects = true }: { showViewProjects?: boolean }) {
   return (
@@ -8,13 +8,13 @@ export function SelectedWins({ showViewProjects = true }: { showViewProjects?: b
         {HOME_CONTENT.sectionWins}
       </h2>
       <ul>
-        {HOME_CONTENT.wins.map(([metric, context]) => (
+        {ABOUT_CONTENT.wins.map(([metric, context]) => (
           <li
             key={metric}
-            className="flex items-baseline justify-between gap-6 py-1.5 border-t border-border-subtle"
+            className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-6 py-3 sm:py-1.5 border-t border-border-subtle"
           >
             <span className="text-sm font-light text-text">{context}</span>
-            <span className="text-sm font-semibold flex-shrink-0 text-text">{metric}</span>
+            <span className="text-sm font-semibold sm:flex-shrink-0 text-text">{metric}</span>
           </li>
         ))}
       </ul>
