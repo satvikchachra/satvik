@@ -33,6 +33,9 @@ export default function ContactPage() {
                 <div className="flex items-baseline gap-2 flex-wrap mb-0.5">
                   <span className="text-sm font-medium text-text">
                     <span className="animated-underline">{label}</span>
+                    <span className="row-link-arrow text-xs ml-1.5 inline-block text-accent!">
+                      ↗
+                    </span>
                   </span>
                   {/* Mobile-only handle & separator — displayed adjacent to platform name */}
                   <span className="text-xs sm:hidden font-mono inline-flex items-baseline gap-1.5 text-accent">
@@ -55,7 +58,6 @@ export default function ContactPage() {
                     {handle}
                   </span>
                 </span>
-                <span className="row-link-arrow text-xs text-accent">↗</span>
               </div>
             </a>
           </li>

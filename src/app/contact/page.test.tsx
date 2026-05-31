@@ -30,4 +30,14 @@ describe('ContactPage', () => {
     expect(emailLink).toHaveAttribute('href', 'mailto:consultwithsatvik@gmail.com');
     expect(emailLink).not.toHaveAttribute('target', '_blank'); // email shouldn't have target blank
   });
+
+  it('renders the external link arrow with blue styling', () => {
+    render(<ContactPage />);
+
+    const arrows = screen.getAllByText('↗');
+    expect(arrows.length).toBeGreaterThan(0);
+    arrows.forEach((arrow) => {
+      expect(arrow).toHaveClass('row-link-arrow', 'text-accent!');
+    });
+  });
 });
