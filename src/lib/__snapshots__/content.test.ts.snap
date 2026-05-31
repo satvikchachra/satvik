@@ -9,8 +9,7 @@ exports[`Content Lock > matches the blog posts snapshot to protect against unint
   "slug": "the-most-important-ai-problem-might-not-be-training",
   "tags": ["AI", "Evaluation", "Engineering"],
   "image": "/images/blog/0b13646d/cover.jpeg",
-  "ogImage": "/og/blog/0b13646d.png",
-  "private": true
+  "ogImage": "/images/blog/0b13646d/cover.jpeg"
 }
 ",
   "0b13646d.mdx": "Recently, I read a fascinating [essay](https://wanglun1996.github.io/blog/your-evals-will-break.html) about AI evaluations that genuinely changed how I think about frontier models.
