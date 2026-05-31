@@ -51,6 +51,21 @@ describe('HomePage', () => {
     expect(screen.getByTestId('link-cta-about')).toHaveAttribute('href', '/about');
   });
 
+  it('renders social links with correct attributes', () => {
+    vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
+    render(<HomePage />);
+
+    const githubLink = screen.getByRole('link', { name: /github/i });
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/satvikchachra');
+    expect(githubLink).toHaveAttribute('target', '_blank');
+    expect(githubLink).toHaveAttribute('rel', 'noreferrer');
+
+    const emailLink = screen.getByRole('link', { name: /email/i });
+    expect(emailLink).toHaveAttribute('href', 'mailto:consultwithsatvik@gmail.com');
+    expect(emailLink).not.toHaveAttribute('target');
+    expect(emailLink).not.toHaveAttribute('rel');
+  });
+
   it('injects JSON-LD structured data', () => {
     vi.mocked(blogModule.getAllPosts).mockReturnValue([]);
     const { container } = render(<HomePage />);

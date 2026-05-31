@@ -35,10 +35,7 @@ export default function BlogPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <div className="max-w-xl mx-auto px-6 pt-28 pb-12">
         {/* Header */}
         <header className="mb-12 animate-fade-in-up stagger-0">

@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/metadata';
 import { formatResumeText } from '@/lib/utils';
+
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  description: siteConfig.description,
+};
 
 import { HOME_CONTENT } from '@/lib/content';
 import { GitHubIcon, XIcon, LinkedInIcon, MailIcon } from '@/components/ui/icons';
@@ -18,10 +24,7 @@ export default function HomePage() {
 
   return (
     <div className="max-w-xl mx-auto px-6 pt-28 pb-12 relative">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       {/* Ambient glow */}
       <div className="ambient-glow" aria-hidden="true" />
 
@@ -45,18 +48,29 @@ export default function HomePage() {
               icon: LinkedInIcon,
             },
             { href: 'mailto:consultwithsatvik@gmail.com', label: 'Email', icon: MailIcon },
-          ].map(({ href, label, icon: Icon }) => (
-            <a
-              key={href}
-              href={href}
-              aria-label={label}
-              target={href.startsWith('mailto') ? undefined : '_blank'}
-              rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="text-text-muted hover:text-text transition-colors duration-200"
-            >
-              <Icon className="w-5 h-5" aria-hidden="true" />
-            </a>
-          ))}
+          ].map(({ href, label, icon: Icon }) =>
+            href.startsWith('mailto') ? (
+              <a
+                key={href}
+                href={href}
+                aria-label={label}
+                className="text-text-muted hover:text-text transition-colors duration-200"
+              >
+                <Icon className="size-5" aria-hidden="true" />
+              </a>
+            ) : (
+              <a
+                key={href}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
+                className="text-text-muted hover:text-text transition-colors duration-200"
+              >
+                <Icon className="size-5" aria-hidden="true" />
+              </a>
+            ),
+          )}
         </div>
       </header>
 

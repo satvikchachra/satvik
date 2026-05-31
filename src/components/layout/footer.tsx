@@ -4,7 +4,7 @@ import { FOOTER_CONTENT } from '@/lib/content';
 export function Footer() {
   return (
     <footer className="mt-0 border-t border-border-subtle">
-      <div className="max-w-xl mx-auto px-6 py-6 flex items-center justify-between">
+      <div className="max-w-xl mx-auto p-6 flex items-center justify-between">
         {/* Social links */}
         <nav aria-label="Social links">
           <ul className="flex items-center gap-4">
@@ -19,15 +19,25 @@ export function Footer() {
               { href: 'mailto:consultwithsatvik@gmail.com', label: 'Email', icon: MailIcon },
             ].map(({ href, label, icon: Icon }) => (
               <li key={href}>
-                <a
-                  href={href}
-                  aria-label={label}
-                  target={href.startsWith('mailto') ? undefined : '_blank'}
-                  rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                  className="text-text-muted hover:text-text transition-colors duration-200 block"
-                >
-                  <Icon className="w-4 h-4" aria-hidden="true" />
-                </a>
+                {href.startsWith('mailto') ? (
+                  <a
+                    href={href}
+                    aria-label={label}
+                    className="text-text-muted hover:text-text transition-colors duration-200 block"
+                  >
+                    <Icon className="size-4" aria-hidden="true" />
+                  </a>
+                ) : (
+                  <a
+                    href={href}
+                    aria-label={label}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-text-muted hover:text-text transition-colors duration-200 block"
+                  >
+                    <Icon className="size-4" aria-hidden="true" />
+                  </a>
+                )}
               </li>
             ))}
           </ul>

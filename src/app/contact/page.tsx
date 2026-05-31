@@ -24,8 +24,7 @@ export default function ContactPage() {
             <a
               id={id}
               href={href}
-              target={href.startsWith('mailto') ? undefined : '_blank'}
-              rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              {...(href.startsWith('mailto') ? {} : { target: '_blank', rel: 'noreferrer' })}
               aria-label={`${label}: ${handle}`}
               className="row-link group pr-2 items-start overflow-visible"
             >

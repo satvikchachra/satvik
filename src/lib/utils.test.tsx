@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { cn, formatResumeText, formatDate } from './utils';
 import { render } from '@testing-library/react';
 
@@ -16,7 +16,7 @@ describe('Utils', () => {
       const bElement = container.querySelector('b');
       expect(bElement).toBeInTheDocument();
       expect(bElement?.textContent).toBe('bold');
-      expect(bElement?.className).toBe('font-semibold text-[var(--text)]');
+      expect(bElement?.className).toBe('font-semibold text-text');
     });
 
     it('should format underlined text correctly', () => {
@@ -37,6 +37,18 @@ describe('Utils', () => {
 
     it('should return empty string for falsy input', () => {
       expect(formatResumeText('')).toBe('');
+    });
+
+    it('should assign unique keys to repeated identical parts without throwing warnings', () => {
+      const consoleErrorSpy = vi.spyOn(console, 'error');
+
+      render(<>{formatResumeText('**React** and **React**')}</>);
+
+      expect(consoleErrorSpy).not.toHaveBeenCalledWith(
+        expect.stringContaining('Encountered two children with the same key'),
+      );
+
+      consoleErrorSpy.mockRestore();
     });
   });
 
