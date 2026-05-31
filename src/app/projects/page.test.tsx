@@ -40,6 +40,7 @@ describe('ProjectsPage', () => {
     expect(scriptTag).toBeInTheDocument();
 
     const jsonLd = JSON.parse(scriptTag!.innerHTML);
-    expect(jsonLd['@type']).toBe('BreadcrumbList');
+    expect(jsonLd[0]['@type']).toBe('BreadcrumbList');
+    expect(jsonLd[1]['@type']).toBe('ItemList');
   });
 });

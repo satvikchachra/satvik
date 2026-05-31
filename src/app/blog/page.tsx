@@ -14,24 +14,41 @@ export const metadata: Metadata = buildMetadata({
 export default function BlogPage() {
   const posts = getAllPosts();
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: siteConfig.url,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: `${siteConfig.url}/blog`,
+        },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: posts.map((post, index) => ({
         '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: siteConfig.url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: `${siteConfig.url}/blog`,
-      },
-    ],
-  };
+        position: index + 1,
+        item: {
+          '@type': 'BlogPosting',
+          headline: post.title,
+          url: `${siteConfig.url}/blog/${post.slug}`,
+          datePublished: new Date(post.date).toISOString(),
+          description: post.description,
+        },
+      })),
+    },
+  ];
 
   return (
     <>

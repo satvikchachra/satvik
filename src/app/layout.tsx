@@ -66,6 +66,7 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Satvik Chachra',
   url: siteConfig.url,
+  image: `${siteConfig.url}/images/satvikchachra.jpg`,
   jobTitle: 'AI-Native Full-Stack Engineer',
   description: siteConfig.description,
   sameAs: [siteConfig.author.github, siteConfig.author.linkedin, siteConfig.author.twitterUrl],

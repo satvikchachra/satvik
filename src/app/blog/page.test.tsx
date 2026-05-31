@@ -69,11 +69,12 @@ describe('BlogPage', () => {
     expect(script).toBeInTheDocument();
 
     const jsonLd = JSON.parse(script!.innerHTML);
-    expect(jsonLd['@type']).toBe('BreadcrumbList');
-    expect(jsonLd.itemListElement[0].name).toBe('Home');
-    expect(jsonLd.itemListElement[0].item).toBe('https://test.com');
-    expect(jsonLd.itemListElement[1].name).toBe('Blog');
-    expect(jsonLd.itemListElement[1].item).toBe('https://test.com/blog');
+    expect(jsonLd[0]['@type']).toBe('BreadcrumbList');
+    expect(jsonLd[0].itemListElement[0].name).toBe('Home');
+    expect(jsonLd[0].itemListElement[0].item).toBe('https://test.com');
+    expect(jsonLd[0].itemListElement[1].name).toBe('Blog');
+    expect(jsonLd[0].itemListElement[1].item).toBe('https://test.com/blog');
+    expect(jsonLd[1]['@type']).toBe('ItemList');
   });
 
   it('renders the header text correctly', async () => {

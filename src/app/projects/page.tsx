@@ -14,24 +14,41 @@ export const metadata: Metadata = buildMetadata({
 export default function ProjectsPage() {
   const projects = getAllProjects();
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: siteConfig.url,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Projects',
+          item: `${siteConfig.url}/projects`,
+        },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: projects.map((project, index) => ({
         '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: siteConfig.url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Projects',
-        item: `${siteConfig.url}/projects`,
-      },
-    ],
-  };
+        position: index + 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: project.title,
+          description: project.description,
+          url: project.liveUrl || project.githubUrl || siteConfig.url,
+          applicationCategory: 'SoftwareApplication',
+        },
+      })),
+    },
+  ];
 
   return (
     <>

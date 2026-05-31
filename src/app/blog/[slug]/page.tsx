@@ -78,6 +78,8 @@ export default async function BlogPostPage({ params }: Props) {
       url: siteConfig.url,
     },
     description: post.meta.description,
+    keywords: (post.meta.tags || []).join(', '),
+    timeRequired: `PT${parseInt(post.meta.readingTime) || 1}M`,
     isAccessibleForFree: true,
     mainEntityOfPage: {
       '@type': 'WebPage',
