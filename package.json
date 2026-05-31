@@ -23,6 +23,7 @@
     "format:check": "prettier --check .",
     "validate": "npm run format:check && npm run typecheck && npm run lint && npm run build",
     "validate:all": "npm run validate && npm run test",
+    "audit:react-doctor": "npx react-doctor",
     "prepare": "husky"
   },
   "dependencies": {
