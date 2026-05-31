@@ -5,8 +5,12 @@ const nextConfig: NextConfig = {
   // Allow .md and .mdx as page/component extensions
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 
+  // Export purely static HTML files
+  output: 'export',
+
   // Optimize images
   images: {
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
   },
 };
