@@ -12,7 +12,7 @@ import { CONTACT_CONTENT } from '@/lib/content';
 
 export default function ContactPage() {
   return (
-    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-36">
       <header className="mb-8 animate-fade-in-up stagger-0">
         <h1 className="text-lg tracking-tight mb-2 text-text">{CONTACT_CONTENT.heroTitle}</h1>
         <p className="text-sm leading-relaxed text-text-muted">{CONTACT_CONTENT.introParagraph}</p>

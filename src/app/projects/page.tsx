@@ -39,7 +39,7 @@ export default function ProjectsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+      <div className="max-w-xl mx-auto px-6 pt-28 pb-12">
         <header className="mb-8 animate-fade-in-up stagger-0">
           <h1 className="text-lg tracking-tight mb-2 text-text">{PROJECTS_CONTENT.heroTitle}</h1>
           <p className="text-sm leading-relaxed text-text-muted">{PROJECTS_CONTENT.heroSubtitle}</p>

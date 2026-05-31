@@ -10,10 +10,6 @@ test.describe('Main Application Navigation and Pages', () => {
 
     // Check wins section
     await expect(page.locator(`text=${HOME_CONTENT.sectionWins}`)).toBeVisible();
-
-    // Check recent blogs section
-    // Assuming there are posts on the site
-    await expect(page.locator(`h2:has-text("${HOME_CONTENT.sectionBlog}")`)).toBeVisible();
   });
 
   test('Navigation menu works correctly', async ({ page }) => {

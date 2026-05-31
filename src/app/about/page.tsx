@@ -14,7 +14,7 @@ import { ABOUT_CONTENT } from '@/lib/content';
 import { SelectedWins } from '@/components/ui/selected-wins';
 export default function AboutPage() {
   return (
-    <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+    <div className="max-w-xl mx-auto px-6 pt-28 pb-12">
       {/* Header */}
       <header className="mb-10 animate-fade-in-up stagger-0">
         <h1 className="text-lg tracking-tight mb-3 text-text">{ABOUT_CONTENT.heroTitle}</h1>

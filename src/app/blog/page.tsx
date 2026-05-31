@@ -39,7 +39,7 @@ export default function BlogPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-xl mx-auto px-6 pt-28 pb-24">
+      <div className="max-w-xl mx-auto px-6 pt-28 pb-12">
         {/* Header */}
         <header className="mb-12 animate-fade-in-up stagger-0">
           <h1 id="blog-heading" className="text-lg tracking-tight mb-2 text-text">
