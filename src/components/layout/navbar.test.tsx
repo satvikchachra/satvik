@@ -16,6 +16,57 @@ vi.mock('@/components/theme-switcher', () => ({
   ),
 }));
 
+// Mock Shadcn's DropdownMenu to avoid Radix UI pointer event issues in jsdom
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any */
+const DropdownContext = require('react').createContext({});
+
+vi.mock('@/components/ui/dropdown-menu', () => {
+  const React = require('react');
+  return {
+    DropdownMenu: ({
+      children,
+      open,
+      onOpenChange,
+    }: {
+      children: React.ReactNode;
+      open?: boolean;
+      onOpenChange?: (o: boolean) => void;
+    }) => (
+      <DropdownContext.Provider value={{ open, onOpenChange }}>
+        <div>
+          {children}
+          {open && (
+            <div role="menu" aria-label="Mobile navigation">
+              Menu Opened
+            </div>
+          )}
+        </div>
+      </DropdownContext.Provider>
+    ),
+    DropdownMenuTrigger: ({
+      children,
+      asChild,
+    }: {
+      children: React.ReactNode;
+      asChild?: boolean;
+    }) => {
+      const { open, onOpenChange } = React.useContext(DropdownContext) as any;
+      const handleClick = () => onOpenChange?.(!open);
+
+      if (asChild && React.isValidElement(children)) {
+        return React.cloneElement(children, { onClick: handleClick } as any);
+      }
+      return (
+        <button type="button" onClick={handleClick}>
+          {children}
+        </button>
+      );
+    },
+    DropdownMenuContent: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+    DropdownMenuItem: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  };
+});
+
 describe('Navbar', () => {
   beforeEach(() => {
     vi.mocked(usePathname).mockReturnValue('/');
@@ -28,10 +79,10 @@ describe('Navbar', () => {
     expect(screen.getByRole('link', { name: /satvik chachra — home/i })).toBeInTheDocument();
 
     // Check navigation items
-    expect(screen.getByRole('link', { name: /about/i, hidden: true })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /projects/i, hidden: true })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /blog/i, hidden: true })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /contact/i, hidden: true })).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /about/i, hidden: true })[0]).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /projects/i, hidden: true })[0]).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /blog/i, hidden: true })[0]).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /contact/i, hidden: true })[0]).toBeInTheDocument();
   });
 
   it('highlights the active link based on pathname', () => {
@@ -50,37 +101,41 @@ describe('Navbar', () => {
     });
   });
 
-  it('toggles mobile menu on button click', () => {
+  it('toggles mobile menu on button click', async () => {
     render(<Navbar />);
 
     const toggleButton = screen.getByRole('button', { name: /open menu/i });
-    expect(
-      screen.queryByRole('navigation', { name: /mobile navigation/i }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('menu', { name: /mobile navigation/i })).not.toBeInTheDocument();
 
+    fireEvent.pointerDown(toggleButton);
     fireEvent.click(toggleButton);
 
-    expect(screen.getByRole('navigation', { name: /mobile navigation/i })).toBeInTheDocument();
-    expect(toggleButton).toHaveAttribute('aria-label', 'Close menu');
+    const menu = await screen.findByRole('menu', { name: /mobile navigation/i });
+    expect(menu).toBeInTheDocument();
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'true');
 
+    fireEvent.pointerDown(toggleButton);
     fireEvent.click(toggleButton);
 
-    expect(
-      screen.queryByRole('navigation', { name: /mobile navigation/i }),
-    ).not.toBeInTheDocument();
+    // Give radix time to animate out or remove from DOM
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(screen.queryByRole('menu', { name: /mobile navigation/i })).not.toBeInTheDocument();
   });
 
-  it('closes mobile menu on escape key', () => {
+  it('closes mobile menu on escape key', async () => {
     render(<Navbar />);
 
     const toggleButton = screen.getByRole('button', { name: /open menu/i });
+    fireEvent.pointerDown(toggleButton);
     fireEvent.click(toggleButton);
-    expect(screen.getByRole('navigation', { name: /mobile navigation/i })).toBeInTheDocument();
+    const menu = await screen.findByRole('menu', { name: /mobile navigation/i });
+    expect(menu).toBeInTheDocument();
 
-    fireEvent.keyDown(screen.getByRole('banner'), { key: 'Escape', code: 'Escape' });
+    fireEvent.keyDown(menu, { key: 'Escape', code: 'Escape' });
 
-    expect(
-      screen.queryByRole('navigation', { name: /mobile navigation/i }),
-    ).not.toBeInTheDocument();
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(screen.queryByRole('menu', { name: /mobile navigation/i })).not.toBeInTheDocument();
   });
 });

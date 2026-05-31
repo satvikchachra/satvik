@@ -52,7 +52,7 @@ test.describe('Main Application Navigation and Pages', () => {
     await menuButton.click();
 
     // Check menu is open and click 'about'
-    const mobileNav = page.locator('nav[aria-label="Mobile navigation"]');
+    const mobileNav = page.locator('div[role="menu"][aria-label="Mobile navigation"]');
     await expect(mobileNav).toBeVisible();
 
     await mobileNav.locator('text=about').click();
@@ -167,6 +167,9 @@ test.describe('Main Application Navigation and Pages', () => {
 
     const htmlElement = page.locator('html');
     await expect(htmlElement).toHaveAttribute('data-theme', 'light');
+
+    // Wait for the dropdown to fully close and animate out before clicking again
+    await expect(lightOption).not.toBeVisible();
 
     // Click again and select 'Dark'
     await themeButton.click();

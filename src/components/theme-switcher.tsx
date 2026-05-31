@@ -12,7 +12,6 @@ import {
 export function ThemeSwitcher() {
   const { setTheme, theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -99,31 +98,21 @@ export function ThemeSwitcher() {
   };
 
   return (
-    <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <button
           type="button"
           aria-label="Toggle theme"
-          className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-border-subtle ${
-            open ? 'text-text bg-surface' : 'text-text-muted bg-transparent'
-          }`}
+          className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-border-subtle data-state-open:text-text data-state-open:bg-surface data-state-closed:text-text-muted data-state-closed:bg-transparent"
         >
           {renderIcon()}
         </button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent
-        align="end"
-        sideOffset={6}
-        className="w-32 flex flex-col gap-0.5 rounded-md border border-border bg-bg p-1 shadow-sm z-50 animate-fade-in-up"
-      >
+      <DropdownMenuContent align="end" className="w-32 bg-bg border border-border text-text">
         <DropdownMenuItem
-          onSelect={(e) => {
-            e.preventDefault();
-            setTheme('light');
-            setOpen(false);
-          }}
-          className="flex w-full cursor-pointer items-center gap-2 px-2 py-1.5 rounded-sm text-xs text-text transition-colors duration-200 hover:bg-surface focus:bg-surface text-left"
+          onSelect={() => setTheme('light')}
+          className="cursor-pointer focus:bg-surface focus:text-text"
         >
           <svg
             width="14"
@@ -149,12 +138,8 @@ export function ThemeSwitcher() {
         </DropdownMenuItem>
 
         <DropdownMenuItem
-          onSelect={(e) => {
-            e.preventDefault();
-            setTheme('dark');
-            setOpen(false);
-          }}
-          className="flex w-full cursor-pointer items-center gap-2 px-2 py-1.5 rounded-sm text-xs text-text transition-colors duration-200 hover:bg-surface focus:bg-surface text-left"
+          onSelect={() => setTheme('dark')}
+          className="cursor-pointer focus:bg-surface focus:text-text"
         >
           <svg
             width="14"
@@ -172,12 +157,8 @@ export function ThemeSwitcher() {
         </DropdownMenuItem>
 
         <DropdownMenuItem
-          onSelect={(e) => {
-            e.preventDefault();
-            setTheme('system');
-            setOpen(false);
-          }}
-          className="flex w-full cursor-pointer items-center gap-2 px-2 py-1.5 rounded-sm text-xs text-text transition-colors duration-200 hover:bg-surface focus:bg-surface text-left"
+          onSelect={() => setTheme('system')}
+          className="cursor-pointer focus:bg-surface focus:text-text"
         >
           <svg
             width="14"

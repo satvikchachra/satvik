@@ -74,19 +74,15 @@ export function ShareMenu({ title }: ShareMenuProps) {
         </button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent
-        align="end"
-        sideOffset={6}
-        className="w-28 flex flex-col gap-0.5 rounded-md border border-border bg-bg p-1 shadow-sm z-50 animate-fade-in-up"
-      >
+      <DropdownMenuContent align="end" className="w-28 bg-bg border border-border text-text">
         <DropdownMenuItem
           onSelect={(e) => {
             e.preventDefault();
             copyLink();
           }}
-          className="flex w-full cursor-pointer items-center gap-1.5 px-2 py-1.5 rounded-sm text-xs text-text transition-colors duration-200 hover:bg-surface focus:bg-surface text-left"
+          className="cursor-pointer focus:bg-surface focus:text-text"
         >
-          <LinkIcon width={11} height={11} className="size-[11px]" aria-hidden="true" />
+          <LinkIcon aria-hidden="true" />
           <span>{hasCopied ? 'Copied!' : 'Copy link'}</span>
         </DropdownMenuItem>
 
@@ -96,9 +92,9 @@ export function ShareMenu({ title }: ShareMenuProps) {
               e.preventDefault();
               shareNative();
             }}
-            className="flex w-full cursor-pointer items-center gap-1.5 px-2 py-1.5 rounded-sm text-xs text-text transition-colors duration-200 hover:bg-surface focus:bg-surface text-left"
+            className="cursor-pointer focus:bg-surface focus:text-text"
           >
-            <ShareIcon width={11} height={11} className="size-[11px]" aria-hidden="true" />
+            <ShareIcon aria-hidden="true" />
             <span>Share</span>
           </DropdownMenuItem>
         )}
