@@ -25,14 +25,14 @@ export function BlogList({ posts }: BlogListProps) {
             }}
           >
             <div className="w-full sm:flex-1 min-w-0 pr-0 sm:pr-8 mb-2 sm:mb-0">
-              <span className="text-sm block mb-1 text-text flex items-center gap-2">
+              <span className="text-sm block mb-1 text-text leading-snug">
                 <span className="animated-underline">{post.title}</span>
                 {post.private && (
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-sm bg-accent/10 text-accent border border-accent/20">
+                  <span className="inline-flex align-middle text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-sm bg-accent/10 text-accent border border-accent/20 ml-2">
                     Private
                   </span>
                 )}
-                <span className="row-link-arrow text-xs ml-1.5 inline-block">↗</span>
+                <span className="row-link-arrow text-xs ml-1.5 inline-block text-accent!">→</span>
               </span>
               {post.description && (
                 <span className="text-xs leading-relaxed block text-text-subtle">
