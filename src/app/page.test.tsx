@@ -40,7 +40,7 @@ describe('HomePage', () => {
     expect(
       screen.getByRole('heading', { name: new RegExp(HOME_CONTENT.sectionWins, 'i') }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/2K\+ engineers daily/i)).toBeInTheDocument();
+    expect(screen.getByText(HOME_CONTENT.wins[0].highlight, { exact: false })).toBeInTheDocument();
   });
 
   it('renders the CTA row with correct links', () => {

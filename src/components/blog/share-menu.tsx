@@ -75,17 +75,6 @@ export function ShareMenu({ title }: ShareMenuProps) {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="w-28 bg-bg border border-border text-text">
-        <DropdownMenuItem
-          onSelect={(e) => {
-            e.preventDefault();
-            copyLink();
-          }}
-          className="cursor-pointer focus:bg-surface focus:text-text"
-        >
-          <LinkIcon aria-hidden="true" />
-          <span>{hasCopied ? 'Copied!' : 'Copy link'}</span>
-        </DropdownMenuItem>
-
         {canShare && (
           <DropdownMenuItem
             onSelect={(e) => {
@@ -98,6 +87,17 @@ export function ShareMenu({ title }: ShareMenuProps) {
             <span>Share</span>
           </DropdownMenuItem>
         )}
+
+        <DropdownMenuItem
+          onSelect={(e) => {
+            e.preventDefault();
+            copyLink();
+          }}
+          className="cursor-pointer focus:bg-surface focus:text-text"
+        >
+          <LinkIcon aria-hidden="true" />
+          <span>{hasCopied ? 'Copied!' : 'Copy link'}</span>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

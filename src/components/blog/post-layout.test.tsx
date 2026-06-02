@@ -34,46 +34,50 @@ vi.mock('./share-menu', () => ({
 
 describe('PostLayout', () => {
   it('renders correctly with all props', () => {
+    const props = {
+      title: 'Test Title',
+      description: 'Test Description',
+      date: '2026-05-29',
+      readingTime: '5 min read',
+      image: '/test.jpg',
+    };
+
     render(
-      <PostLayout
-        title="Test Title"
-        description="Test Description"
-        date="2026-05-29"
-        readingTime="5 min read"
-        image="/test.jpg"
-      >
+      <PostLayout {...props}>
         <div data-testid="children">Child content</div>
       </PostLayout>,
     );
 
     // Header elements
-    expect(screen.getByRole('heading', { name: 'Test Title' })).toBeInTheDocument();
-    expect(screen.getByText('Test Description')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: props.title })).toBeInTheDocument();
+    expect(screen.getByText(props.description)).toBeInTheDocument();
 
     // Image
-    const image = screen.getByAltText('Cover image for Test Title');
+    const image = screen.getByAltText(`Cover image for ${props.title}`);
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', '/test.jpg');
+    expect(image).toHaveAttribute('src', props.image);
 
     // Meta elements
-    expect(screen.getByText('5 min read')).toBeInTheDocument();
-    expect(screen.getByText('Formatted: 2026-05-29')).toBeInTheDocument();
+    expect(screen.getByText(props.readingTime)).toBeInTheDocument();
+    expect(screen.getByText(`Formatted: ${props.date}`)).toBeInTheDocument();
 
     // Children
     expect(screen.getByTestId('children')).toBeInTheDocument();
 
     // Share Menu
-    expect(screen.getByTestId('share-menu')).toHaveTextContent('Test Title');
+    expect(screen.getByTestId('share-menu')).toHaveTextContent(props.title);
   });
 
   it('renders correctly without readingTime', () => {
+    const props = {
+      title: 'Test Title',
+      description: 'Test Description',
+      date: '2026-05-29',
+      image: '/test.jpg',
+    };
+
     render(
-      <PostLayout
-        title="Test Title"
-        description="Test Description"
-        date="2026-05-29"
-        image="/test.jpg"
-      >
+      <PostLayout {...props}>
         <div>Content</div>
       </PostLayout>,
     );
@@ -83,6 +87,6 @@ describe('PostLayout', () => {
     // Dot separator shouldn't be present
     expect(screen.queryByText('·')).not.toBeInTheDocument();
     // Date should still be present
-    expect(screen.getByText('Formatted: 2026-05-29')).toBeInTheDocument();
+    expect(screen.getByText(`Formatted: ${props.date}`)).toBeInTheDocument();
   });
 });
