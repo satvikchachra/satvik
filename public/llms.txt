@@ -11,7 +11,7 @@
 - Tools / APIs: Vitest, Playwright, VS Code APIs, JetBrains APIs, Tecton, Stripe, Git
 
 ## Professional Background
-- SDE 2, AI Foundations at Atlassian (2025-present) - Building AI coding agents, full-stack software, developer tooling and infrastructure used by 2K+ engineers daily. Led end-to-end development of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with ~95% shared code.
+- SDE 2, AI Foundations at Atlassian (2025-present) - Building AI coding agents, full-stack software, developer tooling and infrastructure used by 3K+ engineers daily. Led end-to-end development of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with ~95% shared code.
 - SDE 1, Dev Infra at Atlassian (2024-2025) - Worked on ML-driven Predictive Test Case Selection System for CI/CD pipelines. Drove a ~99% improvement in p95 prediction API latency (60s → 500ms) through Tecton feature store integration, Redis caching, and FastAPI migration.
 - SDE 1, Full Stack at AppyHigh (2022-2023) - Built AI-powered Image Editing and Generation Platform (PhotAI) and a Cloud-based Storage and document conversion platform (ScannerGo). Led small engineering teams and shipped products to 1M+ users.
 

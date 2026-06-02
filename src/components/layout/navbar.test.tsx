@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Navbar } from './navbar';
 import { usePathname } from 'next/navigation';
+import { HOME_CONTENT } from '@/lib/content';
 
 vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
@@ -76,7 +77,9 @@ describe('Navbar', () => {
     render(<Navbar />);
 
     // Check main brand/home link
-    expect(screen.getByRole('link', { name: /satvik chachra — home/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: new RegExp(`${HOME_CONTENT.heroTitle} — home`, 'i') }),
+    ).toBeInTheDocument();
 
     // Check navigation items
     expect(screen.getAllByRole('link', { name: /about/i, hidden: true })[0]).toBeInTheDocument();
@@ -141,7 +144,9 @@ describe('Navbar', () => {
 
   it('supports native keyboard focus styling on interactive elements', () => {
     render(<Navbar />);
-    const homeLink = screen.getByRole('link', { name: /satvik chachra — home/i });
+    const homeLink = screen.getByRole('link', {
+      name: new RegExp(`${HOME_CONTENT.heroTitle} — home`, 'i'),
+    });
     const toggleButton = screen.getByRole('button', { name: /open menu/i });
 
     expect(homeLink).not.toHaveClass('outline-none');

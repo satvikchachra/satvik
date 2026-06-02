@@ -144,6 +144,25 @@ describe('ShareMenu', () => {
     });
   });
 
+  it('renders "Share" before "Copy link" when native share is supported', async () => {
+    Object.assign(navigator, {
+      canShare: vi.fn().mockReturnValue(true),
+      share: vi.fn().mockResolvedValue(undefined),
+    });
+
+    render(<ShareMenu title="Test Title" />);
+
+    // Open menu
+    const button = screen.getByRole('button', { name: /share post/i });
+    fireEvent.click(button);
+
+    // Get menu items
+    const menuItems = await screen.findAllByRole('menuitem');
+    expect(menuItems).toHaveLength(2);
+    expect(menuItems[0]).toHaveTextContent('Share');
+    expect(menuItems[1]).toHaveTextContent('Copy link');
+  });
+
   it('supports native keyboard focus styling', () => {
     render(<ShareMenu title="Test Title" />);
     const button = screen.getByRole('button', { name: /share post/i });

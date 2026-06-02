@@ -36,10 +36,10 @@ describe('ProjectsList', () => {
     render(<ProjectsList projects={mockProjects} />);
 
     // Assert Project One
-    expect(screen.getByRole('heading', { name: 'Project One' })).toBeInTheDocument();
-    expect(screen.getByText('2023')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: mockProjects[0].title })).toBeInTheDocument();
+    expect(screen.getByText(mockProjects[0].year.toString())).toBeInTheDocument();
     expect(screen.getByText(PROJECTS_CONTENT.activeLabel)).toBeInTheDocument();
-    expect(screen.getByText('Company A')).toBeInTheDocument();
+    expect(screen.getByText(mockProjects[0].company!)).toBeInTheDocument();
 
     // Check URL formatting
     const liveLink = screen.getByRole('link', { name: /example\.com/i });
@@ -48,17 +48,17 @@ describe('ProjectsList', () => {
     // Check Description and Bullets
     expect(screen.getAllByText(/Description/)[0]).toBeInTheDocument();
     expect(screen.getByText('bold')).toBeInTheDocument(); // formatted text
-    expect(screen.getByText('Feature 1')).toBeInTheDocument();
-    expect(screen.getByText('Feature 2')).toBeInTheDocument();
+    expect(screen.getByText(mockProjects[0].bullets![0])).toBeInTheDocument();
+    expect(screen.getByText(mockProjects[0].bullets![1])).toBeInTheDocument();
 
     // Check tags
-    expect(screen.getByText('React')).toBeInTheDocument();
-    expect(screen.getByText('TypeScript')).toBeInTheDocument();
+    expect(screen.getByText(mockProjects[0].tags[0])).toBeInTheDocument();
+    expect(screen.getByText(mockProjects[0].tags[1])).toBeInTheDocument();
 
     // Assert Project Two
-    expect(screen.getByRole('heading', { name: 'Project Two' })).toBeInTheDocument();
-    expect(screen.getByText('2022')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: mockProjects[1].title })).toBeInTheDocument();
+    expect(screen.getByText(mockProjects[1].year.toString())).toBeInTheDocument();
     expect(screen.queryByText('archived')).not.toBeInTheDocument(); // active badge shouldn't render for archived
-    expect(screen.getByText('Next.js')).toBeInTheDocument();
+    expect(screen.getByText(mockProjects[1].tags[0])).toBeInTheDocument();
   });
 });

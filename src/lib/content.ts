@@ -14,7 +14,7 @@ export const HOME_CONTENT = {
   wins: [
     {
       text: 'Built the core __AI coding agent__ at Atlassian, actively used by',
-      highlight: '2K+ engineers daily',
+      highlight: '3K+ engineers daily',
     },
     {
       text: 'Architected __cross-platform IDE plugin__ for the AI Coding Agent with',
@@ -41,7 +41,7 @@ export const ABOUT_CONTENT = {
   sectionEducation: 'education',
   sectionAwards: 'awards / recognition',
   wins: [
-    ['2K+ Daily Active Users', 'Built Core AI Coding Agent at Atlassian'],
+    ['3K+ Daily Active Users', 'Built Core AI Coding Agent at Atlassian'],
     [
       '~95% Shared Code',
       'Architected Cross-Platform VS Code & JetBrains Plugin for AI Coding Agent',
@@ -206,7 +206,7 @@ export const EXPERIENCE_DATA: readonly ExperienceItem[] = [
     companyUrl: 'https://www.atlassian.com/',
     role: 'SDE 2 — AI Foundations',
     description:
-      'Building **AI coding agents**, full-stack software, developer tooling and infrastructure used by **2K+ engineers** daily. __Led end-to-end development__ of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with **~95% shared code**.',
+      'Building **AI coding agents**, full-stack software, developer tooling and infrastructure used by **3K+ engineers** daily. __Led end-to-end development__ of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with **~95% shared code**.',
   },
   {
     year: '2024 – 2025',
@@ -232,7 +232,7 @@ export const PROJECTS_DATA: Project[] = [
     title: 'AI Coding Agent',
     company: 'Atlassian',
     description:
-      'Built Core AI Coding Agent, Editor and Agentic Chat experience for VSCode and JetBrains — used by **2K+ engineers** daily, with **~95% shared** cross-platform code.',
+      'Built Core AI Coding Agent, Editor and Agentic Chat experience for VSCode and JetBrains — used by **3K+ engineers** daily, with **~95% shared** cross-platform code.',
     bullets: [
       '__Architected and delivered **MCP integration**__ for the Coding Agent, building frontend and backend infrastructure for server onboarding, tool discovery, permission management, and agent-driven execution of external tools.',
       '__Led end-to-end development__ of the **AI-native Editor and Agentic Chat Experience** for the agent, including editor, tool calls, streaming, attachments, @mentions, slash commands, image paste/upload, drag-and-drop, and keyboard-first interactions.',

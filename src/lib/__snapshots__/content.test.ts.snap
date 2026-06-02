@@ -370,7 +370,7 @@ exports[`Content Lock > matches the llms.txt snapshot to protect against uninten
 - Tools / APIs: Vitest, Playwright, VS Code APIs, JetBrains APIs, Tecton, Stripe, Git
 
 ## Professional Background
-- SDE 2, AI Foundations at Atlassian (2025-present) - Building AI coding agents, full-stack software, developer tooling and infrastructure used by 2K+ engineers daily. Led end-to-end development of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with ~95% shared code.
+- SDE 2, AI Foundations at Atlassian (2025-present) - Building AI coding agents, full-stack software, developer tooling and infrastructure used by 3K+ engineers daily. Led end-to-end development of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with ~95% shared code.
 - SDE 1, Dev Infra at Atlassian (2024-2025) - Worked on ML-driven Predictive Test Case Selection System for CI/CD pipelines. Drove a ~99% improvement in p95 prediction API latency (60s → 500ms) through Tecton feature store integration, Redis caching, and FastAPI migration.
 - SDE 1, Full Stack at AppyHigh (2022-2023) - Built AI-powered Image Editing and Generation Platform (PhotAI) and a Cloud-based Storage and document conversion platform (ScannerGo). Led small engineering teams and shipped products to 1M+ users.
 
@@ -520,7 +520,7 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     ],
     "wins": [
       [
-        "2K+ Daily Active Users",
+        "3K+ Daily Active Users",
         "Built Core AI Coding Agent at Atlassian",
       ],
       [
@@ -584,7 +584,7 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     {
       "company": "Atlassian",
       "companyUrl": "https://www.atlassian.com/",
-      "description": "Building **AI coding agents**, full-stack software, developer tooling and infrastructure used by **2K+ engineers** daily. __Led end-to-end development__ of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with **~95% shared code**.",
+      "description": "Building **AI coding agents**, full-stack software, developer tooling and infrastructure used by **3K+ engineers** daily. __Led end-to-end development__ of MCP Integration into AI Coding Agent, AI-native Editor and Agentic Chat experience across VS Code and JetBrains with **~95% shared code**.",
       "role": "SDE 2 — AI Foundations",
       "year": "2025 – now",
     },
@@ -618,7 +618,7 @@ exports[`Content Lock > matches the static content snapshot to protect against u
     "viewProjects": "view projects",
     "wins": [
       {
-        "highlight": "2K+ engineers daily",
+        "highlight": "3K+ engineers daily",
         "text": "Built the core __AI coding agent__ at Atlassian, actively used by",
       },
       {
@@ -658,7 +658,7 @@ exports[`Content Lock > matches the static content snapshot to protect against u
         "Built extension and agent **settings infrastructure** end-to-end, including persistence, real-time synchronization, permissions/approval systems, and extensibility surfaces.",
       ],
       "company": "Atlassian",
-      "description": "Built Core AI Coding Agent, Editor and Agentic Chat experience for VSCode and JetBrains — used by **2K+ engineers** daily, with **~95% shared** cross-platform code.",
+      "description": "Built Core AI Coding Agent, Editor and Agentic Chat experience for VSCode and JetBrains — used by **3K+ engineers** daily, with **~95% shared** cross-platform code.",
       "featured": true,
       "githubUrl": undefined,
       "liveUrl": undefined,

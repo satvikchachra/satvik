@@ -50,20 +50,20 @@ describe('BlogList', () => {
     render(<BlogList posts={posts} />);
 
     // Post 1
-    expect(screen.getByText('Post 1 Title')).toBeInTheDocument();
-    expect(screen.getByText('Post 1 Description')).toBeInTheDocument();
-    expect(screen.getByText('Formatted: 2026-05-29')).toBeInTheDocument();
+    expect(screen.getByText(posts[0].title)).toBeInTheDocument();
+    expect(screen.getByText(posts[0].description!)).toBeInTheDocument();
+    expect(screen.getByText(`Formatted: ${posts[0].date}`)).toBeInTheDocument();
 
     // Post 2
-    expect(screen.getByText('Post 2 Title')).toBeInTheDocument();
-    expect(screen.getByText('Post 2 Description')).toBeInTheDocument();
-    expect(screen.getByText('Formatted: 2026-05-30')).toBeInTheDocument();
+    expect(screen.getByText(posts[1].title)).toBeInTheDocument();
+    expect(screen.getByText(posts[1].description!)).toBeInTheDocument();
+    expect(screen.getByText(`Formatted: ${posts[1].date}`)).toBeInTheDocument();
 
     // Private badge
     expect(screen.getByText('Private')).toBeInTheDocument();
 
     // Verify it links to the correct place
-    expect(screen.getByRole('link', { name: /Post 1 Title/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: new RegExp(posts[0].title, 'i') })).toHaveAttribute(
       'href',
       '/blog/post-1',
     );
