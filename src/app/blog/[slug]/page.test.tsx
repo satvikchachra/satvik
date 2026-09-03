@@ -3,34 +3,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import BlogPostPage, { generateStaticParams, generateMetadata } from './page';
 import { notFound } from 'next/navigation';
 
-// Mock the blog data layer
-vi.mock('@/lib/blog', () => ({
-  getMdxSlugs: vi.fn().mockReturnValue(['test-slug-1', 'test-slug-2']),
-  getMdxPostBySlug: vi.fn((slug) => {
-    if (slug === 'private-post') {
-      return {
-        meta: {
-          title: 'Private Post',
-          description: 'A private post',
-          date: '2026-05-29',
-          private: true,
-        },
-      };
-    }
-    if (slug === 'public-post') {
-      return {
-        meta: {
-          title: 'Public Post',
-          description: 'A public post',
-          date: '2026-05-29',
-          private: false,
-        },
-      };
-    }
-    return null;
-  }),
-}));
-
 // Mock metadata builder
 vi.mock('@/lib/metadata', () => ({
   buildBlogMetadata: vi.fn().mockImplementation((meta) => ({ ...meta })),
@@ -62,7 +34,7 @@ vi.mock('@/content/blog/e2e-test-post.mdx', () => ({
   default: () => <div data-testid="mdx-content">MDX Content</div>,
 }));
 
-// Update the blog data layer mock to include filenames
+// Mock the blog data layer
 vi.mock('@/lib/blog', () => ({
   getMdxSlugs: vi.fn().mockReturnValue(['test-slug-1', 'test-slug-2']),
   getMdxPostBySlug: vi.fn((slug) => {
