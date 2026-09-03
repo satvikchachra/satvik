@@ -9,7 +9,6 @@ export const siteConfig = {
   description:
     'AI-native full-stack engineer building AI Coding Agents, developer tooling, software products and infrastructures.',
   url: BASE_URL,
-  ogImage: `${BASE_URL}/og/default.png`,
   author: {
     name: 'Satvik Chachra',
     email: EMAIL_ADDRESS,
