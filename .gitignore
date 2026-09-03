@@ -40,9 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# next-sitemap
+# next-sitemap (robots.txt is committed manually, not generated)
 public/sitemap*.xml
-public/robots.txt
 
 # testing
 playwright-report/
